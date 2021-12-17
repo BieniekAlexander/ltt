@@ -1,0 +1,40 @@
+{
+  "animacy": "ANIMATE",
+  "augmentative": [
+      "psisko"
+  ],
+  "definitions": [
+      "A dog (Canis lupus familiaris).",
+      "A male dog.",
+      "(hunting) A male fox or badger."
+  ],
+  "diminutive": [
+      "piesek"
+  ],
+  "feminine": null,
+  "gender": "MALE",
+  "inflections": {
+      "P": {
+          "A": "psy",
+          "D": "psom",
+          "G": "ps\u00f3w",
+          "I": "psami",
+          "L": "psach",
+          "N": "psy",
+          "V": "psy"
+      },
+      "S": {
+          "A": "psa",
+          "D": "psu",
+          "G": "psa",
+          "I": "psem",
+          "L": "psie",
+          "N": "pies",
+          "V": "psie"
+      }
+  },
+  "lemma": "pies",
+  "masculine": null,
+  "pos": "NOUN",
+  "virility": null
+}

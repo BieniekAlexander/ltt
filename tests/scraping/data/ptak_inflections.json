@@ -1,0 +1,20 @@
+{
+    "singular": {
+        "nominative": "ptak",
+        "genitive": "ptaka",
+        "dative": "ptakowi",
+        "accusative": "ptaka",
+        "instrumental": "ptakiem",
+        "locative": "ptaku",
+        "vocative": "ptaku"
+    },
+    "plural": {
+        "nominative": "ptaki",
+        "genitive": "ptaków",
+        "dative": "ptakom",
+        "accusative": "ptaki",
+        "instrumental": "ptakami",
+        "locative": "ptakach",
+        "vocative": "ptaki"
+    }
+}

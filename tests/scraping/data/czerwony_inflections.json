@@ -1,0 +1,60 @@
+{
+  "singular": {
+    "masculine personal/animate": {
+      "genitive": "czerwonego",
+      "dative": "czerwonemu",
+      "accusative": "czerwonego",
+      "instrumental": "czerwonym",
+      "locative": "czerwonym",
+      "nominative": "czerwony",
+      "vocative": "czerwony"
+    },
+    "masculine inanimate": {
+      "genitive": "czerwonego",
+      "dative": "czerwonemu",
+      "accusative": "czerwony",
+      "instrumental": "czerwonym",
+      "locative": "czerwonym",
+      "nominative": "czerwony",
+      "vocative": "czerwony"
+    },
+    "neuter": {
+      "genitive": "czerwonego",
+      "dative": "czerwonemu",
+      "accusative": "czerwone",
+      "instrumental": "czerwonym",
+      "locative": "czerwonym",
+      "nominative": "czerwone",
+      "vocative": "czerwone"
+    },
+    "feminine": {
+      "genitive": "czerwonej",
+      "dative": "czerwonej",
+      "accusative": "czerwoną",
+      "instrumental": "czerwoną",
+      "locative": "czerwonej",
+      "nominative": "czerwona",
+      "vocative": "czerwona"
+    }
+  },
+  "plural": {
+    "virile": {
+      "genitive": "czerwonych",
+      "dative": "czerwonym",
+      "accusative": "czerwonych",
+      "instrumental": "czerwonymi",
+      "locative": "czerwonych",
+      "nominative": "czerwoni",
+      "vocative": "czerwoni"
+    },
+    "nonvirile": {
+      "genitive": "czerwonych",
+      "dative": "czerwonym",
+      "accusative": "czerwone",
+      "instrumental": "czerwonymi",
+      "locative": "czerwonych",
+      "nominative": "czerwone",
+      "vocative": "czerwone"
+    }
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "singular": {
+    "masculine": {
+      "infinitive": [
+        "biec",
+        "biegnąć"
+      ],
+      "present tense": {
+        "1st": "biegnę",
+        "2nd": "biegniesz",
+        "3rd": "biegnie",
+        "impersonal": "biegnie się"
+      },
+      "past tense": {
+        "1st": "biegłem",
+        "2nd": "biegłeś",
+        "3rd": "biegł"
+      },
+      "future tense": {
+        "1st": [
+          "będę biegł",
+          "będę biec"
+        ],
+        "2nd": [
+          "będziesz biegł",
+          "będziesz biec"
+        ],
+        "3rd": [
+          "będzie biegł",
+          "będzie biec"
+        ],
+        "impersonal": "będzie biec się"
+      },
+      "conditional": {
+        "1st": "biegłbym",
+        "2nd": "biegłbyś",
+        "3rd": "biegłby"
+      },
+      "imperative": {
+        "1st": "niech biegnę",
+        "2nd": "biegnij",
+        "3rd": "niech biegnie"
+      },
+      "active adjectival participle": "biegnący",
+      "contemporary adverbial participle": "biegnąc"
+    },
+    "feminine": {
+      "infinitive": [
+        "biec",
+        "biegnąć"
+      ],
+      "present tense": {
+        "1st": "biegnę",
+        "2nd": "biegniesz",
+        "3rd": "biegnie",
+        "impersonal": "biegnie się"
+      },
+      "past tense": {
+        "1st": "biegłam",
+        "2nd": "biegłaś",
+        "3rd": "biegła"
+      },
+      "future tense": {
+        "1st": [
+          "będę biegła",
+          "będę biec"
+        ],
+        "2nd": [
+          "będziesz biegła",
+          "będziesz biec"
+        ],
+        "3rd": [
+          "będzie biegła",
+          "będzie biec"
+        ],
+        "impersonal": "będzie biec się"
+      },
+      "conditional": {
+        "1st": "biegłabym",
+        "2nd": "biegłabyś",
+        "3rd": "biegłaby"
+      },
+      "imperative": {
+        "1st": "niech biegnę",
+        "2nd": "biegnij",
+        "3rd": "niech biegnie"
+      },
+      "active adjectival participle": "biegnąca",
+      "contemporary adverbial participle": "biegnąc"
+    },
+    "neuter": {
+      "infinitive": [
+        "biec",
+        "biegnąć"
+      ],
+      "present tense": {
+        "1st": "biegnę",
+        "2nd": "biegniesz",
+        "3rd": "biegnie",
+        "impersonal": "biegnie się"
+      },
+      "past tense": {
+        "1st": "",
+        "2nd": "",
+        "3rd": "biegło"
+      },
+      "future tense": {
+        "1st": "",
+        "2nd": "",
+        "3rd": [
+          "będzie biegło",
+          "będzie biec"
+        ],
+        "impersonal": "będzie biec się"
+      },
+      "conditional": {
+        "1st": "",
+        "2nd": "",
+        "3rd": "biegłoby"
+      },
+      "imperative": {
+        "1st": "niech biegnę",
+        "2nd": "biegnij",
+        "3rd": "niech biegnie"
+      },
+      "active adjectival participle": "biegnące",
+      "contemporary adverbial participle": "biegnąc"
+    }
+  },
+  "plural": {
+    "virile": {
+      "infinitive": [
+        "biec",
+        "biegnąć"
+      ],
+      "present tense": {
+        "1st": "biegniemy",
+        "2nd": "biegniecie",
+        "3rd": "biegną",
+        "impersonal": "biegnie się"
+      },
+      "past tense": {
+        "1st": "biegliśmy",
+        "2nd": "biegliście",
+        "3rd": "biegli"
+      },
+      "future tense": {
+        "1st": [
+          "będziemy biegli",
+          "będziemy biec"
+        ],
+        "2nd": [
+          "będziecie biegli",
+          "będziecie biec"
+        ],
+        "3rd": [
+          "będą biegli",
+          "będą biec"
+        ],
+        "impersonal": "będzie biec się"
+      },
+      "conditional": {
+        "1st": "bieglibyśmy",
+        "2nd": "bieglibyście",
+        "3rd": "biegliby"
+      },
+      "imperative": {
+        "1st": "biegnijmy",
+        "2nd": "biegnijcie",
+        "3rd": "niech biegną"
+      },
+      "active adjectival participle": "biegnący",
+      "contemporary adverbial participle": "biegnąc"
+    },
+    "nonvirile": {
+      "infinitive": [
+        "biec",
+        "biegnąć"
+      ],
+      "present tense": {
+        "1st": "biegniemy",
+        "2nd": "biegniecie",
+        "3rd": "biegną",
+        "impersonal": "biegnie się"
+      },
+      "past tense": {
+        "1st": "biegłyśmy",
+        "2nd": "biegłyście",
+        "3rd": "biegły"
+      },
+      "future tense": {
+        "1st": [
+          "będziemy biegły",
+          "będziemy biec"
+        ],
+        "2nd": [
+          "będziecie biegły",
+          "będziecie biec"
+        ],
+        "3rd": [
+          "będą biegły",
+          "będą biec"
+        ],
+        "impersonal": "będzie biec się"
+      },
+      "conditional": {
+        "1st": "biegłybyśmy",
+        "2nd": "biegłybyście",
+        "3rd": "biegłyby"
+      },
+      "imperative": {
+        "1st": "biegnijmy",
+        "2nd": "biegnijcie",
+        "3rd": "niech biegną"
+      },
+      "active adjectival participle": "biegnące",
+      "contemporary adverbial participle": "biegnąc"
+    }
+  }
+}

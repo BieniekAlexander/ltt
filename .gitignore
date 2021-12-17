@@ -31,9 +31,7 @@ MANIFEST
 *.log
 
 # data for testing TODO figure out which data should be pushed to git (some data might be used in unit tests?)
-data/
-*.html
-*.json
+/data
 
 # Jupyter Notebook
 .ipynb_checkpoints
