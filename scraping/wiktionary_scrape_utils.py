@@ -43,12 +43,8 @@ def seek_pos_header(soup, pos, language=None):
 
     pos_header = pos_span.parent
     
-    if language: # verify that the entry we found is under the specified language
-        language_header = pos_span.find_previous('h2')
-        header_language = language_header.span.text
-        
-        if header_language != language:
-            raise ScrapingFindError(soup, query_args, f'Could not find a wiktionary section for: {query_args}')
+    if language and not verify_language_header(pos_span, language): # verify that the entry we found is under the specified language
+        raise ScrapingFindError(soup, query_args, f'Could not find a wiktionary section for: {query_args}')
 
     if pos_header.name != "h3" and pos_header.name != "h4":
         raise ScrapingAssertionError(soup, query_args, f'Element found as pos header not an h3 or h4: {query_args}')
@@ -70,12 +66,8 @@ def seek_inflection_table(soup, pos=None, language=None):
         if pos and not verify_pos_header(table, pos): # verify that the entry we found is under the specified pos
             raise ScrapingFindError(soup, query_args, f'The inflection table that we found was not under the expected pos header: {query_args}')
 
-        if language: # verify that the entry we found is under the specified language
-            language_header = table.find_previous('h2')
-            header_language = language_header.span.text
-
-            if header_language != language:
-                raise ScrapingFindError(soup, query_args, f'The inflection table that we found was not under the expected language: {query_args}')
+        if language and not verify_language_header(table, language): # verify that the entry we found is under the specified language
+            raise ScrapingFindError(soup, query_args, f'The inflection table that we found was not under the expected language: {query_args}')
 
         return table
 
@@ -110,12 +102,8 @@ def seek_summary_paragraph(soup, pos=None, language=None):
         if pos and not verify_pos_header(summary_strong, pos): # verify that the entry we found is under the specified pos
             raise ScrapingFindError(soup, query_args, f'The summary we found was not under the expected pos header: {query_args}')
 
-        if language: # verify that the entry we found is under the specified language
-            language_header = summary_paragraph.find_previous('h2')
-            header_language = language_header.span.text
-
-            if header_language != language:
-                raise ScrapingFindError(soup, query_args, f'The summary that we found was not under the expected language: {query_args}')
+        if language and not verify_language_header(summary_strong, language): # verify that the entry we found is under the specified language
+            raise ScrapingFindError(soup, query_args, f'The summary that we found was not under the expected language: {query_args}')
 
         return summary_paragraph
 
@@ -144,12 +132,8 @@ def seek_definition_list(soup, pos, language):
     if pos and not verify_pos_header(definitions_ol, pos): # verify that the entry we found is under the specified pos
             raise ScrapingFindError(soup, query_args, f'The definition list that we found was not under the expected pos header: {query_args}')
     
-    if language: # verify that the entry we found is under the specified language
-        language_header = definitions_ol.find_previous('h2')
-        header_language = language_header.span.text
-        
-        if header_language != language:
-            raise ScrapingFindError(soup, query_args, f'Could not find a definition list for: {query_args}')
+    if language and not verify_language_header(definitions_ol, language): # verify that the entry we found is under the specified language
+        raise ScrapingFindError(soup, query_args, f'Could not find a definition list for: {query_args}')
 
     return definitions_ol
 
@@ -193,7 +177,22 @@ def verify_language_header(soup, language):
     return False
 
 
+@capitalize_string_args
+def verify_language_header(soup, language):
+    """
+    Return True if the preceding h2 indicates the [language] that we expect
 
+    We perform this check to avoid the situation where we've searched for a tag in a webpage, and the tag is in a different section
+    """
+    language_header = soup.find_previous('h2')
+        
+    if language_header and language_header.span.text != language:
+        return False
+
+    return True
+
+
+@capitalize_string_args
 def verify_pos_header(soup, pos):
     """
     Return True if the preceding h3 or h4 indicates the [pos] that we expect
