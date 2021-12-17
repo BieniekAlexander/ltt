@@ -16,7 +16,7 @@ def extract_lexeme(soup, lemma, pos, language):
   """
   Extract the information from the [soup] webpage for the given [lemma], [pos], and [language] and returns it in a model object
   """
-  model_class = model_class_map[language.lower()][pos.lower()]
+  model_class = model_class_map[language.upper()][pos.upper()]
   kwargs = {}
   
   if issubclass(model_class, InflectedLexeme):
@@ -41,7 +41,8 @@ def extract_lexeme(soup, lemma, pos, language):
     kwargs.update(conjunction_summary)
   elif pos.lower() == "conjunction" \
       or pos.lower() == "interjection" \
-      or pos.lower() == "numeral":
+      or pos.lower() == "numeral" \
+      or pos.lower() == "particle":
     pass # no features to parse
   elif pos.lower() == "pronoun":
     # TODO probably update the Errors

@@ -41,7 +41,7 @@ def list_pop_adjacent_same_values(lizt):
 
 def replace_dict_keys_recursive(dictionary, key_mapping, exhaustive=True):
   """
-  Changes the names of keys in a nested dictionary, using a key name mapping.
+  Changes the names of keys in a nested dictionary, using a key name mapping
   """
   assert isinstance(dictionary, dict), f"Expected dictionary but got {type(dictionary)}"
   output_dictionary = {}
@@ -53,6 +53,9 @@ def replace_dict_keys_recursive(dictionary, key_mapping, exhaustive=True):
 
       if isinstance(output_dictionary[key_mapping[k]], dict):
         output_dictionary[key_mapping[k]] = replace_dict_keys_recursive(output_dictionary[key_mapping[k]], key_mapping, exhaustive)
+
+    elif k in key_mapping.values():
+      output_dictionary[k] = dictionary[k]
 
     elif exhaustive:
       raise ValueError(f"Could not find key in key mapping: {k}")

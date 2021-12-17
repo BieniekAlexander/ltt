@@ -341,7 +341,7 @@ def test_extract_polish_preposition_za():
   assert Case.ACCUSATIVE in lexeme.cases
 
 
-def test_extract_polish_preposition_kilka():
+def test_extract_polish_numeral_kilka():
   lemma, pos, language = "kilka", "Numeral", "Polish"
   termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
   page = requests.get(termUrl)
@@ -353,7 +353,7 @@ def test_extract_polish_preposition_kilka():
   assert lexeme.inflections['P']['N']['G'] == 'kilku'
 
 
-def test_extract_polish_preposition_piec():
+def test_extract_polish_numeral_piec():
   lemma, pos, language = "pięć", "Numeral", "Polish"
   termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
   page = requests.get(termUrl)
@@ -363,6 +363,28 @@ def test_extract_polish_preposition_piec():
   assert lexeme.pos == PartOfSpeech.NUMERAL
   assert 'five' in lexeme.definitions[0]
   assert lexeme.inflections['P']['V']['I'] == 'pięcioma'
+
+
+def test_extract_polish_particle_albo():
+  lemma, pos, language = "albo", "particle", "Polish"
+  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
+  page = requests.get(termUrl)
+  soup = BeautifulSoup(page.content, "html.parser")
+  lexeme = extract_lexeme(soup, lemma, pos, language)
+  
+  assert lexeme.pos == PartOfSpeech.PARTICLE
+  assert "used to express the speaker's doubt or surprise" in lexeme.definitions[0]
+
+
+def test_extract_polish_particle_jeszcze():
+  lemma, pos, language = "jeszcze", "particle", "Polish"
+  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
+  page = requests.get(termUrl)
+  soup = BeautifulSoup(page.content, "html.parser")
+  lexeme = extract_lexeme(soup, lemma, pos, language)
+  
+  assert lexeme.pos == PartOfSpeech.PARTICLE
+  assert "yet (used with negated verbs)" in lexeme.definitions[0]
 
 
 #% main

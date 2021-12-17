@@ -39,6 +39,9 @@ class Lexeme():
         """
         Convert the [Lexeme] into a JSON dictionary 
         """
+        # TODO maybe this needs to be recursive, in the case that dicts and lists contain JSON-compliant primitives
+        # TODO also find if there's something compatible with implicit serializer thingies? What if the object has 
+        # fields containing objects that recursively need to be serialized to JSON-compliant primitives?
         dump_dict = self.__dict__
 
         for key, val in dump_dict.items():
@@ -63,3 +66,26 @@ class Lexeme():
         jsonOther = other.to_json_dict()
         return jsonSelf == jsonOther
         
+
+class LexemeEncoder(json.JSONEncoder):
+    """
+    Encodes a model [Lexeme] into a JSON object
+    """
+    def default(self, o):
+        if isinstance(o, Enum):
+            return o.name.upper()
+        elif issubclass(type(o), Lexeme):
+            return o.to_json_dict()
+        else:
+            return json.JSONEncoder.default(self, o)
+
+
+class LexemeDecoder(json.JSONDecoder):
+    """ 
+    Decodes a JSON object into a [Lexeme]
+    """
+    def decode(self, str):
+        json_dict = json.loads(str)
+        from model import model_class_map
+        cls = model_class_map["POLISH"][json_dict['pos']] # TODO address how we're identifying the language of the object
+        return cls(**json_dict)
