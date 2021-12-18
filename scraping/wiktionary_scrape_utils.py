@@ -148,7 +148,7 @@ def get_definition_list(soup, pos, language):
     return seek_definition_list(pos_header, pos, language)
 
 
-def get_definitions(definition_ol):
+def get_definition_strings(definition_ol):
     """
     Get a list of definitions, TODO as strings, from the ordered list element 
     """
@@ -212,18 +212,40 @@ def verify_pos_header(soup, pos):
     return False
 
 
+@capitalize_string_args
+def get_lemma(soup, pos, language):
+    """
+    Given a webpage [soup], [language], and [pos] for a term, find the lemma related to the term, or return None if the webpage describes the lemma
+
+    For an entry, the first definition indicates which lemma covers this term
+    """
+    # notice the identification of lemma forms with the 'form-of-definition-link' class isn't used for all languages (e.g. not in Spanish)
+    definition_list = get_definition_list(soup, pos, language)
+    first_definition = definition_list.find_next('li')
+    lemma_span = first_definition.find_next('span', {'class': 'form-of-definition-link'})
+    print(lemma_span)
+
+    if lemma_span: # we've identified the lemma (make sure of it), return it
+        if (language and not verify_language_header(lemma_span, language))\
+                or (language and not verify_pos_header(lemma_span, pos)):
+            return None
+        else:
+            return lemma_span.text
+    else: # we found no lemma form, so this term is probably the lemma - return None to indicate that
+        return None
+
+
 #%% main
 def main():
-    lemma = "pies"
+    lemma = "psa"
     pos = "Noun"
     language = "Polish"
 
     termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
     page = requests.get(termUrl)
     soup = BeautifulSoup(page.content, "html.parser")
-    definition_list = get_definition_list(soup, pos, language)
-    definitions = get_definitions(definition_list)
-    print(definitions)
+    lemma = get_lemma(soup, pos, language)
+    print(lemma)
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ import os, sys, json, pytest, requests, time
 from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from scraping.wiktionary_scrape_utils import find_language_header, get_inflection_table, seek_inflection_table, seek_pos_header
+from scraping.wiktionary_scrape_utils import find_language_header, get_inflection_table, get_lemma, seek_inflection_table, seek_pos_header
 from scraping.scraping_errors import ScrapingFindError
 
 # constants
@@ -122,10 +122,50 @@ def test_find_polish_inflection_table_not_in_pos_fails():
     inflection_table = get_inflection_table(soup, pos, language)
 
 
+def test_find_polish_lemma():
+  term, language, pos = "psa", "Polish", "Noun"
+  termUrl = f"https://en.wiktionary.org/wiki/{term}"
+  page = requests.get(termUrl)
+  soup = BeautifulSoup(page.content, "html.parser") 
+  lemma = get_lemma(soup, pos, language)
+
+  assert lemma == "pies"
+
+
+def test_find_polish_lemma_multiple_inflections():
+  term, language, pos = "szare", "Polish", "Adjective"
+  termUrl = f"https://en.wiktionary.org/wiki/{term}"
+  page = requests.get(termUrl)
+  soup = BeautifulSoup(page.content, "html.parser") 
+  lemma = get_lemma(soup, pos, language)
+
+  assert lemma == "szary"
+  
+
+def test_find_polish_lemma_fails():
+  term, language, pos = "pies", "Polish", "Noun"
+  termUrl = f"https://en.wiktionary.org/wiki/{term}"
+  page = requests.get(termUrl)
+  soup = BeautifulSoup(page.content, "html.parser") 
+  lemma = get_lemma(soup, pos, language)
+
+  assert lemma == None
+
+
+def test_find_polish_lemma_fails_on_wrong_lemma():
+  # might get confused with the Welsh entry - "soft mutation of gwe"
+  term, language, pos = "we", "Polish", "Preposition"
+  termUrl = f"https://en.wiktionary.org/wiki/{term}"
+  page = requests.get(termUrl)
+  soup = BeautifulSoup(page.content, "html.parser")
+  lemma = get_lemma(soup, pos, language)
+  
+  assert lemma == None
+
+
 #% main
 def main():
-  pass
-  # test_crawl_pl_simple()
+  test_find_polish_lemma_fails_on_wrong_lemma()
 
 
 if __name__ == "__main__":

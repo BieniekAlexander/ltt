@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup, Tag
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from model.inflected_lexeme import InflectedLexeme
-from scraping.wiktionary_scrape_utils import get_inflection_table, get_summary_paragraph, get_definition_list, get_definitions
+from scraping.wiktionary_scrape_utils import get_inflection_table, get_summary_paragraph, get_definition_list, get_definition_strings
 from scraping.html_parse_utils import parse_inflection_table
 from scraping.scraping_errors import ScrapingAssertionError, ScrapingFindError, ScrapingValueError
 from model import model_class_map
@@ -52,7 +52,7 @@ def extract_lexeme(soup, lemma, pos, language):
     raise ValueError("Unknown part of speech trying to be extracted")
 
   definition_list = get_definition_list(soup, pos, language)
-  definitions = get_definitions(definition_list)
+  definitions = get_definition_strings(definition_list)
 
   lexeme = model_class(lemma, pos, definitions, **kwargs)
   return lexeme
@@ -67,7 +67,7 @@ def parse_features_noun(soup, pos, language):
   lemma_summary_paragraph = get_summary_paragraph(soup, pos, language)
   summary_string = lemma_summary_paragraph.get_text()
   definition_list = get_definition_list(soup, pos, language)
-  definitions = get_definitions(definition_list)
+  definitions = get_definition_strings(definition_list)
   ret = {}
 
   # get gender information
@@ -128,7 +128,7 @@ def parse_features_verb(soup, pos, language):
   lemma_summary_paragraph = get_summary_paragraph(soup, pos, language)
   summary_string = lemma_summary_paragraph.get_text()
   definition_list = get_definition_list(soup, pos, language)
-  definitions = get_definitions(definition_list)
+  definitions = get_definition_strings(definition_list)
   ret = {}
 
   # get aspect information
@@ -200,7 +200,7 @@ def parse_features_adjective(soup, pos, language):
   lemma_summary_paragraph = get_summary_paragraph(soup, pos, language)
   summary_string = lemma_summary_paragraph.get_text()
   definition_list = get_definition_list(soup, pos, language)
-  definitions = get_definitions(definition_list)
+  definitions = get_definition_strings(definition_list)
   ret = {}
 
   # get alternate forms
@@ -261,7 +261,7 @@ def parse_features_adverb(soup, pos, language):
   lemma_summary_paragraph = get_summary_paragraph(soup, pos, language)
   summary_string = lemma_summary_paragraph.get_text()
   definition_list = get_definition_list(soup, pos, language)
-  definitions = get_definitions(definition_list)
+  definitions = get_definition_strings(definition_list)
   ret = {}
 
   # get alternate forms
@@ -322,7 +322,7 @@ def parse_features_conjunction(soup, pos, language):
   lemma_summary_paragraph = get_summary_paragraph(soup, pos, language)
   summary_string = lemma_summary_paragraph.get_text()
   definition_list = get_definition_list(soup, pos, language)
-  definitions = get_definitions(definition_list)
+  definitions = get_definition_strings(definition_list)
   ret = {'cases': set()}
 
   # check if the summary string has any information about cases
