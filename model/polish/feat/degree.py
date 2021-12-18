@@ -2,6 +2,6 @@
 from enum import Enum, auto
 
 class Degree(str, Enum):
-    POSITIVE = auto()
-    COMPARATIVE = auto()
-    SUPERLATIVE = auto()
+    POSITIVE: str = "POSITIVE"
+    COMPARATIVE: str = "COMPARATIVE"
+    SUPERLATIVE: str = "SUPERLATIVE"

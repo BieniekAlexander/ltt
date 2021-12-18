@@ -1,10 +1,11 @@
 import enum
 import json, sys, os
+from json.encoder import JSONEncoder
 from enum import Enum, auto
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from .part_of_speech import PartOfSpeech
-
+from utils.data_structure_utils import json_preprocess
 
 # TODO add definitions and translations
 class Lexeme():
@@ -42,13 +43,20 @@ class Lexeme():
         # TODO maybe this needs to be recursive, in the case that dicts and lists contain JSON-compliant primitives
         # TODO also find if there's something compatible with implicit serializer thingies? What if the object has 
         # fields containing objects that recursively need to be serialized to JSON-compliant primitives?
+        # return self.__dict__
         dump_dict = self.__dict__
 
-        for key, val in dump_dict.items():
-            if isinstance(val, Enum):
-                dump_dict[key] = val.name.upper()
+        def jsonify(obj):
+            if isinstance(obj, str) and isinstance(obj, Enum):
+                return str(obj.value)
+            elif isinstance(obj, list):
+                return list(map(lambda x: jsonify(x), obj))
+            elif isinstance(obj, dict):
+                return {k: jsonify(v) for k, v in obj.items()}
+            else:
+                return obj
 
-        return dump_dict
+        return jsonify(dump_dict)
 
     
     def to_json_str(self):
@@ -67,17 +75,19 @@ class Lexeme():
         return jsonSelf == jsonOther
         
 
+# https://stackoverflow.com/a/58683139
 class LexemeEncoder(json.JSONEncoder):
     """
     Encodes a model [Lexeme] into a JSON object
     """
-    def default(self, o):
-        if isinstance(o, Enum):
-            return o.name.upper()
-        elif issubclass(type(o), Lexeme):
-            return o.to_json_dict()
+    def default(self, obj):
+        if isinstance(obj, Enum):
+            return obj.name.upper()
+        elif issubclass(type(obj), Lexeme):
+            return obj.to_json_dict()
         else:
             return json.JSONEncoder.default(self, o)
+            # return self.default(obj)
 
 
 class LexemeDecoder(json.JSONDecoder):

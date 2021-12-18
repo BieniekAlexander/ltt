@@ -1,12 +1,11 @@
 #%% imports
-from bs4.element import NavigableString, Tag
 import requests
 import sys, os
 from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from utils.function_decorators import capitalize_string_args
-from scraping.scraping_errors import ScrapingAssertionError, ScrapingFindError, ScrapingValueError
+from scraping.scraping_errors import ScrapingAssertionError, ScrapingFindError
 
 
 #%% utils

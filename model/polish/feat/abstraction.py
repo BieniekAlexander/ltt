@@ -2,5 +2,5 @@
 from enum import Enum, auto
 
 class Abstraction(str, Enum):
-    INDETERMINATE = auto()
-    DETERMINATE = auto()
+    INDETERMINATE: str = "INDETERMINATE"
+    DETERMINATE: str = "DETERMINATE"

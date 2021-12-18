@@ -1,6 +1,6 @@
 from enum import Enum, auto
 
 class Gender(str, Enum):
-    MALE = auto()
-    FEMALE = auto()
-    NEUTER = auto()
+    MALE: str = "MALE"
+    FEMALE: str = "FEMALE"
+    NEUTER: str = "NEUTER"

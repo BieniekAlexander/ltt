@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
-from scraping.wiktionary_extract_utils import extract_lexeme
+from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
 from model.lexeme import LexemeDecoder, LexemeEncoder
 from model.part_of_speech import PartOfSpeech
 from model.polish.pos.particle import Particle

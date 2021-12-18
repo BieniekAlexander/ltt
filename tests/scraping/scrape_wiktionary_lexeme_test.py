@@ -5,7 +5,7 @@ import os, sys, json, pytest, requests, time
 from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from scraping.wiktionary_scrape_utils import find_language_header, get_inflection_table, get_lemma, seek_inflection_table, seek_pos_header
+from scraping.wiktionary_scrape_lexeme_utils import find_language_header, get_inflection_table, get_lemma, get_summary_paragraph, seek_inflection_table, seek_pos_header
 from scraping.scraping_errors import ScrapingFindError
 
 # constants
@@ -100,6 +100,15 @@ def test_find_polish_inflection_table_adjective():
   soup = BeautifulSoup(page.content, "html.parser") 
   inflection_table = get_inflection_table(soup, pos, language)
   assert inflection_table
+
+
+def test_find_polish_summary_phrase_preposition():
+  lemma, language, pos = "pod względem", "Polish", "Preposition"
+  termUrl = f"https://en.wiktionary.org/wiki/{lemma.replace(' ', '_')}"
+  page = requests.get(termUrl)
+  soup = BeautifulSoup(page.content, "html.parser") 
+  summary_paragraph = get_summary_paragraph(soup, pos, language)
+  assert summary_paragraph
 
 
 def test_find_polish_inflection_table_preposition_fails():

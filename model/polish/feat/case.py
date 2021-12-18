@@ -1,10 +1,10 @@
 from enum import Enum, auto
 
 class Case(str, Enum):
-    NOMINATIVE = auto()
-    GENITIVE = auto()
-    ACCUSATIVE = auto()
-    INSTRUMENTAL = auto()
-    LOCATIVE = auto()
-    DATIVE = auto()
-    VOCATIVE = auto()
+    NOMINATIVE: str = "NOMINATIVE"
+    GENITIVE: str = "GENITIVE"
+    ACCUSATIVE: str = "ACCUSATIVE"
+    INSTRUMENTAL: str = "INSTRUMENTAL"
+    LOCATIVE: str = "LOCATIVE"
+    DATIVE: str = "DATIVE"
+    VOCATIVE: str = "VOCATIVE"

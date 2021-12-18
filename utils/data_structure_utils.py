@@ -111,6 +111,19 @@ def flatten_dict_vals(dictionary, flatten=lambda x: list(map(lambda y: y.strip()
   return dictionary
 
 
+def json_preprocess(tree):
+  """
+  Preprocess [tuple]/[dict]/[list] items for JSON serialization
+  """
+  if isinstance(tree, dict):
+    return {k: json_preprocess(v) for k, v in tree.items()}
+  if isinstance(tree, tuple) and hasattr(tree, '_asdict'):
+    return json_preprocess(tree._asdict())
+  if isinstance(tree, (list, tuple)):
+    return list(map(json_preprocess, tree))
+  return tree
+
+
 #% main
 if __name__ == "__main__":
   d = {1: "a"}
