@@ -43,16 +43,11 @@ class CollectionConnctor(object):
       return (key, value)
 
 
-  def get_document_mappings(self, keyed_lists):
+  def get_document_mappings(self, query):
       """
-      Get a dictionary containing the id: document mappings, given a [keyed_lists]
-
-      Expected format of [keyed_lists]: {'key': ['v','a','l','s']}
-      """    
-      assert isinstance(keyed_lists, dict)
-      assert all(isinstance(k, str) for k in keyed_lists) and all(isinstance(v, list) for v in keyed_lists.values())
-
-      query = {k: {"$in": v} for k, v in keyed_lists.items()}
+      Get a dictionary containing the id: document mappings, given a query
+      """
+      assert isinstance(query, dict)
       result_set = self.collection.find(query)
 
       def get_dictionary_id_tuple(dictionary, key): # TODO rename tbh
@@ -95,17 +90,14 @@ class CollectionConnctor(object):
     return (_id, document)
 
 
-  def pop_document_mappings(self, keyed_lists):
+  def pop_document_mappings(self, query):
     """
-    Pop documents, given [keyed_lists]
+    Pop documents, given a [query]
 
     https://stackoverflow.com/a/18567093
     """
-    assert isinstance(keyed_lists, dict)
-    assert all(isinstance(k, str) for k in keyed_lists) and all(isinstance(v, list) for v in keyed_lists.values())
-    query = query = {k: {"$in": v} for k, v in keyed_lists.items()}
-
-    mappings = self.get_document_mappings(keyed_lists)
+    assert isinstance(query, dict)
+    mappings = self.get_document_mappings(query)
     self.collection.delete_many(query)
     
     return mappings

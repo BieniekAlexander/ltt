@@ -3,7 +3,7 @@ import sys, os, requests, time, json
 from bs4 import BeautifulSoup
 import pymongo
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from scraping.wiktionary_scrape_summary_utils import wiktionary_get_all_lang_pos_lemmas
 from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
 from model.lexeme import LexemeEncoder

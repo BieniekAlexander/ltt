@@ -13,12 +13,19 @@ TODO clean up this section as I go
 
 - Lexicon:
   - _language_:
-    - schema: {id, lexeme, pos, ...}
+    - schema: {id, lemma, pos, ...}
     - indices:
       - {(lemma, pos), unique}
 - Inflections:
   - _language_:
-    - {form, lexeme}
+    - schema: {form, lexeme, pos}
+    - indices:
+      - {(form, lemma, pos), unique}
 - Vocabulary:
   - _language_:
-    - {user, id, rating, ...}
+    - schema: {user_id, lexeme_id, rating
+    - indices:
+      - {(user_id, lexeme_id), unique}
+
+## Useful Links
+[Anki's implementation of SRS and forgetting curve](https://faqs.ankiweb.net/what-spaced-repetition-algorithm.html)

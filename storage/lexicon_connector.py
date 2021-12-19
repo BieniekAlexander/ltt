@@ -5,6 +5,7 @@ from bson.objectid import ObjectId
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from storage.collection_connector import CollectionConnctor
+from storage.datastore_utils import generate_query
 from model.lexeme import LexemeEncoder, Lexeme
 from model.part_of_speech import PartOfSpeech
 from model.polish.pos.preposition import Preposition
@@ -28,12 +29,7 @@ class LexiconConnector(CollectionConnctor):
     Get an (id, lexeme dictionary) mapping, given the [lemma] form or the mongodb [_id]
     """
     assert (lemma and not _id) or (not lemma and _id), "provide only a lemma or an _id to find your lexeme"
-    
-    if lemma:
-      query = {'lemma': lemma}
-    elif _id:
-      query = {'_id': _id}
-
+    query = generate_query(lemma=lemma, _id=_id)
     return super(LexiconConnector, self).get_document_mapping(query)
 
 
@@ -52,13 +48,8 @@ class LexiconConnector(CollectionConnctor):
       Get a dictionary containing the id: lexeme_dictionary mappings, given a list of [lemmas] or [_ids]
       """    
       assert (lemmas and not _ids) or (not _ids and lemmas), "provide only a list of lemmas or a list of _ids"
-
-      if lemmas:
-        keyed_lists = {'lemma': lemmas}
-      elif _ids:
-        keyed_lists = {'_id': _ids}
-
-      return super(LexiconConnector, self).get_document_mappings(keyed_lists)
+      query = generate_query(lemma=lemmas, _id=_ids)
+      return super(LexiconConnector, self).get_document_mappings(query)
 
   
   def get_lexeme_mappings(self, lemmas=None, _ids=None):
@@ -111,12 +102,7 @@ class LexiconConnector(CollectionConnctor):
     Pop a lexeme dictionary, given the [lemma] or [_id]
     """
     assert lemma or _id, "provide a lemma or an _id to find your lexeme"
-
-    if lemma:
-      query = {'lemma': lemma}
-    else:
-      query = {'_id': _id}
-
+    query = generate_query(lemma=lemma, _id=_id)
     return super(LexiconConnector, self).pop_document_mapping(query)
 
 
@@ -138,13 +124,8 @@ class LexiconConnector(CollectionConnctor):
     """
     assert (lemmas and not _ids) or (not _ids and lemmas), "provide only a list of lemmas or a list of _ids"
     mappings = self.get_lexeme_dictionary_mappings(lemmas=lemmas, _ids=_ids)
-
-    if lemmas:
-      keyed_lists = {'lemma': lemmas}
-    elif _ids:
-      keyed_lists = {'_id': _ids}
-    
-    return super(LexiconConnector, self).pop_document_mappings(keyed_lists)
+    query = generate_query(lemma=lemmas, _id=_ids)   
+    return super(LexiconConnector, self).pop_document_mappings(query)
 
 
   def pop_lexeme_mappings(self, lemmas=None, _ids=None):

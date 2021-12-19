@@ -12,17 +12,20 @@ if db.command("serverStatus"):
 
 # %% setup index for polish lexicon
 db = client['lexicon']
+db['polish'].drop_indexes()
 db['polish'].create_index([("lemma", pymongo.ASCENDING), ("pos", pymongo.ASCENDING)], name="lemma index", unique=True)
 
 
 # %% setup index for user vocabulary
-db = client['lexicon']
-db['polish'].create_index([("user", pymongo.ASCENDING), ("lexeme_id", pymongo.ASCENDING)], name="user vocabulary index", unique=True)
+db = client['vocabulary']
+db['polish'].drop_indexes()
+db['polish'].create_index([("user_id", pymongo.ASCENDING), ("lexeme_id", pymongo.ASCENDING)], name="user vocabulary index", unique=True)
 
 
 # %% get some contents of the vocabulary
-db = client['lexicon']
-results = list(db['polish'].find({}))
+db = client['inflections']
+db['polish'].drop_indexes()
+db['polish'].create_index([("lemma", pymongo.ASCENDING), ("form", pymongo.ASCENDING), ("pos", pymongo.ASCENDING)], name="user vocabulary index", unique=True)
 
 
 # %%
