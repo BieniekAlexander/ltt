@@ -89,7 +89,7 @@ def flatten_dict_keys(dictionary, flatten=lambda x: list(map(lambda y: y.strip()
   return dictionary
 
 
-def flatten_dict_vals(dictionary, flatten=lambda x: list(map(lambda y: y.strip(), re.split(',|/', x)))):
+def split_dict_vals(dictionary, split=lambda x: list(map(lambda y: y.strip(), re.split(',|/', x)))):
   """
   Flatten the keys of a [dictionary] if [fun] turns the keys into multiple keys.
   """
@@ -99,14 +99,14 @@ def flatten_dict_vals(dictionary, flatten=lambda x: list(map(lambda y: y.strip()
     # if the value is a string, flatten it
     if isinstance(v, str):
       v = dictionary[k]
-      split = flatten(v)
+      lst = split(v)
       
-      if len(split) > 1:
-        dictionary[k] = split
+      if len(lst) > 1:
+        dictionary[k] = lst
 
     # if the value is a dictionary, recurse
     elif isinstance(v, dict):
-      flatten_dict_vals(v, flatten)
+      split_dict_vals(v, split)
 
   return dictionary
 
@@ -124,13 +124,29 @@ def json_preprocess(tree):
   return tree
 
 
+def get_nested_iterable_values(iterable):
+  if isinstance(iterable, dict):
+    for v in iterable.values():
+      if isinstance(v, dict) or isinstance(v, list) or isinstance(v, tuple):
+        yield from get_nested_iterable_values(v)
+      else:
+        yield v
+  elif isinstance(iterable, list) or isinstance(iterable, tuple):
+    for v in iterable:
+      if isinstance(v, dict) or isinstance(v, list) or isinstance(v, tuple):
+        yield from get_nested_iterable_values(v)
+      else:
+        yield v
+
+def get_values(d):
+  for v in d.values():
+      if isinstance(v, dict):
+          yield from get_values(v)
+      else:
+          yield v
+
+
 #% main
 if __name__ == "__main__":
-  d = {1: "a"}
-  dict_key_list_assign(d, [3], "c")
-  dict_key_list_assign(d, [2, 3, 1], "bca")
-  # print(d)
-
-  l = [1, 1, 2, 3, 5, 5, 5, 8, 13]
-  list_pop_adjacent_same_values(l)
-  print(l)
+  a = {4: 1, 6: 2, 7: {8: [3, 9, [10, 11]], 9: 4, 5: {10: 5}, 2: 6, 6: {2: 7, 1: 8}}}
+  print(sorted(list(get_nested_iterable_values(a))))

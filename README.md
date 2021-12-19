@@ -9,6 +9,11 @@ pytest
 ```
 
 
+# Roadmap
+- More extensive storage connector testing
+- Storage connector exceptions
+
+
 # Useful Links
 - https://docs.python-guide.org/writing/structure/
 - https://docs.pytest.org/en/6.2.x/

@@ -22,10 +22,10 @@ db['polish'].drop_indexes()
 db['polish'].create_index([("user_id", pymongo.ASCENDING), ("lexeme_id", pymongo.ASCENDING)], name="user vocabulary index", unique=True)
 
 
-# %% get some contents of the vocabulary
+# %% setup index for inflections
 db = client['inflections']
 db['polish'].drop_indexes()
-db['polish'].create_index([("lemma", pymongo.ASCENDING), ("form", pymongo.ASCENDING), ("pos", pymongo.ASCENDING)], name="user vocabulary index", unique=True)
+db['polish'].create_index([("form", pymongo.ASCENDING), ("pos", pymongo.ASCENDING), ("lexeme_id", pymongo.ASCENDING)], name="inflections index", unique=True)
 
 
 # %%

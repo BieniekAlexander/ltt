@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup, Tag, NavigableString
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from utils.data_structure_utils import list_pop_adjacent_same_values, dict_key_list_assign, flatten_dict_keys, flatten_dict_vals
+from utils.data_structure_utils import list_pop_adjacent_same_values, dict_key_list_assign, flatten_dict_keys, split_dict_vals
 
 
 #%% utils
@@ -150,7 +150,7 @@ def get_table_row_headers(table):
         
         for (i, header) in enumerate(headers):
             text = header.text.strip()
-            text = text.replace(u'\xa0', u' ')
+            text = text.replace(u'\xa0', u' ') # replace '&nbsp;' (no break space) 
         
             if len(row_header_cols) <= i:
                 row_header_cols.append([])
@@ -201,7 +201,7 @@ def parse_inflection_table(table):
             dict_key_list_assign(parsed, keys, table_data[i][j])
 
     parsed = flatten_dict_keys(parsed)
-    parsed = flatten_dict_vals(parsed)
+    parsed = split_dict_vals(parsed)
     return parsed
 
 

@@ -98,8 +98,11 @@ class CollectionConnctor(object):
     """
     assert isinstance(query, dict)
     mappings = self.get_document_mappings(query)
+
+    if not mappings: # TODO exception type
+      raise Exception("Pop operation returned no entries")
+
     self.collection.delete_many(query)
-    
     return mappings
 
 
