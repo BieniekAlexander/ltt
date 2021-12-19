@@ -36,7 +36,7 @@ class Lexeme():
         self.definitions = definitions
 
 
-    def to_json_dict(self):
+    def to_json_dictionary(self):
         """
         Convert the [Lexeme] into a JSON dictionary 
         """
@@ -63,15 +63,17 @@ class Lexeme():
         """
         Convert the [Lexeme] into a JSON string
         """
-        return json.dumps(self.to_json_dict(), sort_keys=True, indent=4)
+        return json.dumps(self.to_json_dictionary(), sort_keys=True, indent=4)
 
     
     def __eq__(self, other) -> bool:
         """
-        Compare two terms for equality, ignoring irrelevant parts of the Lexeme
+        Compare two terms for equality
         """
-        jsonSelf = self.to_json_dict()
-        jsonOther = other.to_json_dict()
+        assert issubclass(type(other), Lexeme)
+
+        jsonSelf = self.to_json_dictionary()
+        jsonOther = other.to_json_dictionary()
         return jsonSelf == jsonOther
         
 
@@ -84,10 +86,9 @@ class LexemeEncoder(json.JSONEncoder):
         if isinstance(obj, Enum):
             return obj.name.upper()
         elif issubclass(type(obj), Lexeme):
-            return obj.to_json_dict()
+            return obj.to_json_dictionary()
         else:
-            return json.JSONEncoder.default(self, o)
-            # return self.default(obj)
+            return json.JSONEncoder.default(self, obj)
 
 
 class LexemeDecoder(json.JSONDecoder):

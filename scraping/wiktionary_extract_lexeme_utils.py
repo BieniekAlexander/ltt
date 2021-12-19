@@ -347,7 +347,7 @@ def main():
   page = requests.get(termUrl)
   soup = BeautifulSoup(page.content, "html.parser")
   ret = extract_lexeme(soup, lemma, pos, language)
-  print(ret.to_json_dict())
+  print(ret.to_json_dictionary())
 
 
 if __name__ == "__main__":

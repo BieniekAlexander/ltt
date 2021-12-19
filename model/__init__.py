@@ -2,6 +2,10 @@
 import sys, os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+# abstract - for testing purposes
+from model.lexeme import Lexeme
+
+# Polish
 from model.polish.pos.adjective import Adjective as PlAdjective
 from model.polish.pos.adverb import Adverb as PlAdverb
 from model.polish.pos.conjunction import Conjunction as PlConjunction
@@ -26,5 +30,8 @@ model_class_map = {
     "PREPOSITION": PlPreposition,
     "PRONOUN": PlPronoun,
     "VERB": PlVerb
+  },
+  "TEST": {
+    "NOUN": Lexeme
   }
 }

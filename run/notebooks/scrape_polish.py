@@ -33,7 +33,7 @@ def main():
     try:
       lexeme = extract_lexeme(soup, lemma, 'preposition', 'polish')
       with open(f"data/polish/preposition_{lexeme.lemma.replace(' ', '_')}.json", 'w') as f:
-        json_dict = lexeme.to_json_dict()
+        json_dict = lexeme.to_json_dictionary()
         mongodb_collection_polish.insert_one(json_dict)
         # json_str = json.dumps(lexeme, cls=LexemeEncoder)
         # f.write(json_str)
