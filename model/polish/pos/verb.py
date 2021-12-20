@@ -75,7 +75,7 @@ class Verb(InflectedLexeme):
     "conditional": "C",
     "imperative": "Imper",
     "active adjectival participle": "ActAP",
-    "anterior adverbial participle": "ANtAP",
+    "anterior adverbial participle": "AntAP",
     "passive adjectival participle": "PAP",
     "contemporary adverbial participle": "CAP",
     "verbal noun": "VN",

@@ -161,8 +161,8 @@ def test_find_polish_lemma_multiple_inflections():
   assert lemma == "szary"
   
 
-def test_find_polish_lemma_returns_none():
-  term, language, pos = "pies", "Polish", "Noun"
+def test_find_polish_lemma_wrong_pos_returns_none():
+  term, language, pos = "pies", "Polish", "Adjective"
   termUrl = f"https://en.wiktionary.org/wiki/{term}"
   page = requests.get(termUrl)
   soup = BeautifulSoup(page.content, "html.parser") 
@@ -171,9 +171,31 @@ def test_find_polish_lemma_returns_none():
   assert lemma == None
 
 
+def test_find_polish_lemma_wrong_language_returns_none():
+  # TODO this is currently throwing an exception because there's no Polish section - should get_lemma throw an exception or fail in this case?
+  term, language, pos = "amo", "Polish", "Noun"
+  termUrl = f"https://en.wiktionary.org/wiki/{term}"
+  page = requests.get(termUrl)
+  soup = BeautifulSoup(page.content, "html.parser") 
+  
+  with pytest.raises(ScrapingFindError):
+    lemma = get_lemma(soup, pos, language)
+
+
+def test_find_polish_lemma_no_entry_returns_none():
+  # TODO same as above
+  term, language, pos = "fearful", "Polish", "Noun"
+  termUrl = f"https://en.wiktionary.org/wiki/{term}"
+  page = requests.get(termUrl)
+  soup = BeautifulSoup(page.content, "html.parser") 
+
+  with pytest.raises(ScrapingFindError):
+    lemma = get_lemma(soup, pos, language)
+
+
 def test_find_polish_lemma_returns_none_on_wrong_lemma():
   # testing that scraper doesn't get confused with the Welsh entry - "soft mutation of gwe"
-  term, language, pos = "we", "Polish", "Preposition"
+  term, language, pos = "we", "Polish", "Noun"
   termUrl = f"https://en.wiktionary.org/wiki/{term}"
   page = requests.get(termUrl)
   soup = BeautifulSoup(page.content, "html.parser")
@@ -203,6 +225,18 @@ def test_get_polish_term_parts_of_speech_many_languages():
   assert 'Adjective' in term_parts_of_speech
   assert all(pos not in term_parts_of_speech for pos in ['Verb', 'Noun'])
 
+
+def test_get_polish_term_parts_of_speech_no_polish():
+  # TODO raises exception when there is no section on the page for the given language - do I wan't exception or just empty list?
+  term, language = "no_way", "Polish"
+  termUrl = f"https://en.wiktionary.org/wiki/{term}"
+  page = requests.get(termUrl)
+  soup = BeautifulSoup(page.content, "html.parser")
+  
+  with pytest.raises(ScrapingFindError):
+    get_term_parts_of_speech(soup, language)
+
+  
 
 #% main
 def main():

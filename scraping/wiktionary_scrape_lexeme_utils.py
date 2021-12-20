@@ -117,6 +117,7 @@ def get_summary_paragraph(soup, pos, language):
     """
     Get the paragraph that summarizes this lexeme, given the [pos] and [language]
     """
+    # TODO is it possible that a term in a given language has multiple sections for the same part of speech? I feel like I've seen this on wiktionary before...
     lang_header = find_language_header(soup, language)
     pos_header = seek_pos_header(lang_header, pos, language)
     return seek_summary_paragraph(pos_header, pos, language)
