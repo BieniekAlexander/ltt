@@ -1,4 +1,3 @@
-# tests for utilities for scraping tables from html
 #%% imports
 import os, sys, json, pytest, pymongo
 from bson.objectid import ObjectId
@@ -66,7 +65,7 @@ def test_push_args_missing_fail(inflections_connector):
 
 
 def test_push_and_get_inflections(lexicon_connector, inflections_connector):
-  json_str = open('tests/model/polish/data/noun_pies.json').read()
+  json_str = open('tests/storage/data/noun_czerwony.json').read()
   lexeme = json.loads(json_str, cls=LexemeDecoder)
   inflections = list(set(lexeme.get_inflections()))
   lexeme_id = lexicon_connector.push_lexeme(lexeme)
@@ -90,7 +89,7 @@ def test_push_and_pop_inflection_args(inflections_connector):
 
 
 def test_push_and_get_inflections(lexicon_connector, inflections_connector):
-  json_str = open('tests/model/polish/data/noun_pies.json').read()
+  json_str = open('tests/storage/data/noun_czerwony.json').read()
   lexeme = json.loads(json_str, cls=LexemeDecoder)
   inflections = list(set(lexeme.get_inflections()))
   lexeme_id = lexicon_connector.push_lexeme(lexeme)
@@ -102,21 +101,6 @@ def test_push_and_get_inflections(lexicon_connector, inflections_connector):
 
   inflections_connector.push_inflection_entries(entries)
   results = inflections_connector.pop_inflection_entry_mappings(poses=lexeme.pos.value, lexeme_ids=lexeme_id)
-
-
-def test_push_inflections_duplicate_forms_fail(lexicon_connector, inflections_connector):
-  json_str = open('tests/model/polish/data/noun_pies.json').read()
-  lexeme = json.loads(json_str, cls=LexemeDecoder)
-  inflections = lexeme.get_inflections()
-  lexeme_id = lexicon_connector.push_lexeme(lexeme)
-  entries = []
-
-  for inflection in inflections:
-    entry = {'form': inflection, 'pos': lexeme.pos.value, 'lexeme_id': lexeme_id}
-    entries.append(entry)
-
-  with pytest.raises(Exception):
-    inflections_connector.push_inflection_entries(entries)
 
 
 

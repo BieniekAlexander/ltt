@@ -5,7 +5,7 @@ from model import lexeme
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from storage.collection_connector import CollectionConnctor
-from storage.datastore_utils import generate_query, cast_object_id
+from storage.datastore_utils import generate_query
 
 # constants
 DATABASE = "vocabulary"
@@ -28,7 +28,7 @@ class VocabularyConnector(CollectionConnctor):
     if user_id is None: user_id = self.user_id
     assert isinstance(rating, float)
 
-    entry = {'lexeme_id': cast_object_id(lexeme_id), 'rating': rating, 'user_id': cast_object_id(user_id)}
+    entry = {'lexeme_id': ObjectId(lexeme_id), 'rating': rating, 'user_id': ObjectId(user_id)}
 
     return super(VocabularyConnector, self).push_document(entry)
 
@@ -46,8 +46,8 @@ class VocabularyConnector(CollectionConnctor):
       if 'user_id' not in entry: entry['user_id'] = self.user_id
       assert all(key in entry for key in ['lexeme_id', 'user_id', 'rating']), "Each vocabulary entry must contain a lexeme_id, user_id, and rating"
       assert isinstance(entry['rating'], float)
-      entry['lexeme_id'] = cast_object_id(entry['lexeme_id'])
-      entry['user_id'] = cast_object_id(entry['user_id'])
+      entry['lexeme_id'] = ObjectId(entry['lexeme_id'])
+      entry['user_id'] = ObjectId(entry['user_id'])
 
     return super(VocabularyConnector, self).push_documents(entries)
 
@@ -56,9 +56,9 @@ class VocabularyConnector(CollectionConnctor):
     """
     Get a vocabulary entry and its _id, given the [lexeme_id] and [user_id]
     """
-    if lexeme_id: lexeme_id = cast_object_id(lexeme_id)
+    if lexeme_id: lexeme_id = ObjectId(lexeme_id)
     if user_id is None: user_id = self.user_id
-    user_id = cast_object_id(user_id)
+    user_id = ObjectId(user_id)
     query = generate_query(lexeme_id=lexeme_id, user_id=user_id)
     return super(VocabularyConnector, self).get_document_mapping(query)
 
@@ -72,14 +72,14 @@ class VocabularyConnector(CollectionConnctor):
     if user_ids is None: user_ids = self.user_id
     
     if isinstance(lexeme_ids, list):
-      lexeme_ids = list(map(lambda x: cast_object_id(x), lexeme_ids))
+      lexeme_ids = list(map(ObjectId, lexeme_ids))
     elif lexeme_ids:
-      lexeme_ids = cast_object_id(lexeme_ids)
+      lexeme_ids = ObjectId(lexeme_ids)
 
     if isinstance(user_ids, list):
-      ser_ids = list(map(lambda x: cast_object_id(x), user_ids))
+      ser_ids = list(map(ObjectId, user_ids))
     elif user_ids:
-      ser_ids = cast_object_id(user_ids)
+      ser_ids = ObjectId(user_ids)
 
     query = generate_query(lexeme_id=lexeme_ids, user_id=user_ids)
     print(query)
@@ -91,7 +91,7 @@ class VocabularyConnector(CollectionConnctor):
     Pop vocabulary data entry and its _id, given the [lexeme_id], [form], and [pos]
     """
     if user_id is None: user_id = self.user_id
-    if lexeme_id: lexeme_id = cast_object_id(lexeme_id)
+    if lexeme_id: lexeme_id = ObjectId(lexeme_id)
     query = generate_query(lexeme_id=lexeme_id, user_id=user_id)
     return super(VocabularyConnector, self).pop_document_mapping(query)
   
@@ -104,14 +104,14 @@ class VocabularyConnector(CollectionConnctor):
     if user_ids is None: user_ids = self.user_id
 
     if isinstance(lexeme_ids, list):
-      lexeme_ids = list(map(lambda x: cast_object_id(x), lexeme_ids))
+      lexeme_ids = list(map(ObjectId, lexeme_ids))
     elif lexeme_ids:
-      lexeme_ids = cast_object_id(lexeme_ids)
+      lexeme_ids = ObjectId(lexeme_ids)
 
     if isinstance(user_ids, list):
-      ser_ids = list(map(lambda x: cast_object_id(x), user_ids))
+      ser_ids = list(map(ObjectId, user_ids))
     elif user_ids:
-      ser_ids = cast_object_id(user_ids)
+      ser_ids = ObjectId(user_ids)
 
     query = generate_query(lexeme_id=lexeme_ids, user_id=user_ids)
     return super(VocabularyConnector, self).pop_document_mappings(query)

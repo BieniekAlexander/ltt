@@ -31,7 +31,17 @@ model_class_map = {
     "PRONOUN": PlPronoun,
     "VERB": PlVerb
   },
-  "TEST": {
-    "NOUN": Lexeme
+  "TEST": { # TODO setting to Polish now for testing purposes
+    # "NOUN": Lexeme
+    "ADJECTIVE": PlAdjective,
+    "ADVERB": PlAdverb,
+    "CONJUNCTION": PlConjunction,
+    "NUMERAL": PlNumeral,
+    "PARTICLE": PlParticle,
+    "INTERJECTION": PlInterjection,
+    "NOUN": PlNoun,
+    "PREPOSITION": PlPreposition,
+    "PRONOUN": PlPronoun,
+    "VERB": PlVerb
   }
 }

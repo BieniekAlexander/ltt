@@ -1,5 +1,6 @@
 #%% imports
 import pymongo, logging
+from storage.datastore_utils import lexeme_index, user_vocabulary_index, inflections_index
 
 
 # %% connect
@@ -13,19 +14,19 @@ if db.command("serverStatus"):
 # %% setup index for polish lexicon
 db = client['lexicon']
 db['polish'].drop_indexes()
-db['polish'].create_index([("lemma", pymongo.ASCENDING), ("pos", pymongo.ASCENDING)], name="lemma index", unique=True)
+db['polish'].create_index(lexeme_index)
 
 
 # %% setup index for user vocabulary
 db = client['vocabulary']
 db['polish'].drop_indexes()
-db['polish'].create_index([("user_id", pymongo.ASCENDING), ("lexeme_id", pymongo.ASCENDING)], name="user vocabulary index", unique=True)
+db['polish'].create_index(user_vocabulary_index)
 
 
 # %% setup index for inflections
 db = client['inflections']
 db['polish'].drop_indexes()
-db['polish'].create_index([("form", pymongo.ASCENDING), ("pos", pymongo.ASCENDING), ("lexeme_id", pymongo.ASCENDING)], name="inflections index", unique=True)
+db['polish'].create_index(inflections_index)
 
 
 # %%

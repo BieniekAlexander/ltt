@@ -1,11 +1,11 @@
 # imports
-import sys, os, json
-from bson.objectid import ObjectId
+import sys, os
 
+from bson.objectid import ObjectId
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from storage.collection_connector import CollectionConnctor
-from storage.datastore_utils import generate_query
+from storage.datastore_utils import cast_enum_to_str, generate_query
 from model.lexeme import LexemeEncoder, Lexeme
 from model.part_of_speech import PartOfSpeech
 from model.polish.pos.preposition import Preposition
@@ -20,41 +20,63 @@ class LexiconConnector(CollectionConnctor):
   A [DocumentStoreConnector] used specifically for interacting with a language's lexicon
   """
   def __init__(self, uri, language):
+    self.language = language.lower()
     super(LexiconConnector, self).__init__(uri, DATABASE, language)
-    self.language = language
   
   
-  def get_lexeme_dictionary_mapping(self, lemma=None, _id=None):
+  def get_lexeme_dictionary_mapping(self, lemma=None, pos=None, _id=None):
     """
-    Get an (id, lexeme dictionary) mapping, given the [lemma] form or the mongodb [_id]
+    Get (id, [Lexeme] [dict]) mapping, given either an [_id] or a [lemma] and/or [pos]
     """
-    assert (lemma and not _id) or (not lemma and _id), "provide only a lemma or an _id to find your lexeme"
-    query = generate_query(lemma=lemma, _id=_id)
+    # preprocess args
+    if _id:
+      assert not lemma and not pos, "supply either _ids, or lemmas and/or poses"
+      _id = ObjectId(_id)
+    else:
+      assert pos or lemma, "supply either _ids, or lemmas and/or poses"
+      if pos: pos = cast_enum_to_str(pos)
+
+    query = generate_query(lemma=lemma, _id=_id, pos=pos)
     return super(LexiconConnector, self).get_document_mapping(query)
 
 
-  def get_lexeme_mapping(self, lemma=None, _id=None):
+  def get_lexeme_mapping(self, lemma=None, pos=None, _id=None):
     """
-    Get an (id, lexeme) mapping, given the [lemma] form or the [_id]
+    Get (id, [Lexeme]) mapping, given either an [_id] or a [lemma] and/or [pos]
     """
-    key, lexeme_dictionary = self.get_lexeme_dictionary_mapping(lemma=lemma, _id=_id)
+    key, lexeme_dictionary = self.get_lexeme_dictionary_mapping(lemma=lemma, pos=pos, _id=_id)
     cls = model_class_map[self.language.upper()][lexeme_dictionary['pos']]
+    print(lexeme_dictionary)
+    print(cls)
     lexeme = cls(**lexeme_dictionary)
     return (key, lexeme)
 
 
-  def get_lexeme_dictionary_mappings(self, lemmas=None, _ids=None):
-      """
-      Get a dictionary containing the id: lexeme_dictionary mappings, given a list of [lemmas] or [_ids]
-      """    
-      assert (lemmas and not _ids) or (not _ids and lemmas), "provide only a list of lemmas or a list of _ids"
-      query = generate_query(lemma=lemmas, _id=_ids)
-      return super(LexiconConnector, self).get_document_mappings(query)
+  def get_lexeme_dictionary_mappings(self, lemmas=None, poses=None, _ids=None):
+    """
+    Get (id, [Lexeme] [dict]) mappings, given either [_ids], or [lemmas] and/or [poses]
+    """
+    # preprocess args
+    if _ids:
+      assert not lemmas and not poses, "supply either _ids, or lemmas and/or poses"
+      if isinstance(_ids, list):
+        _ids = list(map(ObjectId, _ids))
+      else:
+        _ids = ObjectId(_ids)
+    else:
+      assert lemmas or poses, "supply either _ids, or lemmas and/or poses"
+      if isinstance(poses, list):
+        poses = list(map(cast_enum_to_str, poses))
+      elif poses:
+        poses = cast_enum_to_str(poses)
+
+    query = generate_query(lemma=lemmas, _id=_ids, pos=poses)
+    return super(LexiconConnector, self).get_document_mappings(query)
 
   
-  def get_lexeme_mappings(self, lemmas=None, _ids=None):
+  def get_lexeme_mappings(self, lemmas=None, poses=None, _ids=None):
     """
-    Get a dictionary containing the id: lexeme mappings, given a list of [lemmas] or [_ids]
+    Get (id, [Lexeme] [dict]) mappings, given either [_ids], or [lemmas] and/or [poses]
     """
     dictionary_mappings = self.get_lexeme_dictionary_mappings(lemmas=lemmas, _ids=_ids)
     lexeme_mappings = {}
@@ -82,7 +104,7 @@ class LexiconConnector(CollectionConnctor):
 
   def push_lexeme(self, lexeme):
     """
-    Insert a [lexeme_dict] and get the _id it gets mapped to
+    Insert a [Lexeme] and get the _id it gets mapped to
     """
     lexeme_dict = self.cast_lexeme_dictionary(lexeme)
     return super(LexiconConnector, self).push_document(lexeme_dict)
@@ -97,44 +119,64 @@ class LexiconConnector(CollectionConnctor):
     return super(LexiconConnector, self).push_documents(lexeme_dicts)
     
 
-  def pop_lexeme_dictionary_mapping(self, lemma=None, _id=None):
+  def pop_lexeme_dictionary_mapping(self, lemma=None, pos=None, _id=None):
     """
-    Pop a lexeme dictionary, given the [lemma] or [_id]
+    Pop a [Lexeme] dictionary, given either an [_id] or a [lemma] and/or [pos]
     """
-    assert lemma or _id, "provide a lemma or an _id to find your lexeme"
-    query = generate_query(lemma=lemma, _id=_id)
+    # preprocess args
+    if _id:
+      assert not lemma and not pos, "supply either _ids, or lemmas and/or poses"
+      _id = ObjectId(_id)
+    else:
+      assert pos or lemma, "supply either _ids, or lemmas and/or poses"
+      if pos: pos = cast_enum_to_str(pos)
+
+    query = generate_query(lemma=lemma, _id=_id, pos=pos)
     return super(LexiconConnector, self).pop_document_mapping(query)
 
 
-  def pop_lexeme_mapping(self, lemma=None, _id=None):
+  def pop_lexeme_mapping(self, lemma=None, pos=None, _id=None):
     """
     Pop a lexeme, given the [lemma] or [_id]
     """
-    _id, lexeme_dict = self.pop_lexeme_dictionary_mapping(lemma, _id)
+    _id, lexeme_dict = self.pop_lexeme_dictionary_mapping(lemma, pos, _id)
     cls = model_class_map[self.language.upper()][lexeme_dict['pos']]
     lexeme = cls(**lexeme_dict)
     return (_id, lexeme)
 
 
-  def pop_lexeme_dictionary_mappings(self, lemmas=None, _ids=None):
+  def pop_lexeme_dictionary_mappings(self, lemmas=None, poses=None, _ids=None):
     """
-    Pop [Lexeme], given the [lemma] or [_id]
+    Pop [Lexeme] dictionaries, given either [_ids], or [lemmas] and/or [poses]
 
     https://stackoverflow.com/a/18567093
     """
-    assert (lemmas and not _ids) or (not _ids and lemmas), "provide only a list of lemmas or a list of _ids"
-    mappings = self.get_lexeme_dictionary_mappings(lemmas=lemmas, _ids=_ids)
+    # preprocess args
+    if _ids:
+      assert not lemmas and not poses, "supply either _ids, or lemmas and/or poses"
+      if isinstance(_ids, list):
+        _ids = list(map(ObjectId, _ids))
+      else:
+        _ids = ObjectId(_ids)
+    else:
+      assert lemmas or poses, "supply either _ids, or lemmas and/or poses"
+      if isinstance(poses, list):
+        poses = list(map(cast_enum_to_str, poses))
+      elif poses:
+        poses = cast_enum_to_str(poses)
+
+    mappings = self.get_lexeme_dictionary_mappings(lemmas=lemmas, poses=poses, _ids=_ids)
     query = generate_query(lemma=lemmas, _id=_ids)   
     return super(LexiconConnector, self).pop_document_mappings(query)
 
 
-  def pop_lexeme_mappings(self, lemmas=None, _ids=None):
+  def pop_lexeme_mappings(self, lemmas=None, poses=None, _ids=None):
     """
-    Pop [Lexeme], given the [lemma] or [_id]
+    Pop [Lexeme]s, given either [_ids], or [lemmas] and/or [poses]
 
     https://stackoverflow.com/a/18567093
     """
-    lexeme_dictionary_mappings = self.pop_lexeme_dictionary_mappings(lemmas=lemmas, _ids=_ids)
+    lexeme_dictionary_mappings = self.pop_lexeme_dictionary_mappings(lemmas=lemmas, poses=poses, _ids=_ids)
     lexeme_mappings = {}
     
     for key in lexeme_dictionary_mappings:

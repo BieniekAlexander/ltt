@@ -42,7 +42,7 @@ class InflectedLexeme(Lexeme):
 
   def get_inflections(self):
     """
-    Get a list of all inflected forms of this lexeme
+    Get a list of all unique inflected forms of this lexeme
     """
     assert self.inflections
-    return list(get_nested_iterable_values(self.inflections))
+    return list(set(get_nested_iterable_values(self.inflections)))

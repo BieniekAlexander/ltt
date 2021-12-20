@@ -2,7 +2,7 @@
 import sys, os, json
 from bson.objectid import ObjectId
 
-from storage.datastore_utils import cast_object_id, generate_query
+from storage.datastore_utils import generate_query
 
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -21,15 +21,15 @@ class InflectionsConnector(CollectionConnctor):
   A [DocumentStoreConnector] used specifically for interacting with a language's inflection mapping collection
   """
   def __init__(self, uri, language):
+    self.language = language.lower()
     super(InflectionsConnector, self).__init__(uri, DATABASE, language)
-    self.language = language
   
   
   def push_inflection_entry(self, lexeme_id: str, form: str, pos: str) -> str:
     """
     Add a new inflection to the datastore, represented by a [lexeme_id], [form], and [pos]
     """
-    lexeme_id = cast_object_id(lexeme_id)
+    lexeme_id = ObjectId(lexeme_id)
     entry = {'lexeme_id': lexeme_id, 'form': form, 'pos': pos}
     return super(InflectionsConnector, self).push_document(entry)
 
@@ -47,7 +47,7 @@ class InflectionsConnector(CollectionConnctor):
       assert all(key in entry for key in ['lexeme_id', 'form', 'pos']), "Each inflection entry must contain a lexeme_id, a form, and a pos"
       assert isinstance(entry['form'], str)
       assert isinstance(entry['pos'], str)
-      entry['lexeme_id'] = cast_object_id(entry['lexeme_id'])
+      entry['lexeme_id'] = ObjectId(entry['lexeme_id'])
 
     return super(InflectionsConnector, self).push_documents(entries)
 
@@ -56,7 +56,7 @@ class InflectionsConnector(CollectionConnctor):
     """
     Get inflection data and its _id, given the [lexeme_id], [form], and [pos]
     """
-    if lexeme_id: lexeme_id = cast_object_id(lexeme_id)
+    if lexeme_id: lexeme_id = ObjectId(lexeme_id)
     query = generate_query(lexeme_id=lexeme_id, form=form, pos=pos)
     return super(InflectionsConnector, self).get_document_mapping(query)
 
@@ -66,9 +66,9 @@ class InflectionsConnector(CollectionConnctor):
     Get inflection data entries and their _ids, given the [lexeme_ids], [forms], and [poses]
     """
     if isinstance(lexeme_ids, list):
-      lexeme_ids = list(map(lambda x: cast_object_id(x), lexeme_ids))
+      lexeme_ids = list(map(ObjectId, lexeme_ids))
     elif lexeme_ids:
-      lexeme_ids = cast_object_id(lexeme_ids)
+      lexeme_ids = ObjectId(lexeme_ids)
 
     query = generate_query(lexeme_id=lexeme_ids, form=forms, pos=poses)
     return super(InflectionsConnector, self).get_document_mappings(query)
@@ -78,7 +78,7 @@ class InflectionsConnector(CollectionConnctor):
     """
     Pop inflection data entry and its _id, given the [lexeme_id], [form], and [pos]
     """
-    if lexeme_id: lexeme_id = cast_object_id(lexeme_id)
+    if lexeme_id: lexeme_id = ObjectId(lexeme_id)
     query = generate_query(lexeme_id=lexeme_id, form=form, pos=pos)
     return super(InflectionsConnector, self).pop_document_mapping(query)
   
@@ -88,9 +88,9 @@ class InflectionsConnector(CollectionConnctor):
     Pop inflection data entries and their _ids, given the [lexeme_ids], [forms], and [poses]
     """
     if isinstance(lexeme_ids, list):
-      lexeme_ids = list(map(lambda x: cast_object_id(x), lexeme_ids))
+      lexeme_ids = list(map(ObjectId, lexeme_ids))
     elif lexeme_ids:
-      lexeme_ids = cast_object_id(lexeme_ids)
+      lexeme_ids = ObjectId(lexeme_ids)
 
     query = generate_query(lexeme_id=lexeme_ids, form=forms, pos=poses)
     return super(InflectionsConnector, self).pop_document_mappings(query)

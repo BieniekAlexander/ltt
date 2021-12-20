@@ -1,5 +1,5 @@
 #%% imports
-import sys, os, requests, re, logging
+import sys, os, requests, re, logging, json
 from bs4 import BeautifulSoup, Tag
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -7,6 +7,7 @@ from model.inflected_lexeme import InflectedLexeme
 from scraping.wiktionary_scrape_lexeme_utils import get_inflection_table, get_summary_paragraph, get_definition_list, get_definition_strings
 from scraping.html_parse_utils import parse_inflection_table
 from scraping.scraping_errors import ScrapingAssertionError, ScrapingFindError, ScrapingValueError
+from model.lexeme import LexemeEncoder
 from model import model_class_map
 from model.polish.feat.case import Case
 
@@ -342,12 +343,13 @@ def parse_features_conjunction(soup, pos, language):
 
 #%% main
 def main():
-  lemma, pos, language = "bez", "Preposition", "Polish"
+  lemma, pos, language = "czerwony", "Noun", "Polish"
   termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
   page = requests.get(termUrl)
   soup = BeautifulSoup(page.content, "html.parser")
   ret = extract_lexeme(soup, lemma, pos, language)
-  print(ret.to_json_dictionary())
+  json_str = json.dumps(ret, cls=LexemeEncoder)
+  print(json_str)
 
 
 if __name__ == "__main__":

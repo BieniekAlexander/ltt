@@ -1,0 +1,34 @@
+{
+  "lemma": "czerwony",
+  "pos": "NOUN",
+  "definitions": [
+    "(heraldry) gules"
+  ],
+  "inflections": {
+    "S": {
+      "N": "czerwony",
+      "G": "czerwonego",
+      "D": "czerwonemu",
+      "A": "czerwonego",
+      "I": "czerwonym",
+      "L": "czerwonym",
+      "V": "czerwony"
+    },
+    "P": {
+      "N": "czerwone",
+      "G": "czerwonych",
+      "D": "czerwonym",
+      "A": "czerwonych",
+      "I": "czerwonymi",
+      "L": "czerwonych",
+      "V": "czerwone"
+    }
+  },
+  "gender": "MALE",
+  "animacy": "ANIMATE",
+  "virility": null,
+  "diminutive": null,
+  "augmentative": null,
+  "masculine": null,
+  "feminine": null
+}

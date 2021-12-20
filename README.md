@@ -12,6 +12,8 @@ pytest
 # Roadmap
 - More extensive storage connector testing
 - Storage connector exceptions
+- handle connectivity issues with datastore
+- handle web connectivity issues
 
 
 # Useful Links

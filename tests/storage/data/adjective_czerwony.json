@@ -1,0 +1,81 @@
+{
+  "adverb": [
+      "czerwono"
+  ],
+  "comparative": [
+      "czerwie\u0144szy",
+      "bardziej czerwony"
+  ],
+  "definitions": [
+      "red"
+  ],
+  "degree": "POSITIVE",
+  "inflections": {
+      "P": {
+          "N": {
+              "A": "czerwone",
+              "D": "czerwonym",
+              "G": "czerwonych",
+              "I": "czerwonymi",
+              "L": "czerwonych",
+              "N": "czerwone",
+              "V": "czerwone"
+          },
+          "V": {
+              "A": "czerwonych",
+              "D": "czerwonym",
+              "G": "czerwonych",
+              "I": "czerwonymi",
+              "L": "czerwonych",
+              "N": "czerwoni",
+              "V": "czerwoni"
+          }
+      },
+      "S": {
+          "A": {
+              "A": "czerwonego",
+              "D": "czerwonemu",
+              "G": "czerwonego",
+              "I": "czerwonym",
+              "L": "czerwonym",
+              "N": "czerwony",
+              "V": "czerwony"
+          },
+          "F": {
+              "A": "czerwon\u0105",
+              "D": "czerwonej",
+              "G": "czerwonej",
+              "I": "czerwon\u0105",
+              "L": "czerwonej",
+              "N": "czerwona",
+              "V": "czerwona"
+          },
+          "I": {
+              "A": "czerwony",
+              "D": "czerwonemu",
+              "G": "czerwonego",
+              "I": "czerwonym",
+              "L": "czerwonym",
+              "N": "czerwony",
+              "V": "czerwony"
+          },
+          "N": {
+              "A": "czerwone",
+              "D": "czerwonemu",
+              "G": "czerwonego",
+              "I": "czerwonym",
+              "L": "czerwonym",
+              "N": "czerwone",
+              "V": "czerwone"
+          }
+      }
+  },
+  "lemma": "czerwony",
+  "not_comparable": false,
+  "pos": "ADJECTIVE",
+  "positive": [],
+  "superlative": [
+      "najczerwie\u0144szy",
+      "najbardziej czerwony"
+  ]
+}

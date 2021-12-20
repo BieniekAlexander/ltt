@@ -1,4 +1,3 @@
-# tests for utilities for scraping tables from html
 #%% imports
 import os, sys, json, pytest, pymongo
 from bson.objectid import ObjectId

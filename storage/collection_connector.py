@@ -77,7 +77,7 @@ class CollectionConnctor(object):
     # TODO what if some fail?
     assert all(isinstance(document, dict) for document in documents)
     results = self.collection.insert_many(documents)
-    return list(map(lambda x: str(x), results.inserted_ids))
+    return list(map(str, results.inserted_ids))
     
 
   def pop_document_mapping(self, query):
