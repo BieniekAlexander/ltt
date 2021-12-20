@@ -4,10 +4,14 @@ Use these modules to scrape the internet for language data. Curently, all of the
 
 # Website Scraping Notes
 ## Wiktionary.org
-### HTML formatting
-- h1 headers - title of entry
-- h2 headers - lemma's language entries
-- h3 headers - lemma's entry, for a given part of speech, under a given language (sometimes h4 though?)
+- Formattings actually differ across languages (and even within languages) - as of now, my notes will largely describe polish entries
+- headers
+  - h1 headers - title of entry
+  - h2 headers - lemma's language entries
+  - h3/h4 headers - lemma's entry, for a given part of speech, under a given language (usually h3)
+- URLs
+  - entry page link format: https://en.wiktionary.org/wiki/\<term\>
+  - search page format: https://en.wiktionary.org/w/index.php?search=\<term\>
 
 
 # Useful Links

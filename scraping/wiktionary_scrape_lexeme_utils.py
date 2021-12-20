@@ -6,6 +6,11 @@ from bs4 import BeautifulSoup
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from utils.function_decorators import capitalize_string_args
 from scraping.scraping_errors import ScrapingAssertionError, ScrapingFindError
+from scraping import get_wiktionary_term_url, get_soup_from_url
+from model.part_of_speech import PartOfSpeech
+
+# constants
+PARTS_OF_SPEECH = [pos.value.capitalize() for pos in PartOfSpeech]
 
 
 #%% utils
@@ -217,34 +222,63 @@ def get_lemma(soup, pos, language):
     Given a webpage [soup], [language], and [pos] for a term, find the lemma related to the term, or return None if the webpage describes the lemma
 
     For an entry, the first definition indicates which lemma covers this term
+
+    example pages:
+    https://en.wiktionary.org/wiki/czerwony - lexeme entry
+    https://en.wiktionary.org/wiki/czerwonym - inflected form entry
+    https://en.wiktionary.org/wiki/emocjonalne - inflected form that doesn't have an entry
+    https://en.wiktionary.org/w/index.php?search=niemo%C5%BCliwe - inflected form search leading to lexeme page
+    https://en.wiktionary.org/wiki/piekło - term that is a lemma in one part of speech, and an inflected form in another
     """
+    # TODO is this done?
     # notice the identification of lemma forms with the 'form-of-definition-link' class isn't used for all languages (e.g. not in Spanish)
+    summary_paragraph = get_summary_paragraph(soup, pos, language)
     definition_list = get_definition_list(soup, pos, language)
     first_definition = definition_list.find_next('li')
     lemma_span = first_definition.find_next('span', {'class': 'form-of-definition-link'})
-    print(lemma_span)
 
-    if lemma_span: # we've identified the lemma (make sure of it), return it
-        if (language and not verify_language_header(lemma_span, language))\
-                or (language and not verify_pos_header(lemma_span, pos)):
-            return None
-        else:
-            return lemma_span.text
-    else: # we found no lemma form, so this term is probably the lemma - return None to indicate that
-        return None
+    
+    if lemma_span \
+            and (language and verify_language_header(lemma_span, language)) \
+            and (pos and verify_pos_header(lemma_span, pos)): # we've identified the lemma, return it
+        return lemma_span.text
+    elif summary_paragraph: # we found no lemma form
+        summary_strong = summary_paragraph.find('strong', {'class': 'headword'})
+        if summary_strong: return summary_strong.text
+    else:
+        return None 
+        
+
+def get_term_parts_of_speech(soup: BeautifulSoup, language: str):
+    """
+    Get the parts of speech in which a term appears in a given [language]
+    """
+    assert soup and language
+
+    pos_header_tags = ['h2', 'h3']
+    language_header = find_language_header(soup, language)
+    next_language_header = language_header.find_next('h2')
+    parts_of_speech = set()
+    
+    for pos_str in PARTS_OF_SPEECH:
+        pos_spans = language_header.find_all_next('span', text=pos_str)
+        
+        for pos_span in pos_spans:
+            if verify_language_header(pos_span, language):
+                parts_of_speech.add(pos_str)
+                break
+
+    return list(parts_of_speech)
 
 
 #%% main
 def main():
-    lemma = "psa"
+    term = "psa"
     pos = "Noun"
     language = "Polish"
 
-    termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-    page = requests.get(termUrl)
-    soup = BeautifulSoup(page.content, "html.parser")
-    lemma = get_lemma(soup, pos, language)
-    print(lemma)
+    soup = get_soup_from_url(get_wiktionary_term_url(term))
+    get_term_parts_of_speech(soup, language)
 
 
 if __name__ == "__main__":

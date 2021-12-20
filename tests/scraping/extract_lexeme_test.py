@@ -31,7 +31,6 @@ def web_crawler_delay():
 
 
 #% tests
-# TODO check values in extracted lexemes
 def test_extract_polish_noun_kot():
   lemma, pos, language = "kot", "Noun", "Polish"
   termUrl = f"https://en.wiktionary.org/wiki/{lemma}"

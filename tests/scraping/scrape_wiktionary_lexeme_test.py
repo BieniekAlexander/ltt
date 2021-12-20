@@ -5,7 +5,7 @@ import os, sys, json, pytest, requests, time
 from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from scraping.wiktionary_scrape_lexeme_utils import find_language_header, get_inflection_table, get_lemma, get_summary_paragraph, seek_inflection_table, seek_pos_header
+from scraping.wiktionary_scrape_lexeme_utils import find_language_header, get_inflection_table, get_lemma, get_summary_paragraph, seek_pos_header, get_term_parts_of_speech
 from scraping.scraping_errors import ScrapingFindError
 
 # constants
@@ -131,6 +131,16 @@ def test_find_polish_inflection_table_not_in_pos_fails():
     inflection_table = get_inflection_table(soup, pos, language)
 
 
+def test_find_polish_lemma_on_lexeme_entry():
+  term, language, pos = "pies", "Polish", "Noun"
+  termUrl = f"https://en.wiktionary.org/wiki/{term}"
+  page = requests.get(termUrl)
+  soup = BeautifulSoup(page.content, "html.parser") 
+  lemma = get_lemma(soup, pos, language)
+
+  assert lemma == "pies"
+
+
 def test_find_polish_lemma():
   term, language, pos = "psa", "Polish", "Noun"
   termUrl = f"https://en.wiktionary.org/wiki/{term}"
@@ -151,7 +161,7 @@ def test_find_polish_lemma_multiple_inflections():
   assert lemma == "szary"
   
 
-def test_find_polish_lemma_fails():
+def test_find_polish_lemma_returns_none():
   term, language, pos = "pies", "Polish", "Noun"
   termUrl = f"https://en.wiktionary.org/wiki/{term}"
   page = requests.get(termUrl)
@@ -161,8 +171,8 @@ def test_find_polish_lemma_fails():
   assert lemma == None
 
 
-def test_find_polish_lemma_fails_on_wrong_lemma():
-  # might get confused with the Welsh entry - "soft mutation of gwe"
+def test_find_polish_lemma_returns_none_on_wrong_lemma():
+  # testing that scraper doesn't get confused with the Welsh entry - "soft mutation of gwe"
   term, language, pos = "we", "Polish", "Preposition"
   termUrl = f"https://en.wiktionary.org/wiki/{term}"
   page = requests.get(termUrl)
@@ -172,9 +182,31 @@ def test_find_polish_lemma_fails_on_wrong_lemma():
   assert lemma == None
 
 
+def test_get_polish_term_parts_of_speech():
+  term, language = "piekło", "Polish"
+  termUrl = f"https://en.wiktionary.org/wiki/{term}"
+  page = requests.get(termUrl)
+  soup = BeautifulSoup(page.content, "html.parser")
+  term_parts_of_speech = get_term_parts_of_speech(soup, language)
+
+  assert all(pos in term_parts_of_speech for pos in ['Verb', 'Noun'])
+
+
+def test_get_polish_term_parts_of_speech_many_languages():
+  # only adjective in Polish, but also a Noun in Romanian, Verb in Tarantino
+  term, language = "stare", "Polish"
+  termUrl = f"https://en.wiktionary.org/wiki/{term}"
+  page = requests.get(termUrl)
+  soup = BeautifulSoup(page.content, "html.parser")
+  term_parts_of_speech = get_term_parts_of_speech(soup, language)
+
+  assert 'Adjective' in term_parts_of_speech
+  assert all(pos not in term_parts_of_speech for pos in ['Verb', 'Noun'])
+
+
 #% main
 def main():
-  test_find_polish_lemma_fails_on_wrong_lemma()
+  test_find_polish_lemma_on_lexeme_entry()
 
 
 if __name__ == "__main__":
