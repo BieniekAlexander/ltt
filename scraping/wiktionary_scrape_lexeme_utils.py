@@ -23,15 +23,15 @@ def find_language_header(soup, language):
     query_args = {'language': language}
     language_span = soup.find("span", id=language)
 
-    if language_span is None:
-        raise ScrapingFindError(soup, query_args, f'Could not find a wiktionary section for: {query_args}')
-    else:
+    if language_span:
         language_header = language_span.parent
 
         if language_header.name != "h2":
             raise ScrapingAssertionError(soup, query_args, f'Element found as language header not an h2: {query_args}')
 
         return language_span.parent
+
+    return None
 
 
 @capitalize_string_args
@@ -43,17 +43,16 @@ def seek_pos_header(soup, pos, language=None):
     pos_span = soup.find_next('span', text=pos)
 
     if pos_span is None:
-        raise ScrapingFindError(soup, query_args, f'Could not find a wiktionary section for: {query_args}')
-
-    pos_header = pos_span.parent
+        return None
+    else:
+        pos_header = pos_span.parent
     
-    if language and not verify_language_header(pos_span, language): # verify that the entry we found is under the specified language
-        raise ScrapingFindError(soup, query_args, f'Could not find a wiktionary section for: {query_args}')
-
-    if pos_header.name != "h3" and pos_header.name != "h4":
-        raise ScrapingAssertionError(soup, query_args, f'Element found as pos header not an h3 or h4: {query_args}')
-
-    return pos_header
+        if language and not verify_language_header(pos_span, language): # verify that the entry we found is under the specified language
+            return None
+        if pos_header.name != "h3" and pos_header.name != "h4":
+            raise ScrapingAssertionError(soup, query_args, f'Element found as pos header not an h3 or h4: {query_args}')
+        else:
+            return pos_header
 
 
 @capitalize_string_args
@@ -65,14 +64,12 @@ def seek_inflection_table(soup, pos=None, language=None):
     table = soup.find_next('table', {'class': 'inflection-table'})
 
     if not table:
-        raise ScrapingFindError(soup, query_args, f'No inflection table found: {query_args}') 
+        return None
     else:
         if pos and not verify_pos_header(table, pos): # verify that the entry we found is under the specified pos
-            raise ScrapingFindError(soup, query_args, f'The inflection table that we found was not under the expected pos header: {query_args}')
-
+            return None
         if language and not verify_language_header(table, language): # verify that the entry we found is under the specified language
-            raise ScrapingFindError(soup, query_args, f'The inflection table that we found was not under the expected language: {query_args}')
-
+            return None
         return table
 
 
@@ -81,9 +78,13 @@ def get_inflection_table(soup, pos, language):
     """
     Find the inflections of a word in a wiktionary webpage and serialize them into a [dict]
     """
-    lang_header = find_language_header(soup, language)
-    pos_header = seek_pos_header(lang_header, pos, language)
-    return seek_inflection_table(pos_header, pos, language)
+    try: # none aware access
+        lang_header = find_language_header(soup, language)
+        pos_header = seek_pos_header(lang_header, pos, language)
+        return seek_inflection_table(pos_header, pos, language)
+    except AttributeError as e:
+        return None
+        
 
 
 @capitalize_string_args
@@ -95,20 +96,16 @@ def seek_summary_paragraph(soup, pos=None, language=None):
     summary_strong = soup.find_next('strong', {'class': 'headword'})
 
     if not summary_strong:
-        raise ScrapingFindError(soup, query_args, f'No summary containing the term found: {query_args}') 
-
+        return None
     else:
         summary_paragraph = summary_strong.parent
         
         if summary_paragraph.name != 'p':
             raise ScrapingFindError(soup, query_args, f'Found a strong element, but the parent is not a paragraph: {query_args}') 
-
-        if pos and not verify_pos_header(summary_strong, pos): # verify that the entry we found is under the specified pos
-            raise ScrapingFindError(soup, query_args, f'The summary we found was not under the expected pos header: {query_args}')
-
-        if language and not verify_language_header(summary_strong, language): # verify that the entry we found is under the specified language
-            raise ScrapingFindError(soup, query_args, f'The summary that we found was not under the expected language: {query_args}')
-
+        elif pos and not verify_pos_header(summary_strong, pos): # verify that the entry we found is under the specified pos
+            return None
+        elif language and not verify_language_header(summary_strong, language): # verify that the entry we found is under the specified language
+            return None
         return summary_paragraph
 
 
@@ -118,9 +115,12 @@ def get_summary_paragraph(soup, pos, language):
     Get the paragraph that summarizes this lexeme, given the [pos] and [language]
     """
     # TODO is it possible that a term in a given language has multiple sections for the same part of speech? I feel like I've seen this on wiktionary before...
-    lang_header = find_language_header(soup, language)
-    pos_header = seek_pos_header(lang_header, pos, language)
-    return seek_summary_paragraph(pos_header, pos, language)
+    try: # null safe access
+        lang_header = find_language_header(soup, language)
+        pos_header = seek_pos_header(lang_header, pos, language)
+        return seek_summary_paragraph(pos_header, pos, language)
+    except AttributeError as e:
+        return None
 
 
 @capitalize_string_args
@@ -131,32 +131,35 @@ def seek_definition_list(soup, pos, language):
     query_args = {'pos': pos, 'language': language}
     definitions_ol = soup.find_next('ol')
 
-    if definitions_ol is None:
+    if not definitions_ol:
         raise ScrapingFindError(soup, query_args, f'Could not find a definition list for: {query_args}')
-
-    if pos and not verify_pos_header(definitions_ol, pos): # verify that the entry we found is under the specified pos
-            raise ScrapingFindError(soup, query_args, f'The definition list that we found was not under the expected pos header: {query_args}')
-    
-    if language and not verify_language_header(definitions_ol, language): # verify that the entry we found is under the specified language
-        raise ScrapingFindError(soup, query_args, f'Could not find a definition list for: {query_args}')
-
-    return definitions_ol
+    else:
+        if pos and not verify_pos_header(definitions_ol, pos): # verify that the entry we found is under the specified pos
+            return None
+        if language and not verify_language_header(definitions_ol, language): # verify that the entry we found is under the specified language
+            return None
+        return definitions_ol
 
 
 @capitalize_string_args
-def get_definition_list(soup, pos, language):
+def get_definition_ol(soup, pos, language):
     """
     Get the ol element that contains the definitions for this lexeme, given the [pos] and [language]
     """
-    lang_header = find_language_header(soup, language)
-    pos_header = seek_pos_header(lang_header, pos, language)
-    return seek_definition_list(pos_header, pos, language)
+    try: # null safe access
+        lang_header = find_language_header(soup, language)
+        pos_header = seek_pos_header(lang_header, pos, language)
+        return seek_definition_list(pos_header, pos, language)
+    except AttributeError as e:
+        return None
 
 
 def get_definition_strings(definition_ol):
     """
     Get a list of definitions, TODO as strings, from the ordered list element 
     """
+    assert definition_ol.name == "ol", "The argument must be a [BeautifulSoup] ordered list"
+
     definitions = []
     definition_items = definition_ol.find_all('li', recursive=False)
     
@@ -231,21 +234,26 @@ def get_lemma(soup, pos, language):
     https://en.wiktionary.org/w/index.php?search=niemo%C5%BCliwe - inflected form search leading to lexeme page
     https://en.wiktionary.org/wiki/piekło - term that is a lemma in one part of speech, and an inflected form in another
     """
-    # TODO is this done?
     # notice the identification of lemma forms with the 'form-of-definition-link' class isn't used for all languages (e.g. not in Spanish)
-    summary_paragraph = get_summary_paragraph(soup, pos, language)
-    definition_list = get_definition_list(soup, pos, language)
-    first_definition = definition_list.find_next('li')
-    lemma_span = first_definition.find_next('span', {'class': 'form-of-definition-link'})
+    try: # null safe access - first check definition
+        definition_list = get_definition_ol(soup, pos, language) # TODO maybe refactor this - particularly the functions I'm using to get definitions
+        first_definition_li = definition_list.find_next('li')
+        lemma_span = first_definition_li.find_next('span', {'class': 'form-of-definition-link'})
+    except AttributeError as e:
+        lemma_span = None
 
-    
+    summary_paragraph = get_summary_paragraph(soup, pos, language)
+
     if lemma_span \
             and (language and verify_language_header(lemma_span, language)) \
-            and (pos and verify_pos_header(lemma_span, pos)): # we've identified the lemma, return it
+            and (pos and verify_pos_header(lemma_span, pos)): # this page references another form as the lemma
         return lemma_span.text
-    elif summary_paragraph: # we found no lemma form
+    elif summary_paragraph: # this page itself contains the lemma
         summary_strong = summary_paragraph.find('strong', {'class': 'headword'})
-        if summary_strong: return summary_strong.text
+        
+        if summary_strong:
+            return summary_strong.text
+        else: return None
     else:
         return None 
         
@@ -253,23 +261,30 @@ def get_lemma(soup, pos, language):
 def get_term_parts_of_speech(soup: BeautifulSoup, language: str):
     """
     Get the parts of speech in which a term appears in a given [language]
+
+    Finds all part-of-speech headers in the page and returns all of the found parts of speech falling under the specified language
     """
     assert soup and language
 
-    pos_header_tags = ['h2', 'h3']
+    pos_header_tags = ['h3', 'h4']
     language_header = find_language_header(soup, language)
-    next_language_header = language_header.find_next('h2')
     parts_of_speech = set()
-    
-    for pos_str in PARTS_OF_SPEECH:
-        pos_spans = language_header.find_all_next('span', text=pos_str)
-        
-        for pos_span in pos_spans:
-            if verify_language_header(pos_span, language):
-                parts_of_speech.add(pos_str)
-                break
 
-    return list(parts_of_speech)
+    if language_header == None:
+        raise ScrapingAssertionError(soup, {f'language': language}, "This webpage didn't contain a section for the given language - {language}")   
+    else:
+        for pos_str in PARTS_OF_SPEECH:
+            pos_spans = language_header.find_all_next('span', text=pos_str)
+            
+            for pos_span in pos_spans:
+                pos_header = pos_span.parent
+
+                if pos_header.name in pos_header_tags \
+                        and  verify_language_header(pos_span, language):
+                    parts_of_speech.add(pos_str)
+                    break
+
+        return list(parts_of_speech)
 
 
 #%% main

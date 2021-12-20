@@ -57,7 +57,7 @@ def test_get_search_results_fail():
   term = 'potato'
   soup = get_soup_from_url(get_wiktionary_term_url(term))
 
-  with pytest.raises(ScrapingAssertionError): # TODO change exception type
+  with pytest.raises(AssertionError): # TODO change exception type
     get_search_result_links(soup)
 
 

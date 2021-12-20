@@ -12,8 +12,10 @@ pytest
 # Roadmap
 - More extensive storage connector testing
 - Storage connector exceptions
+- cleaning up scraping exception
 - handle connectivity issues with datastore
 - handle web connectivity issues
+- generalize language model use - right now, it's basically all for Polish, what happens when I add more languages?
 
 
 # Useful Links

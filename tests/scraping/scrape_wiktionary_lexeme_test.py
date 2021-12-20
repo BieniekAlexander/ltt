@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from scraping.wiktionary_scrape_lexeme_utils import find_language_header, get_inflection_table, get_lemma, get_summary_paragraph, seek_pos_header, get_term_parts_of_speech
-from scraping.scraping_errors import ScrapingFindError
+from scraping.scraping_errors import ScrapingAssertionError, ScrapingFindError
 
 # constants
 CRAWL_DELAY = 5
@@ -33,14 +33,13 @@ def test_find_polish_entry():
   assert lang_header
 
 
-def test_find_polish_entry_fails():
+def test_find_polish_entry_returns_none():
   lemma, language = "spruce", "Polish"
   termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
   page = requests.get(termUrl)
   soup = BeautifulSoup(page.content, "html.parser")
 
-  with pytest.raises(ScrapingFindError):
-    lang_header = find_language_header(soup, language)
+  assert find_language_header(soup, language) == None
 
 
 def test_find_polish_part_of_speech_entry():
@@ -53,26 +52,24 @@ def test_find_polish_part_of_speech_entry():
   assert pos_header
 
 
-def test_find_polish_part_of_speech_entry_fails():
+def test_find_polish_part_of_speech_entry_returns_none():
   lemma, language, pos = "ptak", "Polish", "Verb"
   termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
   page = requests.get(termUrl)
   soup = BeautifulSoup(page.content, "html.parser")
   lang_header = find_language_header(soup, language)
   
-  with pytest.raises(ScrapingFindError):
-    pos_header = seek_pos_header(lang_header, pos, language)
+  assert seek_pos_header(lang_header, pos, language) == None
 
 
-def test_find_polish_part_of_speech_entry_in_wrong_language_fails():
+def test_find_polish_part_of_speech_entry_in_wrong_language_returns_none():
   lemma, language, pos = "pies", "Polish", "Verb"
   termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
   page = requests.get(termUrl)
   soup = BeautifulSoup(page.content, "html.parser")
   lang_header = find_language_header(soup, language)
   
-  with pytest.raises(ScrapingFindError):
-    pos_header = seek_pos_header(lang_header, pos, language)
+  assert seek_pos_header(lang_header, pos, language) == None
 
 
 def test_find_polish_inflection_table_verb():
@@ -117,8 +114,7 @@ def test_find_polish_inflection_table_preposition_fails():
   page = requests.get(termUrl)
   soup = BeautifulSoup(page.content, "html.parser") 
   
-  with pytest.raises(ScrapingFindError):
-    inflection_table = get_inflection_table(soup, pos, language)
+  assert get_inflection_table(soup, pos, language) == None
 
 
 def test_find_polish_inflection_table_not_in_pos_fails():
@@ -127,8 +123,7 @@ def test_find_polish_inflection_table_not_in_pos_fails():
   page = requests.get(termUrl)
   soup = BeautifulSoup(page.content, "html.parser") 
   
-  with pytest.raises(ScrapingFindError):
-    inflection_table = get_inflection_table(soup, pos, language)
+  assert get_inflection_table(soup, pos, language) == None
 
 
 def test_find_polish_lemma_on_lexeme_entry():
@@ -172,14 +167,12 @@ def test_find_polish_lemma_wrong_pos_returns_none():
 
 
 def test_find_polish_lemma_wrong_language_returns_none():
-  # TODO this is currently throwing an exception because there's no Polish section - should get_lemma throw an exception or fail in this case?
   term, language, pos = "amo", "Polish", "Noun"
   termUrl = f"https://en.wiktionary.org/wiki/{term}"
   page = requests.get(termUrl)
   soup = BeautifulSoup(page.content, "html.parser") 
   
-  with pytest.raises(ScrapingFindError):
-    lemma = get_lemma(soup, pos, language)
+  assert get_lemma(soup, pos, language) == None
 
 
 def test_find_polish_lemma_no_entry_returns_none():
@@ -189,8 +182,7 @@ def test_find_polish_lemma_no_entry_returns_none():
   page = requests.get(termUrl)
   soup = BeautifulSoup(page.content, "html.parser") 
 
-  with pytest.raises(ScrapingFindError):
-    lemma = get_lemma(soup, pos, language)
+  assert get_lemma(soup, pos, language) == None
 
 
 def test_find_polish_lemma_returns_none_on_wrong_lemma():
@@ -233,7 +225,7 @@ def test_get_polish_term_parts_of_speech_no_polish():
   page = requests.get(termUrl)
   soup = BeautifulSoup(page.content, "html.parser")
   
-  with pytest.raises(ScrapingFindError):
+  with pytest.raises(ScrapingAssertionError):
     get_term_parts_of_speech(soup, language)
 
   
