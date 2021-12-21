@@ -3,10 +3,9 @@ import pymongo, logging
 from bson.objectid import ObjectId
 
 # constants
-DATABASE = "lexicon"
 
 
-class CollectionConnctor(object):
+class CollectionConnector(object):
   """
   An interface that lets us connect to a document store 
   """
@@ -24,7 +23,7 @@ class CollectionConnctor(object):
     self.collection = self.db[collection_name]
 
 
-  def get_document_mapping(self, query):
+  def get_document_mapping(self, query) -> tuple:
     """
     Wrapper for getting documents from datastore, given a [query]
     """
@@ -43,7 +42,7 @@ class CollectionConnctor(object):
       return (key, value)
 
 
-  def get_document_mappings(self, query):
+  def get_document_mappings(self, query) -> dict:
       """
       Get a dictionary containing the id: document mappings, given a query
       """
@@ -60,7 +59,7 @@ class CollectionConnctor(object):
       return mappings
 
 
-  def push_document(self, document):
+  def push_document(self, document) -> ObjectId:
     """
     Insert a [document] and get the _id it gets mapped to
     """
@@ -70,7 +69,7 @@ class CollectionConnctor(object):
     return result.inserted_id
 
 
-  def push_documents(self, documents):
+  def push_documents(self, documents) -> list:
     """
     Insert a list of [lexemes] and get the _ids that they map to
     """
@@ -101,7 +100,7 @@ class CollectionConnctor(object):
 
 # main
 def main():
-  db = CollectionConnctor("mongodb://localhost:27017/", 'lexicon', 'polish')
+  db = CollectionConnector("mongodb://localhost:27017/", 'lexicon', 'polish')
   print(list(db.collection.find({'lemma': 'z'})))
 
 

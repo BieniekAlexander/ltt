@@ -5,7 +5,7 @@ from bson.objectid import ObjectId
 from model import lexeme
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from storage.collection_connector import CollectionConnctor
+from storage.collection_connector import CollectionConnector
 from storage.datastore_utils import cast_enum_to_str, generate_query
 from model.lexeme import LexemeEncoder, Lexeme
 from model.part_of_speech import PartOfSpeech
@@ -16,13 +16,19 @@ from model import model_class_map
 DATABASE = "lexicon"
 
 
-class LexiconConnector(CollectionConnctor):
+class LexiconConnector(CollectionConnector):
   """
   A [DocumentStoreConnector] used specifically for interacting with a language's lexicon
   """
-  def __init__(self, uri, language):
-    self.language = language.lower()
-    super(LexiconConnector, self).__init__(uri, DATABASE, language)
+  def __init__(self, uri, language, collection_name=None):
+    language = language.lower()
+
+    if not collection_name:
+      collection_name = language
+
+    super(LexiconConnector, self).__init__(uri, DATABASE, collection_name)
+    self.language = language
+    self.collection_name = collection_name
   
   
   def get_lexeme_dictionary_mapping(self, lemma=None, pos=None, _id=None):

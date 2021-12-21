@@ -2,11 +2,9 @@
 import sys, os, json
 from bson.objectid import ObjectId
 
-from storage.datastore_utils import generate_query
-
-
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from storage.collection_connector import CollectionConnctor
+from storage.collection_connector import CollectionConnector
+from storage.datastore_utils import generate_query
 from model.lexeme import LexemeEncoder, Lexeme
 from model.part_of_speech import PartOfSpeech
 from model.polish.pos.preposition import Preposition
@@ -16,13 +14,19 @@ from model import model_class_map
 DATABASE = "inflections"
 
 
-class InflectionsConnector(CollectionConnctor):
+class InflectionsConnector(CollectionConnector):
   """
   A [DocumentStoreConnector] used specifically for interacting with a language's inflection mapping collection
   """
-  def __init__(self, uri, language):
-    self.language = language.lower()
-    super(InflectionsConnector, self).__init__(uri, DATABASE, language)
+  def __init__(self, uri, language, collection_name=None):
+    language = language.lower()
+
+    if not collection_name:
+      collection_name = language
+
+    super(InflectionsConnector, self).__init__(uri, DATABASE, collection_name)
+    self.collection_name = collection_name
+    self.language = language
   
   
   def push_inflection_entry(self, lexeme_id: str, form: str, pos: str) -> str:
@@ -83,7 +87,7 @@ class InflectionsConnector(CollectionConnctor):
     super(InflectionsConnector, self).delete_document_mapping(query)
   
   
-  def inflection_entry_mappings(self, lexeme_ids: list = None, forms: list = None, poses: list = None) -> dict:
+  def delete_inflection_entry_mappings(self, lexeme_ids: list = None, forms: list = None, poses: list = None) -> dict:
     """
     Delete inflection data entries and their _ids, given the [lexeme_ids], [forms], and [poses]
     """

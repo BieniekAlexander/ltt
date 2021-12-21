@@ -1,22 +1,34 @@
 # imports
 import sys, os
 from bson.objectid import ObjectId
+from pymongo import collection
 from model import lexeme
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from storage.collection_connector import CollectionConnctor
+from storage.collection_connector import CollectionConnector
 from storage.datastore_utils import generate_query
 
 # constants
 DATABASE = "vocabulary"
 
 
-class VocabularyConnector(CollectionConnctor):
+class VocabularyConnector(CollectionConnector):
   """
   A [CollectionConnector] used specifically for recording terms known by a given user
   """
-  def __init__(self, uri, language, user_id):
-    super(VocabularyConnector, self).__init__(uri, DATABASE, language)
+  def __init__(self, uri, language, user_id, collection_name=None):
+    """
+    Constructor
+
+    Separate collection_name argument used for testing - otherwise, the collection name defaults to the language name
+    """
+    language = language.lower()
+
+    if not collection_name:
+      collection_name = language
+
+    super(VocabularyConnector, self).__init__(uri, DATABASE, collection_name)
+    self.collection_name = collection_name
     self.language = language
     self.user_id = user_id
   
