@@ -35,7 +35,7 @@ class CollectionConnctor(object):
        # TODO make specific error type
       raise Exception(f"Found more than one result when trying to get a document, given a query - '{query}'")
     elif len(results) == 0:
-      raise Exception(f"Found no results when trying to get a document, given a query - '{query}'")
+      return (None, None)
     else:
       result = results[0]
       key = str(result.pop('_id'))
@@ -80,30 +80,23 @@ class CollectionConnctor(object):
     return list(map(str, results.inserted_ids))
     
 
-  def pop_document_mapping(self, query):
+  def delete_document_mapping(self, query):
     """
-    Pop a single document, given a query
+    Delete a single document, given a query
     """
     assert isinstance(query, dict)
     _id, document = self.get_document_mapping(query)
     self.collection.delete_one({'_id': ObjectId(_id)})
-    return (_id, document)
 
 
-  def pop_document_mappings(self, query):
+  def delete_document_mappings(self, query):
     """
-    Pop documents, given a [query]
+    Delete documents, given a [query]
 
     https://stackoverflow.com/a/18567093
     """
     assert isinstance(query, dict)
-    mappings = self.get_document_mappings(query)
-
-    if not mappings: # TODO exception type
-      raise Exception("Pop operation returned no entries")
-
     self.collection.delete_many(query)
-    return mappings
 
 
 # main

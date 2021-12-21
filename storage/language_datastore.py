@@ -48,27 +48,32 @@ class LanguageDatastore(object):
     assert isinstance(form, str)
     assert isinstance(pos, str) and pos in [pos.value for pos in PartOfSpeech]
 
+    
     _, inflection_entry = self.inflections_connector.get_inflection_entry_mapping(form=form, pos=pos)
-    lexeme_id = ObjectId(inflection_entry['lexeme_id'])
-    _, lexeme = self.lexicon_connector.get_lexeme_mapping(_id=lexeme_id)
-    return lexeme
+    
+    if inflection_entry:
+      lexeme_id = ObjectId(inflection_entry['lexeme_id'])
+      _, lexeme = self.lexicon_connector.get_lexeme_mapping(_id=lexeme_id)
+      return lexeme
+    else:
+      return None
 
 
-  def get_lexemes(self, form: str, poses: str = None):
+  def get_lexemes_of_form(self, form: str, poses: list = None):
     """
-    Get the lexemes which 
+    Get the lexemes of [form] in the specified [poses]
 
     This function will return one entry if it exists, [None] if none are found, or raise an exception if multiple are found
     """
+    if poses == None: poses = []
     assert isinstance(form, str)
+    assert all(isinstance(pos, str) and pos in [pos.value for pos in PartOfSpeech] for pos in poses)
 
-    if isinstance(poses, list):
-      assert all(isinstance(pos, str) and pos in [pos.value for pos in PartOfSpeech] for pos in poses)
-    elif poses:
-      assert isinstance(poses, str) and poses in [poses.value for pos in PartOfSpeech]
-
-    lexeme_ids = list(self.inflections_connector.get_inflection_entry_mappings(forms=form, poses=poses).keys())
-    lexeme_ids = list(map(ObjectId, lexeme_ids))
-    print(lexeme_ids)
-    lexeme_mappings = self.lexicon_connector.get_lexeme_mappings(_ids=lexeme_ids)
-    return lexeme_mappings.values()
+    lexeme_ids = [ObjectId(d['lexeme_id']) for d in self.inflections_connector.get_inflection_entry_mappings(forms=[form], poses=poses).values()]
+    
+    if lexeme_ids:
+      lexeme_mappings = self.lexicon_connector.get_lexeme_mappings(_ids=lexeme_ids)
+      print(lexeme_mappings)
+      return list(lexeme_mappings.values())
+    else: # we found no entries for the [form] and [poses] provided
+      return []

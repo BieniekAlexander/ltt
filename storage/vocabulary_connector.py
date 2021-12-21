@@ -82,23 +82,22 @@ class VocabularyConnector(CollectionConnctor):
       ser_ids = ObjectId(user_ids)
 
     query = generate_query(lexeme_id=lexeme_ids, user_id=user_ids)
-    print(query)
     return super(VocabularyConnector, self).get_document_mappings(query)
 
 
-  def pop_vocabulary_entry_mapping(self, lexeme_id: str = None, user_id: str = None) -> dict:
+  def delete_vocabulary_entry_mapping(self, lexeme_id: str = None, user_id: str = None) -> dict:
     """
-    Pop vocabulary data entry and its _id, given the [lexeme_id], [form], and [pos]
+    Delete vocabulary data entry and its _id, given the [lexeme_id], [form], and [pos]
     """
     if user_id is None: user_id = self.user_id
     if lexeme_id: lexeme_id = ObjectId(lexeme_id)
     query = generate_query(lexeme_id=lexeme_id, user_id=user_id)
-    return super(VocabularyConnector, self).pop_document_mapping(query)
+    return super(VocabularyConnector, self).delete_document_mapping(query)
   
   
-  def pop_vocabulary_entry_mappings(self, lexeme_ids: list = None, user_ids: list = None) -> dict:
+  def delete_vocabulary_entry_mappings(self, lexeme_ids: list = None, user_ids: list = None) -> dict:
     """
-    Pop vocabulary data entries and their _ids, given the [lexeme_ids] and [user_ids]
+    Delete vocabulary data entries and their _ids, given the [lexeme_ids] and [user_ids]
     """
     # TODO would it ever make sense to query for multiple user IDs?
     if user_ids is None: user_ids = self.user_id
@@ -114,7 +113,7 @@ class VocabularyConnector(CollectionConnctor):
       ser_ids = ObjectId(user_ids)
 
     query = generate_query(lexeme_id=lexeme_ids, user_id=user_ids)
-    return super(VocabularyConnector, self).pop_document_mappings(query)
+    return super(VocabularyConnector, self).delete_document_mappings(query)
  
 
 #%% main

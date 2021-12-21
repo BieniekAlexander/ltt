@@ -79,16 +79,16 @@ def test_push_and_get_inflections(lexicon_connector, inflections_connector):
   results = inflections_connector.get_inflection_entry_mappings(poses=lexeme.pos.value, lexeme_ids=lexeme_id)
 
 
-def test_push_and_pop_inflection_args(inflections_connector):
+def test_push_and_delete_inflection_args(inflections_connector):
   lexeme_id = ObjectId()
   form = "potato"
   pos = "NOUN"
 
   inflections_connector.push_inflection_entry(lexeme_id=lexeme_id, form=form, pos=pos)
-  inflections_connector.pop_inflection_entry_mapping(lexeme_id=lexeme_id, form=form, pos=pos)
+  inflections_connector.delete_inflection_entry_mapping(lexeme_id=lexeme_id, form=form, pos=pos)
 
 
-def test_push_and_get_inflections(lexicon_connector, inflections_connector):
+def test_push_and_delete_inflections(lexicon_connector, inflections_connector):
   json_str = open('tests/storage/data/noun_czerwony.json').read()
   lexeme = json.loads(json_str, cls=LexemeDecoder)
   inflections = list(set(lexeme.get_inflections()))
@@ -100,7 +100,7 @@ def test_push_and_get_inflections(lexicon_connector, inflections_connector):
     entries.append(entry)
 
   inflections_connector.push_inflection_entries(entries)
-  results = inflections_connector.pop_inflection_entry_mappings(poses=lexeme.pos.value, lexeme_ids=lexeme_id)
+  inflections_connector.delete_inflection_entry_mappings(poses=lexeme.pos.value, lexeme_ids=lexeme_id)
 
 
 

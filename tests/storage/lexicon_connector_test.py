@@ -66,54 +66,32 @@ def test_push_and_get_lexeme_dictionaries(lexicon_connector):
     assert lexeme_dictionary['lemma'] in lemmas
 
 
-# push and pop
-def test_push_and_pop_lexeme(lexicon_connector):
+# push and delete
+def test_push_and_delete_lexeme(lexicon_connector):
   lexeme = Lexeme('ope', 'CONJUNCTION', [])
   lexicon_connector.push_lexeme(lexeme)
-  _, returned_lexeme = lexicon_connector.pop_lexeme_mapping(lemma=lexeme.lemma, pos=lexeme.pos)
-
-  assert lexeme == returned_lexeme
-
-  with pytest.raises(Exception): # TODO change exception type
-    _, returned_lexeme = lexicon_connector.get_lexeme_mapping(lemma=lexeme.lemma, pos=lexeme.pos)
+  lexicon_connector.delete_lexeme_dictionary_mapping(lemma=lexeme.lemma, pos=lexeme.pos)
   
 
-def test_push_and_pop_lexeme_dictionary(lexicon_connector):
+def test_push_and_delete_lexeme_dictionary(lexicon_connector):
   lexeme = Lexeme('ope', 'CONJUNCTION', [])
   lexeme_dict = lexeme.to_json_dictionary()
   lexicon_connector.push_lexeme(lexeme_dict)
-  _, returned_lexeme_dict = lexicon_connector.pop_lexeme_dictionary_mapping(lemma=lexeme.lemma, pos=lexeme.pos)
-
-  assert lexeme.lemma == returned_lexeme_dict['lemma']
-
-  with pytest.raises(Exception): # TODO change exception type
-    _, returned_lexeme = lexicon_connector.get_lexeme_dictionary_mapping(lemma=lexeme.lemma, pos=lexeme.pos)
+  lexicon_connector.delete_lexeme_dictionary_mapping(lemma=lexeme.lemma, pos=lexeme.pos)
 
 
-def test_push_and_pop_lexemes(lexicon_connector):
+def test_push_and_delete_lexemes(lexicon_connector):
   lemmas = ['hi', 'julia']
   lexemes = [Lexeme(l, "CONJUNCTION", []) for l in lemmas]
   lexicon_connector.push_lexemes(lexemes)
-  returned_lexeme_mappings = lexicon_connector.pop_lexeme_mappings(lemmas=lemmas)
-
-  for _id, lexeme in returned_lexeme_mappings.items():
-    assert lexeme.lemma in lemmas
-
-  with pytest.raises(Exception): # TODO change exception type
-    _, returned_lexeme = lexicon_connector.get_lexeme_mapping(lemma=lemmas[0])  
+  lexicon_connector.delete_lexeme_dictionary_mappings(lemmas=lemmas)
 
 
-def test_push_and_pop_lexeme_dictionaries(lexicon_connector):
+def test_push_and_delete_lexeme_dictionaries(lexicon_connector):
   lemmas = ['hi', 'julia']
   lexemes = [Lexeme(l, "CONJUNCTION", []) for l in lemmas]
   lexicon_connector.push_lexemes(lexemes)
-  returned_lexeme_mappings = lexicon_connector.pop_lexeme_dictionary_mappings(lemmas=lemmas)
-
-  for _id, lexeme_dictionary in returned_lexeme_mappings.items():
-    assert lexeme_dictionary['lemma'] in lemmas
-
-  with pytest.raises(Exception): # TODO change exception type
-    _, returned_lexeme = lexicon_connector.get_lexeme_dictionary_mapping(lemma=lemmas[0])
+  lexicon_connector.delete_lexeme_dictionary_mappings(lemmas=lemmas)
 
 
 def test_multiple_lexemes_same_lemma_get_lexeme_fails(lexicon_connector):

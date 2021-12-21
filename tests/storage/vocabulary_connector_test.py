@@ -60,18 +60,15 @@ def test_push_and_get_vocabulary_entries(vocabulary_connector):
   vocabulary_connector.get_vocabulary_entry_mappings(lexeme_ids=lexeme_id)
 
 
-def test_push_and_pop_vocabulary_entry(vocabulary_connector):
+def test_push_and_delete_vocabulary_entry(vocabulary_connector):
   lexeme_id = ObjectId()
   rating=1.0
   
   vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, rating=rating)
-  vocabulary_connector.pop_vocabulary_entry_mapping(lexeme_id=lexeme_id) # without argument, this will implicitly use the user_id of vocabulary_connector
-
-  with pytest.raises(Exception):
-    vocabulary_connector.pop_vocabulary_entry_mapping(lexeme_id=lexeme_id) # without argument, this will implicitly use the user_id of vocabulary_connector
+  vocabulary_connector.delete_vocabulary_entry_mapping(lexeme_id=lexeme_id) # without argument, this will implicitly use the user_id of vocabulary_connector
 
 
-def test_push_and_pop_vocabulary_entries(vocabulary_connector):
+def test_push_and_delete_vocabulary_entries(vocabulary_connector):
   user_id_2 = ObjectId()
   lexeme_id = ObjectId()
   rating_1=1.0
@@ -81,10 +78,7 @@ def test_push_and_pop_vocabulary_entries(vocabulary_connector):
   ]
 
   vocabulary_connector.push_vocabulary_entries(entries)
-  vocabulary_connector.pop_vocabulary_entry_mappings(lexeme_ids=lexeme_id)
-
-  with pytest.raises(Exception):
-    results = vocabulary_connector.pop_vocabulary_entry_mappings(lexeme_ids=lexeme_id)
+  vocabulary_connector.delete_vocabulary_entry_mappings(lexeme_ids=lexeme_id)
 
 
 def test_push_vocabulary_duplicate_entries_fail(vocabulary_connector):
