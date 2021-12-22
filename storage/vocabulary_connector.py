@@ -9,26 +9,26 @@ from storage.collection_connector import CollectionConnector
 from storage.datastore_utils import generate_query
 
 # constants
-DATABASE = "vocabulary"
+COLLECTION = "vocabulary"
 
 
 class VocabularyConnector(CollectionConnector):
   """
   A [CollectionConnector] used specifically for recording terms known by a given user
   """
-  def __init__(self, uri, language, user_id, collection_name=None):
+  def __init__(self, uri, language, user_id, database_name=None):
     """
     Constructor
 
-    Separate collection_name argument used for testing - otherwise, the collection name defaults to the language name
+    Separate database_name argument used for testing - otherwise, the collection name defaults to the language name
     """
     language = language.lower()
 
-    if not collection_name:
-      collection_name = language
+    if not database_name:
+      database_name = language
 
-    super(VocabularyConnector, self).__init__(uri, DATABASE, collection_name)
-    self.collection_name = collection_name
+    super(VocabularyConnector, self).__init__(uri, database_name, COLLECTION)
+    self.database_name = database_name
     self.language = language
     self.user_id = user_id
   

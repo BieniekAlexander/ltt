@@ -16,19 +16,19 @@ class LanguageDatastore(object):
   """
   A datastore interface that abstracts storage of language data
   """
-  def __init__(self, uri: str, language: str, collection_name=None):
+  def __init__(self, uri: str, language: str, database_name=None):
     """
     Constructor
     """
     self.language = language.lower()
 
-    if not collection_name:
-      collection_name = language
+    if not database_name:
+      database_name = language
 
-    self.lexicon_connector = LexiconConnector(uri, language, collection_name)
-    self.inflections_connector = InflectionsConnector(uri, language, collection_name)
+    self.lexicon_connector = LexiconConnector(uri, language, database_name)
+    self.inflections_connector = InflectionsConnector(uri, language, database_name)
     self.language = language
-    self.collection_name = collection_name
+    self.database_name = database_name
 
   
   def add_lexeme_mapping(self, lexeme: Lexeme):

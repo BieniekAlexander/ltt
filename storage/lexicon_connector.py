@@ -13,22 +13,22 @@ from model.polish.pos.preposition import Preposition
 from model import model_class_map
 
 # constants
-DATABASE = "lexicon"
+COLLECTION = "lexicon"
 
 
 class LexiconConnector(CollectionConnector):
   """
   A [DocumentStoreConnector] used specifically for interacting with a language's lexicon
   """
-  def __init__(self, uri, language, collection_name=None):
+  def __init__(self, uri, language, database_name=None):
     language = language.lower()
 
-    if not collection_name:
-      collection_name = language
+    if not database_name:
+      database_name = language
 
-    super(LexiconConnector, self).__init__(uri, DATABASE, collection_name)
+    super(LexiconConnector, self).__init__(uri, database_name, COLLECTION)
     self.language = language
-    self.collection_name = collection_name
+    self.database_name = database_name
   
   
   def get_lexeme_dictionary_mapping(self, lemma=None, pos=None, _id=None):

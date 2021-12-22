@@ -11,21 +11,21 @@ from model.polish.pos.preposition import Preposition
 from model import model_class_map
 
 # constants
-DATABASE = "inflections"
+COLLECTION = "inflections"
 
 
 class InflectionsConnector(CollectionConnector):
   """
   A [DocumentStoreConnector] used specifically for interacting with a language's inflection mapping collection
   """
-  def __init__(self, uri, language, collection_name=None):
+  def __init__(self, uri, language, database_name=None):
     language = language.lower()
 
-    if not collection_name:
-      collection_name = language
+    if not database_name:
+      database_name = language
 
-    super(InflectionsConnector, self).__init__(uri, DATABASE, collection_name)
-    self.collection_name = collection_name
+    super(InflectionsConnector, self).__init__(uri, database_name, COLLECTION)
+    self.database_name = database_name
     self.language = language
   
   

@@ -8,7 +8,7 @@ from storage.datastore_utils import lexeme_index
 # constants
 MONGODB_URL = "mongodb://localhost:27017/"
 LANGUAGE = "polish"
-COLLECTION_NAME = LANGUAGE+"_test"
+DATABASE_NAME = LANGUAGE+"_test"
 
 
 #%% pytest fixtures
@@ -18,7 +18,7 @@ def language_datastore():
   """
   Establish a connection to the mongodb database
   """
-  test_language_datastore = LanguageDatastore(MONGODB_URL, LANGUAGE, collection_name=COLLECTION_NAME)
+  test_language_datastore = LanguageDatastore(MONGODB_URL, LANGUAGE, database_name=DATABASE_NAME)
   test_language_datastore.lexicon_connector.collection.create_index(**lexeme_index)
 
   # run test
