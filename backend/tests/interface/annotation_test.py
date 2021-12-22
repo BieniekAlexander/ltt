@@ -5,7 +5,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../.
 from storage.language_datastore import LanguageDatastore
 from storage.vocabulary_connector import VocabularyConnector
 from model.lexeme import Lexeme, LexemeDecoder
-from interface.annotation_utils import annotate_text
+from scraping.annotation_utils import annotate_text
 from storage.datastore_utils import lexeme_index, user_vocabulary_index
 
 # constants

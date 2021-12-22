@@ -4,11 +4,11 @@ from bs4 import BeautifulSoup
 import pymongo
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from scraping.wiktionary_scrape_summary_utils import wiktionary_get_all_lang_pos_lemmas
-from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
-from scraping.wiktionary_crawl_utils import get_lexeme_page_soup
-from storage.language_datastore import LanguageDatastore
-from model.lexeme import LexemeEncoder
+from backend.scraping.wiktionary_scrape_summary_utils import wiktionary_get_all_lang_pos_lemmas
+from backend.scraping.wiktionary_extract_lexeme_utils import extract_lexeme
+from backend.scraping.wiktionary_crawl_utils import get_lexeme_page_soup
+from backend.storage.language_datastore import LanguageDatastore
+from backend.model.lexeme import LexemeEncoder
 
 
 MONGODB_URL = "mongodb://localhost:27017/"
