@@ -75,7 +75,7 @@ class LanguageDatastore(object):
     raise NotImplementedError("Not implementing language lexeme deletion - do I need this?")
 
     
-  def form_to_lexeme_mapping(self, form: str, pos: str):
+  def form_to_lexeme_dictionary_mapping(self, form: str, pos: str):
     """
     Get a lexeme, given the form form and pos
 
@@ -89,13 +89,13 @@ class LanguageDatastore(object):
     
     if inflection_entry:
       lexeme_id = ObjectId(inflection_entry['lexeme_id'])
-      lexeme_id, lexeme = self.lexicon_connector.get_lexeme_mapping(_id=lexeme_id)
+      lexeme_id, lexeme = self.lexicon_connector.get_lexeme_dictionary_mapping(_id=lexeme_id)
       return (lexeme_id, lexeme)
     else:
       return None
 
 
-  def form_to_lexeme_mappings(self, form: str, poses: list = None) -> dict:
+  def form_to_lexeme_dictionary_mappings(self, form: str, poses: list = None) -> dict:
     """
     Get the lexemes of [form] in the specified [poses]
 
@@ -108,7 +108,7 @@ class LanguageDatastore(object):
     lexeme_ids = [ObjectId(d['lexeme_id']) for d in self.inflections_connector.get_inflection_entry_mappings(forms=[form], poses=poses).values()]
     
     if lexeme_ids:
-      lexemes_dict = self.lexicon_connector.get_lexeme_mappings(_ids=lexeme_ids)
-      return lexemes_dict
+      lexeme_dicts_dict = self.lexicon_connector.get_lexeme_dictionary_mappings(_ids=lexeme_ids)
+      return lexeme_dicts_dict
     else: # we found no entries for the [form] and [poses] provided
       return {}

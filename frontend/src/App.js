@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 
 import { fetchWeather } from './api/fetchWeather';
 import './App.css';
+import Popover from 'react-bootstrap/Popover';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Button from 'react-bootstrap/Button';
 
 const App = () => {
   const [query, setQuery] = useState('');
@@ -17,8 +20,34 @@ const search = async (e) => {
   }
 }
 
+const popover = (
+  <Popover id="popover-basic">
+    <Popover.Header as="h3">Popover right</Popover.Header>
+    <Popover.Body>
+      And here's some <strong>amazing</strong> content. It's very engaging.
+      right?
+    </Popover.Body>
+  </Popover>
+);
+
+const Example = () => (
+  <div>
+    <span>Click </span>
+    <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+      <span>me </span>
+      {/* variant="success" */}
+    </OverlayTrigger>
+    <span>to see</span>
+  </div>
+);
+
+
+
+
   return (
     <div className="main-container">
+      <Example />
+      
       <input type="text" className="search" placeholder="Search..." value={query} onChange={(e) => setQuery(e.target.value)} onKeyPress={search}/>
       {weather.main && (
         <div className="city">

@@ -22,13 +22,13 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, vocabulary_c
 
   for i, term in enumerate(terms):
     # how are we identifying the most probable lexeme - especially if we don't know the POS?
-    potential_lexeme_mappings = language_datastore.form_to_lexeme_mappings(form=term)
+    potential_lexeme_dictionary_mappings = language_datastore.form_to_lexeme_dictionary_mappings(form=term)
     annotation = {'term': term}
 
     # get lexeme from lexicon
-    if potential_lexeme_mappings:
-      annotation['lexeme_id'] = list(potential_lexeme_mappings.keys())[0]
-      annotation['lexeme'] = potential_lexeme_mappings[annotation['lexeme_id']]
+    if potential_lexeme_dictionary_mappings:
+      annotation['lexeme_id'] = list(potential_lexeme_dictionary_mappings.keys())[0]
+      annotation['lexeme'] = potential_lexeme_dictionary_mappings[annotation['lexeme_id']]
     else:
       if discovery_mode:
         try:
@@ -52,4 +52,3 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, vocabulary_c
     annotations.append(annotation)
 
   return annotations
-    

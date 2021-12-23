@@ -73,3 +73,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # Source
 https://www.youtube.com/watch?v=IaJqMcOMuDM
 https://app.netlify.com/teams/bieniekalexander/overview
+https://minutemailer.github.io/react-popup/
+https://react-bootstrap.github.io/components/overlays/ - I think this is the one that I want

@@ -1,4 +1,0 @@
-pytest
-coverage
-requests
-beautifulsoup4
