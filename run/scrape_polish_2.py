@@ -32,7 +32,7 @@ for form in forms:
   try:
     term_soup, lemma, pos = get_lexeme_page_soup(form, None, language)
     lexeme = extract_lexeme(term_soup, lemma, pos, language)
-    polish_language_datastore.add_lexeme_mapping(lexeme)
+    polish_language_datastore.add_lexeme(lexeme)
 
     with open(f"data/polish/{pos.lower()}_{lexeme.lemma.replace(' ', '_')}.json", 'w') as f:
       json_dict = lexeme.to_json_dictionary()

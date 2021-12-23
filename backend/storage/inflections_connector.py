@@ -29,9 +29,9 @@ class InflectionsConnector(CollectionConnector):
     self.language = language
   
   
-  def push_inflection_entry(self, lexeme_id: str, form: str, pos: str) -> str:
+  def push_inflection_entry(self, lexeme_id: str, form: str, pos: str) -> ObjectId:
     """
-    Add a new inflection to the datastore, represented by a [lexeme_id], [form], and [pos]
+    Add a new inflection to the datastore, represented by a [lexeme_id], [form], and [pos], and return the [ObjectId]
     """
     lexeme_id = ObjectId(lexeme_id)
     entry = {'lexeme_id': lexeme_id, 'form': form, 'pos': pos}
@@ -40,7 +40,7 @@ class InflectionsConnector(CollectionConnector):
 
   def push_inflection_entries(self, entries: list) -> list:
     """
-    Add list of inflections to the datastore, each represented by a dictionary
+    Add list of inflections to the datastore, each represented by a dictionary, and return a [list] of the [ObjectId]s
 
     dictionaries must contain 'lexeme_id', 'form', and 'pos'
     """
@@ -56,16 +56,16 @@ class InflectionsConnector(CollectionConnector):
     return super(InflectionsConnector, self).push_documents(entries)
 
 
-  def get_inflection_entry_mapping(self, lexeme_id: str = None, form: str = None, pos: str = None) -> dict:
+  def get_inflection_entry(self, lexeme_id: str = None, form: str = None, pos: str = None) -> dict:
     """
     Get inflection data and its _id, given the [lexeme_id], [form], and [pos]
     """
     if lexeme_id: lexeme_id = ObjectId(lexeme_id)
     query = generate_query(lexeme_id=lexeme_id, form=form, pos=pos)
-    return super(InflectionsConnector, self).get_document_mapping(query)
+    return super(InflectionsConnector, self).get_document(query)
 
   
-  def get_inflection_entry_mappings(self, lexeme_ids: list = None, forms: list = None, poses: list = None) -> dict:
+  def get_inflection_entries(self, lexeme_ids: list = None, forms: list = None, poses: list = None) -> dict:
     """
     Get inflection data entries and their _ids, given the [lexeme_ids], [forms], and [poses]
     """
@@ -75,19 +75,19 @@ class InflectionsConnector(CollectionConnector):
       lexeme_ids = ObjectId(lexeme_ids)
 
     query = generate_query(lexeme_id=lexeme_ids, form=forms, pos=poses)
-    return super(InflectionsConnector, self).get_document_mappings(query)
+    return super(InflectionsConnector, self).get_documents(query)
 
 
-  def delete_inflection_entry_mapping(self, lexeme_id: str = None, form: str = None, pos: str = None) -> dict:
+  def delete_inflection_entry(self, lexeme_id: str = None, form: str = None, pos: str = None) -> dict:
     """
     Delete inflection data entry and its _id, given the [lexeme_id], [form], and [pos]
     """
     if lexeme_id: lexeme_id = ObjectId(lexeme_id)
     query = generate_query(lexeme_id=lexeme_id, form=form, pos=pos)
-    super(InflectionsConnector, self).delete_document_mapping(query)
+    super(InflectionsConnector, self).delete_document(query)
   
   
-  def delete_inflection_entry_mappings(self, lexeme_ids: list = None, forms: list = None, poses: list = None) -> dict:
+  def delete_inflection_entries(self, lexeme_ids: list = None, forms: list = None, poses: list = None) -> dict:
     """
     Delete inflection data entries and their _ids, given the [lexeme_ids], [forms], and [poses]
     """
@@ -97,7 +97,7 @@ class InflectionsConnector(CollectionConnector):
       lexeme_ids = ObjectId(lexeme_ids)
 
     query = generate_query(lexeme_id=lexeme_ids, form=forms, pos=poses)
-    super(InflectionsConnector, self).delete_document_mappings(query)
+    super(InflectionsConnector, self).delete_documents(query)
  
 
 # main

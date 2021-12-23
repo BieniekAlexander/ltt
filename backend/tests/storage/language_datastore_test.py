@@ -36,8 +36,8 @@ def language_datastore():
 def test_add_and_get_lexeme(language_datastore):
   json_str = open('tests/storage/data/noun_czerwony.json').read()
   lexeme = json.loads(json_str, cls=LexemeDecoder)
-  language_datastore.add_lexeme_mapping(lexeme)
-  returned_lexeme = language_datastore.form_to_lexeme_mapping(form=lexeme.inflections['S']['I'], pos="NOUN")
+  language_datastore.add_lexeme(lexeme)
+  returned_lexeme = language_datastore.get_lexeme_from_form(form=lexeme.inflections['S']['I'], pos="NOUN")
 
   assert returned_lexeme
 
@@ -48,10 +48,10 @@ def test_get_lexeme_none(language_datastore):
   adj_str = open('tests/storage/data/adjective_czerwony.json').read()
   adj = json.loads(adj_str, cls=LexemeDecoder)
 
-  language_datastore.add_lexeme_mapping(noun)
-  language_datastore.add_lexeme_mapping(adj)
+  language_datastore.add_lexeme(noun)
+  language_datastore.add_lexeme(adj)
 
-  assert language_datastore.form_to_lexeme_mapping(form='niebieski', pos="ADJECTIVE") == None
+  assert language_datastore.get_lexeme_from_form(form='niebieski', pos="ADJECTIVE") == None
 
 
 def test_get_lexeme_wrong_pos_none(language_datastore):
@@ -60,10 +60,10 @@ def test_get_lexeme_wrong_pos_none(language_datastore):
   adj_str = open('tests/storage/data/adjective_czerwony.json').read()
   adj = json.loads(adj_str, cls=LexemeDecoder)
 
-  language_datastore.add_lexeme_mapping(noun)
-  language_datastore.add_lexeme_mapping(adj)
+  language_datastore.add_lexeme(noun)
+  language_datastore.add_lexeme(adj)
 
-  assert language_datastore.form_to_lexeme_mapping(form='czerwony', pos="ADVERB") == None
+  assert language_datastore.get_lexeme_from_form(form='czerwony', pos="ADVERB") == None
 
 
 def test_add_and_get_lexemes(language_datastore):
@@ -72,9 +72,9 @@ def test_add_and_get_lexemes(language_datastore):
   adj_str = open('tests/storage/data/adjective_czerwony.json').read()
   adj = json.loads(adj_str, cls=LexemeDecoder)
 
-  language_datastore.add_lexeme_mapping(noun)
-  language_datastore.add_lexeme_mapping(adj)
-  returned_lexemes = language_datastore.form_to_lexeme_mappings(form='czerwony')
+  language_datastore.add_lexeme(noun)
+  language_datastore.add_lexeme(adj)
+  returned_lexemes = language_datastore.get_lexemes_from_form(form='czerwony')
 
   assert returned_lexemes
 
@@ -85,10 +85,10 @@ def test_get_lexemes_none(language_datastore):
   adj_str = open('tests/storage/data/adjective_czerwony.json').read()
   adj = json.loads(adj_str, cls=LexemeDecoder)
 
-  language_datastore.add_lexeme_mapping(noun)
-  language_datastore.add_lexeme_mapping(adj)
+  language_datastore.add_lexeme(noun)
+  language_datastore.add_lexeme(adj)
 
-  assert language_datastore.form_to_lexeme_mappings(form='niebieski') == {}
+  assert language_datastore.get_lexemes_from_form(form='niebieski') == {}
 
 
 def test_get_lexemes_wrong_pos_none(language_datastore):
@@ -97,10 +97,10 @@ def test_get_lexemes_wrong_pos_none(language_datastore):
   adj_str = open('tests/storage/data/adjective_czerwony.json').read()
   adj = json.loads(adj_str, cls=LexemeDecoder)
 
-  language_datastore.add_lexeme_mapping(noun)
-  language_datastore.add_lexeme_mapping(adj)
+  language_datastore.add_lexeme(noun)
+  language_datastore.add_lexeme(adj)
 
-  assert language_datastore.form_to_lexeme_mappings(form='niebieski', poses=['VERB', 'ADVERB']) == {}
+  assert language_datastore.get_lexemes_from_form(form='niebieski', poses=['VERB', 'ADVERB']) == {}
 
 
 #%% main

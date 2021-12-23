@@ -30,7 +30,7 @@ def lexicon():
     request_data = request.get_json()
 
     try:
-        _, lexeme = lexicon_connector.get_lexeme_dictionary_mapping(**request_data)
+        _, lexeme = lexicon_connector.get_lexeme_entry(**request_data)
         return lexeme
     except AssertionError as e:
         return "bad request"
@@ -41,7 +41,7 @@ def vocabulary():
     request_data = request.get_json()
 
     try:
-        _, lexeme = lexicon_connector.get_lexeme_dictionary_mapping(**request_data)
+        _, lexeme = lexicon_connector.get_lexeme_entry(**request_data)
         return lexeme
     except AssertionError as e:
         return "bad request"

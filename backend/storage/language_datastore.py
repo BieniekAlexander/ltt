@@ -31,12 +31,12 @@ class LanguageDatastore(object):
     self.database_name = database_name
 
   
-  def add_lexeme_mapping(self, lexeme: Lexeme):
+  def add_lexeme(self, lexeme: Lexeme):
     """
     Add a lexeme to the datastore, add related data (i.e. inflection mappings), and get the lexeme_id
     """
     assert isinstance(lexeme, Lexeme)
-    lexeme_id = self.lexicon_connector.push_lexeme(lexeme)
+    lexeme_id = self.lexicon_connector.push_lexeme_entry(lexeme)
     
     if isinstance(lexeme, InflectedLexeme):
       inflections = lexeme.get_inflections()
@@ -48,12 +48,12 @@ class LanguageDatastore(object):
     return lexeme_id
 
 
-  def add_lexeme_mappings(self, lexemes: list):
+  def add_lexemes(self, lexemes: list):
     """
     Add a lexeme to the datastore, add related data (i.e. inflection mappings), and get the lexeme_id
     """
     assert isinstance(lexemes, list) and all(isinstance(lexeme, Lexeme) for lexeme in lexemes)
-    lexeme_ids = self.lexicon_connector.push_lexemes(lexemes)
+    lexeme_ids = self.lexicon_connector.push_lexeme_entries(lexemes)
     
     for lexeme_id, lexeme in zip(lexeme_ids, lexemes):
       if isinstance(lexeme, InflectedLexeme):
@@ -66,7 +66,7 @@ class LanguageDatastore(object):
     return lexeme_ids
 
   
-  def delete_lexeme_mapping(self, _id):
+  def delete_lexeme(self, _id):
     """
     remove a lexeme from the language datastore by [_id]
     
@@ -75,7 +75,7 @@ class LanguageDatastore(object):
     raise NotImplementedError("Not implementing language lexeme deletion - do I need this?")
 
     
-  def form_to_lexeme_dictionary_mapping(self, form: str, pos: str):
+  def get_lexeme_from_form(self, form: str, pos: str):
     """
     Get a lexeme, given the form form and pos
 
@@ -85,17 +85,17 @@ class LanguageDatastore(object):
     assert isinstance(pos, str) and pos in [pos.value for pos in PartOfSpeech]
 
     
-    _id, inflection_entry = self.inflections_connector.get_inflection_entry_mapping(form=form, pos=pos)
+    entry = self.inflections_connector.get_inflection_entry(form=form, pos=pos)
     
-    if inflection_entry:
-      lexeme_id = ObjectId(inflection_entry['lexeme_id'])
-      lexeme_id, lexeme = self.lexicon_connector.get_lexeme_dictionary_mapping(_id=lexeme_id)
-      return (lexeme_id, lexeme)
+    if entry:
+      lexeme_id = ObjectId(entry['lexeme_id'])
+      entry = self.lexicon_connector.get_lexeme_entry(_id=lexeme_id)
+      return entry
     else:
       return None
 
 
-  def form_to_lexeme_dictionary_mappings(self, form: str, poses: list = None) -> dict:
+  def get_lexemes_from_form(self, form: str, poses: list = None) -> dict:
     """
     Get the lexemes of [form] in the specified [poses]
 
@@ -105,10 +105,10 @@ class LanguageDatastore(object):
     assert isinstance(form, str)
     assert all(isinstance(pos, str) and pos in [pos.value for pos in PartOfSpeech] for pos in poses)
 
-    lexeme_ids = [ObjectId(d['lexeme_id']) for d in self.inflections_connector.get_inflection_entry_mappings(forms=[form], poses=poses).values()]
+    lexeme_ids = [ObjectId(d['lexeme_id']) for d in self.inflections_connector.get_inflection_entries(forms=[form], poses=poses)]
     
     if lexeme_ids:
-      lexeme_dicts_dict = self.lexicon_connector.get_lexeme_dictionary_mappings(_ids=lexeme_ids)
+      lexeme_dicts_dict = self.lexicon_connector.get_lexeme_entries(_ids=lexeme_ids)
       return lexeme_dicts_dict
     else: # we found no entries for the [form] and [poses] provided
       return {}

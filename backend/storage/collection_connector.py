@@ -9,7 +9,7 @@ class CollectionConnector(object):
   """
   An interface that lets us connect to a document store 
   """
-  def __init__(self, uri, database_name, collection_name):
+  def __init__(self, uri: str, database_name: str, collection_name: str):
     """
     Establish an initial connection to the document store
     """
@@ -23,7 +23,7 @@ class CollectionConnector(object):
     self.collection = self.db[collection_name]
 
 
-  def get_document_mapping(self, query) -> tuple:
+  def get_document(self, query: dict) -> dict:
     """
     Wrapper for getting documents from datastore, given a [query]
     """
@@ -34,29 +34,18 @@ class CollectionConnector(object):
        # TODO make specific error type
       raise Exception(f"Found more than one result when trying to get a document, given a query - '{query}'")
     elif len(results) == 0:
-      return (None, None)
+      return None
     else:
-      result = results[0]
-      key = str(result.pop('_id'))
-      value = result
-      return (key, value)
+      return results[0]
 
 
-  def get_document_mappings(self, query) -> dict:
+  def get_documents(self, query: dict) -> dict:
       """
-      Get a dictionary containing the id: document mappings, given a query
+      Get a documents, given a query
       """
       assert isinstance(query, dict)
       result_set = self.collection.find(query)
-
-      def get_dictionary_id_tuple(dictionary, key): # TODO rename tbh
-        id = dictionary.pop(key)
-        return (str(id), dictionary)
-
-      results = list(result_set)
-      mappings = dict(list(map(lambda x: get_dictionary_id_tuple(x, '_id'), results)))
-
-      return mappings
+      return list(result_set)
 
 
   def push_document(self, document) -> ObjectId:
@@ -69,7 +58,7 @@ class CollectionConnector(object):
     return result.inserted_id
 
 
-  def push_documents(self, documents) -> list:
+  def push_documents(self, documents: list) -> list:
     """
     Insert a list of [lexemes] and get the _ids that they map to
     """
@@ -79,16 +68,17 @@ class CollectionConnector(object):
     return list(map(str, results.inserted_ids))
     
 
-  def delete_document_mapping(self, query):
+  def delete_document(self, query: dict) -> None:
     """
     Delete a single document, given a query
     """
     assert isinstance(query, dict)
-    _id, document = self.get_document_mapping(query)
+    document = self.get_document(query)
+    _id = document['_id']
     self.collection.delete_one({'_id': ObjectId(_id)})
 
 
-  def delete_document_mappings(self, query):
+  def delete_documents(self, query: dict) -> None:
     """
     Delete documents, given a [query]
 

@@ -64,7 +64,7 @@ class VocabularyConnector(CollectionConnector):
     return super(VocabularyConnector, self).push_documents(entries)
 
 
-  def get_vocabulary_entry_mapping(self, lexeme_id: str = None, user_id: str = None) -> dict:
+  def get_vocabulary_entry(self, lexeme_id: str = None, user_id: str = None) -> dict:
     """
     Get a vocabulary entry and its _id, given the [lexeme_id] and [user_id]
     """
@@ -72,10 +72,10 @@ class VocabularyConnector(CollectionConnector):
     if user_id is None: user_id = self.user_id
     user_id = ObjectId(user_id)
     query = generate_query(lexeme_id=lexeme_id, user_id=user_id)
-    return super(VocabularyConnector, self).get_document_mapping(query)
+    return super(VocabularyConnector, self).get_document(query)
 
   
-  def get_vocabulary_entry_mappings(self, lexeme_ids: list = None, user_ids: list = None) -> dict:
+  def get_vocabulary_entries(self, lexeme_ids: list = None, user_ids: list = None) -> dict:
     """
     Get vocabulary entries and their _ids, given the [lexeme_ids] and [user_ids]
     """
@@ -94,20 +94,20 @@ class VocabularyConnector(CollectionConnector):
       ser_ids = ObjectId(user_ids)
 
     query = generate_query(lexeme_id=lexeme_ids, user_id=user_ids)
-    return super(VocabularyConnector, self).get_document_mappings(query)
+    return super(VocabularyConnector, self).get_documents(query)
 
 
-  def delete_vocabulary_entry_mapping(self, lexeme_id: str = None, user_id: str = None) -> dict:
+  def delete_vocabulary_entry(self, lexeme_id: str = None, user_id: str = None) -> dict:
     """
     Delete vocabulary data entry and its _id, given the [lexeme_id], [form], and [pos]
     """
     if user_id is None: user_id = self.user_id
     if lexeme_id: lexeme_id = ObjectId(lexeme_id)
     query = generate_query(lexeme_id=lexeme_id, user_id=user_id)
-    return super(VocabularyConnector, self).delete_document_mapping(query)
+    return super(VocabularyConnector, self).delete_document(query)
   
   
-  def delete_vocabulary_entry_mappings(self, lexeme_ids: list = None, user_ids: list = None) -> dict:
+  def delete_vocabulary_entries(self, lexeme_ids: list = None, user_ids: list = None) -> dict:
     """
     Delete vocabulary data entries and their _ids, given the [lexeme_ids] and [user_ids]
     """
@@ -125,7 +125,7 @@ class VocabularyConnector(CollectionConnector):
       ser_ids = ObjectId(user_ids)
 
     query = generate_query(lexeme_id=lexeme_ids, user_id=user_ids)
-    return super(VocabularyConnector, self).delete_document_mappings(query)
+    return super(VocabularyConnector, self).delete_documents(query)
  
 
 #%% main

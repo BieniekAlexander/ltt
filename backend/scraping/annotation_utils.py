@@ -22,7 +22,7 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, vocabulary_c
 
   for i, term in enumerate(terms):
     # how are we identifying the most probable lexeme - especially if we don't know the POS?
-    potential_lexeme_dictionary_mappings = language_datastore.form_to_lexeme_dictionary_mappings(form=term)
+    potential_lexeme_dictionary_mappings = language_datastore.form_to_lexemes_from_form(form=term)
     annotation = {'term': term}
 
     # get lexeme from lexicon
@@ -34,7 +34,7 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, vocabulary_c
         try:
           term_soup, lemma, pos = get_lexeme_page_soup(term, None, language)
           annotation['lexeme'] = extract_lexeme(term_soup, lemma, pos, language)
-          annotation['lexeme_id'] = language_datastore.add_lexeme_mapping(annotation['lexeme'])
+          annotation['lexeme_id'] = language_datastore.add_lexeme(annotation['lexeme'])
         except:
           logging.error(f"Tried & failed to scrape the {i}th term - {term}")
       else:
@@ -43,7 +43,7 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, vocabulary_c
     if 'lexeme' in annotation:
       # try to get lexeme from a user's vocabulary
       if vocabulary_connector:
-        vocabulary_id, entry = vocabulary_connector.get_vocabulary_entry_mapping(annotation['lexeme_id'])
+        vocabulary_id, entry = vocabulary_connector.get_vocabulary_entry(annotation['lexeme_id'])
         
         if vocabulary_id:
           annotation['vocabulary_id'] = vocabulary_id

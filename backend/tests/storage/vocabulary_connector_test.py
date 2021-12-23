@@ -43,8 +43,8 @@ def test_push_and_get_vocabulary_entry(vocabulary_connector):
   vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, rating=rating_1)
   vocabulary_connector.push_vocabulary_entry(**entry_2)
   
-  vocabulary_connector.get_vocabulary_entry_mapping(lexeme_id=lexeme_id) # without argument, this will implicitly use the user_id of vocabulary_connector
-  vocabulary_connector.get_vocabulary_entry_mapping(lexeme_id=lexeme_id, user_id=user_id_2)
+  vocabulary_connector.get_vocabulary_entry(lexeme_id=lexeme_id) # without argument, this will implicitly use the user_id of vocabulary_connector
+  vocabulary_connector.get_vocabulary_entry(lexeme_id=lexeme_id, user_id=user_id_2)
 
 
 def test_push_and_get_vocabulary_entries(vocabulary_connector):
@@ -57,7 +57,7 @@ def test_push_and_get_vocabulary_entries(vocabulary_connector):
   ]
 
   vocabulary_connector.push_vocabulary_entries(entries)
-  vocabulary_connector.get_vocabulary_entry_mappings(lexeme_ids=lexeme_id)
+  vocabulary_connector.get_vocabulary_entries(lexeme_ids=lexeme_id)
 
 
 def test_push_and_delete_vocabulary_entry(vocabulary_connector):
@@ -65,7 +65,7 @@ def test_push_and_delete_vocabulary_entry(vocabulary_connector):
   rating=1.0
   
   vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, rating=rating)
-  vocabulary_connector.delete_vocabulary_entry_mapping(lexeme_id=lexeme_id) # without argument, this will implicitly use the user_id of vocabulary_connector
+  vocabulary_connector.delete_vocabulary_entry(lexeme_id=lexeme_id) # without argument, this will implicitly use the user_id of vocabulary_connector
 
 
 def test_push_and_delete_vocabulary_entries(vocabulary_connector):
@@ -78,7 +78,7 @@ def test_push_and_delete_vocabulary_entries(vocabulary_connector):
   ]
 
   vocabulary_connector.push_vocabulary_entries(entries)
-  vocabulary_connector.delete_vocabulary_entry_mappings(lexeme_ids=lexeme_id)
+  vocabulary_connector.delete_vocabulary_entries(lexeme_ids=lexeme_id)
 
 
 def test_push_vocabulary_duplicate_entries_fail(vocabulary_connector):

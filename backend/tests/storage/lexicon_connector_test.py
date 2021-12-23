@@ -28,70 +28,39 @@ def lexicon_connector():
 
 
 #%% tests
-# push and get
-def test_push_and_get_lexeme(lexicon_connector):
-  lexeme = Lexeme('ope', 'CONJUNCTION', [])
-  lexicon_connector.push_lexeme(lexeme)
-  _, returned_lexeme = lexicon_connector.get_lexeme_mapping(lemma=lexeme.lemma, pos=lexeme.pos)
-
-  assert lexeme == returned_lexeme
-  
-
-def test_push_and_get_lexeme_dictionary(lexicon_connector):
+def test_push_and_get_lexeme_entry(lexicon_connector):
   lexeme = Lexeme('ope', 'CONJUNCTION', [])
   lexeme_dict = lexeme.to_json_dictionary()
-  lexicon_connector.push_lexeme(lexeme_dict)
-  _, returned_lexeme_dict = lexicon_connector.get_lexeme_dictionary_mapping(lemma=lexeme.lemma, pos=lexeme.pos)
+  lexicon_connector.push_lexeme_entry(lexeme_dict)
+  entry = lexicon_connector.get_lexeme_entry(lemma=lexeme.lemma, pos=lexeme.pos)
 
-  assert lexeme.lemma == returned_lexeme_dict['lemma']
+  assert lexeme.lemma == entry['lemma']
 
 
-def test_push_and_get_lexemes(lexicon_connector):
+def test_push_and_get_lexeme_entries(lexicon_connector):
   lemmas = ['hi', 'julia']
   lexemes = [Lexeme(l, "CONJUNCTION", []) for l in lemmas]
-  lexicon_connector.push_lexemes(lexemes)
-  returned_lexeme_mappings = lexicon_connector.get_lexeme_mappings(lemmas=lemmas)
+  lexicon_connector.push_lexeme_entries(lexemes)
+  returned_lexeme_entries = lexicon_connector.get_lexeme_entries(lemmas=lemmas)
 
-  for _id, lexeme in returned_lexeme_mappings.items():
-    assert lexeme.lemma in lemmas
-
-
-def test_push_and_get_lexeme_dictionaries(lexicon_connector):
-  lemmas = ['hi', 'julia']
-  lexemes = [Lexeme(l, "CONJUNCTION", []) for l in lemmas]
-  lexicon_connector.push_lexemes(lexemes)
-  returned_lexeme_mappings = lexicon_connector.get_lexeme_dictionary_mappings(lemmas=lemmas)
-
-  for _id, lexeme_dictionary in returned_lexeme_mappings.items():
-    assert lexeme_dictionary['lemma'] in lemmas
+  for entry in returned_lexeme_entries:
+    print(returned_lexeme_entries)
+    assert entry['lemma'] in lemmas
 
 
 # push and delete
-def test_push_and_delete_lexeme(lexicon_connector):
-  lexeme = Lexeme('ope', 'CONJUNCTION', [])
-  lexicon_connector.push_lexeme(lexeme)
-  lexicon_connector.delete_lexeme_dictionary_mapping(lemma=lexeme.lemma, pos=lexeme.pos)
-  
-
-def test_push_and_delete_lexeme_dictionary(lexicon_connector):
+def test_push_and_delete_lexeme_entry(lexicon_connector):
   lexeme = Lexeme('ope', 'CONJUNCTION', [])
   lexeme_dict = lexeme.to_json_dictionary()
-  lexicon_connector.push_lexeme(lexeme_dict)
-  lexicon_connector.delete_lexeme_dictionary_mapping(lemma=lexeme.lemma, pos=lexeme.pos)
+  lexicon_connector.push_lexeme_entry(lexeme_dict)
+  lexicon_connector.delete_lexeme_entry(lemma=lexeme.lemma, pos=lexeme.pos)
 
 
-def test_push_and_delete_lexemes(lexicon_connector):
+def test_push_and_delete_lexeme_entries(lexicon_connector):
   lemmas = ['hi', 'julia']
   lexemes = [Lexeme(l, "CONJUNCTION", []) for l in lemmas]
-  lexicon_connector.push_lexemes(lexemes)
-  lexicon_connector.delete_lexeme_dictionary_mappings(lemmas=lemmas)
-
-
-def test_push_and_delete_lexeme_dictionaries(lexicon_connector):
-  lemmas = ['hi', 'julia']
-  lexemes = [Lexeme(l, "CONJUNCTION", []) for l in lemmas]
-  lexicon_connector.push_lexemes(lexemes)
-  lexicon_connector.delete_lexeme_dictionary_mappings(lemmas=lemmas)
+  lexicon_connector.push_lexeme_entries(lexemes)
+  lexicon_connector.delete_lexeme_entries(lemmas=lemmas)
 
 
 def test_multiple_lexemes_same_lemma_get_lexeme_fails(lexicon_connector):
@@ -100,10 +69,10 @@ def test_multiple_lexemes_same_lemma_get_lexeme_fails(lexicon_connector):
   adj_str = open('tests/storage/data/adjective_czerwony.json').read()
   adj = json.loads(adj_str, cls=LexemeDecoder)
   lexemes = [noun, adj]
-  lexicon_connector.push_lexemes(lexemes)
+  lexicon_connector.push_lexeme_entries(lexemes)
 
   with pytest.raises(Exception): # TODO change exception type
-    _, returned_lexeme = lexicon_connector.get_lexeme_dictionary_mapping(lemma='czerwony')
+    _, returned_lexeme = lexicon_connector.get_lexeme_entry(lemma='czerwony')
 
 
 #% main

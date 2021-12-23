@@ -53,7 +53,7 @@ def test_push_and_get_inflection(inflections_connector):
   pos = "NOUN"
 
   inflections_connector.push_inflection_entry(lexeme_id=lexeme_id, form=form, pos=pos)
-  inflections_connector.get_inflection_entry_mapping(lexeme_id=lexeme_id, form=form, pos=pos)
+  inflections_connector.get_inflection_entry(lexeme_id=lexeme_id, form=form, pos=pos)
 
 
 def test_push_args_missing_fail(inflections_connector):
@@ -68,7 +68,7 @@ def test_push_and_get_inflections(lexicon_connector, inflections_connector):
   json_str = open('tests/storage/data/noun_czerwony.json').read()
   lexeme = json.loads(json_str, cls=LexemeDecoder)
   inflections = list(set(lexeme.get_inflections()))
-  lexeme_id = lexicon_connector.push_lexeme(lexeme)
+  lexeme_id = lexicon_connector.push_lexeme_entry(lexeme)
   entries = []
 
   for inflection in inflections:
@@ -76,7 +76,7 @@ def test_push_and_get_inflections(lexicon_connector, inflections_connector):
     entries.append(entry)
 
   inflections_connector.push_inflection_entries(entries)
-  results = inflections_connector.get_inflection_entry_mappings(poses=lexeme.pos.value, lexeme_ids=lexeme_id)
+  results = inflections_connector.get_inflection_entries(poses=lexeme.pos.value, lexeme_ids=lexeme_id)
 
 
 def test_push_and_delete_inflection_args(inflections_connector):
@@ -85,14 +85,14 @@ def test_push_and_delete_inflection_args(inflections_connector):
   pos = "NOUN"
 
   inflections_connector.push_inflection_entry(lexeme_id=lexeme_id, form=form, pos=pos)
-  inflections_connector.delete_inflection_entry_mapping(lexeme_id=lexeme_id, form=form, pos=pos)
+  inflections_connector.delete_inflection_entry(lexeme_id=lexeme_id, form=form, pos=pos)
 
 
 def test_push_and_delete_inflections(lexicon_connector, inflections_connector):
   json_str = open('tests/storage/data/noun_czerwony.json').read()
   lexeme = json.loads(json_str, cls=LexemeDecoder)
   inflections = list(set(lexeme.get_inflections()))
-  lexeme_id = lexicon_connector.push_lexeme(lexeme)
+  lexeme_id = lexicon_connector.push_lexeme_entry(lexeme)
   entries = []
 
   for inflection in inflections:
@@ -100,7 +100,7 @@ def test_push_and_delete_inflections(lexicon_connector, inflections_connector):
     entries.append(entry)
 
   inflections_connector.push_inflection_entries(entries)
-  inflections_connector.delete_inflection_entry_mappings(poses=lexeme.pos.value, lexeme_ids=lexeme_id)
+  inflections_connector.delete_inflection_entries(poses=lexeme.pos.value, lexeme_ids=lexeme_id)
 
 
 
