@@ -1,32 +1,23 @@
 # imports
-from flask import Flask, request
+from flask import Blueprint, request
+import os, sys
 
-from storage.lexicon_connector import LexiconConnector
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from storage.language_datastore import LanguageDatastore
 from scraping.annotation_utils import annotate_text
-
-from server import lexicon
 
 # constants
 MONGODB_URL = "mongodb://localhost:27017/"
 LANGUAGE = "polish"
 
 # objects
+language_datastore = LanguageDatastore(MONGODB_URL, LANGUAGE)
 
-language_datastore = LanguageDatastore(MONGODB_URL, "polish")
-
-
-# Flask
-app = Flask(__name__)
-app.register_blueprint(lexicon.bp)
+# interface
+bp = Blueprint('annotate', __name__,url_prefix="/annotate")
 
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
-
-
-@app.route("/annotate")
+@bp.route("")
 def annotate():
     request_data = request.get_json()
 
@@ -36,6 +27,3 @@ def annotate():
         return {'annotations': annotated_text}
     except AssertionError as e:
         return "bad request"
-
-
-annotate_text

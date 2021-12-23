@@ -28,7 +28,6 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, vocabulary_c
     # get lexeme from lexicon
     if potential_lexeme_dictionary_mappings:
       entry = potential_lexeme_dictionary_mappings[0]
-      print(entry)
       annotation['lexeme_id'] = str(entry.pop('_id'))
       annotation['lexeme'] = entry
     else:

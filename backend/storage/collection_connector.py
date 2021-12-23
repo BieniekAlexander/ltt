@@ -35,8 +35,10 @@ class CollectionConnector(object):
       raise Exception(f"Found more than one result when trying to get a document, given a query - '{query}'")
     elif len(results) == 0:
       return None
-    else:
-      return results[0]
+    else: # TODO clean up - how are these collection connectors consistently dealing with the [ObjectId] type?
+      result = results[0]
+      result['_id'] = str(result['_id'])
+      return result
 
 
   def get_documents(self, query: dict) -> dict:
@@ -44,8 +46,11 @@ class CollectionConnector(object):
       Get a documents, given a query
       """
       assert isinstance(query, dict)
-      result_set = self.collection.find(query)
-      return list(result_set)
+      result_list = list(self.collection.find(query))
+      for result in result_list: # TODO clean up, as above
+        result['_id'] = str(result['_id'])
+
+      return list(result_list)
 
 
   def push_document(self, document) -> ObjectId:

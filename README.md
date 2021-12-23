@@ -34,3 +34,5 @@ pytest
 - [Pytest Documentation](https://docs.pytest.org/en/6.2.x/)
 - [CLI usage for Running tests with pytest](https://zetcode.com/python/pytest/)
 - http://nkjp.pl/index.php?page=14&lang=1
+- https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
+- https://flask.palletsprojects.com/en/2.0.x/tutorial/views/
