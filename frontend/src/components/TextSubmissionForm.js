@@ -1,60 +1,78 @@
 import React from 'react';
-import { useFormik } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import './TextSubmissionForm.css';
 import * as Yup from 'yup';
 
-function TextSubmissionForm() {
-  const initialValues = {
-    language: '',
-    text: ''
-  }
-
-  const onSubmit = values => {
-    console.log('Form data', values)
-  }
-
-  const validationSchema = Yup.object({
-    language: Yup.string().required('Required!'),
-    text: Yup.string().required("Required!")
-  })
-
-  const formik = useFormik({
-    initialValues: initialValues,
-    onSubmit: onSubmit,
-    validate: validationSchema
-  });
-
+function FormError(props) {
   return (
-    <div>
-      <form onSubmit={formik.handleSubmit}>
+    <div className='form-error'>
+      {props.children}
+    </div>
+  )
+}
+
+const initialValues = {
+  language: '',
+  text: ''
+}
+
+const onSubmit = (values, submitProps) => {
+  console.log('Form data', values)
+  console.log('submitProps', submitProps)
+}
+
+const validationSchema = Yup.object({
+  language: Yup.string().required('Required!'),
+  text: Yup.string().required("Required!")
+})
+
+function TextSubmissionForm () {
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+      validateOnMOunt
+    >
+      {formik => {
+        console.log("Formik props: ", formik)
+      return (
+      <Form>
         <div className='form-control'>
           <label htmlFor='language'>Language</label>
-          <input
-            type='text'
-            id='language'
-            name='language'
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.language} />
-          {(formik.touched.language && formik.errors.language) && <div className='form-error'>{formik.errors.language}</div>}
+          <Field
+              as='select'
+              id='language'
+              name='language'>
+            <option value="">Select...</option>
+            <option value="spanish">Spanish</option>
+            <option value="polish">Polish</option>
+          </Field>
+          <ErrorMessage name='language' component={FormError}/>
         </div>
 
         <div className='form-control'>
           <label htmlFor='text'>Text</label>
-          <input
-            type='text'
+          <Field
+            as='textarea'
             id='text'
-            name='text'
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.text} />
-          {(formik.touched.text && formik.errors.text) && <div className='form-error'>{formik.errors.text}</div>}
+            name='text'/>
+          <ErrorMessage name='text'>
+            {(errorMessage) => <div className='form-error'>{errorMessage}</div>}
+          </ErrorMessage>
         </div>
 
-        {/* <input type='text' id='text' name='text'/> */}
-        <button type='submit'>Submit</button>
-      </form>
-    </div>
+        {/* <button type='submit'>Submit</button> */}
+        <button
+          type='submit'
+          disabled={!formik.isValid
+            || !formik.isSubmitting}>
+          Submit
+        </button>
+      </Form>
+      )
+      }}
+    </Formik>
   )
 }
 
