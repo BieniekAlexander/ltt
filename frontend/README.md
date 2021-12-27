@@ -75,3 +75,5 @@ https://www.youtube.com/watch?v=IaJqMcOMuDM
 https://app.netlify.com/teams/bieniekalexander/overview
 https://minutemailer.github.io/react-popup/
 https://react-bootstrap.github.io/components/overlays/ - I think this is the one that I want
+https://www.youtube.com/watch?v=VzWBLj_CfpE
+https://www.youtube.com/watch?v=T2MhVxJxsL0
