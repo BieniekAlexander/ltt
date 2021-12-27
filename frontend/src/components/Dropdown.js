@@ -1,26 +1,63 @@
-import React, {useState} from 'react';
-import {MenuItems} from './MenuItems';
-import {Link} from 'react-router-dom';
-import './Dropdown.css';
+// src: https://letsbuildui.dev/articles/building-a-dropdown-menu-component-with-react-hooks
+import React, { useRef, useState } from "react";
+import "./Dropdown.css";
+import styled from 'styled-components';
+import { useDetectOutsideClick } from "../functions/useDetectOutsideClick";
+import { NavLink } from "./NavBar";
 
-function Dropdown() {
-  const [click, setClick] = useState(false);
-  const handleClick = () => setClick(!click);
+// styling
+export const DropdownUL = styled.ul`
+  margin-right: 24px;
+  position: relative;
+  menu-placement: bottom;
+`;
 
-  return <>
-    <ul onClock={handleClick} className={click  ? 'dropdown-menu clicked' : 'dropdown-menu'}>
-      {MenuItems.map((item, index) => {
-        return (
-          <li key={index}>
-            <Link className={item.cName} to={item.path} onCLick={() => 
-            setClick(false)}>
-              {item.title}
-            </Link>
-          </li>
-        )
-      })}
-    </ul>
-  </>;
+export const DropdownLI = styled.li`
+  background: #000;
+  padding: 6px 0px;
+  border: 1px solid #FFF;
+  list-style: none;
+`;
+
+export const DropdownNav = styled.nav`
+  position: absolute;
+  top: -20px;
+  left: 0px;
+  transform: translateY(50px);
+`;
+
+export const styling = {
+  'position': 'relative',
+  'display': 'flex',
+  'justify-content': 'center',
+  'align-items': 'center'
 }
 
-export default Dropdown;
+export default function Dropdown() {
+  const dropdownRef = useRef(null);
+  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
+  const closeDropdown = () => setIsActive(false);
+  const onClick = () => {setIsActive(!isActive); console.log(isActive);}
+
+  return (
+    <div className="container">
+      <div className="menu-container" style={styling}>
+        <NavLink to="#" onClick={onClick}>
+          Training <i className='fas fa-caret-down' />
+        </NavLink>
+
+        {isActive && 
+        <DropdownNav ref={dropdownRef} className="menu">
+          <DropdownUL>
+            <DropdownLI>
+              <NavLink to="/annotations" onClick={closeDropdown}>Annotations</NavLink>
+            </DropdownLI>
+            <DropdownLI>
+              <NavLink to="/inflections" onClick={closeDropdown}>Inflections</NavLink>
+            </DropdownLI>
+          </DropdownUL>
+        </DropdownNav>}
+      </div>
+    </div>
+  );
+}

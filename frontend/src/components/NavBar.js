@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import Dropdown from './Dropdown';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useDetectOutsideClick } from '../functions/useDetectOutsideClick';
 
-
+// styling
 export const NavSpan = styled.span`
   color: #fff;
   display: flex;
@@ -47,40 +48,8 @@ export const NavMenu = styled.div`
   display: flex;
   align-items: center;
   margin-right: 24px;
-
   @media screen and (max-width: 768px) {
     display: none;
-  }
-`;
-
-export const NavBtn = styled.nav`
-  display: flex;
-  align-items: center;
-  margin-right: 24px;
-  /* Third Nav */
-  /* justify-content: flex-end;
-  width: 100vw; */
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
-`;
-
-export const NavBtnLink = styled(Link)`
-  border-radius: 4px;
-  background: #256ce1;
-  padding: 10px 22px;
-  color: #fff;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  text-decoration: none;
-  margin-left: 24px;
-
-  &:hover {
-    transition: all 0.2s ease-in-out;
-    background: #fff;
-    color: #010606;
   }
 `;
 
@@ -91,27 +60,21 @@ const Navbar = () => {
   const handleClick = () => setClick(!click);
   const toggleDropdown = () => setDropdown(!dropdown);
 
+  // const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
+  const [isActive, setIsActive] = useDetectOutsideClick(dropdown, false);
+
   return (
     <>
-      <Nav className='navbar'>
+      <Nav>
         <NavLink to="/">
-          <h1>Language Trainer</h1>
+          <h1 className='navbar'>Language Trainer</h1>
         </NavLink>
-        <div className='menu-icon' onClick={handleClick}>
-          <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
-        </div>
-        <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-        </ul>
+        
         <NavMenu>
-          <NavSpan className='nav-links' onClick={toggleDropdown}>
-              Training <i className='fas fa-caret-down' />
-          </NavSpan>
-          {dropdown && <Dropdown />}
-          <NavLink to="/sign-up" activeStyle>
-            Vocabulary
-          </NavLink>
-          <NavLink to="/about" activeStyle>About</NavLink>
-          <NavBtnLink to='/signin'>Sign In</NavBtnLink>
+          <Dropdown/>
+          <NavLink to="/vocabulary">Vocabulary</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/sign-up">Sign Up</NavLink>
         </NavMenu>
       </Nav>
     </>
