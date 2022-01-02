@@ -386,6 +386,42 @@ def test_extract_polish_particle_jeszcze():
   assert "yet (used with negated verbs)" in lexeme.definitions[0]
 
 
+def test_extract_polish_pronoun_siebie():
+  lemma, pos, language = "siebie", "pronoun", "Polish"
+  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
+  page = requests.get(termUrl)
+  soup = BeautifulSoup(page.content, "html.parser")
+  lexeme = extract_lexeme(soup, lemma, pos, language)
+  
+  assert lexeme.pos == PartOfSpeech.PRONOUN
+  assert "reflexive pronoun" in lexeme.definitions[0]
+  assert 'siebie' in lexeme.inflections['S']['A']
+  
+
+def test_extract_polish_pronoun_ja():
+  lemma, pos, language = "ja", "pronoun", "Polish"
+  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
+  page = requests.get(termUrl)
+  soup = BeautifulSoup(page.content, "html.parser")
+  lexeme = extract_lexeme(soup, lemma, pos, language)
+  
+  assert lexeme.pos == PartOfSpeech.PRONOUN
+  assert "I (first-person pronoun)" in lexeme.definitions[0]
+  assert 'mną' in lexeme.inflections['S']['I']
+
+
+def test_extract_polish_pronoun_oni():
+  lemma, pos, language = "oni", "pronoun", "Polish"
+  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
+  page = requests.get(termUrl)
+  soup = BeautifulSoup(page.content, "html.parser")
+  lexeme = extract_lexeme(soup, lemma, pos, language)
+  
+  assert lexeme.pos == PartOfSpeech.PRONOUN
+  assert "they (third-person masculine personal nominative)" in lexeme.definitions[0]
+  assert 'nim' in lexeme.inflections['P']['D']
+
+
 #% main
 def main():
   pass

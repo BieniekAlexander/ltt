@@ -63,7 +63,7 @@ def replace_dict_keys_recursive(dictionary, key_mapping, exhaustive=True):
   return output_dictionary
 
 
-def flatten_dict_keys(dictionary, flatten=lambda x: list(map(lambda y: y.strip(), re.split(',', x)))):
+def flatten_dict_keys(dictionary, flatten=lambda x: list(map(lambda y: y.strip(), re.split(',| and ', x)))):
   """
   Flatten the keys of a [dictionary] if [fun] turns the keys into multiple keys.
   """

@@ -43,14 +43,11 @@ def extract_lexeme(soup, lemma, pos, language):
   elif pos.lower() == "conjunction" \
       or pos.lower() == "interjection" \
       or pos.lower() == "numeral" \
-      or pos.lower() == "particle":
+      or pos.lower() == "particle" \
+      or pos.lower() == "pronoun":
     pass # no features to parse
-  elif pos.lower() == "pronoun":
-    # TODO probably update the Errors
-    logging.error("Probably hardcode the pronouns because they're jank and there are only so many forms")
-    raise ScrapingAssertionError(soup, {}, "Not handling extraction of pronouns, please collect them manually!")
   else:
-    raise ValueError("Unknown part of speech trying to be extracted")
+    raise ValueError(f"Tried to extract an unknown part of speech: {pos.lower()}")
 
   definition_list = get_definition_ol(soup, pos, language)
   definitions = get_definition_strings(definition_list)

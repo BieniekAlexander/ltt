@@ -17,3 +17,16 @@ class Pronoun(InflectedLexeme):
     TODO
     """
     super(Pronoun, self).__init__(lemma, pos, definitions, inflections)
+
+  # reference - https://en.wiktionary.org/wiki/biec#Conjugation
+  form_abbreviation_dict = {
+    "singular": "S",
+    "plural": "P",
+    "nominative": "N",
+    "genitive": "G",
+    "accusative": "A",
+    "dative": "D",
+    "instrumental": "I",
+    "locative": "L",
+    "vocative": "V"
+  }
