@@ -16,13 +16,13 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, vocabulary_c
   """
   assert isinstance(text, str)
 
-  terms = list(map(lambda x: x.lower(), re.findall(r'\w+', text)))
+  terms = list(re.findall(r'\w+', text))
   language = language_datastore.language
   annotations = []
 
   for i, term in enumerate(terms):
     # how are we identifying the most probable lexeme - especially if we don't know the POS?
-    potential_lexeme_dictionary_mappings = language_datastore.get_lexemes_from_form(form=term)
+    potential_lexeme_dictionary_mappings = language_datastore.get_lexemes_from_form(form=term.lower())
     annotation = {'term': term}
 
     # get lexeme from lexicon
@@ -44,11 +44,15 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, vocabulary_c
     if 'lexeme' in annotation:
       # try to get lexeme from a user's vocabulary
       if vocabulary_connector:
-        vocabulary_id, entry = vocabulary_connector.get_vocabulary_entry(annotation['lexeme_id'])
+        entry = vocabulary_connector.get_vocabulary_entry(annotation['lexeme_id'])
         
-        if vocabulary_id:
-          annotation['vocabulary_id'] = vocabulary_id
+        if entry:
+          annotation['vocabulary_id'] = entry['_id']
           annotation['rating'] = entry['rating']
+        else: # set to null to indicate that we tried to tie to vocabulary and found nothing
+          annotation['vocabulary_id'] = None
+          annotation['rating'] = None
+
 
     annotations.append(annotation)
 

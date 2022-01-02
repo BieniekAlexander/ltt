@@ -28,21 +28,19 @@ export const DropdownNav = styled.nav`
 
 export const styling = {
   'position': 'relative',
-  'display': 'flex',
-  'justify-content': 'center',
-  'align-items': 'center'
+  'display': 'flex'
 }
 
 export default function Dropdown() {
   const dropdownRef = useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
   const closeDropdown = () => setIsActive(false);
-  const onClick = () => {setIsActive(!isActive); console.log(isActive);}
+  const onClick = () => setIsActive(!isActive);
 
   return (
     <div className="container">
       <div className="menu-container" style={styling}>
-        <NavLink to="#" onClick={onClick}>
+        <NavLink to="#" onClick={onClick} className="navbar">
           Training <i className='fas fa-caret-down' />
         </NavLink>
 
@@ -50,10 +48,10 @@ export default function Dropdown() {
         <DropdownNav ref={dropdownRef} className="menu">
           <DropdownUL>
             <DropdownLI>
-              <NavLink to="/annotations" onClick={closeDropdown}>Annotations</NavLink>
+              <NavLink to="/annotations" onClick={closeDropdown} className="navbar">Annotations</NavLink>
             </DropdownLI>
             <DropdownLI>
-              <NavLink to="/inflections" onClick={closeDropdown}>Inflections</NavLink>
+              <NavLink to="/inflections" onClick={closeDropdown} className="navbar">Inflections</NavLink>
             </DropdownLI>
           </DropdownUL>
         </DropdownNav>}

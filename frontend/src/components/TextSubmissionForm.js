@@ -16,26 +16,22 @@ const initialValues = {
   text: ''
 }
 
-const onSubmit = (values, submitProps) => {
-  console.log('Form data', values)
-  console.log('submitProps', submitProps)
-}
-
 const validationSchema = Yup.object({
   language: Yup.string().required('Required!'),
   text: Yup.string().required("Required!")
 })
 
-function TextSubmissionForm () {
+function TextSubmissionForm(props) {
   return (
+    // <div>
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={onSubmit}
+      onSubmit={props.handleClick}
       validateOnMOunt
+      {...props}
     >
       {formik => {
-        console.log("Formik props: ", formik)
       return (
       <Form>
         <div className='form-control'>
@@ -56,23 +52,27 @@ function TextSubmissionForm () {
           <Field
             as='textarea'
             id='text'
-            name='text'/>
+            name='text'
+            // style={{width: "150%", height: "250px"}}
+            />
           <ErrorMessage name='text'>
             {(errorMessage) => <div className='form-error'>{errorMessage}</div>}
           </ErrorMessage>
         </div>
 
-        {/* <button type='submit'>Submit</button> */}
         <button
           type='submit'
           disabled={!formik.isValid
-            || !formik.isSubmitting}>
+            // || formik.isSubmitting // TODO restore
+          }
+        >
           Submit
         </button>
       </Form>
       )
       }}
     </Formik>
+    // </div>
   )
 }
 

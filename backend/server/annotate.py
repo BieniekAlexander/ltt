@@ -1,5 +1,6 @@
 # imports
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
+from flask_cors import cross_origin, CORS
 import os, sys
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -14,16 +15,26 @@ LANGUAGE = "polish"
 language_datastore = LanguageDatastore(MONGODB_URL, LANGUAGE)
 
 # interface
-bp = Blueprint('annotate', __name__,url_prefix="/annotate")
+bp = Blueprint('annotate', __name__, url_prefix="/annotate")
+CORS(bp)
 
-
-@bp.route("")
+@bp.route("", methods=['POST'])
+@cross_origin()
 def annotate():
     request_data = request.get_json()
 
     try:
         text = request_data['text']
+        language = request_data['language']
         annotated_text = annotate_text(text, language_datastore, vocabulary_connector=None, discovery_mode=False)
-        return {'annotations': annotated_text}
+        response = jsonify({'annotations': annotated_text})
+
+        # temp
+        response.headers.add('Access-Control-Allow-Origin', 'http://localhost:8000')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+        response.headers.add('Access-Control-Allow-Credentials', 'true')
+
+        return response
     except AssertionError as e:
         return "bad request"

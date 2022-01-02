@@ -12,6 +12,7 @@ from model.part_of_speech import PartOfSpeech
 
 
 #%% Implementation
+# TODO revisit this interface - should it be instantiated with respect to a user? what pattern should be used here?
 class LanguageDatastore(object):
   """
   A datastore interface that abstracts storage of language data

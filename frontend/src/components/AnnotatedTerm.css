@@ -1,0 +1,15 @@
+.annotatedText {
+  font-size: 20px;
+}
+
+.unknown {
+  text-decoration: underline;
+  text-decoration-color: green;
+  text-decoration-thickness: 10%;
+}
+
+.missing {
+  text-decoration: underline;
+  text-decoration-color: blue;
+  text-decoration-thickness: 10%;
+}

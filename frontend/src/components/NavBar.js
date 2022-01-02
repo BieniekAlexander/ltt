@@ -5,6 +5,7 @@ import Dropdown from './Dropdown';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useDetectOutsideClick } from '../functions/useDetectOutsideClick';
+import './NavBar.css';
 
 // styling
 export const NavSpan = styled.span`
@@ -72,9 +73,9 @@ const Navbar = () => {
         
         <NavMenu>
           <Dropdown/>
-          <NavLink to="/vocabulary">Vocabulary</NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/sign-up">Sign Up</NavLink>
+          <NavLink to="/vocabulary" className='navbar'>Vocabulary</NavLink>
+          <NavLink to="/about" className='navbar'>About</NavLink>
+          <NavLink to="/sign-up" className='navbar'>Sign Up</NavLink>
         </NavMenu>
       </Nav>
     </>
