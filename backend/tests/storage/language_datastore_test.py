@@ -2,9 +2,11 @@
 import os, sys, json, pytest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+from storage.mongodb_client import DatastoreClient
 from storage.language_datastore import LanguageDatastore
 from model.lexeme import Lexeme, LexemeDecoder
 from storage.datastore_utils import lexeme_index
+
 # constants
 MONGODB_URL = "mongodb://localhost:27017/"
 LANGUAGE = "polish"
@@ -18,7 +20,8 @@ def language_datastore():
   """
   Establish a connection to the mongodb database
   """
-  test_language_datastore = LanguageDatastore(MONGODB_URL, LANGUAGE, database_name=DATABASE_NAME)
+  ds_client = DatastoreClient("mongodb://localhost:27017/")
+  test_language_datastore = LanguageDatastore(ds_client, LANGUAGE, database_name=DATABASE_NAME)
   test_language_datastore.lexicon_connector.collection.create_index(**lexeme_index)
 
   # run test

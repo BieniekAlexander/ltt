@@ -1,6 +1,9 @@
 # imports
-import pymongo, logging
+import pymongo, logging, os, sys
 from bson.objectid import ObjectId
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+from backend.storage.mongodb_client import DatastoreClient
 
 # constants
 
@@ -9,16 +12,11 @@ class CollectionConnector(object):
   """
   An interface that lets us connect to a document store 
   """
-  def __init__(self, uri: str, database_name: str, collection_name: str):
+  def __init__(self, datastore_client: DatastoreClient, database_name: str, collection_name: str):
     """
     Establish an initial connection to the document store
     """
-    self.client = pymongo.MongoClient(uri)
-    self.db = self.client.admin
-
-    if self.db.command("serverStatus"):
-      logging.info("Connected to mongodb and got server status")
-
+    self.client = datastore_client.client
     self.db = self.client[database_name]
     self.collection = self.db[collection_name]
 
@@ -95,11 +93,10 @@ class CollectionConnector(object):
 
 # main
 def main():
-  db = CollectionConnector("mongodb://localhost:27017/", 'lexicon', 'polish')
+  ds_client = DatastoreClient("mongodb://localhost:27017/")
+  db = CollectionConnector(ds_client, 'polish', 'lexicon')
   print(list(db.collection.find({'lemma': 'z'})))
 
 
 if __name__ == "__main__":
   main()
-
-  

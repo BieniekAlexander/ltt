@@ -2,6 +2,7 @@
 import os, sys, json, pytest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+from storage.mongodb_client import DatastoreClient
 from storage.lexicon_connector import LexiconConnector
 from model.lexeme import Lexeme, LexemeDecoder
 
@@ -17,7 +18,8 @@ def lexicon_connector():
   """
   Establish a connection to the mongodb database
   """
-  test_lexicon_connector = LexiconConnector(MONGODB_URL, LANGUAGE)
+  ds_client = DatastoreClient("mongodb://localhost:27017/")
+  test_lexicon_connector = LexiconConnector(ds_client, LANGUAGE)
 
   # run test
   yield test_lexicon_connector

@@ -3,12 +3,14 @@ import os, sys, json, pytest, pymongo
 from bson.objectid import ObjectId
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+from storage.mongodb_client import DatastoreClient
 from storage.lexicon_connector import LexiconConnector
 from storage.inflections_connector import InflectionsConnector
 from model.lexeme import LexemeDecoder
 
 # constants
 MONGODB_URL = "mongodb://localhost:27017/"
+ds_client = DatastoreClient(MONGODB_URL)
 LANGUAGE = "test"
 
 
@@ -19,7 +21,7 @@ def lexicon_connector():
   """
   Establish a connection to the mongodb database
   """
-  test_lexicon_connector = LexiconConnector(MONGODB_URL, LANGUAGE)
+  test_lexicon_connector = LexiconConnector(ds_client, LANGUAGE)
 
   # run test
   yield test_lexicon_connector
@@ -34,7 +36,8 @@ def inflections_connector():
   """
   Establish a connection to the mongodb database
   """
-  test_inflections_connector = InflectionsConnector(MONGODB_URL, LANGUAGE)
+  
+  test_inflections_connector = InflectionsConnector(ds_client, LANGUAGE)
   test_inflections_connector.collection.create_index([("form", pymongo.ASCENDING), ("pos", pymongo.ASCENDING), ("lexeme_id", pymongo.ASCENDING)], name="inflections index", unique=True)
 
   # run test

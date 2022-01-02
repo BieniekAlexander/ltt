@@ -2,7 +2,8 @@
 import os, sys, json, pytest, pymongo
 from bson.objectid import ObjectId
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
+from storage.mongodb_client import DatastoreClient
 from storage.lexicon_connector import LexiconConnector
 from storage.vocabulary_connector import VocabularyConnector
 
@@ -20,7 +21,8 @@ def vocabulary_connector():
   Establish a connection to the mongodb database
   """
   user_id = ObjectId()
-  test_vocabulary_connector = VocabularyConnector(MONGODB_URL, LANGUAGE, user_id)
+  ds_client = DatastoreClient("mongodb://localhost:27017/")
+  test_vocabulary_connector = VocabularyConnector(ds_client, LANGUAGE, user_id)
   test_vocabulary_connector.collection.create_index([("user_id", pymongo.ASCENDING), ("lexeme_id", pymongo.ASCENDING)], name="user vocabulary index", unique=True)
 
   # run test
