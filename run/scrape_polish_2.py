@@ -1,7 +1,6 @@
 #%% imports
 import sys, os, requests, time, json, re, logging
 from bs4 import BeautifulSoup
-import pymongo
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from backend.scraping.wiktionary_scrape_summary_utils import wiktionary_get_all_lang_pos_lemmas
@@ -12,8 +11,6 @@ from backend.model.lexeme import LexemeEncoder
 
 
 MONGODB_URL = "mongodb://localhost:27017/"
-DATABASE = "vocabulary"
-COLLECTION = "polish"
 PATH_TO_TEXT = "/home/alex/projects/ltt/run/data/polish/taniec.txt"
 
 

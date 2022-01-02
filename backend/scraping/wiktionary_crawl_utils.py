@@ -5,7 +5,7 @@ from urllib.parse import unquote
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from scraping.wiktionary_scrape_lexeme_utils import get_lemma, get_term_parts_of_speech
-from scraping.scraping_errors import ScrapingAssertionError
+from scraping.scraping_errors import ScrapingFormatError
 from scraping import get_wiktionary_term_url, get_soup_from_url, get_wiktionary_search_url
 
 
@@ -29,7 +29,7 @@ def get_search_result_links(soup, domain_name="https://en.wiktionary.org"):
   """
   Returns the linked articles in a [soup] wiktionary search results page
 
-  Assers that the page is a wiktionary search results page
+  Asserts that the page is a wiktionary search results page
   """
   assert is_search_results_page(soup)
 
@@ -89,7 +89,7 @@ def get_lexeme_page_soup(form: str, pos: str, language: str) -> BeautifulSoup:
         probable_pos = get_term_parts_of_speech(term_soup, language)[0]
         return (term_soup, lemma, probable_pos)
       except:
-        logging.warning("We tried to find the lexeme on this page, and we failed")
+        logging.warning("Failed to find lexeme on this page")
   
   return None # we were never able to find a page that probably describes the lexeme, return None
 

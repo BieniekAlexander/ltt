@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 from model.inflected_lexeme import InflectedLexeme
 from scraping.wiktionary_scrape_lexeme_utils import get_inflection_table, get_summary_paragraph, get_definition_ol, get_definition_strings
 from scraping.html_parse_utils import parse_inflection_table
-from scraping.scraping_errors import ScrapingAssertionError, ScrapingFindError, ScrapingValueError
+from scraping.scraping_errors import ScrapingFormatError, ScrapingFindError, ScrapingValueError
 from model.lexeme import LexemeEncoder
 from model import model_class_map
 from model.polish.feat.case import Case
@@ -91,6 +91,8 @@ def parse_features_noun(soup, pos, language):
         ret['animacy'] = 'animate'
       elif value == 'inanimate':
         ret['animacy'] = 'inanimate'
+      elif value in ['personal', 'plural number']: # skipping parsing, ludzie, człowiek
+        logging.warn(f"skipping parsing of noun data for gender={value}")
       else:
         raise ScrapingValueError(gender_span, 'gender', value)
 
@@ -147,7 +149,7 @@ def parse_features_verb(soup, pos, language):
 
   # get abstraction, alternate forms
   forms_match = re.search(r'\(.*\)', summary_string)
-  forms = ['perfective', 'imperfective', 'indeterminate', 'imperfective determinate', 'frequentative', 'determinate']
+  forms = ['perfective', 'imperfective', 'indeterminate', 'imperfective determinate', 'frequentative', 'determinate', '+']
 
   if forms_match:
     forms_string = forms_match.group(0)[1:-1]
@@ -157,6 +159,9 @@ def parse_features_verb(soup, pos, language):
       for form in forms: # check the section for form labels and parse out the forms
         if form in section:
           entries_string = section.replace(form, "")
+
+          if form == '+': # TODO some verb sections describe associated cases, skipping this for now
+            logging.warn(f"Skpping parsing of this verb case usage summary section - {section}") 
 
           if entries_string.strip() == "": # this section describes a property of this verb (e.g. "frequentative")
             if form == "perfective":
@@ -215,7 +220,9 @@ def parse_features_adjective(soup, pos, language):
         if form in section:
           entries_string = section.replace(form, "")
 
-          if entries_string.strip() == "" and form != "not comparable":
+          if entries_string.strip() in ['not always comparable']: # skipping weird edge cases in the summary section
+            pass
+          elif entries_string.strip() == "" and form != "not comparable":
             raise ScrapingValueError(lemma_summary_paragraph, None, section, f"This adjective summary section contained a property that we're not accounting for - {section}")
           elif form == "not comparable":
             ret['not_comparable'] = True

@@ -4,7 +4,7 @@ import sys, os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from model.inflected_lexeme import InflectedLexeme
 from model.polish.feat.degree import Degree
-from model.model_errors import LexemeValidationError
+from model.model_errors import LexemeError
 
 
 # TODO handle comparative and superlative?
@@ -21,7 +21,7 @@ class Adjective(InflectedLexeme):
 
     if not self.validate_degrees(degree, positive, comparative, superlative, not_comparable):
       args = {'degree': degree, 'positive': positive, 'comparative': comparative, 'superlative': superlative, 'not_comparable': not_comparable}
-      raise LexemeValidationError(lemma, pos, args, f"The adjective had invalid arguments regarding degree - {args}")
+      raise LexemeError(lemma, pos, args, f"The adjective had invalid arguments regarding degree - {args}")
 
     # load in fields
     super(Adjective, self).__init__(lemma, pos, definitions, inflections)

@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from scraping.wiktionary_scrape_lexeme_utils import find_language_header, get_inflection_table, get_lemma, get_summary_paragraph, seek_pos_header, get_term_parts_of_speech
-from scraping.scraping_errors import ScrapingAssertionError, ScrapingFindError
+from scraping.scraping_errors import ScrapingFormatError, ScrapingFindError
 
 # constants
 CRAWL_DELAY = 5
@@ -225,7 +225,7 @@ def test_get_polish_term_parts_of_speech_no_polish():
   page = requests.get(termUrl)
   soup = BeautifulSoup(page.content, "html.parser")
   
-  with pytest.raises(ScrapingAssertionError):
+  with pytest.raises(ScrapingFormatError):
     get_term_parts_of_speech(soup, language)
 
   

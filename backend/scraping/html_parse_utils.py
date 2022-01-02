@@ -1,6 +1,7 @@
 #%% imports
 import sys, os
 from bs4 import BeautifulSoup, Tag, NavigableString
+import trafilatura as traf
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
@@ -181,7 +182,7 @@ def parse_inflection_table(table):
     Parse and read header and cell data from the table, and return a dictionary mapping headers to cells.
     """
     if type(table) != Tag or table.name != 'table':
-        raise ValueError("Input must be an HTML table")
+        raise ValueError("Failed to parse inflection table - input must be an HTML table")
 
     table = bs_minify(table)
     table = spread_table_spans(table)
@@ -203,6 +204,13 @@ def parse_inflection_table(table):
     parsed = flatten_dict_keys(parsed)
     parsed = split_dict_vals(parsed)
     return parsed
+
+
+def get_page_main_content(html_string):
+    """
+    A wrapper to get the main string content from an HTML webpage
+    """
+    return traf.extract(html_string)
 
 
 #%% main

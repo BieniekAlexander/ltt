@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from scraping.wiktionary_crawl_utils import get_search_result_links, has_entries, get_lexeme_page_soup
-from scraping.scraping_errors import ScrapingAssertionError
+from scraping.scraping_errors import ScrapingFormatError
 from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
 from scraping import get_soup_from_url, get_wiktionary_term_url, get_wiktionary_search_url
 
@@ -143,9 +143,17 @@ def test_get_lexeme_multiple_non_lemma_forms_in_page():
 
 
 def test_get_lexeme_search_results_fail():
-  # did this fail - wrap in raises?
   form, pos, language = "zničeno", None, "Polish"
   assert not get_lexeme_page_soup(form, pos, language)
+
+
+def test_get_lexeme_multiple_steps():
+  form, pos, language = "swe", None, "Polish"
+  soup, lemma, pos = get_lexeme_page_soup(form, pos, language)
+  lexeme = extract_lexeme(soup, lemma, pos, language)
+
+  assert lexeme.lemma == "swój"
+  assert lexeme.pos.value == "PRONOUN"  
 
 
 #% main

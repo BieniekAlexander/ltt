@@ -3,7 +3,7 @@ import sys, os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from model.inflected_lexeme import InflectedLexeme
-from model.model_errors import LexemeValidationError
+from model.model_errors import LexemeError
 from model.polish.feat.aspect import Aspect
 from model.polish.feat.abstraction import Abstraction
 
@@ -26,7 +26,7 @@ class Verb(InflectedLexeme):
 
     if not self.validate_form(aspect, abstraction, is_frequentative):
       arguments = {'aspect': aspect, 'abstraction': abstraction, 'frequentative': is_frequentative}
-      raise LexemeValidationError(lemma, pos, arguments, 'invalid verb form logic')
+      raise LexemeError(lemma, pos, arguments, 'invalid verb form logic')
 
     # load in fields
     super(Verb, self).__init__(lemma, pos, definitions, inflections)

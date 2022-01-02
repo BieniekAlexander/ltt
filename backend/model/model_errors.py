@@ -1,9 +1,9 @@
 class ModelError(Exception):
-    """Base class for exceptions related to Web Scraping"""
+    """Base class for exceptions related to creating data objects in the language models"""
     pass
 
 
-class LexemeValidationError(ModelError):
+class LexemeError(ModelError):
     """Exception raised for errors in validating the state of a [Lexeme]
 
     Attributes:

@@ -54,8 +54,8 @@ def replace_dict_keys_recursive(dictionary, key_mapping, exhaustive=True):
       if isinstance(output_dictionary[key_mapping[k]], dict):
         output_dictionary[key_mapping[k]] = replace_dict_keys_recursive(output_dictionary[key_mapping[k]], key_mapping, exhaustive)
 
-    elif k in key_mapping.values():
-      output_dictionary[k] = dictionary[k]
+    elif k.upper() in key_mapping.values():
+      output_dictionary[k.upper()] = dictionary[k]
 
     elif exhaustive:
       raise ValueError(f"Could not find key in key mapping: {k}")

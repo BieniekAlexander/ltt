@@ -7,6 +7,7 @@ from storage.vocabulary_connector import VocabularyConnector
 from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
 from scraping.wiktionary_crawl_utils import get_lexeme_page_soup
 
+
 #%% utils
 def annotate_text(text: str, language_datastore: LanguageDatastore, vocabulary_connector: VocabularyConnector = None, discovery_mode: bool = False):
   """
@@ -22,8 +23,9 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, vocabulary_c
 
   for i, term in enumerate(terms):
     # how are we identifying the most probable lexeme - especially if we don't know the POS?
-    potential_lexeme_dictionary_mappings = language_datastore.get_lexemes_from_form(form=term.lower())
     annotation = {'term': term}
+    term = term.lower() # lowercase the term for reading from database and scraping from wiktionary - TODO what to do about proper nouns?
+    potential_lexeme_dictionary_mappings = language_datastore.get_lexemes_from_form(form=term.lower())
 
     # get lexeme from lexicon
     if potential_lexeme_dictionary_mappings:
@@ -36,8 +38,8 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, vocabulary_c
           term_soup, lemma, pos = get_lexeme_page_soup(term, None, language)
           annotation['lexeme'] = extract_lexeme(term_soup, lemma, pos, language)
           annotation['lexeme_id'] = language_datastore.add_lexeme(annotation['lexeme'])
-        except:
-          logging.error(f"Tried & failed to scrape the {i}th term - {term}")
+        except Exception as e:
+          logging.error(f"Tried & failed to scrape the {i}th term {term} - {e}")
       else:
         logging.warning(f"Failed to annotate the {i}th term - {term} (discovery disabled)")
 
@@ -57,3 +59,11 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, vocabulary_c
     annotations.append(annotation)
 
   return annotations
+
+
+
+def discover_lexeme(term, pos, language):
+  """
+  Search the internet for the given [term] in a given [pos] (if provided), in the given [language], and add it to the lexicon
+  """
+  return

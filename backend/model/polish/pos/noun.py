@@ -1,7 +1,7 @@
 import sys, os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from model.model_errors import LexemeValidationError
+from model.model_errors import LexemeError
 from model.inflected_lexeme import InflectedLexeme
 from model.polish.feat.gender import Gender
 from model.polish.feat.animacy import Animacy
@@ -28,7 +28,7 @@ class Noun(InflectedLexeme):
 
     if not self.validate_gender(gender, animacy, virility):
       arguments = {'gender': gender, 'animacy': animacy, 'virility': virility}
-      raise LexemeValidationError(lemma, pos, arguments, 'invalid gender logic')
+      raise LexemeError(lemma, pos, arguments, 'invalid gender logic')
 
     # load in fields
     super(Noun, self).__init__(lemma, pos, definitions, inflections)
