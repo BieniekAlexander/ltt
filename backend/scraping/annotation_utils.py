@@ -3,13 +3,12 @@ import os, sys, re, logging
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from storage.language_datastore import LanguageDatastore
-from storage.vocabulary_connector import VocabularyConnector
 from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
 from scraping.wiktionary_crawl_utils import get_lexeme_page_soup
 
 
 #%% utils
-def annotate_text(text: str, language_datastore: LanguageDatastore, vocabulary_connector: VocabularyConnector = None, discovery_mode: bool = False):
+def annotate_text(text: str, language_datastore: LanguageDatastore, user_id: str = None, discovery_mode: bool = False):
   """
   Take in a piece of text and annotate it using data from the given language_datastore
 
@@ -45,8 +44,8 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, vocabulary_c
 
     if 'lexeme' in annotation:
       # try to get lexeme from a user's vocabulary
-      if vocabulary_connector:
-        entry = vocabulary_connector.get_vocabulary_entry(annotation['lexeme_id'])
+      if user_id:
+        entry = language_datastore.get_vocabulary_entry(annotation['lexeme_id'], user_id=user_id)
         
         if entry:
           annotation['vocabulary_id'] = entry['_id']

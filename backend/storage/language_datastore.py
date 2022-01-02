@@ -4,8 +4,10 @@ from model import lexeme
 from bson.objectid import ObjectId
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from storage.datastore_client import DatastoreClient
 from storage.lexicon_connector import LexiconConnector
 from storage.inflections_connector import InflectionsConnector
+from storage.vocabulary_connector import VocabularyConnector
 from model.inflected_lexeme import InflectedLexeme
 from model.lexeme import Lexeme
 from model.part_of_speech import PartOfSpeech
@@ -17,7 +19,7 @@ class LanguageDatastore(object):
   """
   A datastore interface that abstracts storage of language data
   """
-  def __init__(self, uri: str, language: str, database_name=None):
+  def __init__(self, client: DatastoreClient, language: str, database_name=None):
     """
     Constructor
     """
@@ -26,8 +28,9 @@ class LanguageDatastore(object):
     if not database_name:
       database_name = language
 
-    self.lexicon_connector = LexiconConnector(uri, language, database_name)
-    self.inflections_connector = InflectionsConnector(uri, language, database_name)
+    self.lexicon_connector = LexiconConnector(client, language, database_name)
+    self.inflections_connector = InflectionsConnector(client, language, database_name)
+    self.vocabulary_connector = VocabularyConnector(client, language, database_name)
     self.language = language
     self.database_name = database_name
 
@@ -113,3 +116,37 @@ class LanguageDatastore(object):
       return lexeme_dicts_dict
     else: # we found no entries for the [form] and [poses] provided
       return {}
+
+    
+  def get_vocabulary_entry(self, lexeme_id: str, user_id: str) -> dict:
+    return self.vocabulary_connector.get_vocabulary_entry(lexeme_id, user_id)
+
+
+  def get_vocabulary_entries(self, lexeme_ids: list, user_id: str) -> dict:
+    assert isinstance(user_id, str) 
+    return self.vocabulary_connector.get_vocabulary_entries(lexeme_ids, [user_id])
+
+  
+  def add_vocabulary_entry(self, lexeme_id, rating, user_id) -> str:
+    """
+    Add a [lexeme_id], [rating] entry to the vocabulary for [user_id]
+
+    Args:
+      lexeme_id: the identifier of the lexeme to be added to the vocabulary
+      rating: the initial SRS rating of the vocabulary term for the user
+      user_id: a [str] identifying the user that should receive the new vocabulary entry
+    """
+    self.vocabulary_connector.push_vocabulary_entry(lexeme_id, rating, user_id)
+
+
+  def add_vocabulary_entries(self, entries: list, user_id: str) -> list:
+    """
+    Add a list of vocabulary [entries] to the vocabulary for [user_id]
+
+    Args:
+      entries: a [list] of [dict]s containing a lexeme_id and rating
+      user_id: a [str] identifying the user that should receive the new vocabulary entries
+    """
+    assert all('lexeme_id' in entry and 'rating' in entry and 'user_id' not in entry for entry in entries)
+
+    return self.vocabulary_connector.push_vocabulary_entries([{'user_id': user_id, 'lexeme_id': entry['lexeme_id'], 'rating': entry['rating']} for entry in entries])

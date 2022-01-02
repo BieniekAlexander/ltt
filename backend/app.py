@@ -15,7 +15,6 @@ USER_ID = "a"*24
 
 # objects 
 language_datastore = LanguageDatastore(MONGODB_URL, LANGUAGE)
-vocabulary_connector = VocabularyConnector(MONGODB_URL, LANGUAGE, USER_ID)
 
 # Flask
 app = Flask(__name__)
@@ -35,7 +34,7 @@ def annotate():
     try:
         text = request_data['text']
         language = request_data['language']
-        annotated_text = annotate_text(text, language_datastore, vocabulary_connector=vocabulary_connector, discovery_mode=False)
+        annotated_text = annotate_text(text, language_datastore, user_id=USER_ID, discovery_mode=False)
         response = jsonify({'annotations': annotated_text})
 
         return response
@@ -52,7 +51,7 @@ def addTerm():
         lexeme_id = request_data['lexeme_id']
         user_id = request_data['user_id']
         rating = 1.0
-        vocabulary_id = vocabulary_connector.push_vocabulary_entry(lexeme_id, rating, user_id)
+        vocabulary_id = language_datastore.add_vocabulary_entry(lexeme_id, rating, user_id)
         response = jsonify({'vocabulary_id': str(vocabulary_id)})
 
         return response

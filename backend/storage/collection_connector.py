@@ -3,7 +3,7 @@ import pymongo, logging, os, sys
 from bson.objectid import ObjectId
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from backend.storage.mongodb_client import DatastoreClient
+from storage.datastore_client import DatastoreClient
 
 # constants
 

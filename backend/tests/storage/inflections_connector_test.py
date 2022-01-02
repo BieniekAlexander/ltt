@@ -3,7 +3,7 @@ import os, sys, json, pytest, pymongo
 from bson.objectid import ObjectId
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from storage.mongodb_client import DatastoreClient
+from storage.datastore_client import DatastoreClient
 from storage.lexicon_connector import LexiconConnector
 from storage.inflections_connector import InflectionsConnector
 from model.lexeme import LexemeDecoder
