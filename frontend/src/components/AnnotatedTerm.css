@@ -2,14 +2,14 @@
   font-size: 20px;
 }
 
-.unknown {
+.marked.unknown {
   text-decoration: underline;
-  text-decoration-color: green;
+  text-decoration-color: rgb(0, 0, 200);
   text-decoration-thickness: 10%;
 }
 
-.missing {
+.marked.missing {
   text-decoration: underline;
-  text-decoration-color: blue;
+  text-decoration-color: rgb(200, 0, 0);
   text-decoration-thickness: 10%;
 }

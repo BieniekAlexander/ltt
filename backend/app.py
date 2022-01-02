@@ -2,11 +2,9 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS, cross_origin
 
-from storage.lexicon_connector import LexiconConnector
+from storage.datastore_client import DatastoreClient
 from storage.language_datastore import LanguageDatastore
 from scraping.annotation_utils import annotate_text
-from storage.vocabulary_connector import VocabularyConnector
-from server import lexicon
 
 # constants
 MONGODB_URL = "mongodb://localhost:27017/"
@@ -14,7 +12,8 @@ LANGUAGE = "polish"
 USER_ID = "a"*24
 
 # objects 
-language_datastore = LanguageDatastore(MONGODB_URL, LANGUAGE)
+ds_client = DatastoreClient(MONGODB_URL)
+language_datastore = LanguageDatastore(ds_client, LANGUAGE)
 
 # Flask
 app = Flask(__name__)

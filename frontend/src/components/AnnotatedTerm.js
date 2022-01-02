@@ -21,6 +21,7 @@ const paper={
 export default function AnnotatedTerm(props) {
   // rendering
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [marked, setHighlighted] = React.useState(true);
   
   // data
   /*
@@ -94,7 +95,7 @@ export default function AnnotatedTerm(props) {
 
   return (
     <span>
-      <span onClick={annotatedTermOnClick} className={`annotatedText ${!lexeme ? "missing" : ""} ${vocabularyId!==undefined ? (vocabularyId!==null ? "known" : "unknown") : ""}`}>
+      <span onClick={annotatedTermOnClick} className={`annotatedText ${marked ? "marked" : ""} ${!lexeme ? "missing" : ""} ${vocabularyId!==undefined ? (vocabularyId!==null ? "known" : "unknown") : ""}`}>
       {/* <span onClick={annotatedTermOnClick} className={`annotatedText ${vocabularyId!==undefined ? (vocabularyId!==null ? "known" : "unknown") : ""}`}> */}
         {props.term}
       </span>

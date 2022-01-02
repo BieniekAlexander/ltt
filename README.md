@@ -18,6 +18,7 @@ pytest
 - handle web connectivity issues
 - When I'm crawling, I'm adding the forms of a given word, and not all of the words I stumble upon - maybe I should find another way to do this?
 - given annotated text, strip out words for inflection practice
+- capitalized and uncapitalized forms of words
 
 ## Goals
 - potentially identify classes that the verbs fit into, i.e. [conjugation groups](https://www.polishpod101.com/blog/2020/10/05/polish-conjugations/)

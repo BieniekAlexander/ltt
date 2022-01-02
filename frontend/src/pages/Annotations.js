@@ -7,9 +7,10 @@ import './Annotations.css';
 // styling
 export const AnnotatedTextDiv = styled.div`
   margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
   width: 60%;
   padding: 10px;
-  margin-top: 50px;
   white-space: pre-wrap; // maintains whitespace behavior from non-html strings
 `;
 
