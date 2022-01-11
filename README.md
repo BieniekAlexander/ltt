@@ -3,12 +3,6 @@ I'm gonna make some scripts to help me practice language learning. There are ton
 At present, I'll be focusing on resources for Polish. While I would like to generalize, the tools will be heavily geared towards the specifics of Polish, though it might generalize to other Slavic languages. If I keep working on this toolkit, the tools provided here might end up generalizing well across other languages.
 
 
-# Testing
-```
-pytest
-```
-
-
 # Roadmap
 ## To Do
 - More extensive storage connector testing

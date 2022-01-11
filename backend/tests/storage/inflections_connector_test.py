@@ -10,8 +10,8 @@ from model.lexeme import LexemeDecoder
 
 # constants
 MONGODB_URL = "mongodb://localhost:27017/"
+LANGUAGE = "polish"
 ds_client = DatastoreClient(MONGODB_URL)
-LANGUAGE = "test"
 
 
 #%% pytest fixtures
@@ -36,7 +36,6 @@ def inflections_connector():
   """
   Establish a connection to the mongodb database
   """
-  
   test_inflections_connector = InflectionsConnector(ds_client, LANGUAGE)
   test_inflections_connector.collection.create_index([("form", pymongo.ASCENDING), ("pos", pymongo.ASCENDING), ("lexeme_id", pymongo.ASCENDING)], name="inflections index", unique=True)
 

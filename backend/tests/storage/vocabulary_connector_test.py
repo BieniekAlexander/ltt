@@ -10,7 +10,7 @@ from storage.vocabulary_connector import VocabularyConnector
 
 # constants
 MONGODB_URL = "mongodb://localhost:27017/"
-LANGUAGE = "test"
+LANGUAGE = "polish"
 
 
 #%% pytest fixtures
@@ -21,7 +21,7 @@ def vocabulary_connector():
   Establish a connection to the mongodb database
   """
   
-  ds_client = DatastoreClient("mongodb://localhost:27017/")
+  ds_client = DatastoreClient(MONGODB_URL)
   test_vocabulary_connector = VocabularyConnector(ds_client, LANGUAGE)
   test_vocabulary_connector.collection.create_index([("user_id", pymongo.ASCENDING), ("lexeme_id", pymongo.ASCENDING)], name="user vocabulary index", unique=True)
 

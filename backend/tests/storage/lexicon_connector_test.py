@@ -8,7 +8,7 @@ from model.lexeme import Lexeme, LexemeDecoder
 
 # constants
 MONGODB_URL = "mongodb://localhost:27017/"
-LANGUAGE = "test"
+LANGUAGE = "polish"
 
 
 #%% pytest fixtures

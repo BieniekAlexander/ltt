@@ -30,7 +30,7 @@ MANIFEST
 # logging
 *.log
 
-# data for testing TODO figure out which data should be pushed to git (some data might be used in unit tests?)
+# local data storage
 /data
 
 # Jupyter Notebook
