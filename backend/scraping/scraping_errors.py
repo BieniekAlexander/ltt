@@ -30,7 +30,7 @@ class ScrapingFindError(ScrapingError):
     else:
       self.message = f"Failed to find the following contents in the BeautifulSoup object: {query_args}"
 
-    super().__init__(soup, self.message)
+    super().__init__(self.message)
 
 
 class ScrapingFormatError(ScrapingError):
@@ -51,7 +51,7 @@ class ScrapingFormatError(ScrapingError):
     else:
       self.message = f"An assertion about the format of the webpage was violated: {query_args}"
 
-    super().__init__(soup, self.message)
+    super().__init__(self.message)
 
 
 class ScrapingValueError(ScrapingError):
@@ -74,4 +74,4 @@ class ScrapingValueError(ScrapingError):
     else:
       self.message = f"Found an unexpected value for the following property: {property}={value}"
 
-    super().__init__(soup, self.message)
+    super().__init__(self.message)

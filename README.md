@@ -24,6 +24,7 @@ pytest
 - potentially identify classes that the verbs fit into, i.e. [conjugation groups](https://www.polishpod101.com/blog/2020/10/05/polish-conjugations/)
 - Having a place to get usage data will help me crawl better, and also tell me which words are better to prioritize in terms of adding it to vocabulary and deciding how much to train it with flash cards
 - generalize language model use - right now, it's basically all for Polish, what happens when I add more languages?
+- integrate https://www.raymond.cc/blog/write-or-type-chinese-character-captcha-using-handwriting-recognition/
 
 ## Standing Questions
 - I think some terms have partially completed entries, i.e. [lata](https://en.wiktionary.org/wiki/lata) - am I handling this? If I find lata, do I end up finding rok?
