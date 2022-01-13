@@ -171,20 +171,6 @@ def get_definition_strings(definition_ol):
     return definitions
 
 
-def verify_language_header(soup, language):
-    """
-    Return True if the preceding h2 indicates the [language] that we expect
-
-    We perform this check to avoid the situation where we've searched for a tag in a webpage, and the tag is in a different section
-    """
-    language_header = soup.find_previous('h2')
-
-    if language_header and language_header.span.text == language:
-        return True
-
-    return False
-
-
 @capitalize_string_args
 def verify_language_header(soup, language):
     """
@@ -221,9 +207,22 @@ def verify_pos_header(soup, pos):
 
 
 @capitalize_string_args
-def get_lemma(soup, pos, language):
+def get_page_term(soup: BeautifulSoup) -> str:
+    """Gets the term being described in this webpage soup
+
+    Args:
+        soup (BeautifulSoup): a parsed wiktionary webpage
+
+    Returns:
+        str: the page's term
     """
-    Given a webpage [soup], [language], and [pos] for a term, find the lemma related to the term, or return None if the webpage describes the lemma
+    h1 = soup.find('h1', {'id': 'firstHeading'})
+    return h1.text
+    
+
+@capitalize_string_args
+def get_lemma(soup: BeautifulSoup, pos: PartOfSpeech, language: str) -> str:
+    """Given a webpage [soup], [language], and [pos] for a term, find the lemma related to the term, or return None if the webpage describes the lemma
 
     For an entry, the first definition indicates which lemma covers this term
 
@@ -233,8 +232,17 @@ def get_lemma(soup, pos, language):
     https://en.wiktionary.org/wiki/emocjonalne - inflected form that doesn't have an entry
     https://en.wiktionary.org/w/index.php?search=niemo%C5%BCliwe - inflected form search leading to lexeme page
     https://en.wiktionary.org/wiki/piekło - term that is a lemma in one part of speech, and an inflected form in another
+    
+    notice the identification of lemma forms with the 'form-of-definition-link' class isn't used for all languages (e.g. not in Spanish)
+
+    Args:
+        soup (BeautifulSoup): the parsed wiktionary page
+        pos (PartOfSpeech): the part of speech we're looking for
+        language (str): the language we're looing for
+
+    Returns:
+        str: the lemma form being described in this page
     """
-    # notice the identification of lemma forms with the 'form-of-definition-link' class isn't used for all languages (e.g. not in Spanish)
     try: # null safe access - first check definition
         definition_list = get_definition_ol(soup, pos, language) # TODO maybe refactor this - particularly the functions I'm using to get definitions
         first_definition_li = definition_list.find_next('li')
@@ -284,7 +292,7 @@ def get_term_parts_of_speech(soup: BeautifulSoup, language: str):
                     parts_of_speech.add(pos_str)
                     break
 
-        return list(parts_of_speech)
+        return list(map(lambda x: x.lower(), parts_of_speech))
 
 
 #%% main

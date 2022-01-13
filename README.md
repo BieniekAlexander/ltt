@@ -23,6 +23,7 @@ At present, I'll be focusing on resources for Polish. While I would like to gene
 ## Standing Questions
 - I think some terms have partially completed entries, i.e. [lata](https://en.wiktionary.org/wiki/lata) - am I handling this? If I find lata, do I end up finding rok?
 - How can I tailor the inflection studying to the user? I.e. can I identify what forms the user needs to study, and then give the user more of those forms?
+- Should I use Scrapy?
 
 
 # Useful Links

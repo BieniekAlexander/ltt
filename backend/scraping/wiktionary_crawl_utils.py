@@ -10,16 +10,29 @@ from scraping import get_wiktionary_term_url, get_soup_from_url, get_wiktionary_
 
 
 #%% utils
-def has_entries(soup):
+def is_no_entries_page(soup):
   """
-  Returns true if the page has entries
+  Returns true if this page indicates that no entries were found
+
+  ex: https://en.wiktionary.org/wiki/awdoiawjido
   """
-  return not bool(soup.find('div', {'class': 'noarticletext'}))
+  return bool(soup.find('div', {'class': 'noarticletext'}))
+
+
+def is_entries_page(soup):
+  """
+  Returns true if the page has lexeme entries
+
+  ex: https://en.wiktionary.org/wiki/czerwony  
+  """
+  return bool(soup.find('div', {'class': 'mw-parser-output'}))
 
 
 def is_search_results_page(soup):
   """
   Returns true if this wiktionary webpage is a search results webpage
+
+  ex: https://en.wiktionary.org/w/index.php?search=wygodnym&title=Special%3ASearch&go=Go&ns0=1
   """
   return bool(soup.find('ul', {'class': 'mw-search-results'})) \
     or bool(soup.find('p', {'class': 'mw-search-nonefound'}))
@@ -55,7 +68,7 @@ def get_lexeme_page_soup(form: str, pos: str, language: str) -> BeautifulSoup:
   term_soup = get_soup_from_url(get_wiktionary_term_url(form))
 
   # we might need to guess which word we were going for, so 
-  if has_entries(term_soup): # this page has wiktionary entries
+  if not is_no_entries_page(term_soup): # this page has wiktionary entries
     potential_lemma_pos_pairs = []
 
     if not pos: # we don't know what part of speech we're looking for, so let's guess (see docstring)
@@ -94,12 +107,11 @@ def get_lexeme_page_soup(form: str, pos: str, language: str) -> BeautifulSoup:
   return None # we were never able to find a page that probably describes the lexeme, return None
 
 
-
-
 #%% main
 def main():
   soup = get_soup_from_url(get_wiktionary_term_url('czerwony'))
   print(type(soup))
+
 
 if __name__ == "__main__":
   main()
