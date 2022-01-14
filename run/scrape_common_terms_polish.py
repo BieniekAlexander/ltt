@@ -8,12 +8,9 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from backend.scraping.wiktionary_scrape_summary_utils import wiktionary_get_all_lang_pos_lemmas
-from backend.scraping.wiktionary_extract_lexeme_utils import extract_lexeme
-from backend.scraping.wiktionary_crawl_utils import get_lexeme_page_soup
+from backend.scraping.wiktionary_spider import WiktionarySpider
 from backend.storage.datastore_client import DatastoreClient
 from backend.storage.language_datastore import LanguageDatastore
-from backend.model.lexeme import LexemeEncoder
 
 
 MONGODB_URL = "mongodb://localhost:27017/"
@@ -33,6 +30,23 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 
+# %% helper functions
+def get_error_summary(term: str, exception: Exception, spider: WiktionarySpider, num_urls: int = 3) -> str:
+    # TODO this is a start - find a better way to get the term and pos relevant to the error
+    assert issubclass(type(exception), Exception)
+    assert num_urls > 0
+
+    urls_to_show = spider.steps[-num_urls:]
+    url_str = '\n'.join(urls_to_show)
+
+    return ("Error Summary\n"
+    f"term: {term}\n"
+    f"exception: {type(exception).__name__}\n"
+    f"message: {exception}\n"
+    "urls:\n"
+    f"{url_str}")
+
+
 # %%
 for term in polish_terms:  
   term = term.lower() # lowercase the term for reading from database and scraping from wiktionary - TODO what to do about proper nouns?
@@ -45,9 +59,14 @@ for term in polish_terms:
     logger.debug(f"Found lemma {lemma} in datastore (found using term {term})")
   else:
     try:
-      term_soup, lemma, pos = get_lexeme_page_soup(term, None, language)
-      lexeme = extract_lexeme(term_soup, lemma, pos, language)
-      lexeme_id = language_datastore.add_lexeme(lexeme)
-      logger.info(f"Saved lemma {lemma} to datastore (found using term {term})")
+      spider = WiktionarySpider()
+      lexemes = spider.query_lexemes(term, language)
+
+      for lexeme in lexemes:
+        lexeme_id = language_datastore.add_lexeme(lexeme)
+        logger.info(f"Saved {lexeme.lemma, lexeme.pos.value} to datastore (found using term {term})")
     except Exception as e:
       logger.error(f"Tried & failed to scrape the term {term} - {type(e).__name__}: {e}")
+
+      with open(f'logs/2k/{term}.log', 'w') as f:
+        f.write(get_error_summary(term, e, spider, 3))

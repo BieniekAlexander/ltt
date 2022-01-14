@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 from model.inflected_lexeme import InflectedLexeme
 from scraping.wiktionary_scrape_lexeme_utils import get_inflection_table, get_summary_paragraph, get_definition_ol, get_definition_strings
 from scraping.html_parse_utils import parse_inflection_table
-from scraping.scraping_errors import ScrapingFormatError, ScrapingFindError, ScrapingValueError
+from scraping.scraping_errors import ScrapingFindError, ScrapingValueError
 from model.lexeme import LexemeEncoder
 from model import model_class_map
 from model.polish.feat.case import Case
@@ -94,7 +94,8 @@ def parse_features_noun(soup, pos, language):
       elif value in ['personal', 'plural number']: # skipping parsing, ludzie, człowiek
         logging.warn(f"skipping parsing of noun data for gender={value}")
       else:
-        raise ScrapingValueError(gender_span, 'gender', value)
+        query_args = {'pos': pos, 'language': language}
+        raise ScrapingValueError(gender_span, query_args, 'gender', value)
 
   # get diminutive, augmentative, male, female forms
   forms_match = re.search(r'\(.*\)', summary_string)
@@ -114,7 +115,8 @@ def parse_features_noun(soup, pos, language):
           ret[form] = entries
           break
       else:
-        raise ScrapingValueError(lemma_summary_paragraph, None, None, "This noun summary section contained a property that we're not accounting for")
+        query_args = {'pos': pos, 'language': language}
+        raise ScrapingValueError(lemma_summary_paragraph, query_args, None, None, "This noun summary section contained a property that we're not accounting for")
       
   return ret
 
@@ -145,7 +147,8 @@ def parse_features_verb(soup, pos, language):
       elif value == 'perfective aspect':
         ret['aspect'] = 'perfect'
       else:
-        raise ScrapingValueError(aspect_span, 'aspect', value)
+        query_args = {'pos': pos, 'language': language}
+        raise ScrapingValueError(aspect_span, query_args, 'aspect', value)
 
   # get abstraction, alternate forms
   forms_match = re.search(r'\(.*\)', summary_string)
@@ -187,7 +190,8 @@ def parse_features_verb(soup, pos, language):
           break
     
       else:
-        raise ScrapingValueError(lemma_summary_paragraph, None, section, f"This verb summary section contained a property that we're not accounting for - {section}")
+        query_args = {'pos': pos, 'language': language}
+        raise ScrapingValueError(lemma_summary_paragraph, query_args, None, section, f"This verb summary section contained a property that we're not accounting for - {section}")
       
   return ret
 
@@ -223,7 +227,8 @@ def parse_features_adjective(soup, pos, language):
           if entries_string.strip() in ['not always comparable']: # skipping weird edge cases in the summary section
             pass
           elif entries_string.strip() == "" and form != "not comparable":
-            raise ScrapingValueError(lemma_summary_paragraph, None, section, f"This adjective summary section contained a property that we're not accounting for - {section}")
+            query_args = {'pos': pos, 'language': language}
+            raise ScrapingValueError(lemma_summary_paragraph, query_args, None, section, f"This adjective summary section contained a property that we're not accounting for - {section}")
           elif form == "not comparable":
             ret['not_comparable'] = True
           else: # this section describes alternative forms (e.g. "comparative czerwieńszy or bardziej czerwony")
@@ -235,7 +240,8 @@ def parse_features_adjective(soup, pos, language):
           break
     
       else:
-        raise ScrapingValueError(lemma_summary_paragraph, None, section, f"This adjective summary section contained a property that we're not accounting for - {section}")
+        query_args = {'pos': pos, 'language': language}
+        raise ScrapingValueError(lemma_summary_paragraph, query_args, None, section, f"This adjective summary section contained a property that we're not accounting for - {section}")
 
   else: # the comparative and superlative entries don't have summaries - they instead list degree in the definition (e.g. "comparative degree of czerwony")
     # https://stackoverflow.com/a/42536557
@@ -284,7 +290,8 @@ def parse_features_adverb(soup, pos, language):
           entries_string = section.replace(form, "")
 
           if entries_string.strip() == "" and form != "not comparable":
-            raise ScrapingValueError(lemma_summary_paragraph, None, section, f"This adverb summary section contained a property that we're not accounting for - {section}")
+            query_args = {'pos': pos, 'language': language}
+            raise ScrapingValueError(lemma_summary_paragraph, query_args, None, section, f"This adverb summary section contained a property that we're not accounting for - {section}")
           elif form == "not comparable":
             ret['not_comparable'] = True
           else: # this section describes alternative forms (e.g. "comparative czerwieńszy or bardziej czerwony")
@@ -296,7 +303,8 @@ def parse_features_adverb(soup, pos, language):
           break
     
       else:
-        raise ScrapingValueError(lemma_summary_paragraph, None, section, f"This adverb summary section contained a property that we're not accounting for - {section}")
+        query_args = {'pos': pos, 'language': language}
+        raise ScrapingValueError(lemma_summary_paragraph, query_args, None, section, f"This adverb summary section contained a property that we're not accounting for - {section}")
 
   else: # the comparative and superlative entries don't have summaries - they instead list degree in the definition (e.g. "comparative degree of szybko")
     # https://stackoverflow.com/a/42536557

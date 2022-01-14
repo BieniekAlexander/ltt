@@ -3,8 +3,7 @@ import os, sys, re, logging
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from storage.language_datastore import LanguageDatastore
-from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
-from scraping.wiktionary_crawl_utils import get_lexeme_page_soup
+from scraping.wiktionary_spider import WiktionarySpider
 
 
 #%% utils
@@ -34,8 +33,9 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, user_id: str
     else:
       if discovery_mode:
         try:
-          term_soup, lemma, pos = get_lexeme_page_soup(term, None, language)
-          annotation['lexeme'] = extract_lexeme(term_soup, lemma, pos, language).to_json_dictionary()
+          spider = WiktionarySpider()
+          lexeme = spider.query_lexemes(term, language)[0]
+          annotation['lexeme'] = lexeme.to_json_dictionary()
           annotation['lexeme_id'] = language_datastore.add_lexeme(annotation['lexeme'])
         except Exception as e:
           logging.error(f"Tried & failed to scrape the {i}th term {term} - {e}")

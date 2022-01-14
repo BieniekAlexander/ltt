@@ -5,9 +5,7 @@ import os, sys, json, pytest, requests, time
 from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-from scraping.wiktionary_crawl_utils import get_search_result_links, is_no_entries_page, get_lexeme_page_soup
-from scraping.scraping_errors import ScrapingFormatError
-from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
+from scraping.wiktionary_crawl_utils import get_search_result_links, is_no_entries_page
 from scraping import get_soup_from_url, get_wiktionary_term_url, get_wiktionary_search_url
 
 # constants

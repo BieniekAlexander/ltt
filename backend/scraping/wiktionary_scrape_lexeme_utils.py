@@ -20,13 +20,13 @@ def find_language_header(soup, language):
     """
     Finds the section of a wiktionary page related to the contents of a given [language]
     """
-    query_args = {'language': language}
     language_span = soup.find("span", id=language)
 
     if language_span:
         language_header = language_span.parent
 
         if language_header.name != "h2":
+            query_args = {'language': language}
             raise ScrapingFormatError(soup, query_args, f'Element found as language header not an h2: {query_args}')
 
         return language_span.parent
@@ -39,7 +39,6 @@ def seek_pos_header(soup, pos, language=None):
     """
     Finds the section of a wiktionary page describing the lemma, in the given [pos] and [language]
     """
-    query_args = {'pos': pos, 'language': language}
     pos_span = soup.find_next('span', text=pos)
 
     if pos_span is None:
@@ -50,6 +49,7 @@ def seek_pos_header(soup, pos, language=None):
         if language and not verify_language_header(pos_span, language): # verify that the entry we found is under the specified language
             return None
         if pos_header.name != "h3" and pos_header.name != "h4":
+            query_args = {'pos': pos, 'language': language}
             raise ScrapingFormatError(soup, query_args, f'Element found as pos header not an h3 or h4: {query_args}')
         else:
             return pos_header
@@ -279,7 +279,8 @@ def get_term_parts_of_speech(soup: BeautifulSoup, language: str):
     parts_of_speech = set()
 
     if language_header == None:
-        raise ScrapingFormatError(soup, {'language': language}, f"This webpage didn't contain a section for the given language - {language}")   
+        query_args = {'language': language}
+        raise ScrapingFormatError(soup, query_args, f"This webpage didn't contain a section for the given language - {language}")   
     else:
         for pos_str in PARTS_OF_SPEECH:
             pos_spans = language_header.find_all_next('span', text=pos_str)

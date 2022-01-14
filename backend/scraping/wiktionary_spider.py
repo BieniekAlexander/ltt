@@ -6,9 +6,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 from scraping.wiktionary_crawl_utils import is_entries_page, is_no_entries_page, is_search_results_page, get_search_result_links
 from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
 from scraping.wiktionary_scrape_lexeme_utils import get_lemma, get_term_parts_of_speech, get_page_term, find_language_header
-from scraping.scraping_errors import ScrapingFormatError
 from scraping import get_wiktionary_term_url, get_soup_from_url, get_wiktionary_search_url
-from model.part_of_speech import PartOfSpeech
 
 
 class WiktionarySpider(object):

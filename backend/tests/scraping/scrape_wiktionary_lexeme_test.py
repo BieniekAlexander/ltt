@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 from scraping.wiktionary_scrape_lexeme_utils import find_language_header, get_inflection_table, get_lemma, get_summary_paragraph, seek_pos_header, get_term_parts_of_speech
-from scraping.scraping_errors import ScrapingFormatError, ScrapingFindError
+from scraping.scraping_errors import ScrapingFormatError
 
 # constants
 CRAWL_DELAY = 5
@@ -203,7 +203,7 @@ def test_get_polish_term_parts_of_speech():
   soup = BeautifulSoup(page.content, "html.parser")
   term_parts_of_speech = get_term_parts_of_speech(soup, language)
 
-  assert all(pos in term_parts_of_speech for pos in ['Verb', 'Noun'])
+  assert all(pos in term_parts_of_speech for pos in ['verb', 'noun'])
 
 
 def test_get_polish_term_parts_of_speech_many_languages():
@@ -214,8 +214,8 @@ def test_get_polish_term_parts_of_speech_many_languages():
   soup = BeautifulSoup(page.content, "html.parser")
   term_parts_of_speech = get_term_parts_of_speech(soup, language)
 
-  assert 'Adjective' in term_parts_of_speech
-  assert all(pos not in term_parts_of_speech for pos in ['Verb', 'Noun'])
+  assert 'adjective' in term_parts_of_speech
+  assert all(pos not in term_parts_of_speech for pos in ['verb', 'noun'])
 
 
 def test_get_polish_term_parts_of_speech_no_polish():
