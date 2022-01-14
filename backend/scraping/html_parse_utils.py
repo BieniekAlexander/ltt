@@ -178,11 +178,16 @@ def get_table_data(table):
 
 
 def parse_inflection_table(table):
-    """
-    Parse and read header and cell data from the table, and return a dictionary mapping headers to cells.
+    """Returns the HTML table as a dictionary
+
+    Args:
+        table (BeautifulSoup): An html table in a BeautifulSoup object
+
+    Returns:
+        dict: The table's information in a dictionary, or None if the input was invalid
     """
     if type(table) != Tag or table.name != 'table':
-        raise ValueError("Failed to parse inflection table - input must be an HTML table")
+        return None
 
     table = bs_minify(table)
     table = spread_table_spans(table)

@@ -23,6 +23,11 @@ def extract_lexeme(soup, lemma, pos, language):
   if issubclass(model_class, InflectedLexeme):
     inflection_table = get_inflection_table(soup, pos, language)
     inflection_dict = parse_inflection_table(inflection_table)
+
+    if not inflection_dict:
+      query_args = {'lemma': lemma, 'pos': pos, 'language': language}
+      raise ScrapingFindError(soup, query_args, "Failed to find an inflection table in the lexeme entry")
+
     kwargs['inflections'] = inflection_dict
 
   if pos.lower() == "adjective":
