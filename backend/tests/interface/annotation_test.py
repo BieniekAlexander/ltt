@@ -12,7 +12,7 @@ from storage.datastore_utils import lexeme_index, user_vocabulary_index
 # constants
 MONGODB_URL = "mongodb://localhost:27017/"
 LANGUAGE = "polish"
-COLLECTION_NAME = LANGUAGE+"_test"
+DATABASE_NAME = LANGUAGE+"_test"
 USER_ID = "0"*24
 
 
@@ -24,7 +24,7 @@ def language_datastore():
   Establish a connection to the mongodb database
   """
   ds_client = DatastoreClient(MONGODB_URL)
-  test_language_datastore = LanguageDatastore(ds_client, LANGUAGE, COLLECTION_NAME)
+  test_language_datastore = LanguageDatastore(ds_client, LANGUAGE, DATABASE_NAME)
   test_language_datastore.lexicon_connector.collection.create_index(**lexeme_index)
 
   # run test
@@ -43,7 +43,7 @@ def vocabulary_connector():
   Establish a connection to the mongodb database
   """
   ds_client = DatastoreClient(MONGODB_URL)
-  test_vocabulary_connector = VocabularyConnector(ds_client, LANGUAGE, COLLECTION_NAME)
+  test_vocabulary_connector = VocabularyConnector(ds_client, LANGUAGE, DATABASE_NAME)
   test_vocabulary_connector.collection.create_index(**user_vocabulary_index)
 
   # run test

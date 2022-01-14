@@ -17,8 +17,6 @@ class ScrapingError(Exception):
 
     super().__init__(self.message)
 
-  pass
-
 
 class ScrapingFindError(ScrapingError):
   """
@@ -84,3 +82,14 @@ class ScrapingValueError(ScrapingError):
       self.message = f"Found an unexpected value for the following property: {property}={value}"
 
     super().__init__(self.soup, self.query_args, self.message)
+
+
+def main():
+  try:
+    raise ScrapingFindError(None, {}, "hi")
+  except ScrapingError as e:
+    print("nice")
+
+
+if __name__ == "__main__":
+  main()

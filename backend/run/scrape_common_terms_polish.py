@@ -7,16 +7,28 @@ import sys, os, requests, time, json, re, logging
 from bs4 import BeautifulSoup
 import pandas as pd
 
+# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+# from backend.scraping.wiktionary_spider import WiktionarySpider
+# from backend.storage.datastore_client import DatastoreClient
+# from backend.storage.language_datastore import LanguageDatastore
+# from backend.scraping.scraping_errors import ScrapingError, ScrapingFindError
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from backend.scraping.wiktionary_spider import WiktionarySpider
-from backend.storage.datastore_client import DatastoreClient
-from backend.storage.language_datastore import LanguageDatastore
-from backend.scraping.scraping_errors import ScrapingError
+from scraping.wiktionary_spider import WiktionarySpider
+from scraping.scraping_errors import ScrapingError, ScrapingFindError
+from storage.datastore_client import DatastoreClient
+from storage.language_datastore import LanguageDatastore
+from model.model_errors import ModelError
 
 
 MONGODB_URL = "mongodb://localhost:27017/"
-PATH_TO_CSV = "/home/alex/projects/ltt/run/data/polish/2k.csv"
+PATH_TO_CSV = "/home/alex/projects/ltt/backend/run/data/polish/2k.csv"
 
+# try:
+#   raise ScrapingFindError(None, {}, 'wow')
+# except ScrapingError as e:
+#   print(e)
+# exit()
 
 # %% setup
 # set up mongodb connection
@@ -34,7 +46,6 @@ logger.setLevel(logging.INFO)
 # %% helper functions
 def get_error_summary(term: str, exception: Exception, spider: WiktionarySpider, num_urls: int = 3) -> str:
     # TODO this is a start - find a better way to get the term and pos relevant to the error
-    assert issubclass(type(exception), ScrapingError)
     assert num_urls > 0
 
     urls_to_show = spider.steps[-num_urls:]
@@ -42,7 +53,7 @@ def get_error_summary(term: str, exception: Exception, spider: WiktionarySpider,
 
     return ("Error Summary\n"
     f"term: {term}\n"
-    f"query: {exception.query_args}"
+    f"query: {exception.query_args}\n" if issubclass(type(exception), ScrapingError) else ""
     f"exception: {type(exception).__name__}\n"
     f"message: {exception}\n"
     "urls:\n"
