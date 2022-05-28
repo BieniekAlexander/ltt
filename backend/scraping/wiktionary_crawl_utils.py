@@ -3,7 +3,7 @@ import requests, os, sys, logging
 from bs4 import BeautifulSoup
 from urllib.parse import unquote
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from scraping import get_wiktionary_term_url, get_soup_from_url
 
 

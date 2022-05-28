@@ -3,7 +3,7 @@ import json, sys, os
 from json.encoder import JSONEncoder
 from enum import Enum, auto
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from .part_of_speech import PartOfSpeech
 from utils.data_structure_utils import json_preprocess
 
@@ -40,10 +40,6 @@ class Lexeme():
         """
         Convert the [Lexeme] into a JSON dictionary 
         """
-        # TODO maybe this needs to be recursive, in the case that dicts and lists contain JSON-compliant primitives
-        # TODO also find if there's something compatible with implicit serializer thingies? What if the object has 
-        # fields containing objects that recursively need to be serialized to JSON-compliant primitives?
-        # return self.__dict__
         dump_dict = self.__dict__
 
         def jsonify(obj):

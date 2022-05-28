@@ -3,7 +3,7 @@ import sys, os
 from model import lexeme
 from bson.objectid import ObjectId
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from storage.datastore_client import DatastoreClient
 from storage.lexicon_connector import LexiconConnector
 from storage.inflections_connector import InflectionsConnector
@@ -14,7 +14,6 @@ from model.part_of_speech import PartOfSpeech
 
 
 #%% Implementation
-# TODO revisit this interface - should it be instantiated with respect to a user? what pattern should be used here?
 class LanguageDatastore(object):
   """
   A datastore interface that abstracts storage of language data

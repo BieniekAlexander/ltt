@@ -12,5 +12,3 @@ class PartOfSpeech(str, Enum):
     INTERJECTION: str = "INTERJECTION"
     NUMERAL: str = "NUMERAL"
     PARTICLE: str = "PARTICLE"
-
-# TODO will this be the same across languages, or will I have to make it language specific?

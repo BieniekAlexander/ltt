@@ -2,7 +2,7 @@
 import sys, os, requests, re, logging, json
 from bs4 import BeautifulSoup, Tag
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from model.inflected_lexeme import InflectedLexeme
 from scraping.wiktionary_scrape_lexeme_utils import get_inflection_table, get_summary_paragraph, get_definition_ol, get_definition_strings
 from scraping.html_parse_utils import parse_inflection_table

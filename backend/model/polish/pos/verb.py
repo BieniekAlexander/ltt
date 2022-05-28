@@ -1,22 +1,33 @@
 # https://en.wiktionary.org/wiki/Category:Polish_verbs
 import sys, os
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from model.inflected_lexeme import InflectedLexeme
 from model.model_errors import LexemeError
 from model.polish.feat.aspect import Aspect
 from model.polish.feat.abstraction import Abstraction
 
 
-# TODO verb aspect, abstraaction
 class Verb(InflectedLexeme):
-  """
-  TODO
-  """
   def __init__(self, lemma, pos, definitions, inflections, aspect, abstraction=None, is_frequentative=False,
                imperfective=[], perfective=[], indeterminate=[], frequentative=[]):
-    """
-    TODO
+    """[summary]
+
+    Args:
+        lemma ([type]): [description]
+        pos ([type]): [description]
+        definitions ([type]): [description]
+        inflections ([type]): [description]
+        aspect ([type]): [description]
+        abstraction ([type], optional): [description]. Defaults to None.
+        is_frequentative (bool, optional): [description]. Defaults to False.
+        imperfective (list, optional): [description]. Defaults to [].
+        perfective (list, optional): [description]. Defaults to [].
+        indeterminate (list, optional): [description]. Defaults to [].
+        frequentative (list, optional): [description]. Defaults to [].
+
+    Raises:
+        LexemeError: [description]
     """
     # preprocess gender information
     if aspect and not isinstance(aspect, Aspect):
@@ -40,8 +51,15 @@ class Verb(InflectedLexeme):
 
 
   def validate_form(self, aspect, abstraction, is_frequentative) -> bool:
-    """
-    TODO
+    """[summary]
+
+    Args:
+        aspect ([type]): [description]
+        abstraction ([type]): [description]
+        is_frequentative (bool): [description]
+
+    Returns:
+        bool: [description]
     """
     # validate gender information of Noun
     form_info = (aspect, abstraction, is_frequentative)

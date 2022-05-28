@@ -2,19 +2,29 @@
 import sys, os
 
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from model.lexeme import Lexeme
 from model.polish.feat.degree import Degree
 from model.model_errors import LexemeError
 
 # TODO handle comparative and superlative?
 class Adverb(Lexeme):
-  """
-  TODO
-  """
   def __init__(self, lemma, pos, definitions, degree, positive=[], comparative=[], superlative=[], adjective=[], not_comparable=False):
-    """
-    TODO
+    """[summary]
+
+    Args:
+        lemma ([type]): [description]
+        pos ([type]): [description]
+        definitions ([type]): [description]
+        degree ([type]): [description]
+        positive (list, optional): [description]. Defaults to [].
+        comparative (list, optional): [description]. Defaults to [].
+        superlative (list, optional): [description]. Defaults to [].
+        adjective (list, optional): [description]. Defaults to [].
+        not_comparable (bool, optional): [description]. Defaults to False.
+
+    Raises:
+        LexemeError: [description]
     """
     if degree and not isinstance(degree, Degree):
       degree = Degree[degree.upper()]

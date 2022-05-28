@@ -53,6 +53,9 @@ export default function Dropdown() {
             <DropdownLI>
               <NavLink to="/inflections" onClick={closeDropdown} className="navbar">Inflections</NavLink>
             </DropdownLI>
+            <DropdownLI>
+              <NavLink to="/vocabulary" onClick={closeDropdown} className="navbar">Vocabulary</NavLink>
+            </DropdownLI>
           </DropdownUL>
         </DropdownNav>}
       </div>

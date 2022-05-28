@@ -2,7 +2,7 @@
 import sys, os, requests, time, json, re, logging
 from bs4 import BeautifulSoup
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from backend.scraping.annotation_utils import annotate_text
 from backend.scraping.html_parse_utils import get_page_main_content
 from backend.storage.language_datastore import LanguageDatastore

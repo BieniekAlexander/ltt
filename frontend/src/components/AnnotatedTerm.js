@@ -79,7 +79,6 @@ export default function AnnotatedTerm(props) {
       <h3>{lexeme.lemma}</h3>
       <ul>
         {lexeme.definitions.map((definition, i) => {
-          // TODO maintain formatting and punctuation from input
           return (<li key={i}>{definition}</li>)
         })}
         {(vocabularyId === null) && // if the term is not in the user's vocab
@@ -93,6 +92,7 @@ export default function AnnotatedTerm(props) {
     </div>
   )
 
+  // TODO when I add a lexeme to my vocabulary, make sure that the same lexeme in the text is no longer highlighted
   return (
     <span>
       <span onClick={annotatedTermOnClick} className={`annotatedText ${marked ? "marked" : ""} ${!lexeme ? "missing" : ""} ${vocabularyId!==undefined ? (vocabularyId!==null ? "known" : "unknown") : ""}`}>

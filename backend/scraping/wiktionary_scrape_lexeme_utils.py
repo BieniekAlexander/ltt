@@ -3,7 +3,7 @@ import requests
 import sys, os
 from bs4 import BeautifulSoup
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from utils.function_decorators import capitalize_string_args
 from scraping.scraping_errors import ScrapingFormatError, ScrapingFindError
 from scraping import get_wiktionary_term_url, get_soup_from_url
@@ -156,7 +156,7 @@ def get_definition_ol(soup, pos, language):
 
 def get_definition_strings(definition_ol):
     """
-    Get a list of definitions, TODO as strings, from the ordered list element 
+    Get a list of definitions
     """
     assert definition_ol.name == "ol", "The argument must be a [BeautifulSoup] ordered list"
 
@@ -244,7 +244,7 @@ def get_lemma(soup: BeautifulSoup, pos: PartOfSpeech, language: str) -> str:
         str: the lemma form being described in this page
     """
     try: # null safe access - first check definition
-        definition_list = get_definition_ol(soup, pos, language) # TODO maybe refactor this - particularly the functions I'm using to get definitions
+        definition_list = get_definition_ol(soup, pos, language)
         first_definition_li = definition_list.find_next('li')
         lemma_span = first_definition_li.find_next('span', {'class': 'form-of-definition-link'})
     except AttributeError as e:

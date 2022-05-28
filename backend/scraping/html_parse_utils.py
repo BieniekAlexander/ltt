@@ -3,7 +3,7 @@ import sys, os
 from bs4 import BeautifulSoup, Tag, NavigableString
 import trafilatura as traf
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 
 from utils.data_structure_utils import list_pop_adjacent_same_values, dict_key_list_assign, flatten_dict_keys, split_dict_vals
 
@@ -54,8 +54,8 @@ def spread_table_spans(table):
     """
     Helper function that duplicates out table cells that span multiple rows and columns.
 
-    Note: in some tables, header rowspans on the right side exceed the width of the contents.
-    TODO maybe add a note on how the header row sometimes has too many elements
+    Note: in some tables, header rowspans on the right side exceed the width of the contents,
+    and sometimes the width of the header rows exceed the width of the content rows, with empty header cells
     """
     # spread the colspan items
     dc_table = bs_clone(table)
@@ -107,7 +107,16 @@ def get_table_col_headers(table):
     """
     Gets the lists of column headers for the table.
 
-    TODO maybe add visual notes on how this works.
+    input:
+    |   | a     | b |
+    |   | 1 | 2 | 3 |
+    | x |   |   |   |
+    ...
+    output:
+    [
+        ['a', 'a', 'b'],
+        [1, 2, 3]
+    ]
     """
     # discover the number and depth of the column header rows
     col_header_rows = []
@@ -133,7 +142,7 @@ def get_table_row_headers(table):
     """
     Gets the lists of row headers for the table.
 
-    TODO maybe add visual notes on how this works.
+    I'm lazy now, see get_table_col_headers
     """
     # discover the number and width of the row header rows
     row_header_cols = []

@@ -2,7 +2,7 @@
 import os, sys, json, pytest, pymongo
 from bson.objectid import ObjectId
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+
 from storage.datastore_client import DatastoreClient
 from storage.lexicon_connector import LexiconConnector
 from storage.vocabulary_connector import VocabularyConnector

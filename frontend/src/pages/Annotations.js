@@ -15,7 +15,6 @@ export const AnnotatedTextDiv = styled.div`
 `;
 
 const getAnnotatedText = (text, annotations) => {
-  // TODO take a string input and replace each word of text in the string with its annotated form from the backend
   let ret = []
   let i = 0
 
@@ -52,9 +51,16 @@ export default function AnnotationsBody() {
     let requestBody = getAnotationRequestBody(values.text, values.language)
     fetch('http://localhost:8000/annotate', requestBody)
           .then(response => response.json())
+          .catch(error => {
+            console.error(error)}
+          )
           .then(data => {
+            console.log(data)
             setAnnotations(data.annotations);
           })
+          .catch(error => {console.error(error)})
+
+          
   }
 
   return (
@@ -69,10 +75,10 @@ export default function AnnotationsBody() {
     }
       {/* // <AnnotatedTextDiv>
       // {annotations.annotations.map((d, idx) => {
-          // TODO maintain formatting and punctuation from input
           return (<AnnotatedTerm key={idx} {...d}/>)
         })}
       </AnnotatedTextDiv> */}
+
     </>
   )
 }

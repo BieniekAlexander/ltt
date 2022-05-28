@@ -63,7 +63,7 @@ function TextSubmissionForm(props) {
         <button
           type='submit'
           disabled={!formik.isValid
-            // || formik.isSubmitting // TODO restore
+            || formik.isSubmitting
           }
         >
           Submit

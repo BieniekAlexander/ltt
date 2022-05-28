@@ -4,7 +4,7 @@
 import os, sys, json, pytest, requests, time
 from bs4 import BeautifulSoup
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+
 from scraping.wiktionary_spider import WiktionarySpider
 
 
@@ -105,8 +105,6 @@ def test_get_lexeme_no_pos():
 
 def test_get_lexeme_no_pos_alternate_form():
   # this can potentially find piec - VERB, piec - NOUN, and piekło - NOUN
-  # TODO this is actually returning things stochastically - sometimes one form, sometimes the other
-  # TODO how am I solving for this ambiguity? When I see a word in text, how am I assessing which POS I think it is?
   form, language = "piekła", "Polish"
   spider = WiktionarySpider()
   results = spider.query_lexemes(form, language)

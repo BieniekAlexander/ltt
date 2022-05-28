@@ -1,18 +1,20 @@
 # https://en.wiktionary.org/wiki/Category:Polish_numerals TODO maybe rename
 import sys, os
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from model.inflected_lexeme import InflectedLexeme
 
 
 # TODO maybe these should just go under nouns? understand these more first
 class Numeral(InflectedLexeme):
-  """
-  TODO
-  """
   def __init__(self, lemma, pos, definitions, inflections):
-    """
-    TODO
+    """[summary]
+
+    Args:
+        lemma ([type]): [description]
+        pos ([type]): [description]
+        definitions ([type]): [description]
+        inflections ([type]): [description]
     """
     super(Numeral, self).__init__(lemma, pos, definitions, inflections)
     self

@@ -7,6 +7,7 @@ import HomeBody from './pages';
 import AboutBody from './pages/about';
 import AnnotationsBody from './pages/Annotations';
 import InflectionsBody from './pages/Inflections';
+import VocabularyBody from './pages/Vocabulary';
 var cors = require('cors');
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/about" element={<AboutBody/>} />
           <Route path="/annotations" element={<AnnotationsBody/>} />
           <Route path="/inflections" element={<InflectionsBody/>} />
+          <Route path="/vocabulary" element={<VocabularyBody/>} />
         </Routes>
       </Router>
     </div>

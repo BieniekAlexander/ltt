@@ -1,7 +1,7 @@
 import json, sys, os
 from enum import Enum, auto
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from model.part_of_speech import PartOfSpeech
 from model.lexeme import Lexeme
 from utils.data_structure_utils import replace_dict_keys_recursive, flatten_dict_keys, split_dict_vals, get_nested_iterable_values

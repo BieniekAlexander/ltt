@@ -2,7 +2,7 @@
 import sys, os, json
 from bson.objectid import ObjectId
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from storage.collection_connector import CollectionConnector
 from storage.datastore_utils import generate_query
 from model.lexeme import LexemeEncoder, Lexeme

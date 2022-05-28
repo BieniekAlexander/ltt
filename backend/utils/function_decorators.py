@@ -34,12 +34,10 @@ def capitalize_string_args(function):
 def delay(seconds=CRAWL_DELAY):
   """
   Delay the calling of a function by [seconds]
-
-  TODO maybe user timer instead? if I'm gonna do multithread things? https://stackoverflow.com/questions/5205995/python-decorator-that-call-a-function-with-delay
   """
   def decorator(func):
     def wrapper(*args, **kwargs):
-      time.sleep(randint(CRAWL_DELAY-2, CRAWL_DELAY+2)) # TODO very simple randomization, make this prettier
+      time.sleep(randint(CRAWL_DELAY-1, CRAWL_DELAY+1))
       return func(*args, **kwargs)
     return wrapper
   return decorator

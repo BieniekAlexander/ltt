@@ -7,10 +7,8 @@ At present, I'll be focusing on resources for Polish. While I would like to gene
 ## To Do
 - More extensive storage connector testing
 - Storage connector exceptions
-- cleaning up scraping exception
 - handle connectivity issues with datastore
 - handle web connectivity issues
-- When I'm crawling, I'm adding the forms of a given word, and not all of the words I stumble upon - maybe I should find another way to do this?
 - given annotated text, strip out words for inflection practice
 - capitalized and uncapitalized forms of words
 
@@ -33,3 +31,5 @@ At present, I'll be focusing on resources for Polish. While I would like to gene
 - http://nkjp.pl/index.php?page=14&lang=1
 - https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
 - https://flask.palletsprojects.com/en/2.0.x/tutorial/views/
+- http://super-memory.com/help/smalg.htm#The_Algorithm (potentially most modern?)
+- https://www.supermemo.com/en/archives1990-2015/english/ol/sm2 (used by Anki)

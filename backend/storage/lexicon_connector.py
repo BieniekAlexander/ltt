@@ -2,8 +2,8 @@
 import sys, os
 from bson.objectid import ObjectId
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from storage.collection_connector import CollectionConnector
+from storage.datastore_client import DatastoreClient
 from storage.datastore_utils import cast_enum_to_str, generate_query
 from model.lexeme import LexemeEncoder, Lexeme
 from model.part_of_speech import PartOfSpeech
@@ -19,13 +19,13 @@ class LexiconConnector(CollectionConnector):
   """
   A [DocumentStoreConnector] used specifically for interacting with a language's lexicon
   """
-  def __init__(self, uri, language, database_name=None):
+  def __init__(self, datastore_client: DatastoreClient, language, database_name=None):
     language = language.lower()
 
     if not database_name:
       database_name = language
 
-    super(LexiconConnector, self).__init__(uri, database_name, COLLECTION)
+    super(LexiconConnector, self).__init__(datastore_client, database_name, COLLECTION)
     self.language = language
     self.database_name = database_name
   
@@ -73,13 +73,12 @@ class LexiconConnector(CollectionConnector):
 
     TODO this might be a silly utility to provide, maybe just have the user provide a dictionary from their end
     """
-    if isinstance(lexeme, dict):
-      return lexeme
-    elif isinstance(lexeme, Lexeme):
+    assert isinstance(lexeme, dict) or isinstance(lexeme, Lexeme)
+
+    if isinstance(lexeme, Lexeme):
       return lexeme.to_json_dictionary()
     else:
-      # TODO make exception type
-      raise Exception(f"Unexpected type when inserting lexeme into collection - {type(lexeme)}")
+      return lexeme
 
 
   def push_lexeme_entry(self, lexeme) -> ObjectId:
@@ -145,7 +144,8 @@ class LexiconConnector(CollectionConnector):
 
 # main
 def main():
-  polish_lexicon = LexiconConnector("mongodb://localhost:27017/", 'polish')
+  ds_client = DatastoreClient("mongodb://localhost:27017/")
+  polish_lexicon = LexiconConnector(ds_client, 'polish')
   lemmas = ['aaa', 'bbb', 'ccc']
   lexemes = [Preposition(l, PartOfSpeech.PREPOSITION, [], []) for l in lemmas]
   polish_lexicon.push_lexeme_entries(lexemes)

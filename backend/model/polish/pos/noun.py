@@ -1,6 +1,6 @@
 import sys, os
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from model.model_errors import LexemeError
 from model.inflected_lexeme import InflectedLexeme
 from model.polish.feat.gender import Gender
@@ -10,13 +10,25 @@ from model.polish.feat.virility import Virility
 
 
 class Noun(InflectedLexeme):
-  """
-  TODO
-  """
   def __init__(self, lemma, pos, definitions, inflections, gender=None, animacy=None, virility=None, 
                diminutive=None, augmentative=None, masculine=None, feminine=None):
-    """
-    TODO
+    """[summary]
+
+    Args:
+        lemma ([type]): [description]
+        pos ([type]): [description]
+        definitions ([type]): [description]
+        inflections ([type]): [description]
+        gender ([type], optional): [description]. Defaults to None.
+        animacy ([type], optional): [description]. Defaults to None.
+        virility ([type], optional): [description]. Defaults to None.
+        diminutive ([type], optional): [description]. Defaults to None.
+        augmentative ([type], optional): [description]. Defaults to None.
+        masculine ([type], optional): [description]. Defaults to None.
+        feminine ([type], optional): [description]. Defaults to None.
+
+    Raises:
+        LexemeError: [description]
     """
     # preprocess gender information
     if gender and not isinstance(gender, Gender):

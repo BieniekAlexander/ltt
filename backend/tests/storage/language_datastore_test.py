@@ -1,7 +1,7 @@
 #%% imports
 import os, sys, json, pytest
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+
 from storage.datastore_client import DatastoreClient
 from storage.language_datastore import LanguageDatastore
 from model.lexeme import Lexeme, LexemeDecoder

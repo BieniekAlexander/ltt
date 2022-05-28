@@ -1,20 +1,30 @@
 # https://en.wiktionary.org/wiki/Category:Polish_adjectives
 import sys, os
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from model.inflected_lexeme import InflectedLexeme
 from model.polish.feat.degree import Degree
 from model.model_errors import LexemeError
 
 
-# TODO handle comparative and superlative?
 class Adjective(InflectedLexeme):
-  """
-  TODO
-  """
   def __init__(self, lemma, pos, definitions, inflections, degree, positive=[], comparative=[], superlative=[], adverb=[], not_comparable=False):
-    """
-    TODO
+    """Adjective constructor
+
+    Args:
+        lemma (str): lemma form
+        pos
+        definitions (list)
+        inflections (dict)
+        degree
+        positive (list, optional): the positive forms of the adjective, if they exist and this isn't it
+        comparative (list, optional): the comparative forms of the adjective, if they exist and this isn't it
+        superlative (list, optional): the superlative forms of the adjective, if they exist and this isn't it
+        adverb (list, optional): the adverb forms of the adjective, if they exist
+        not_comparable (bool, optional): true if this adjective is not comparable
+
+    Raises:
+        LexemeError: [description]
     """
     if degree and not isinstance(degree, Degree):
       degree = Degree[degree.upper()]

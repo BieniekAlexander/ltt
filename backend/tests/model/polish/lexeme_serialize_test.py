@@ -2,7 +2,7 @@
 import os, sys, json, pytest, requests, time
 from bs4 import BeautifulSoup
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
+
 from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
 from model.lexeme import LexemeEncoder
 
