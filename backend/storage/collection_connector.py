@@ -1,11 +1,10 @@
 # imports
+import queue
 import pymongo, logging, os, sys
 from bson.objectid import ObjectId
 
 
 from storage.datastore_client import DatastoreClient
-
-# constants
 
 
 class CollectionConnector(object):
@@ -89,6 +88,14 @@ class CollectionConnector(object):
     """
     assert isinstance(query, dict)
     self.collection.delete_many(query)
+
+  
+  def update_document(self, query, document) -> ObjectId:
+    """
+    Update a [document] and get the _id it gets mapped to
+    """
+    assert isinstance(document, dict)
+    self.collection.update_one(query, {"$set": document})
 
 
 # main

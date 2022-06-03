@@ -1,8 +1,11 @@
 # imports
 import sys, os
+from copy import deepcopy
+from xml.dom.minidom import Document
 from bson.objectid import ObjectId
 from pymongo import collection
-from model import lexeme
+from language import lexeme
+from training.stats import Stats
 
 
 from storage.collection_connector import CollectionConnector
@@ -30,16 +33,58 @@ class VocabularyConnector(CollectionConnector):
     super(VocabularyConnector, self).__init__(uri, database_name, COLLECTION)
     self.database_name = database_name
     self.language = language
-  
-  
-  def push_vocabulary_entry(self, lexeme_id: str, rating: float, user_id: str) -> str:
+
+
+  def get_deserialized_document(self, document: dict) -> dict:
     """
-    Add a new vocabulary entry to the datastore, represented by a [lexeme_id], [rating], and [user_id]
+    Deserialize the datastore document into an in-memory python dictionary
+
+    Args:
+        document (dict): the document from the datastore
+
+    Returns:
+        dict: the in-memory python dictionary
+    """
+    dictionary = deepcopy(document)
+    dictionary['stats'] = Stats(**document['stats'])
+
+    for key in ['_id', 'lexeme_id', 'user_id']:
+      dictionary[key] = str(document[key])
+
+    return dictionary
+    # TODO use this function everywhere
+    # I want everything in python memory to be in this form
+
+
+  def get_serialized_document(self, dictionary: dict) -> dict:
+    """
+    Serialize the datastore document into an in-memory python dictionary
+
+    Args:
+        document (dict): the document from the datastore
+
+    Returns:
+        dict: the in-memory python dictionary
+    """
+    document = deepcopy(dictionary)
+    document['stats'] = dictionary['stats'].to_json_str()
+
+    for key in ['_id', 'lexeme_id', 'user_id']:
+      document[key] = ObjectId(dictionary[key])
+
+    return document
+    # TODO use this function everywhere
+
+  
+  
+  def push_vocabulary_entry(self, lexeme_id: str, stats: Stats, user_id: str) -> str:
+    """
+    Add a new vocabulary entry to the datastore, represented by a [lexeme_id], [stats], and [user_id]
     """
     assert user_id
-    assert isinstance(rating, float)
+    assert isinstance(stats, Stats)
 
-    entry = {'lexeme_id': ObjectId(lexeme_id), 'rating': rating, 'user_id': ObjectId(user_id)}
+    entry = {'lexeme_id': ObjectId(lexeme_id), 'stats': stats, 'user_id': ObjectId(user_id)}
 
     return super(VocabularyConnector, self).push_document(entry)
 
@@ -48,14 +93,14 @@ class VocabularyConnector(CollectionConnector):
     """
     Add list of vocabulary entries to the datastore, each represented by a dictionary
 
-    dictionaries must contain 'lexeme_id', 'user_id', and 'rating'
+    dictionaries must contain 'lexeme_id', 'user_id', and 'stats'
     """
     assert isinstance(entries, list)
 
     for entry in entries:
       assert isinstance(entry, dict)
-      assert all(key in entry for key in ['lexeme_id', 'user_id', 'rating']), "Each vocabulary entry must contain a lexeme_id, user_id, and rating"
-      assert isinstance(entry['rating'], float)
+      assert all(key in entry for key in ['lexeme_id', 'user_id', 'stats']), "Each vocabulary entry must contain a lexeme_id, user_id, and stats"
+      assert isinstance(entry['stats'], Stats)
       entry['lexeme_id'] = ObjectId(entry['lexeme_id'])
       entry['user_id'] = ObjectId(entry['user_id'])
 
@@ -71,14 +116,15 @@ class VocabularyConnector(CollectionConnector):
     if lexeme_id: lexeme_id = ObjectId(lexeme_id)
     user_id = ObjectId(user_id)
     query = generate_query(lexeme_id=lexeme_id, user_id=user_id)
-    return super(VocabularyConnector, self).get_document(query)
+    document = super(VocabularyConnector, self).get_document(query)
+    return self.get_deserialized_document(document)
 
   
   def get_vocabulary_entries(self, lexeme_ids: list, user_ids: list) -> dict:
     """
     Get vocabulary entries and their _ids, given the [lexeme_ids] and [user_ids]
     """
-    assert user_ids and lexeme_ids
+    assert user_ids
     
     if isinstance(lexeme_ids, list):
       lexeme_ids = list(map(ObjectId, lexeme_ids))
@@ -91,7 +137,8 @@ class VocabularyConnector(CollectionConnector):
       user_ids = ObjectId(user_ids)
 
     query = generate_query(lexeme_id=lexeme_ids, user_id=user_ids)
-    return super(VocabularyConnector, self).get_documents(query)
+    results = super(VocabularyConnector, self).get_documents(query)
+    return list(map(lambda x: self.get_deserialized_document(x), results))
 
 
   def delete_vocabulary_entry(self, lexeme_id: str, user_id: str) -> dict:
@@ -120,6 +167,37 @@ class VocabularyConnector(CollectionConnector):
 
     query = generate_query(lexeme_id=lexeme_ids, user_id=user_ids)
     return super(VocabularyConnector, self).delete_documents(query)
+
+
+  def update_vocabulary_entry(self, lexeme_id: str, stats: Stats, user_id: str) -> str:
+    """
+    Udpate an existing vocabulary entry to the datastore, represented by a [lexeme_id], [stats], and [user_id]
+    """
+    assert user_id
+    assert isinstance(stats, Stats)
+
+    entry = {'lexeme_id': ObjectId(lexeme_id), 'stats': stats.to_json_dictionary(), 'user_id': ObjectId(user_id)}
+    query = generate_query(lexeme_id=entry['lexeme_id'], user_id=entry['user_id'])
+    return super(VocabularyConnector, self).update_document(query, entry)
+
+
+  def update_vocabulary_entries(self, entries: list) -> list:
+    """
+    Add list of vocabulary entries to the datastore, each represented by a dictionary
+
+    dictionaries must contain 'lexeme_id', 'user_id', and 'stats'
+    """
+    assert isinstance(entries, list)
+
+    for entry in entries:
+      assert isinstance(entry, dict)
+      assert all(key in entry for key in ['lexeme_id', 'user_id', 'stats']), "Each vocabulary entry must contain a lexeme_id, user_id, and stats"
+      assert isinstance(entry['stats'], Stats)
+
+      entry['lexeme_id'] = ObjectId(entry['lexeme_id'])
+      entry['user_id'] = ObjectId(entry['user_id'])
+      query = generate_query(lexeme_id=entry['lexeme_id'], user_id=entry['user_id'])
+      super(VocabularyConnector, self).update_document(query, entry)
  
 
 #%% main

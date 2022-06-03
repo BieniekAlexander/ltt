@@ -5,6 +5,7 @@ from flask_cors import CORS, cross_origin
 from storage.datastore_client import DatastoreClient
 from storage.language_datastore import LanguageDatastore
 from scraping.annotation_utils import annotate_text
+from training.stats import Stats
 from server import lexicon
 
 # constants
@@ -50,8 +51,8 @@ def addTerm():
     try:
         lexeme_id = request_data['lexeme_id']
         user_id = request_data['user_id']
-        rating = 1.0
-        vocabulary_id = language_datastore.add_vocabulary_entry(lexeme_id, rating, user_id)
+        stats = Stats(rating=1.0)
+        vocabulary_id = language_datastore.add_vocabulary_entry(lexeme_id, stats, user_id) # TODO check if the stats get loaded properly
         response = jsonify({'vocabulary_id': str(vocabulary_id)})
 
         return response

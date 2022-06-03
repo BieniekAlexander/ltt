@@ -1,9 +1,9 @@
 # https://en.wiktionary.org/wiki/Category:Polish_particles
 import sys, os
-from model.inflected_lexeme import InflectedLexeme
+from language.inflected_lexeme import InflectedLexeme
 
 
-from model.lexeme import Lexeme
+from language.lexeme import Lexeme
 
 
 class Particle(Lexeme):

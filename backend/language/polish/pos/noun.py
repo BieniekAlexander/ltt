@@ -1,11 +1,11 @@
 import sys, os
 
 
-from model.model_errors import LexemeError
-from model.inflected_lexeme import InflectedLexeme
-from model.polish.feat.gender import Gender
-from model.polish.feat.animacy import Animacy
-from model.polish.feat.virility import Virility
+from language.model_errors import LexemeError
+from language.inflected_lexeme import InflectedLexeme
+from language.polish.feat.gender import Gender
+from language.polish.feat.animacy import Animacy
+from language.polish.feat.virility import Virility
 
 
 

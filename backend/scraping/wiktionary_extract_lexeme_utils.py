@@ -3,13 +3,13 @@ import sys, os, requests, re, logging, json
 from bs4 import BeautifulSoup, Tag
 
 
-from model.inflected_lexeme import InflectedLexeme
+from language.inflected_lexeme import InflectedLexeme
 from scraping.wiktionary_scrape_lexeme_utils import get_inflection_table, get_summary_paragraph, get_definition_ol, get_definition_strings
 from scraping.html_parse_utils import parse_inflection_table
 from scraping.scraping_errors import ScrapingFindError, ScrapingValueError
-from model.lexeme import LexemeEncoder
-from model import model_class_map
-from model.polish.feat.case import Case
+from language.lexeme import LexemeEncoder
+from language import model_class_map
+from language.polish.feat.case import Case
 
 
 #%% utils

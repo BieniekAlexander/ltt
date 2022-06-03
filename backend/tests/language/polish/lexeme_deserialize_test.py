@@ -6,9 +6,9 @@ from bs4 import BeautifulSoup
 
 
 from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
-from model.lexeme import LexemeDecoder, LexemeEncoder
-from model.part_of_speech import PartOfSpeech
-from model.polish.pos.particle import Particle
+from language.lexeme import LexemeDecoder, LexemeEncoder
+from language.part_of_speech import PartOfSpeech
+from language.polish.pos.particle import Particle
 
 #%% pytest fixtures
 

@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 
 from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
-from model.lexeme import LexemeEncoder
+from language.lexeme import LexemeEncoder
 
 # constants
 CRAWL_DELAY = 5

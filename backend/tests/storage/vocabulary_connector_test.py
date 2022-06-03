@@ -6,6 +6,7 @@ from bson.objectid import ObjectId
 from storage.datastore_client import DatastoreClient
 from storage.lexicon_connector import LexiconConnector
 from storage.vocabulary_connector import VocabularyConnector
+from training.stats import Stats
 
 
 # constants
@@ -40,11 +41,11 @@ def test_push_and_get_vocabulary_entry(vocabulary_connector):
   user_id_1 = ObjectId()
   user_id_2 = ObjectId()
   lexeme_id = ObjectId()
-  rating_1=1.0
-  rating_2=0.8
-  entry_2 = {'lexeme_id': lexeme_id, 'user_id': user_id_2, 'rating': rating_2}
+  stats_1 = Stats(1.0)
+  stats_2 = Stats(0.8)
+  entry_2 = {'lexeme_id': lexeme_id, 'user_id': user_id_2, 'stats': stats_2}
 
-  vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, rating=rating_1, user_id=user_id_1)
+  vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, stats=stats_1, user_id=user_id_1)
   vocabulary_connector.push_vocabulary_entry(**entry_2)
   
   vocabulary_connector.get_vocabulary_entry(lexeme_id=lexeme_id, user_id=user_id_1)
@@ -55,10 +56,10 @@ def test_push_and_get_vocabulary_entries(vocabulary_connector):
   user_id_1 = ObjectId()
   user_id_2 = ObjectId()
   lexeme_id = ObjectId()
-  rating_1=1.0
-  rating_2=0.8
-  entries = [{'lexeme_id': lexeme_id, 'rating': rating_1, 'user_id': user_id_1},
-    {'lexeme_id': lexeme_id, 'user_id': user_id_2, 'rating': rating_2}
+  stats_1 = Stats(1.0)
+  stats_2 = Stats(0.8)
+  entries = [{'lexeme_id': lexeme_id, 'stats': stats_1, 'user_id': user_id_1},
+    {'lexeme_id': lexeme_id, 'user_id': user_id_2, 'stats': stats_2}
   ]
 
   vocabulary_connector.push_vocabulary_entries(entries)
@@ -68,9 +69,9 @@ def test_push_and_get_vocabulary_entries(vocabulary_connector):
 def test_push_and_delete_vocabulary_entry(vocabulary_connector):
   user_id = ObjectId()
   lexeme_id = ObjectId()
-  rating=1.0
+  stats = Stats(1.0)
   
-  vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, rating=rating, user_id=user_id)
+  vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, stats=stats, user_id=user_id)
   vocabulary_connector.delete_vocabulary_entry(lexeme_id=lexeme_id, user_id= user_id)
 
 
@@ -78,10 +79,10 @@ def test_push_and_delete_vocabulary_entries(vocabulary_connector):
   user_id_1 = ObjectId()
   user_id_2 = ObjectId()
   lexeme_id = ObjectId()
-  rating_1=1.0
-  rating_2=0.8
-  entries = [{'lexeme_id': lexeme_id, 'rating': rating_1, 'user_id': user_id_1},
-    {'lexeme_id': lexeme_id, 'user_id': user_id_2, 'rating': rating_2}
+  stats_1 = Stats(1.0)
+  stats_2 = Stats(0.8)
+  entries = [{'lexeme_id': lexeme_id, 'stats': stats_1, 'user_id': user_id_1},
+    {'lexeme_id': lexeme_id, 'user_id': user_id_2, 'stats': stats_2}
   ]
 
   vocabulary_connector.push_vocabulary_entries(entries)
@@ -91,12 +92,12 @@ def test_push_and_delete_vocabulary_entries(vocabulary_connector):
 def test_push_vocabulary_duplicate_entries_fail(vocabulary_connector):
   user_id_1 = ObjectId()
   lexeme_id = ObjectId()
-  rating=1.0
+  stats = Stats(1.0)
 
-  vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, rating=rating, user_id=user_id_1)
+  vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, stats=stats, user_id=user_id_1)
   
   with pytest.raises(Exception):
-    vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, rating=rating)
+    vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, stats=stats)
 
 
 #% main

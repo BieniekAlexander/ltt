@@ -2,10 +2,10 @@
 import sys, os
 
 
-from model.inflected_lexeme import InflectedLexeme
-from model.model_errors import LexemeError
-from model.polish.feat.aspect import Aspect
-from model.polish.feat.abstraction import Abstraction
+from language.inflected_lexeme import InflectedLexeme
+from language.model_errors import LexemeError
+from language.polish.feat.aspect import Aspect
+from language.polish.feat.abstraction import Abstraction
 
 
 class Verb(InflectedLexeme):

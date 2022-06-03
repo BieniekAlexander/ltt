@@ -2,7 +2,7 @@
 import sys, os
 
 
-from model.inflected_lexeme import InflectedLexeme
+from language.inflected_lexeme import InflectedLexeme
 
 
 # TODO maybe these should just go under nouns? understand these more first

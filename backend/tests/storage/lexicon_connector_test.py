@@ -5,7 +5,7 @@ from backend.tests.interface.annotation_test import DATABASE_NAME
 
 from storage.datastore_client import DatastoreClient
 from storage.lexicon_connector import LexiconConnector
-from model.lexeme import Lexeme, LexemeDecoder
+from language.lexeme import Lexeme, LexemeDecoder
 
 # constants
 MONGODB_URL = "mongodb://localhost:27017/"

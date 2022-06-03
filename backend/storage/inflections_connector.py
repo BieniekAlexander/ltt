@@ -3,12 +3,13 @@ import sys, os, json
 from bson.objectid import ObjectId
 
 
+from storage.datastore_client import DatastoreClient
 from storage.collection_connector import CollectionConnector
 from storage.datastore_utils import generate_query
-from model.lexeme import LexemeEncoder, Lexeme
-from model.part_of_speech import PartOfSpeech
-from model.polish.pos.preposition import Preposition
-from model import model_class_map
+from language.lexeme import LexemeEncoder, Lexeme
+from language.part_of_speech import PartOfSpeech
+from language.polish.pos.preposition import Preposition
+from language import model_class_map
 
 # constants
 COLLECTION = "inflections"
@@ -18,15 +19,15 @@ class InflectionsConnector(CollectionConnector):
   """
   A [DocumentStoreConnector] used specifically for interacting with a language's inflection mapping collection
   """
-  def __init__(self, uri, language, database_name=None):
+  def __init__(self, datastore_client: DatastoreClient, language: str, database_name=None):
     language = language.lower()
 
     if not database_name:
       database_name = language
 
-    super(InflectionsConnector, self).__init__(uri, database_name, COLLECTION)
-    self.database_name = database_name
+    super(InflectionsConnector, self).__init__(datastore_client, database_name, COLLECTION)
     self.language = language
+    self.database_name = database_name
   
   
   def push_inflection_entry(self, lexeme_id: str, form: str, pos: str) -> ObjectId:
@@ -102,6 +103,7 @@ class InflectionsConnector(CollectionConnector):
 
 # main
 def main():
+  # TODO
   pass
 
 if __name__ == "__main__":

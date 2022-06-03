@@ -1,6 +1,6 @@
 #%% imports
 import sys, os
-from model import lexeme
+from language import lexeme
 from bson.objectid import ObjectId
 
 
@@ -8,9 +8,9 @@ from storage.datastore_client import DatastoreClient
 from storage.lexicon_connector import LexiconConnector
 from storage.inflections_connector import InflectionsConnector
 from storage.vocabulary_connector import VocabularyConnector
-from model.inflected_lexeme import InflectedLexeme
-from model.lexeme import Lexeme
-from model.part_of_speech import PartOfSpeech
+from language.inflected_lexeme import InflectedLexeme
+from language.lexeme import Lexeme
+from language.part_of_speech import PartOfSpeech
 
 
 #%% Implementation
@@ -18,18 +18,22 @@ class LanguageDatastore(object):
   """
   A datastore interface that abstracts storage of language data
   """
-  def __init__(self, client: DatastoreClient, language: str, database_name=None):
-    """
-    Constructor
+  def __init__(self, datastore_client: DatastoreClient, language: str, database_name: str = None):
+    """ A connector that handles interaction with a language, as it exists in the datastore
+
+    Args:
+        datastore_client (DatastoreClient): the MongoDB client used to interact with the datastore
+        language (str): the language that we're dealing with
+        database_name (str, optional): If provided, overrides the language datastore being used. Defaults to None.
     """
     self.language = language.lower()
 
     if not database_name:
       database_name = language
 
-    self.lexicon_connector = LexiconConnector(client, language, database_name)
-    self.inflections_connector = InflectionsConnector(client, language, database_name)
-    self.vocabulary_connector = VocabularyConnector(client, language, database_name)
+    self.lexicon_connector = LexiconConnector(datastore_client, language, database_name)
+    self.inflections_connector = InflectionsConnector(datastore_client, language, database_name)
+    self.vocabulary_connector = VocabularyConnector(datastore_client, language, database_name)
     self.language = language
     self.database_name = database_name
 
@@ -126,16 +130,16 @@ class LanguageDatastore(object):
     return self.vocabulary_connector.get_vocabulary_entries(lexeme_ids, [user_id])
 
   
-  def add_vocabulary_entry(self, lexeme_id, rating, user_id) -> str:
+  def add_vocabulary_entry(self, lexeme_id: str, stats: dict, user_id: str) -> str:
     """
-    Add a [lexeme_id], [rating] entry to the vocabulary for [user_id]
+    Add a [lexeme_id], [stats] entry to the vocabulary for [user_id]
 
     Args:
-      lexeme_id: the identifier of the lexeme to be added to the vocabulary
-      rating: the initial SRS rating of the vocabulary term for the user
-      user_id: a [str] identifying the user that should receive the new vocabulary entry
+      lexeme_id (str): the identifier of the lexeme to be added to the vocabulary
+      stats (str): the initial SRS stats of the vocabulary term for the user
+      user_id (str): the identifier for the user that should receive the new vocabulary entry
     """
-    self.vocabulary_connector.push_vocabulary_entry(lexeme_id, rating, user_id)
+    self.vocabulary_connector.push_vocabulary_entry(lexeme_id, stats, user_id)
 
 
   def add_vocabulary_entries(self, entries: list, user_id: str) -> list:
@@ -143,9 +147,23 @@ class LanguageDatastore(object):
     Add a list of vocabulary [entries] to the vocabulary for [user_id]
 
     Args:
-      entries: a [list] of [dict]s containing a lexeme_id and rating
+      entries: a [list] of [dict]s containing a lexeme_id and stats
       user_id: a [str] identifying the user that should receive the new vocabulary entries
     """
-    assert all('lexeme_id' in entry and 'rating' in entry and 'user_id' not in entry for entry in entries)
+    assert all('lexeme_id' in entry and 'stats' in entry for entry in entries)
 
-    return self.vocabulary_connector.push_vocabulary_entries([{'user_id': user_id, 'lexeme_id': entry['lexeme_id'], 'rating': entry['rating']} for entry in entries])
+    return self.vocabulary_connector.push_vocabulary_entries([{'user_id': user_id, 'lexeme_id': entry['lexeme_id'], 'stats': entry['stats']} for entry in entries])
+
+
+  def update_vocabulary_entry(self, lexeme_id: str, stats: dict, user_id: str) -> str:
+    """Update the vocabulary entry for [lexeme_id] under [user_id] with the given stats
+
+    Args:
+      lexeme_id (str): the identifier of the lexeme to be added to the vocabulary
+      stats (str): the initial SRS stats of the vocabulary term for the user
+      user_id (str): the identifier for the user that should receive the new vocabulary entry
+
+    Returns:
+        str: _description_
+    """
+    return self.vocabulary_connector.update_vocabulary_entry(lexeme_id=lexeme_id, stats=stats, user_id=user_id)

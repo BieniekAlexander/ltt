@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 from storage.datastore_client import DatastoreClient
 from storage.lexicon_connector import LexiconConnector
 from storage.inflections_connector import InflectionsConnector
-from model.lexeme import LexemeDecoder
+from language.lexeme import LexemeDecoder
 
 # constants
 MONGODB_URL = "mongodb://localhost:27017/"

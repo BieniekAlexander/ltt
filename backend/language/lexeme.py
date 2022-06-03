@@ -93,6 +93,6 @@ class LexemeDecoder(json.JSONDecoder):
     """
     def decode(self, str):
         json_dict = json.loads(str)
-        from model import model_class_map
+        from language import model_class_map
         cls = model_class_map["POLISH"][json_dict['pos']] # TODO address how we're identifying the language of the object
         return cls(**json_dict)

@@ -4,7 +4,7 @@ import os, sys, json, pytest
 
 from storage.datastore_client import DatastoreClient
 from storage.language_datastore import LanguageDatastore
-from model.lexeme import Lexeme, LexemeDecoder
+from language.lexeme import Lexeme, LexemeDecoder
 from storage.datastore_utils import lexeme_index
 
 # constants

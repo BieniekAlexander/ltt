@@ -1,9 +1,9 @@
 import sys, os
-from model.inflected_lexeme import InflectedLexeme
-from model.polish.feat.case import Case
+from language.inflected_lexeme import InflectedLexeme
+from language.polish.feat.case import Case
 
 
-from model.lexeme import Lexeme
+from language.lexeme import Lexeme
 from utils.data_structure_utils import replace_dict_keys_recursive
 
 

@@ -5,9 +5,10 @@ import os, sys, json, pytest
 from storage.language_datastore import LanguageDatastore
 from storage.datastore_client import DatastoreClient
 from storage.vocabulary_connector import VocabularyConnector
-from model.lexeme import Lexeme, LexemeDecoder
+from language.lexeme import Lexeme, LexemeDecoder
 from scraping.annotation_utils import annotate_text
 from storage.datastore_utils import lexeme_index, user_vocabulary_index
+from training.stats import Stats
 
 # constants
 MONGODB_URL = "mongodb://localhost:27017/"
@@ -120,7 +121,7 @@ def test_annotate_some_vocabulary(language_datastore, vocabulary_connector: Voca
   lexemes = [lexeme_0, lexeme_1]
   lexeme_ids = language_datastore.add_lexemes(lexemes)
 
-  entry = {'lexeme_id': lexeme_ids[0], 'rating': 1.0, 'user_id': USER_ID}
+  entry = {'lexeme_id': lexeme_ids[0], 'stats': Stats(rating=1.0), 'user_id': USER_ID}
   vocabulary_mapping = vocabulary_connector.push_vocabulary_entry(**entry)
 
   text = "ciało jest prawdziwe."

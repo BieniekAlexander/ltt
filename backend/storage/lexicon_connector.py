@@ -5,11 +5,11 @@ from bson.objectid import ObjectId
 from storage.collection_connector import CollectionConnector
 from storage.datastore_client import DatastoreClient
 from storage.datastore_utils import cast_enum_to_str, generate_query
-from model.lexeme import LexemeEncoder, Lexeme
-from model.part_of_speech import PartOfSpeech
-from model.polish.pos.preposition import Preposition
-from model import lexeme
-from model import model_class_map
+from language.lexeme import LexemeEncoder, Lexeme
+from language.part_of_speech import PartOfSpeech
+from language.polish.pos.preposition import Preposition
+from language import lexeme
+from language import model_class_map
 
 # constants
 COLLECTION = "lexicon"
@@ -19,7 +19,7 @@ class LexiconConnector(CollectionConnector):
   """
   A [DocumentStoreConnector] used specifically for interacting with a language's lexicon
   """
-  def __init__(self, datastore_client: DatastoreClient, language, database_name=None):
+  def __init__(self, datastore_client: DatastoreClient, language: str, database_name=None):
     language = language.lower()
 
     if not database_name:

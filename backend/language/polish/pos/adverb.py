@@ -3,9 +3,9 @@ import sys, os
 
 
 
-from model.lexeme import Lexeme
-from model.polish.feat.degree import Degree
-from model.model_errors import LexemeError
+from language.lexeme import Lexeme
+from language.polish.feat.degree import Degree
+from language.model_errors import LexemeError
 
 # TODO handle comparative and superlative?
 class Adverb(Lexeme):

@@ -6,14 +6,14 @@ from bs4 import BeautifulSoup
 
 
 from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
-from model.polish.feat.gender import Gender
-from model.polish.feat.animacy import Animacy
-from model.polish.feat.virility import Virility
-from model.polish.feat.aspect import Aspect
-from model.polish.feat.abstraction import Abstraction
-from model.polish.feat.degree import Degree
-from model.part_of_speech import PartOfSpeech
-from model.polish.feat.case import Case
+from language.polish.feat.gender import Gender
+from language.polish.feat.animacy import Animacy
+from language.polish.feat.virility import Virility
+from language.polish.feat.aspect import Aspect
+from language.polish.feat.abstraction import Abstraction
+from language.polish.feat.degree import Degree
+from language.part_of_speech import PartOfSpeech
+from language.polish.feat.case import Case
 
 # constants
 CRAWL_DELAY = 5

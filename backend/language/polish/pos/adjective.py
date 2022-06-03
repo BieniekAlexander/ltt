@@ -2,9 +2,9 @@
 import sys, os
 
 
-from model.inflected_lexeme import InflectedLexeme
-from model.polish.feat.degree import Degree
-from model.model_errors import LexemeError
+from language.inflected_lexeme import InflectedLexeme
+from language.polish.feat.degree import Degree
+from language.model_errors import LexemeError
 
 
 class Adjective(InflectedLexeme):

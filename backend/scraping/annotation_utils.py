@@ -50,10 +50,10 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, user_id: str
           
           if entry:
             annotation['vocabulary_id'] = entry['_id']
-            annotation['rating'] = entry['rating']
+            annotation['stats'] = entry['stats']
           else: # set to null to indicate that we tried to tie to vocabulary and found nothing
             annotation['vocabulary_id'] = None
-            annotation['rating'] = None
+            annotation['stats'] = None
     except Exception as e:
       logging.error(f"Tried & failed to scrape the {i}th term {term} - {e}")
 
