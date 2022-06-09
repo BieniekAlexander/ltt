@@ -8,7 +8,7 @@ from storage.vocabulary_connector import VocabularyConnector
 from language.lexeme import Lexeme, LexemeDecoder
 from scraping.annotation_utils import annotate_text
 from storage.datastore_utils import lexeme_index, user_vocabulary_index
-from training.stats import Stats
+from training.sm2.stats import Stats
 
 # constants
 MONGODB_URL = "mongodb://localhost:27017/"

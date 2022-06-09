@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 from storage.datastore_client import DatastoreClient
 from storage.lexicon_connector import LexiconConnector
 from storage.vocabulary_connector import VocabularyConnector
-from training.stats import Stats
+from training.sm2.stats import Stats
 
 
 # constants

@@ -33,7 +33,7 @@ def main(stdscr: curses.window):
     c = stdscr.getkey() # gets next key from input buffer, hangs until there's a key
     stdscr.addstr(20, 15, "sheesh")
     stdscr.refresh()
-    question_window.addstr("there")
+    question_window.addstr("there\nthere")
     question_window.refresh()
     if c == 'q':
       stdscr.addstr(10, 15, "zzz")

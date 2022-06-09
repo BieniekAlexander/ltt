@@ -1,8 +1,14 @@
 from storage.datastore_client import DatastoreClient
 from storage.language_datastore import LanguageDatastore
 from storage.lexicon_connector import LexiconConnector
-from training.recall import Recall
-from training.stats import Stats, StatsComparison
+from training.sm2.recall import Recall
+from training.sm2.study_set import StudySet
+from training.vocab import Vocab
+from training.sm2.utils import get_repetition_interval
+
+
+# TODO things to clean up:
+# - training session vocab list vs study set
 
 
 # constants
@@ -10,11 +16,11 @@ MONGODB_URL = "mongodb://localhost:27017/"
 
 
 class TrainingSession(object):
-  def __init__(self, user_id: str, language: str, datastore_client: DatastoreClient):
+  def __init__(self, user_id: str, language: str, datastore_client: DatastoreClient, interval: int = 1, count: int = 50):
     """
     An object that represents a user's session for studying terms
     
-    TODO What will this class do? Will it have subclasses? how will this generalize? for now, I just want to get, guess, and score terms
+    Based on the Supermemory 2 Algorithm
 
     Args:
         user_id (str): The ID of the user who is testing their vocabulary
@@ -24,9 +30,10 @@ class TrainingSession(object):
     self.language = language
     self.language_datastore = LanguageDatastore(datastore_client, language)
     self.lexicon_connector = LexiconConnector(datastore_client, language)
+    self.interval = interval
+    self.count = count
     self.study_terms = None
     self.in_sync = False # flag to indicate whether the state of the vocabulary in memory reflects the vocabulary in the datastore
-    self.stats_comparison = StatsComparison()
 
 
   def __del__(self):
@@ -44,14 +51,15 @@ class TrainingSession(object):
     vocabulary = sorted(self.language_datastore.get_vocabulary_entries(lexeme_ids = [], user_id = self.user_id), key=lambda x: x['lexeme_id'])
     lexeme_ids = list(map(lambda x: x['lexeme_id'], vocabulary))
     lexemes = sorted(self.lexicon_connector.get_lexeme_entries(_ids = lexeme_ids), key=lambda x: x['_id'])
-    study_terms = []
+    self.study_terms = []
 
     # join the terms and vocab entries on the id
     for v, l in zip(vocabulary, lexemes):
       assert str(v['lexeme_id']) == str(l['_id']), f"'{v['lexeme_id']}' != '{l['_id']}'"
-      study_terms.append({'term': l, **v})
+      vocab = Vocab(lexeme_id = (v['lexeme_id']), vocab_id=str(l['_id']), lexeme=l, stats=v['stats'])
+      self.study_terms.append(vocab)
     
-    self.study_terms = sorted(study_terms, key=lambda x: x['stats'].rating)
+    self.study_set = StudySet(vocabulary=self.study_terms, count=self.count)
     self.in_sync = True
 
   
@@ -63,39 +71,31 @@ class TrainingSession(object):
     
     if not self.in_sync:
       for term in self.study_terms:
-        if term['stats'].rating > 1.0: print(term['stats'])
-        self.language_datastore.update_vocabulary_entry(lexeme_id=term['lexeme_id'], stats=term['stats'], user_id=self.user_id)
+        if term.stats.recall:
+          term.stats.repetition += 1
+          term.stats.interval = get_repetition_interval(term.stats.repetition, term.stats.ef)
+        self.language_datastore.update_vocabulary_entry(lexeme_id=term.lexeme_id, stats=term.stats, user_id=self.user_id)
 
     self.in_sync = True
 
 
-  def get_study_term(self):
+  def get_study_entry(self):
     """
     Gets the next term to be studied
     """
     assert self.study_terms != None, "Study terms not loaded"
-    return self.study_terms[0]
+    return self.study_set.get_study_term()
 
   
-  def update_study_term_stats(self, study_term: str, recall: Recall):
+  def update_study_entry_stats(self, term: dict, recall: Recall):
     """
     Update the stats of a study term and indicate that the set of study terms is out of sync with the datastore
 
     Args:
-        lexeme_id (str): the [_id] of the term to update
-        stats (dict): the new [stats] of the study term
+        term (dict): the term to update
+        stats (Recall): the recall from the last repetition
     """
-    # update stats
-    multipliers = {
-      Recall.UNKNOWN: .5,
-      Recall.BAD: .9,
-      Recall.OKAY: 1.0,
-      Recall.GOOD: 1.1,
-      Recall.KNOWN: 2
-    }
-    study_term['stats'].rating = study_term['stats'].rating * multipliers[recall]
-    
-    self.study_terms = sorted(self.study_terms, key=lambda x: x['stats'].rating)
+    term.stats.update(recall)
     self.in_sync = False
 
 
@@ -104,8 +104,8 @@ def main():
   training_session = TrainingSession('a'*24, 'polish', datastore_client)
   training_session.load_study_terms()
 
-  term = training_session.get_study_term()
-  training_session.update_study_term_stats(term, stats=Stats(rating=term['stats'].rating*1.05))
+  term = training_session.get_study_entry()
+  training_session.update_study_entry_stats(term, Recall.GREAT)
   training_session.save_study_terms()
 
 

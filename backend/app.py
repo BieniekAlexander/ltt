@@ -5,7 +5,7 @@ from flask_cors import CORS, cross_origin
 from storage.datastore_client import DatastoreClient
 from storage.language_datastore import LanguageDatastore
 from scraping.annotation_utils import annotate_text
-from training.stats import Stats
+from training.sm2.stats import Stats
 from server import lexicon
 
 # constants

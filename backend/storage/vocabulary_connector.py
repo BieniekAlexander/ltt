@@ -5,7 +5,7 @@ from xml.dom.minidom import Document
 from bson.objectid import ObjectId
 from pymongo import collection
 from language import lexeme
-from training.stats import Stats
+from training.sm2.stats import Stats
 
 
 from storage.collection_connector import CollectionConnector

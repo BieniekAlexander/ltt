@@ -8,7 +8,7 @@ import pandas as pd
 
 from storage.datastore_client import DatastoreClient
 from storage.language_datastore import LanguageDatastore
-from training.stats import Stats
+from training.sm2.stats import Stats
 
 MONGODB_URL = "mongodb://localhost:27017/"
 PATH_TO_CSV = "/home/alex/projects/ltt/backend/run/data/polish/duolingo_vocab.csv"
