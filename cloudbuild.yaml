@@ -1,0 +1,8 @@
+substitutions:
+  _TAG_NAME: "${COMMIT_SHA}"
+timeout: 180s
+
+steps:
+- id: "Run a NOOP"
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['version']
