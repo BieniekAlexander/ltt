@@ -15,7 +15,8 @@ class DatastoreClient(object):
     """
     Establish an initial connection to the document store
     """
-    self.client = pymongo.MongoClient(uri)
+    self.timeout = 3000
+    self.client = pymongo.MongoClient(uri, serverSelectionTimeoutMS=self.timeout)
     self.db = self.client.admin
 
     if self.db.command("serverStatus"):

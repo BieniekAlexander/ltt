@@ -2,7 +2,12 @@ substitutions:
   _TAG_NAME: "${COMMIT_SHA}"
 timeout: 180s
 
+
 steps:
-- id: "Run a NOOP"
-  name: 'gcr.io/cloud-builders/docker'
-  args: ['version']
+# https://stackoverflow.com/questions/56469381/run-pytest-in-google-build-cloudbuild-yaml-to-determine-if-build-passes-or-not
+- name: 'docker.io/library/python:3.9'
+  id: Test
+  entrypoint: /bin/sh
+  args:
+  - -c
+  - 'pip install -t /workspace/lib -r requirements.txt && pytest'
