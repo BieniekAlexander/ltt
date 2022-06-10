@@ -1,6 +1,7 @@
 # imports
 from flask import Blueprint, request
 import os, sys
+from storage.datastore_client import DatastoreClient
 
 
 from storage.lexicon_connector import LexiconConnector
@@ -10,7 +11,8 @@ MONGODB_URL = "mongodb://localhost:27017/"
 LANGUAGE = "polish"
 
 # objects
-lexicon_connector = LexiconConnector(MONGODB_URL, LANGUAGE)
+db_client = DatastoreClient(MONGODB_URL)
+lexicon_connector = LexiconConnector(db_client, LANGUAGE)
 
 # interface
 bp = Blueprint('lexicon', __name__,url_prefix="/lexicon")

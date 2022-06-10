@@ -15,7 +15,7 @@ from language.polish.pos.particle import Particle
 
 #% tests
 def test_deserialize_polish_lexeme_basic():
-  json_str = open('tests/model/polish/data/particle_niemal.json').read()
+  json_str = open('tests/language/polish/data/particle_niemal.json').read()
   lexeme = json.loads(json_str, cls=LexemeDecoder)
   
   assert lexeme.lemma == "niemal"
@@ -24,21 +24,21 @@ def test_deserialize_polish_lexeme_basic():
 
 
 def test_deserialize_polish_lexeme_special_characters():
-  json_str = open('tests/model/polish/data/conjunction_choc.json').read()
+  json_str = open('tests/language/polish/data/conjunction_choc.json').read()
   lexeme = json.loads(json_str, cls=LexemeDecoder)
   
   assert lexeme.lemma == "choć"
 
 
 def test_deserialize_polish_lexeme_encoded_characters():
-  json_str = open('tests/model/polish/data/conjunction_chociaz.json').read()
+  json_str = open('tests/language/polish/data/conjunction_chociaz.json').read()
   lexeme = json.loads(json_str, cls=LexemeDecoder)
   
   assert lexeme.lemma == "chociaż"
 
 
 def test_deserialize_polish_adjective():
-  json_str = open('tests/model/polish/data/adjective_czerwony.json').read()
+  json_str = open('tests/language/polish/data/adjective_czerwony.json').read()
   lexeme = json.loads(json_str, cls=LexemeDecoder)
   
   assert lexeme.lemma == "czerwony"
@@ -49,7 +49,7 @@ def test_deserialize_polish_adjective():
 
 
 def test_deserialize_polish_noun():
-  json_str = open('tests/model/polish/data/noun_pies.json').read()
+  json_str = open('tests/language/polish/data/noun_pies.json').read()
   lexeme = json.loads(json_str, cls=LexemeDecoder)
   
   assert lexeme.lemma == "noun"
@@ -59,7 +59,7 @@ def test_deserialize_polish_noun():
 
 
 def test_deserialize_polish_noun():
-  json_str = open('tests/model/polish/data/noun_pies.json').read()
+  json_str = open('tests/language/polish/data/noun_pies.json').read()
   lexeme = json.loads(json_str, cls=LexemeDecoder)
   
   assert lexeme.lemma == "pies"

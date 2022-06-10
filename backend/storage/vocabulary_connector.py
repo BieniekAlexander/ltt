@@ -84,7 +84,7 @@ class VocabularyConnector(CollectionConnector):
     assert user_id
     assert isinstance(stats, Stats)
 
-    entry = {'lexeme_id': ObjectId(lexeme_id), 'stats': stats, 'user_id': ObjectId(user_id)}
+    entry = {'lexeme_id': ObjectId(lexeme_id), 'stats': stats.to_json_dictionary(), 'user_id': ObjectId(user_id)}
 
     return super(VocabularyConnector, self).push_document(entry)
 
@@ -103,6 +103,7 @@ class VocabularyConnector(CollectionConnector):
       assert isinstance(entry['stats'], Stats)
       entry['lexeme_id'] = ObjectId(entry['lexeme_id'])
       entry['user_id'] = ObjectId(entry['user_id'])
+      entry['stats'] = entry['stats'].to_json_dictionary()
 
     return super(VocabularyConnector, self).push_documents(entries)
 

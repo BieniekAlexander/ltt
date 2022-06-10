@@ -41,8 +41,8 @@ def test_push_and_get_vocabulary_entry(vocabulary_connector):
   user_id_1 = ObjectId()
   user_id_2 = ObjectId()
   lexeme_id = ObjectId()
-  stats_1 = Stats(1.0)
-  stats_2 = Stats(0.8)
+  stats_1 = Stats()
+  stats_2 = Stats()
   entry_2 = {'lexeme_id': lexeme_id, 'user_id': user_id_2, 'stats': stats_2}
 
   vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, stats=stats_1, user_id=user_id_1)
@@ -56,8 +56,8 @@ def test_push_and_get_vocabulary_entries(vocabulary_connector):
   user_id_1 = ObjectId()
   user_id_2 = ObjectId()
   lexeme_id = ObjectId()
-  stats_1 = Stats(1.0)
-  stats_2 = Stats(0.8)
+  stats_1 = Stats()
+  stats_2 = Stats()
   entries = [{'lexeme_id': lexeme_id, 'stats': stats_1, 'user_id': user_id_1},
     {'lexeme_id': lexeme_id, 'user_id': user_id_2, 'stats': stats_2}
   ]
@@ -69,7 +69,7 @@ def test_push_and_get_vocabulary_entries(vocabulary_connector):
 def test_push_and_delete_vocabulary_entry(vocabulary_connector):
   user_id = ObjectId()
   lexeme_id = ObjectId()
-  stats = Stats(1.0)
+  stats = Stats()
   
   vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, stats=stats, user_id=user_id)
   vocabulary_connector.delete_vocabulary_entry(lexeme_id=lexeme_id, user_id= user_id)
@@ -79,8 +79,8 @@ def test_push_and_delete_vocabulary_entries(vocabulary_connector):
   user_id_1 = ObjectId()
   user_id_2 = ObjectId()
   lexeme_id = ObjectId()
-  stats_1 = Stats(1.0)
-  stats_2 = Stats(0.8)
+  stats_1 = Stats()
+  stats_2 = Stats()
   entries = [{'lexeme_id': lexeme_id, 'stats': stats_1, 'user_id': user_id_1},
     {'lexeme_id': lexeme_id, 'user_id': user_id_2, 'stats': stats_2}
   ]
@@ -92,12 +92,12 @@ def test_push_and_delete_vocabulary_entries(vocabulary_connector):
 def test_push_vocabulary_duplicate_entries_fail(vocabulary_connector):
   user_id_1 = ObjectId()
   lexeme_id = ObjectId()
-  stats = Stats(1.0)
+  stats = Stats()
 
   vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, stats=stats, user_id=user_id_1)
   
   with pytest.raises(Exception):
-    vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, stats=stats)
+    vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, stats=stats.to_json_dictionary())
 
 
 #% main

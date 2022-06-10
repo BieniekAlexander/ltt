@@ -1,6 +1,6 @@
 #%% imports
 import os, sys, json, pytest
-from backend.tests.interface.annotation_test import DATABASE_NAME
+from tests.interface.annotation_test import DATABASE_NAME
 
 
 from storage.datastore_client import DatastoreClient
