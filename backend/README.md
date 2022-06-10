@@ -9,7 +9,7 @@ Backend
 #!/bin/bash
 if [ -z ".env" ] ; then #TODO what's the flag for this condition?
   PYTHONPATH="$(pwd)/backend/"
-  echo "PYTHONPATH=\$PYTHONPATH" > .env
+  echo "export PYTHONPATH=\$PYTHONPATH" > .env
 fi
 ```
 

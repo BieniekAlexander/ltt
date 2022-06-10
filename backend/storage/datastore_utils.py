@@ -1,28 +1,6 @@
 #%% imports
 from enum import Enum
 from bson.objectid import ObjectId
-import pymongo
-
-# constants
-lexeme_index = {
-  'keys': [("lemma", pymongo.ASCENDING), ("pos", pymongo.ASCENDING)],
-  'name': "lemma index",
-  'unique': True
-}
-
-user_vocabulary_index = {
-  'keys': [("user_id", pymongo.ASCENDING), ("lexeme_id", pymongo.ASCENDING)],
-  'name': "user vocabulary index",
-   'unique': True
-}
-
-inflections_index = {
-  'keys': [("form", pymongo.ASCENDING), ("pos", pymongo.ASCENDING), ("lexeme_id", pymongo.ASCENDING)],
-  'name': "inflections index",
-  'unique': True
-}
-
-
 
 
 #%% utils
