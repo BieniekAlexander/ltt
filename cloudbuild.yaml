@@ -5,7 +5,7 @@ timeout: 180s
 
 steps:
 # https://stackoverflow.com/questions/56469381/run-pytest-in-google-build-cloudbuild-yaml-to-determine-if-build-passes-or-not
-- name: 'docker.io/library/python:3.7'
+- name: 'docker.io/library/python:3.9.7'
   id: Test
   entrypoint: /bin/sh
   args:
