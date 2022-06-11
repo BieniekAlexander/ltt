@@ -1,7 +1,7 @@
 #%% imports
 import os, sys, json, pytest, pymongo
 from bson.objectid import ObjectId
-from pymongo import MongoClient
+from mongomock import MongoClient
 
 
 from storage.lexicon_connector import LexiconConnector

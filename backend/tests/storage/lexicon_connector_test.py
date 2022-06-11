@@ -1,6 +1,6 @@
 #%% imports
 import os, sys, json, pytest
-from pymongo import MongoClient
+from mongomock import MongoClient
 
 
 from storage.lexicon_connector import LexiconConnector

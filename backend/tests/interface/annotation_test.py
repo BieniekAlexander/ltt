@@ -1,6 +1,6 @@
 #%% imports
 import os, sys, json, pytest
-from pymongo import MongoClient
+from mongomock import MongoClient
 
 
 from storage.language_datastore import LanguageDatastore
@@ -13,6 +13,7 @@ from training.sm2.stats import Stats
 # constants
 LANGUAGE = "polish"
 USER_ID = "0"*24
+ds_client = MongoClient()
 
 
 #%% pytest fixtures
@@ -22,18 +23,14 @@ def language_datastore():
   """
   Establish a connection to the mongodb database
   """
-  ds_client = MongoClient()
   test_language_datastore = LanguageDatastore(ds_client, LANGUAGE)
-  test_language_datastore.lexicon_connector.collection.create_index(**lexeme_index)
 
   # run test
   yield test_language_datastore
 
   # cleanup
   test_language_datastore.lexicon_connector.collection.drop({})
-  test_language_datastore.lexicon_connector.collection.drop_indexes()
   test_language_datastore.inflections_connector.collection.drop({})
-  test_language_datastore.inflections_connector.collection.drop_indexes()
 
 
 @pytest.fixture()
@@ -41,16 +38,13 @@ def vocabulary_connector():
   """
   Establish a connection to the mongodb database
   """
-  ds_client = MongoClient()
   test_vocabulary_connector = VocabularyConnector(ds_client, LANGUAGE)
-  test_vocabulary_connector.collection.create_index(**user_vocabulary_index)
 
   # run test
   yield test_vocabulary_connector
 
   # cleanup
   test_vocabulary_connector.collection.drop({})
-  test_vocabulary_connector.collection.drop_indexes()
 
 
 #%% tests
@@ -129,15 +123,7 @@ def test_annotate_some_vocabulary(language_datastore, vocabulary_connector: Voca
   assert annotations[1]['lexeme']['lemma'] == lexeme_1.lemma
   assert 'lexeme' not in annotations[2]
 
+  print(annotations)
   assert annotations[0]['vocabulary_id'] != None
   assert 'vocabulary_id' not in annotations[1]
   assert 'vocabulary_id' not in annotations[2]
-
-
-#%% main
-def main():
-  pass
-
-
-if __name__ == "__main__":
-  main()

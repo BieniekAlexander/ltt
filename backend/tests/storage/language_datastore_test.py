@@ -1,6 +1,6 @@
 #%% imports
 import os, sys, json, pytest
-from pymongo import MongoClient
+from mongomock import MongoClient
 
 
 from storage.language_datastore import LanguageDatastore
@@ -20,16 +20,13 @@ def language_datastore():
   """
   ds_client = MongoClient()
   test_language_datastore = LanguageDatastore(ds_client, LANGUAGE)
-  test_language_datastore.lexicon_connector.collection.create_index(**lexeme_index)
 
   # run test
   yield test_language_datastore
 
   # cleanup
   test_language_datastore.lexicon_connector.collection.drop({})
-  test_language_datastore.lexicon_connector.collection.drop_indexes()
   test_language_datastore.inflections_connector.collection.drop({})
-  test_language_datastore.inflections_connector.collection.drop_indexes()
   
 
 #%% tests
