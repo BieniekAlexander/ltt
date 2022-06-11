@@ -1,12 +1,12 @@
 substitutions:
   _TAG_NAME: "${COMMIT_SHA}"
-timeout: 180s
+timeout: 1800s
 
 
 steps:
 # https://stackoverflow.com/questions/56469381/run-pytest-in-google-build-cloudbuild-yaml-to-determine-if-build-passes-or-not
-- name: 'docker.io/library/python:3.9.7'
-  id: Test
+- id: Run unit tests in pytest
+  name: 'docker.io/library/python:3.9.7'  
   entrypoint: /bin/sh
   args:
   - -c
