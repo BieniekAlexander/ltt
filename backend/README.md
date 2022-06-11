@@ -91,3 +91,4 @@ pytest
 - [Pytest Documentation](https://docs.pytest.org/en/6.2.x/)
 - [CLI usage for Running tests with pytest](https://zetcode.com/python/pytest/)
 - [Conda environment management](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+- [Flask Tutorial](https://flask.palletsprojects.com/en/2.0.x/tutorial/views/)
