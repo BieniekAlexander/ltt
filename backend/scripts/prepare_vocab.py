@@ -11,7 +11,7 @@ from storage.language_datastore import LanguageDatastore
 from training.sm2.stats import Stats
 
 MONGODB_URL = "mongodb://localhost:27017/"
-PATH_TO_CSV = "/home/alex/projects/ltt/backend/run/data/polish/duolingo_vocab.csv"
+PATH_TO_CSV = f"{os.getcwd()}/data/polish/duolingo_vocab.csv"
 
 
 # %% setup
@@ -39,7 +39,7 @@ for term in polish_terms:
     
     for lexeme_id in lexeme_ids:
       try:
-        language_datastore.add_vocabulary_entry(lexeme_id, Stats(rating=1.0), USER_ID)
+        language_datastore.add_vocabulary_entry(lexeme_id, Stats(), USER_ID)
       except Exception as e: # eee storage exceptions
         logger.info("Skipping duplicate vocabulary entry")
   else:

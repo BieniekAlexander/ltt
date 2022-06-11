@@ -3,10 +3,10 @@ import sys, os, requests, time, json, re, logging
 from bs4 import BeautifulSoup
 
 
-from backend.scraping.annotation_utils import annotate_text
-from backend.scraping.html_parse_utils import get_page_main_content
-from backend.storage.language_datastore import LanguageDatastore
-from backend.language.lexeme import LexemeEncoder
+from scraping.annotation_utils import annotate_text
+from scraping.html_parse_utils import get_page_main_content
+from storage.language_datastore import LanguageDatastore
+from language.lexeme import LexemeEncoder
 
 MONGODB_URL = "mongodb://localhost:27017/"
 PATH_TO_ARTCLE_URL_FILE = 'run/data/polish/articles.txt'

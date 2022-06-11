@@ -13,9 +13,7 @@ class CollectionConnector(object):
     """
     Establish an initial connection to the document store
     """
-    self.client = datastore_client.client
-    self.db = self.client[database_name]
-    self.collection = self.db[collection_name]
+    self.collection = datastore_client[database_name][collection_name]
 
 
   def get_document(self, query: dict) -> dict:

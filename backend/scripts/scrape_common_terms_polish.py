@@ -4,19 +4,19 @@ collected from this article: https://www.101languages.net/polish/most-common-pol
 duolingo terms from here: https://www.duolingo.com/words
 '''
 #%% imports
-import sys, os, requests, time, json, re, logging
-from bs4 import BeautifulSoup
+import os, logging
 import pandas as pd
 from pymongo.errors import DuplicateKeyError
+from pymongo import MongoClient
 
 
 from scraping.wiktionary_spider import WiktionarySpider
 from scraping.scraping_errors import ScrapingError
-from pymongo import MongoClient
 from storage.language_datastore import LanguageDatastore
 
 MONGODB_URL = "mongodb://localhost:27017/"
-PATH_TO_CSV = "/home/alex/projects/ltt/backend/run/data/polish/duolingo_vocab.csv"
+PATH_TO_CSV = f"{os.getcwd()}/data/polish/duolingo_vocab.csv"
+os.makedirs('logs/2k', exist_ok=True)
 
 
 # %% setup

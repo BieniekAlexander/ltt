@@ -96,11 +96,13 @@ def parse_features_noun(soup, pos, language):
         ret['animacy'] = 'animate'
       elif value == 'inanimate':
         ret['animacy'] = 'inanimate'
-      elif value in ['personal', 'plural number']: # skipping parsing, ludzie, człowiek
-        logging.warn(f"skipping parsing of noun data for gender={value}")
+      elif value == 'personal':
+        ret['personality'] = 'personal'
+      elif value in ['plural number']: # skipping parsing, ludzie, człowiek
+        logging.warn(f"skipping parsing of noun data for class value={value}")
       else:
         query_args = {'pos': pos, 'language': language}
-        raise ScrapingValueError(gender_span, query_args, 'gender', value)
+        raise ScrapingValueError(gender_span, query_args, 'class value', value)
 
   # get diminutive, augmentative, male, female forms
   forms_match = re.search(r'\(.*\)', summary_string)

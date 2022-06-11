@@ -23,7 +23,7 @@ TODO clean up this section as I go
       - {(form, pos, lexeme_id), unique}
 - Vocabulary:
   - _language_:
-    - schema: {user_id, lexeme_id, rating
+    - schema: {user_id, lexeme_id, Stats}
     - indices:
       - {(user_id, lexeme_id), unique}
 

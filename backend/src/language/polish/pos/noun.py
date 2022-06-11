@@ -5,46 +5,51 @@ from language.model_errors import LexemeError
 from language.inflected_lexeme import InflectedLexeme
 from language.polish.feat.gender import Gender
 from language.polish.feat.animacy import Animacy
+from language.polish.feat.personality import Personality
 from language.polish.feat.virility import Virility
 
 
 
 class Noun(InflectedLexeme):
-  def __init__(self, lemma, pos, definitions, inflections, gender=None, animacy=None, virility=None, 
+  def __init__(self, lemma, pos, definitions, inflections, gender:Gender=None, animacy:Animacy=None, virility:Virility=None, personality: Personality=None,
                diminutive=None, augmentative=None, masculine=None, feminine=None):
-    """[summary]
+    """_summary_
 
     Args:
-        lemma ([type]): [description]
-        pos ([type]): [description]
-        definitions ([type]): [description]
-        inflections ([type]): [description]
-        gender ([type], optional): [description]. Defaults to None.
-        animacy ([type], optional): [description]. Defaults to None.
-        virility ([type], optional): [description]. Defaults to None.
-        diminutive ([type], optional): [description]. Defaults to None.
-        augmentative ([type], optional): [description]. Defaults to None.
-        masculine ([type], optional): [description]. Defaults to None.
-        feminine ([type], optional): [description]. Defaults to None.
+        lemma (_type_): _description_
+        pos (_type_): _description_
+        definitions (_type_): _description_
+        inflections (_type_): _description_
+        gender (Gender, optional): _description_. Defaults to None.
+        animacy (Animacy, optional): _description_. Defaults to None.
+        virility (Virility, optional): _description_. Defaults to None.
+        personality (Personality, optional): _description_. Defaults to None.
+        diminutive (_type_, optional): _description_. Defaults to None.
+        augmentative (_type_, optional): _description_. Defaults to None.
+        masculine (_type_, optional): _description_. Defaults to None.
+        feminine (_type_, optional): _description_. Defaults to None.
 
     Raises:
-        LexemeError: [description]
+        LexemeError: _description_
     """
     # preprocess gender information
     if gender and not isinstance(gender, Gender):
       gender = Gender[gender.upper()]
+    if personality and not isinstance(personality, Personality):
+      personality = Personality[personality.upper()]
     if animacy and not isinstance(animacy, Animacy):
       animacy = Animacy[animacy.upper()]
     if virility and not isinstance(virility, Virility):
       virility = Virility[virility.upper()]
 
-    if not self.validate_gender(gender, animacy, virility):
-      arguments = {'gender': gender, 'animacy': animacy, 'virility': virility}
+    if not self.validate_gender(gender, personality, animacy, virility):
+      arguments = {'gender': gender, 'personality': personality, 'animacy': animacy, 'virility': virility}
       raise LexemeError(lemma, pos, arguments, 'invalid gender logic')
 
     # load in fields
     super(Noun, self).__init__(lemma, pos, definitions, inflections)
     self.gender = gender
+    self.personality = personality
     self.animacy = animacy
     self.virility = virility
     self.diminutive = diminutive
@@ -53,20 +58,21 @@ class Noun(InflectedLexeme):
     self.feminine = feminine
 
   
-  def validate_gender(self, gender=None, animacy=None, virility=None) -> bool:
+  def validate_gender(self, gender:Gender=None, personality:Personality=None, animacy:Animacy=None, virility:Virility=None) -> bool:
     """
     TODO
     """
     # validate gender information of Noun
-    gender_info = (gender, animacy, virility)
+    gender_info = (gender, personality, animacy, virility)
 
     cases = [
-      (Gender.MALE, Animacy.ANIMATE, None),   # animate masculine singular - e.g. pies
-      (Gender.MALE, Animacy.INANIMATE, None), # inanimate masculine singular - .e.g. kubek
-      (Gender.FEMALE, None, None),            # female singular - e.g. kuchnia
-      (Gender.NEUTER, None, None),            # neuter singular - e.g. zwierzę
-      (None, None, Virility.VIRILE),          # virile plural - e.g. ?
-      (None, None, Virility.NONVIRILE)        # nonvirile plural - e.g. drzwi
+      (Gender.MALE, Personality.PERSONAL, None, None),  # animate masculine singular - e.g. pies
+      (Gender.MALE, None, Animacy.ANIMATE, None),       # animate masculine singular - e.g. pies
+      (Gender.MALE, None, Animacy.INANIMATE, None),     # inanimate masculine singular - .e.g. kubek
+      (Gender.FEMALE, None, None, None),                # female singular - e.g. kuchnia
+      (Gender.NEUTER, None, None, None),                # neuter singular - e.g. zwierzę
+      (None, None, None, Virility.VIRILE),              # virile plural - e.g. ?
+      (None, None, None, Virility.NONVIRILE)            # nonvirile plural - e.g. drzwi
     ]
 
     if gender_info not in cases:

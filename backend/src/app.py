@@ -51,7 +51,7 @@ def addTerm():
     try:
         lexeme_id = request_data['lexeme_id']
         user_id = request_data['user_id']
-        stats = Stats(rating=1.0)
+        stats = Stats()
         vocabulary_id = language_datastore.add_vocabulary_entry(lexeme_id, stats, user_id) # TODO check if the stats get loaded properly
         response = jsonify({'vocabulary_id': str(vocabulary_id)})
 

@@ -105,7 +105,9 @@ class LanguageDatastore(object):
     assert isinstance(form, str)
     assert all(isinstance(pos, str) and pos in [pos.value for pos in PartOfSpeech] for pos in poses)
 
-    lexeme_ids = [ObjectId(d['lexeme_id']) for d in self.inflections_connector.get_inflection_entries(forms=[form], poses=poses)]
+    # TODO restore
+    inflection_entries = self.inflections_connector.get_inflection_entries(forms=[form], poses=poses)
+    lexeme_ids = [ObjectId(d['lexeme_id']) for d in inflection_entries]
     
     if lexeme_ids:
       lexeme_dicts_dict = self.lexicon_connector.get_lexeme_entries(_ids=lexeme_ids)
