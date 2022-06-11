@@ -10,4 +10,8 @@ steps:
   entrypoint: /bin/sh
   args:
   - -c
-  - 'cd backend && pip install -r requirements.txt && pytest'
+  - |
+    cd backend
+    export PYTHONPATH=$(pwd)/src
+    pip install -r requirements.txt
+    pytest
