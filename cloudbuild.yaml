@@ -23,4 +23,5 @@ steps:
   - -c
   - |
     cd frontend
+    npm install
     CI=1 npm test
