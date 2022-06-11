@@ -26,27 +26,24 @@ def web_crawler_delay():
 #% tests
 def test_find_polish_entry():
   lemma, language = "ptak", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lang_header = find_language_header(soup, language)
   assert lang_header
 
 
 def test_find_polish_entry_returns_none():
   lemma, language = "spruce", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
 
   assert find_language_header(soup, language) == None
 
 
 def test_find_polish_part_of_speech_entry():
   lemma, language, pos = "ptak", "Polish", "Noun"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lang_header = find_language_header(soup, language)
   pos_header = seek_pos_header(lang_header, pos, language)
   assert pos_header
@@ -54,9 +51,8 @@ def test_find_polish_part_of_speech_entry():
 
 def test_find_polish_part_of_speech_entry_returns_none():
   lemma, language, pos = "ptak", "Polish", "Verb"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lang_header = find_language_header(soup, language)
   
   assert seek_pos_header(lang_header, pos, language) == None
@@ -64,9 +60,8 @@ def test_find_polish_part_of_speech_entry_returns_none():
 
 def test_find_polish_part_of_speech_entry_in_wrong_language_returns_none():
   lemma, language, pos = "pies", "Polish", "Verb"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lang_header = find_language_header(soup, language)
   
   assert seek_pos_header(lang_header, pos, language) == None
@@ -74,54 +69,48 @@ def test_find_polish_part_of_speech_entry_in_wrong_language_returns_none():
 
 def test_find_polish_inflection_table_verb():
   lemma, language, pos = "jeść", "Polish", "Verb"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser") 
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser") 
   inflection_table = get_inflection_table(soup, pos, language)
   assert inflection_table
 
 
 def test_find_polish_inflection_table_noun():
   lemma, language, pos = "zima", "Polish", "Noun"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser") 
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser") 
   inflection_table = get_inflection_table(soup, pos, language)
   assert inflection_table
 
 
 def test_find_polish_inflection_table_adjective():
   lemma, language, pos = "czerwony", "Polish", "Adjective"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser") 
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser") 
   inflection_table = get_inflection_table(soup, pos, language)
   assert inflection_table
 
 
 def test_find_polish_summary_phrase_preposition():
   lemma, language, pos = "pod względem", "Polish", "Preposition"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma.replace(' ', '_')}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser") 
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma.replace(" ", "_")}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser") 
   summary_paragraph = get_summary_paragraph(soup, pos, language)
   assert summary_paragraph
 
 
 def test_find_polish_inflection_table_preposition_fails():
   lemma, language, pos = "obok", "Polish", "Preposition"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser") 
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser") 
   
   assert get_inflection_table(soup, pos, language) == None
 
 
 def test_find_polish_inflection_table_not_in_pos_fails():
   lemma, language, pos = "zimno", "Polish", "Adverb"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser") 
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser") 
   
   assert get_inflection_table(soup, pos, language) == None
 

@@ -70,9 +70,8 @@ def test_deserialize_polish_noun():
 
 def test_encoding_invertible_polish_noun():
   lemma, pos, language = "kot", "Noun", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open('tests/data/wiktionary/en/wiki_kot.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
 
   json_str = json.dumps(lexeme, cls=LexemeEncoder)

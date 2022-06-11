@@ -1,7 +1,7 @@
 # tests for utilities for scraping tables from html
 #% imports
 # pytest testing that exceptions are raised - https://stackoverflow.com/a/29855337
-import os, sys, json, pytest, requests, time
+import pytest, requests, time
 from bs4 import BeautifulSoup
 
 
@@ -33,9 +33,8 @@ def web_crawler_delay():
 #% tests
 def test_extract_polish_noun_kot():
   lemma, pos, language = "kot", "Noun", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.NOUN
@@ -50,9 +49,8 @@ def test_extract_polish_noun_kot():
 
 def test_extract_polish_noun_zimno():
   lemma, pos, language = "zimno", "Noun", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
 
   assert lexeme.pos == PartOfSpeech.NOUN
@@ -66,9 +64,8 @@ def test_extract_polish_noun_zimno():
 
 def test_extract_polish_noun_drzwi():
   lemma, pos, language = "drzwi", "Noun", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.NOUN
@@ -82,9 +79,8 @@ def test_extract_polish_noun_drzwi():
 
 def test_extract_polish_verb_pojsc():
   lemma, pos, language = "pójść", "Verb", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.VERB
@@ -97,9 +93,8 @@ def test_extract_polish_verb_pojsc():
 
 def test_extract_polish_verb_isc():
   lemma, pos, language = "iść", "Verb", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.VERB
@@ -112,9 +107,8 @@ def test_extract_polish_verb_isc():
 
 def test_extract_polish_verb_chodzic():
   lemma, pos, language = "chodzić", "Verb", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.VERB
@@ -127,9 +121,8 @@ def test_extract_polish_verb_chodzic():
 
 def test_extract_polish_verb_jadac():
   lemma, pos, language = "jadać", "Verb", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.VERB
@@ -142,9 +135,8 @@ def test_extract_polish_verb_jadac():
 
 def test_extract_polish_verb_chciec():
   lemma, pos, language = "chcieć", "Verb", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.VERB
@@ -157,9 +149,8 @@ def test_extract_polish_verb_chciec():
 
 def test_extract_polish_adverb_szybko():
   lemma, pos, language = "szybko", "Adverb", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
 
   assert lexeme.pos == PartOfSpeech.ADVERB
@@ -171,9 +162,8 @@ def test_extract_polish_adverb_szybko():
 
 def test_extract_polish_adjective_szybki():
   lemma, pos, language = "szybki", "Adjective", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.ADJECTIVE
@@ -187,9 +177,8 @@ def test_extract_polish_adjective_szybki():
 
 def test_extract_polish_adjective_czerwony():
   lemma, pos, language = "czerwony", "Adjective", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.ADJECTIVE
@@ -205,9 +194,8 @@ def test_extract_polish_adjective_czerwony():
 
 def test_extract_polish_adjective_czerwonawy():
   lemma, pos, language = "czerwonawy", "Adjective", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.ADJECTIVE
@@ -221,9 +209,8 @@ def test_extract_polish_adjective_czerwonawy():
 
 def test_extract_polish_adjective_bogatszy():
   lemma, pos, language = "bogatszy", "Adjective", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.ADJECTIVE
@@ -236,9 +223,8 @@ def test_extract_polish_adjective_bogatszy():
 
 def test_extract_polish_adjective_najlepszy():
   lemma, pos, language = "najlepszy", "Adjective", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.ADJECTIVE
@@ -251,9 +237,8 @@ def test_extract_polish_adjective_najlepszy():
 
 def test_extract_polish_conjunction_ale():
   lemma, pos, language = "ale", "Conjunction", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.CONJUNCTION
@@ -262,9 +247,8 @@ def test_extract_polish_conjunction_ale():
 
 def test_extract_polish_conjunction_lecz():
   lemma, pos, language = "lecz", "Conjunction", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
 
   assert lexeme.pos == PartOfSpeech.CONJUNCTION
@@ -273,9 +257,8 @@ def test_extract_polish_conjunction_lecz():
 
 def test_extract_polish_conjunction_bowiem():
   lemma, pos, language = "bowiem", "Conjunction", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.CONJUNCTION
@@ -284,9 +267,8 @@ def test_extract_polish_conjunction_bowiem():
 
 def test_extract_polish_interjection_kurwa():
   lemma, pos, language = "kurwa", "interjection", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.INTERJECTION
@@ -295,9 +277,8 @@ def test_extract_polish_interjection_kurwa():
 
 def test_extract_polish_interjection_moment():
   lemma, pos, language = "moment", "Interjection", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.INTERJECTION
@@ -306,9 +287,8 @@ def test_extract_polish_interjection_moment():
 
 def test_extract_polish_preposition_wsrod():
   lemma, pos, language = "wśród", "Preposition", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.PREPOSITION
@@ -318,9 +298,8 @@ def test_extract_polish_preposition_wsrod():
 
 def test_extract_polish_preposition_bez():
   lemma, pos, language = "bez", "Preposition", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.PREPOSITION
@@ -329,9 +308,8 @@ def test_extract_polish_preposition_bez():
 
 def test_extract_polish_preposition_za():
   lemma, pos, language = "za", "Preposition", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.PREPOSITION
@@ -342,9 +320,8 @@ def test_extract_polish_preposition_za():
 
 def test_extract_polish_numeral_kilka():
   lemma, pos, language = "kilka", "Numeral", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.NUMERAL
@@ -354,9 +331,8 @@ def test_extract_polish_numeral_kilka():
 
 def test_extract_polish_numeral_piec():
   lemma, pos, language = "pięć", "Numeral", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.NUMERAL
@@ -366,9 +342,8 @@ def test_extract_polish_numeral_piec():
 
 def test_extract_polish_particle_albo():
   lemma, pos, language = "albo", "particle", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.PARTICLE
@@ -377,9 +352,8 @@ def test_extract_polish_particle_albo():
 
 def test_extract_polish_particle_jeszcze():
   lemma, pos, language = "jeszcze", "particle", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.PARTICLE
@@ -388,9 +362,8 @@ def test_extract_polish_particle_jeszcze():
 
 def test_extract_polish_pronoun_siebie():
   lemma, pos, language = "siebie", "pronoun", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.PRONOUN
@@ -400,9 +373,8 @@ def test_extract_polish_pronoun_siebie():
 
 def test_extract_polish_pronoun_ja():
   lemma, pos, language = "ja", "pronoun", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.PRONOUN
@@ -412,9 +384,8 @@ def test_extract_polish_pronoun_ja():
 
 def test_extract_polish_pronoun_oni():
   lemma, pos, language = "oni", "pronoun", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   assert lexeme.pos == PartOfSpeech.PRONOUN

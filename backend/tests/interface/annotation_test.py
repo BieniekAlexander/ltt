@@ -1,19 +1,17 @@
 #%% imports
 import os, sys, json, pytest
+from pymongo import MongoClient
 
 
 from storage.language_datastore import LanguageDatastore
-from storage.datastore_client import DatastoreClient
 from storage.vocabulary_connector import VocabularyConnector
-from language.lexeme import Lexeme, LexemeDecoder
+from language.lexeme import LexemeDecoder
 from scraping.annotation_utils import annotate_text
 from storage.datastore_schemata.polish_schemata import lexeme_index, user_vocabulary_index
 from training.sm2.stats import Stats
 
 # constants
-MONGODB_URL = "mongodb://localhost:27017/"
 LANGUAGE = "polish"
-DATABASE_NAME = LANGUAGE+"_test"
 USER_ID = "0"*24
 
 
@@ -24,8 +22,8 @@ def language_datastore():
   """
   Establish a connection to the mongodb database
   """
-  ds_client = DatastoreClient(MONGODB_URL)
-  test_language_datastore = LanguageDatastore(ds_client, LANGUAGE, DATABASE_NAME)
+  ds_client = MongoClient()
+  test_language_datastore = LanguageDatastore(ds_client, LANGUAGE)
   test_language_datastore.lexicon_connector.collection.create_index(**lexeme_index)
 
   # run test
@@ -43,8 +41,8 @@ def vocabulary_connector():
   """
   Establish a connection to the mongodb database
   """
-  ds_client = DatastoreClient(MONGODB_URL)
-  test_vocabulary_connector = VocabularyConnector(ds_client, LANGUAGE, DATABASE_NAME)
+  ds_client = MongoClient()
+  test_vocabulary_connector = VocabularyConnector(ds_client, LANGUAGE)
   test_vocabulary_connector.collection.create_index(**user_vocabulary_index)
 
   # run test

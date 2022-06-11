@@ -1,16 +1,13 @@
 #%% imports
 import os, sys, json, pytest
-from tests.interface.annotation_test import DATABASE_NAME
+from pymongo import MongoClient
 
 
-from storage.datastore_client import DatastoreClient
 from storage.lexicon_connector import LexiconConnector
 from language.lexeme import Lexeme, LexemeDecoder
 
 # constants
-MONGODB_URL = "mongodb://localhost:27017/"
 LANGUAGE = "polish"
-DATABASE_NAME = LANGUAGE+"_test"
 
 
 #%% pytest fixtures
@@ -20,8 +17,8 @@ def lexicon_connector():
   """
   Establish a connection to the mongodb database
   """
-  ds_client = DatastoreClient("mongodb://localhost:27017/")
-  test_lexicon_connector = LexiconConnector(ds_client, LANGUAGE, database_name=DATABASE_NAME)
+  ds_client = MongoClient()
+  test_lexicon_connector = LexiconConnector(ds_client, LANGUAGE)
 
   # run test
   yield test_lexicon_connector

@@ -24,9 +24,9 @@ def web_crawler_delay():
 #% tests
 def test_serialize_polish_lexeme_to_json_dictionary():
   lemma, pos, language = "jeszcze", "particle", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
+
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   lexeme_json_dict = lexeme.to_json_dictionary()
@@ -35,9 +35,9 @@ def test_serialize_polish_lexeme_to_json_dictionary():
 
 def test_serialize_polish_lexeme_with_json_encoder():
   lemma, pos, language = "choć", "conjunction", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
+
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   lexeme_json_dict = json.dumps(lexeme, cls=LexemeEncoder)
@@ -46,9 +46,9 @@ def test_serialize_polish_lexeme_with_json_encoder():
 
 def test_serialize_polish_lexeme_to_json_str():
   lemma, pos, language = "chociaż", "conjunction", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
+
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   lexeme_json_str = lexeme.to_json_str()
@@ -58,9 +58,9 @@ def test_serialize_polish_lexeme_to_json_str():
 
 def test_serialize_polish_noun():
   lemma, pos, language = "kot", "Noun", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
+
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   lexeme_json_dict = lexeme.to_json_dictionary()
@@ -71,9 +71,9 @@ def test_serialize_polish_noun():
 
 def test_serialize_polish_verb():
   lemma, pos, language = "mieć", "Verb", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
+
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   lexeme_json_dict = lexeme.to_json_dictionary()
@@ -84,9 +84,9 @@ def test_serialize_polish_verb():
 
 def test_serialize_polish_adjective():
   lemma, pos, language = "brzydszy", "Adjective", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
+
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   lexeme_json_dict = lexeme.to_json_dictionary()
@@ -98,9 +98,9 @@ def test_serialize_polish_adjective():
 
 def test_serialize_polish_adverb():
   lemma, pos, language = "najszybciej", "Adverb", "Polish"
-  termUrl = f"https://en.wiktionary.org/wiki/{lemma}"
-  page = requests.get(termUrl)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
+
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
   lexeme_json_dict = lexeme.to_json_dictionary()

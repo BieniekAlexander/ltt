@@ -1,16 +1,14 @@
 #%% imports
 import os, sys, json, pytest
+from pymongo import MongoClient
 
 
-from storage.datastore_client import DatastoreClient
 from storage.language_datastore import LanguageDatastore
 from language.lexeme import Lexeme, LexemeDecoder
 from storage.datastore_schemata.polish_schemata import lexeme_index
 
 # constants
-MONGODB_URL = "mongodb://localhost:27017/"
 LANGUAGE = "polish"
-DATABASE_NAME = LANGUAGE+"_test"
 
 
 #%% pytest fixtures
@@ -20,8 +18,8 @@ def language_datastore():
   """
   Establish a connection to the mongodb database
   """
-  ds_client = DatastoreClient("mongodb://localhost:27017/")
-  test_language_datastore = LanguageDatastore(ds_client, LANGUAGE, database_name=DATABASE_NAME)
+  ds_client = MongoClient()
+  test_language_datastore = LanguageDatastore(ds_client, LANGUAGE)
   test_language_datastore.lexicon_connector.collection.create_index(**lexeme_index)
 
   # run test

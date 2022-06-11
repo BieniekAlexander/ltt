@@ -23,9 +23,8 @@ def web_crawler_delay():
 
 #% tests
 def test_get_all_polish_prepositions():
-  summary_url = 'https://en.wiktionary.org/wiki/Category:Polish_prepositions'
-  page = requests.get(summary_url)
-  soup = BeautifulSoup(page.content, "html.parser")
+  page_content = open('tests/data/wiktionary/en/wiki_polish_prepositions.html', 'r').read()
+  soup = BeautifulSoup(page_content, "html.parser")
   lemmas = wiktionary_get_all_lang_pos_lemmas(soup)
   
   for lemma in ['dla', 'miast', 'niby', 'w celu']:

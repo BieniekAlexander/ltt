@@ -1,18 +1,15 @@
 #%% imports
-import os, sys, json, pytest, pymongo
+import pytest, pymongo
 from bson.objectid import ObjectId
+from pymongo import MongoClient
 
 
-from storage.datastore_client import DatastoreClient
-from storage.lexicon_connector import LexiconConnector
 from storage.vocabulary_connector import VocabularyConnector
 from training.sm2.stats import Stats
 
 
 # constants
-MONGODB_URL = "mongodb://localhost:27017/"
 LANGUAGE = "polish"
-DATABASE_NAME = LANGUAGE+"_test"
 
 
 #%% pytest fixtures
@@ -23,8 +20,8 @@ def vocabulary_connector():
   Establish a connection to the mongodb database
   """
   
-  ds_client = DatastoreClient(MONGODB_URL)
-  test_vocabulary_connector = VocabularyConnector(ds_client, LANGUAGE, database_name=DATABASE_NAME)
+  ds_client = MongoClient()
+  test_vocabulary_connector = VocabularyConnector(ds_client, LANGUAGE)
   test_vocabulary_connector.collection.create_index([("user_id", pymongo.ASCENDING), ("lexeme_id", pymongo.ASCENDING)], name="user vocabulary index", unique=True)
 
   # run test
@@ -100,7 +97,6 @@ def test_push_vocabulary_duplicate_entries_fail(vocabulary_connector):
     vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, stats=stats.to_json_dictionary())
 
 
-#% main
 def main():
   pass
 
