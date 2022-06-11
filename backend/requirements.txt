@@ -1,5 +1,4 @@
 beautifulsoup4==4.10.0
-bson==0.5.10
 coverage==6.2
 flask==2.0.2
 mongomock==4.0.0
