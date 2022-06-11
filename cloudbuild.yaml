@@ -5,8 +5,8 @@ timeout: 1800s
 
 steps:
 # https://stackoverflow.com/questions/56469381/run-pytest-in-google-build-cloudbuild-yaml-to-determine-if-build-passes-or-not
-- id: Run unit tests in pytest
-  name: 'docker.io/library/python:3.9.7'  
+- id: Run backend unit tests
+  name: 'docker.io/library/python:3.9.7'
   entrypoint: /bin/sh
   args:
   - -c
@@ -15,3 +15,12 @@ steps:
     export PYTHONPATH=$(pwd)/src
     pip install -r requirements.txt
     pytest
+
+- id: Run frontend unit tests
+  name: 'gcr.io/cloud-builders/npm'
+  entrypoint: /bin/sh
+  args:
+  - -c
+  - |
+    cd frontend
+    CI=1 npm test
