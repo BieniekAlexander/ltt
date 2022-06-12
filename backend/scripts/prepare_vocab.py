@@ -10,7 +10,7 @@ from pymongo import MongoClient
 from storage.language_datastore import LanguageDatastore
 from training.sm2.stats import Stats
 
-MONGODB_URL = "mongodb://localhost:27017/"
+MONGODB_URI = os.environ['MONGODB_URI']
 PATH_TO_CSV = f"{os.getcwd()}/data/polish/duolingo_vocab.csv"
 
 
@@ -21,7 +21,7 @@ polish_terms_df = pd.read_csv(PATH_TO_CSV)
 polish_terms = list(polish_terms_df['Polish'])
 USER_ID = "a"*24
 
-ds_client = MongoClient(MONGODB_URL)
+ds_client = MongoClient(MONGODB_URI)
 language_datastore = LanguageDatastore(ds_client, language)
 
 logger = logging.getLogger()

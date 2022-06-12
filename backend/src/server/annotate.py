@@ -3,16 +3,15 @@
 # from flask_cors import cross_origin, CORS
 # import os, sys
 
-# sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 # from storage.language_datastore import LanguageDatastore
 # from scraping.annotation_utils import annotate_text
 
 # # constants
-# MONGODB_URL = "mongodb://localhost:27017/"
+# MONGODB_URI = os.environ['MONGODB_URI']
 # LANGUAGE = "polish"
 
 # # objects
-# language_datastore = LanguageDatastore(MONGODB_URL, LANGUAGE)
+# language_datastore = LanguageDatastore(MONGODB_URI, LANGUAGE)
 
 # # interface
 # # bp = Blueprint('annotate', __name__, url_prefix="/annotate")

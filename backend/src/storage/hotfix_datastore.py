@@ -9,11 +9,11 @@ from training.sm2.stats import Stats
 
 
 
-MONGODB_URL = "mongodb://localhost:27017/"
+MONGODB_URI = os.environ['MONGODB_URI']
 language = "polish"
 
 
-datastore_client = MongoClient(MONGODB_URL)
+datastore_client = MongoClient(MONGODB_URI)
 language_datastore = LanguageDatastore(datastore_client, language)
 
 q = {"stats.interval": 0}

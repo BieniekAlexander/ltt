@@ -7,11 +7,11 @@ from pymongo import MongoClient
 from storage.lexicon_connector import LexiconConnector
 
 # constants
-MONGODB_URL = "mongodb://localhost:27017/"
+MONGODB_URI = os.environ['MONGODB_URI']
 LANGUAGE = "polish"
 
 # objects
-db_client = MongoClient(MONGODB_URL)
+db_client = MongoClient(MONGODB_URI)
 lexicon_connector = LexiconConnector(db_client, LANGUAGE)
 
 # interface

@@ -8,13 +8,13 @@ from scraping.html_parse_utils import get_page_main_content
 from storage.language_datastore import LanguageDatastore
 from language.lexeme import LexemeEncoder
 
-MONGODB_URL = "mongodb://localhost:27017/"
+MONGODB_URI = os.environ['MONGODB_URI']
 PATH_TO_ARTCLE_URL_FILE = 'run/data/polish/articles.txt'
 
 
 # %% setup
 # set up mongodb connection 
-polish_language_datastore = LanguageDatastore(MONGODB_URL, "polish")
+polish_language_datastore = LanguageDatastore(MONGODB_URI, "polish")
 
 
 language = "Polish"

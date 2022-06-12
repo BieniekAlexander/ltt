@@ -8,7 +8,7 @@ from training.sm2.recall import Recall
 
 ##### CONSTANTS #####
 # connectivity
-MONGODB_URL = "mongodb://localhost:27017/"
+MONGODB_URI = os.environ['MONGODB_URI']
 
 # display
 # TODO revisit sizes, I think this crashes when it's too small, this is quite hardcoded
@@ -47,7 +47,7 @@ def add_linebreaks(string: str, line_length: int) -> str:
 
 def main(stdscr: curses.window):
   # initialize training session
-  datastore_client = MongoClient(MONGODB_URL)
+  datastore_client = MongoClient(MONGODB_URI)
   training_session = TrainingSession('a'*24, 'polish', datastore_client, interval=1, count=10)
   training_session.load_study_terms()
 

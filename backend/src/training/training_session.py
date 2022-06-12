@@ -14,7 +14,7 @@ from training.sm2.utils import get_repetition_interval
 
 
 # constants
-MONGODB_URL = "mongodb://localhost:27017/"
+MONGODB_URI = os.environ['MONGODB_URI']
 
 
 class TrainingSession(object):
@@ -102,7 +102,7 @@ class TrainingSession(object):
 
 
 def main():
-  datastore_client = MongoClient(MONGODB_URL)
+  datastore_client = MongoClient(MONGODB_URI)
   training_session = TrainingSession('a'*24, 'polish', datastore_client)
   training_session.load_study_terms()
 

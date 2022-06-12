@@ -14,7 +14,7 @@ from scraping.wiktionary_spider import WiktionarySpider
 from scraping.scraping_errors import ScrapingError
 from storage.language_datastore import LanguageDatastore
 
-MONGODB_URL = "mongodb://localhost:27017/"
+MONGODB_URI = os.environ['MONGODB_URI']
 PATH_TO_CSV = f"{os.getcwd()}/data/polish/duolingo_vocab.csv"
 os.makedirs('logs/2k', exist_ok=True)
 
@@ -25,7 +25,7 @@ language = "polish"
 polish_terms_df = pd.read_csv(PATH_TO_CSV)
 polish_terms = list(polish_terms_df['Polish'])
 
-ds_client = MongoClient(MONGODB_URL)
+ds_client = MongoClient(MONGODB_URI)
 language_datastore = LanguageDatastore(ds_client, language)
 
 logger = logging.getLogger()
