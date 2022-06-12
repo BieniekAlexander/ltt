@@ -1,9 +1,6 @@
 # # https://pythonhosted.org/Flask-JWT/
-import os
-from flask import Blueprint, Flask, request, current_app
-from flask_jwt import JWT, jwt_required, current_identity
-from mongomock import ObjectId
-from pymongo import MongoClient
+from flask import Blueprint, request, current_app
+from flask_jwt import jwt_required, current_identity
 
 
 # JWT Functions
@@ -31,9 +28,3 @@ def register():
     return "username already exists", 500
   else:
     return current_app.auth_datastore.add_user(username, password)
-
-@bp.route('/vocab/size', methods=['GET'])
-@jwt_required()
-def vocab_size():
-  id = current_identity.id
-  return id

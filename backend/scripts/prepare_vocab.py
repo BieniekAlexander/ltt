@@ -19,7 +19,7 @@ PATH_TO_CSV = f"{os.getcwd()}/data/polish/duolingo_vocab.csv"
 language = "polish"
 polish_terms_df = pd.read_csv(PATH_TO_CSV)
 polish_terms = list(polish_terms_df['Polish'])
-USER_ID = "a"*24
+USER_ID = "62a57d5bfa96028f59ac1d75"
 
 ds_client = MongoClient(MONGODB_URI)
 language_datastore = LanguageDatastore(ds_client, language)
