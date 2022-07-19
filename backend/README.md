@@ -42,7 +42,7 @@ fi
 #!/bin/bash
 if [ ! -s ../.vscode/settings.json ] ; then
   mkdir -p ../.vscode
-  echo "{}" > ../.vscode
+  echo "{}" > ../.vscode/settings.json
 fi
 ```
 
