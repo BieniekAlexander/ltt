@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup, Tag, NavigableString
 import trafilatura as traf
 
 
-
 from utils.data_structure_utils import list_pop_adjacent_same_values, dict_key_list_assign, flatten_dict_keys, split_dict_vals
 
 

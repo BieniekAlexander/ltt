@@ -1,5 +1,5 @@
 #%% imports
-import requests, os, sys, logging
+import requests
 from bs4 import BeautifulSoup
 from urllib.parse import unquote
 
@@ -8,6 +8,10 @@ from scraping import get_wiktionary_term_url, get_soup_from_url
 
 
 #%% utils
+def get_soup(url: str) -> BeautifulSoup:
+    return BeautifulSoup(requests.get(url).text, 'lxml')
+
+
 def is_no_entries_page(soup):
   """
   Returns true if this page indicates that no entries were found
