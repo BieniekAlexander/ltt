@@ -3,16 +3,15 @@ This script collects information on the 2000 most common polish words,
 collected from this article: https://www.101languages.net/polish/most-common-polish-words/
 duolingo terms from here: https://www.duolingo.com/words
 '''
+import logging
 # %% imports
 import os
-import logging
+
 import pandas as pd
-from pymongo.errors import DuplicateKeyError
 from pymongo import MongoClient
-
-
-from scraping.wiktionary_spider import WiktionarySpider
+from pymongo.errors import DuplicateKeyError
 from scraping.scraping_errors import ScrapingError
+from scraping.wiktionary_spider import WiktionarySpider
 from storage.language_datastore import LanguageDatastore
 
 MONGODB_URI = os.environ['MONGODB_URI']

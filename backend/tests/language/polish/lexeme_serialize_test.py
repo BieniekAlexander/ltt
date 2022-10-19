@@ -1,11 +1,10 @@
 # %% imports
 import json
+import time
+
 import pytest
 import requests
-import time
 from bs4 import BeautifulSoup
-
-
 from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
 from utils.json_utils import JSONSerializableEncoder
 

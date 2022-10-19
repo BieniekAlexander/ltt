@@ -1,9 +1,7 @@
 # %% imports
 import requests
 from bs4 import BeautifulSoup
-
-
-from scraping import get_wiktionary_term_url, get_soup_from_url
+from scraping import get_soup_from_url, get_wiktionary_term_url
 
 
 # %% utils

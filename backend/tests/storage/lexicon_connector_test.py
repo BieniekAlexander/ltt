@@ -1,11 +1,10 @@
 # %% imports
 import json
+
 import pytest
-from mongomock import MongoClient
-
-
-from storage.lexicon_connector import LexiconConnector
 from language.lexeme import Lexeme, LexemeDecoder
+from mongomock import MongoClient
+from storage.lexicon_connector import LexiconConnector
 
 # constants
 LANGUAGE = "polish"

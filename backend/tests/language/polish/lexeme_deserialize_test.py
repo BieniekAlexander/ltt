@@ -1,14 +1,13 @@
 # %% imports
 import json
+
 import pytest
 import requests
 from bs4 import BeautifulSoup
-
-
-from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
 from language.lexeme import LexemeDecoder, LexemeEncoder
 from language.part_of_speech import PartOfSpeech
 from language.polish.pos.particle import Particle
+from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
 
 # %% pytest fixtures
 

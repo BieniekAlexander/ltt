@@ -1,13 +1,10 @@
 # %% imports
-import pytest
 import pymongo
+import pytest
 from bson.objectid import ObjectId
 from mongomock import MongoClient
-
-
 from storage.vocabulary_connector import VocabularyConnector
 from training.sm2.stats import Stats
-
 
 # constants
 LANGUAGE = "polish"

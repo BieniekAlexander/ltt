@@ -1,8 +1,6 @@
 from language.inflected_lexeme import InflectedLexeme
-from language.polish.feat.case import Case
-
-
 from language.lexeme import Lexeme
+from language.polish.feat.case import Case
 from utils.data_structure_utils import replace_dict_keys_recursive
 
 

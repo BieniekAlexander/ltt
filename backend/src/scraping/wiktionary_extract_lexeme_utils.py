@@ -1,18 +1,20 @@
 # %% imports
-import requests
-import re
-import logging
 import json
+import logging
+import re
+
+import requests
 from bs4 import BeautifulSoup, Tag
-
-
+from language import model_class_map
 from language.inflected_lexeme import InflectedLexeme
-from scraping.wiktionary_scrape_lexeme_utils import get_inflection_table, get_summary_paragraph, get_definition_ol, get_definition_strings
+from language.polish.feat.case import Case
 from scraping.html_parse_utils import parse_inflection_table
 from scraping.scraping_errors import ScrapingFindError, ScrapingValueError
+from scraping.wiktionary_scrape_lexeme_utils import (get_definition_ol,
+                                                     get_definition_strings,
+                                                     get_inflection_table,
+                                                     get_summary_paragraph)
 from utils.json_utils import JSONSerializableEncoder
-from language import model_class_map
-from language.polish.feat.case import Case
 
 
 # %% utils

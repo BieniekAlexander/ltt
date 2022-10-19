@@ -4,8 +4,6 @@
 import pytest
 import requests
 from bs4 import BeautifulSoup
-
-
 from scraping.wiktionary_spider import WiktionarySpider
 
 

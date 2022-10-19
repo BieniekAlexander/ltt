@@ -1,14 +1,18 @@
 # tests for utilities for scraping tables from html
 # % imports
 # pytest testing that exceptions are raised - https://stackoverflow.com/a/29855337
+import time
+
 import pytest
 import requests
-import time
 from bs4 import BeautifulSoup
-
-
-from scraping.wiktionary_scrape_lexeme_utils import find_language_header, get_inflection_table, get_lemma, get_summary_paragraph, seek_pos_header, get_term_parts_of_speech
 from scraping.scraping_errors import ScrapingFormatError
+from scraping.wiktionary_scrape_lexeme_utils import (find_language_header,
+                                                     get_inflection_table,
+                                                     get_lemma,
+                                                     get_summary_paragraph,
+                                                     get_term_parts_of_speech,
+                                                     seek_pos_header)
 
 # constants
 CRAWL_DELAY = 5

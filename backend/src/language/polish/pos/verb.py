@@ -3,8 +3,8 @@
 
 from language.inflected_lexeme import InflectedLexeme
 from language.model_errors import LexemeError
-from language.polish.feat.aspect import Aspect
 from language.polish.feat.abstraction import Abstraction
+from language.polish.feat.aspect import Aspect
 
 
 class Verb(InflectedLexeme):

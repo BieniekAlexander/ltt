@@ -1,11 +1,13 @@
 # %% imports
-import pymongo
 import argparse
 
-from storage.datastore_schemata.polish_schemata import \
-    lexeme_index, lexeme_schema, \
-    user_vocabulary_index, user_vocabulary_schema, \
-    inflections_index, inflections_schema
+import pymongo
+from storage.datastore_schemata.polish_schemata import (inflections_index,
+                                                        inflections_schema,
+                                                        lexeme_index,
+                                                        lexeme_schema,
+                                                        user_vocabulary_index,
+                                                        user_vocabulary_schema)
 
 
 def setup_mongodb(mongodb_uri: str, language: str):

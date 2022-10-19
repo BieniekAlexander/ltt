@@ -1,21 +1,20 @@
 # tests for utilities for scraping tables from html
 # % imports
 # pytest testing that exceptions are raised - https://stackoverflow.com/a/29855337
+import time
+
 import pytest
 import requests
-import time
 from bs4 import BeautifulSoup
-
-
-from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
-from language.polish.feat.gender import Gender
-from language.polish.feat.animacy import Animacy
-from language.polish.feat.virility import Virility
-from language.polish.feat.aspect import Aspect
-from language.polish.feat.abstraction import Abstraction
-from language.polish.feat.degree import Degree
 from language.part_of_speech import PartOfSpeech
+from language.polish.feat.abstraction import Abstraction
+from language.polish.feat.animacy import Animacy
+from language.polish.feat.aspect import Aspect
 from language.polish.feat.case import Case
+from language.polish.feat.degree import Degree
+from language.polish.feat.gender import Gender
+from language.polish.feat.virility import Virility
+from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
 
 # constants
 CRAWL_DELAY = 5

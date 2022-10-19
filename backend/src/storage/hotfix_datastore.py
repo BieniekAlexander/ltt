@@ -3,11 +3,9 @@ import json
 import os
 from copy import deepcopy
 
-
 from pymongo import MongoClient
 from storage.language_datastore import LanguageDatastore
 from training.sm2.stats import Stats
-
 
 MONGODB_URI = os.environ['MONGODB_URI']
 language = "polish"

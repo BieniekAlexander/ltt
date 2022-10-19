@@ -1,12 +1,17 @@
-from bs4 import BeautifulSoup
-import requests
 import logging
 
-
-from scraping.wiktionary_crawl_utils import is_entries_page, is_no_entries_page, is_search_results_page, get_search_result_links
+import requests
+from bs4 import BeautifulSoup
+from scraping import (get_soup_from_url, get_wiktionary_search_url,
+                      get_wiktionary_term_url)
+from scraping.wiktionary_crawl_utils import (get_search_result_links,
+                                             is_entries_page,
+                                             is_no_entries_page,
+                                             is_search_results_page)
 from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
-from scraping.wiktionary_scrape_lexeme_utils import get_lemma, get_term_parts_of_speech, get_page_term, find_language_header
-from scraping import get_wiktionary_term_url, get_soup_from_url, get_wiktionary_search_url
+from scraping.wiktionary_scrape_lexeme_utils import (find_language_header,
+                                                     get_lemma, get_page_term,
+                                                     get_term_parts_of_speech)
 
 
 class WiktionarySpider(object):

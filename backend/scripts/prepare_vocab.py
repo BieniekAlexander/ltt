@@ -1,12 +1,11 @@
 '''
 This script initializes a user's vocabulary with the set of terms from duolingo's wordbase
 '''
+import logging
 # %% imports
 import os
-import logging
+
 import pandas as pd
-
-
 from pymongo import MongoClient
 from storage.language_datastore import LanguageDatastore
 from training.sm2.stats import Stats

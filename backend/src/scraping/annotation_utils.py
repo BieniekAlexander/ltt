@@ -1,10 +1,9 @@
 # %% imports
-import re
 import logging
+import re
 
-
-from storage.language_datastore import LanguageDatastore
 from scraping.wiktionary_spider import WiktionarySpider
+from storage.language_datastore import LanguageDatastore
 
 
 # %% utils

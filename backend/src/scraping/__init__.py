@@ -1,8 +1,6 @@
 # %% imports
 import requests
 from bs4 import BeautifulSoup
-
-
 from utils.function_decorators import delay
 
 

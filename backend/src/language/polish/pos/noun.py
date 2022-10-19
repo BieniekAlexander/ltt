@@ -1,9 +1,9 @@
 
 
-from language.model_errors import LexemeError
 from language.inflected_lexeme import InflectedLexeme
-from language.polish.feat.gender import Gender
+from language.model_errors import LexemeError
 from language.polish.feat.animacy import Animacy
+from language.polish.feat.gender import Gender
 from language.polish.feat.personality import Personality
 from language.polish.feat.virility import Virility
 

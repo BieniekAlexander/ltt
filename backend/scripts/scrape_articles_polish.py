@@ -1,9 +1,9 @@
 # %% imports
-import os
-import requests
 import logging
-from bs4 import BeautifulSoup
+import os
 
+import requests
+from bs4 import BeautifulSoup
 from scraping.annotation_utils import annotate_text
 from scraping.html_parse_utils import get_page_main_content
 from storage.language_datastore import LanguageDatastore

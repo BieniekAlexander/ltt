@@ -1,12 +1,10 @@
 # %% imports
 import requests
 from bs4 import BeautifulSoup
-
-
-from utils.function_decorators import capitalize_string_args
-from scraping.scraping_errors import ScrapingFormatError, ScrapingFindError
-from scraping import get_wiktionary_term_url, get_soup_from_url
 from language.part_of_speech import PartOfSpeech
+from scraping import get_soup_from_url, get_wiktionary_term_url
+from scraping.scraping_errors import ScrapingFindError, ScrapingFormatError
+from utils.function_decorators import capitalize_string_args
 
 # constants
 PARTS_OF_SPEECH = [pos.value.capitalize() for pos in PartOfSpeech]

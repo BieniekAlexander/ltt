@@ -1,7 +1,6 @@
 # imports
 from bson.objectid import ObjectId
 from pymongo import MongoClient
-
 from storage.collection_connector import CollectionConnector
 from storage.datastore_utils import generate_query
 

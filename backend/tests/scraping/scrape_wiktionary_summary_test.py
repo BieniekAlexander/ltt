@@ -1,12 +1,12 @@
 # % imports
 # pytest testing that exceptions are raised - https://stackoverflow.com/a/29855337
+import time
+
 import pytest
 import requests
-import time
 from bs4 import BeautifulSoup
-
-
-from scraping.wiktionary_scrape_summary_utils import wiktionary_get_all_lang_pos_lemmas
+from scraping.wiktionary_scrape_summary_utils import \
+    wiktionary_get_all_lang_pos_lemmas
 
 # constants
 CRAWL_DELAY = 5

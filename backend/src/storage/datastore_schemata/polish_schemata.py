@@ -2,10 +2,7 @@
 # https://stackoverflow.com/questions/55025621/mongodb-add-schema-for-existing-collection
 # https://www.mongodb.com/docs/manual/reference/bson-types/
 import pymongo
-
-
 from language.part_of_speech import PartOfSpeech
-
 
 lexeme_index = {
     'keys': [("lemma", pymongo.ASCENDING), ("pos", pymongo.ASCENDING)],

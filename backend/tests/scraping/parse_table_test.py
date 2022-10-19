@@ -1,9 +1,8 @@
 # tests for utilities for scraping tables from html
 # % imports
 import json
+
 from bs4 import BeautifulSoup
-
-
 from scraping.html_parse_utils import parse_inflection_table
 
 

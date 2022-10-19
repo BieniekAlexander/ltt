@@ -1,14 +1,15 @@
 # tests for utilities for scraping tables from html
 # % imports
 # pytest testing that exceptions are raised - https://stackoverflow.com/a/29855337
+import time
+
 import pytest
 import requests
-import time
 from bs4 import BeautifulSoup
-
-
-from scraping.wiktionary_crawl_utils import get_search_result_links, is_no_entries_page
-from scraping import get_soup_from_url, get_wiktionary_term_url, get_wiktionary_search_url
+from scraping import (get_soup_from_url, get_wiktionary_search_url,
+                      get_wiktionary_term_url)
+from scraping.wiktionary_crawl_utils import (get_search_result_links,
+                                             is_no_entries_page)
 
 # constants
 CRAWL_DELAY = 5

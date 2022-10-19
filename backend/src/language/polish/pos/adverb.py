@@ -2,8 +2,8 @@
 
 
 from language.lexeme import Lexeme
-from language.polish.feat.degree import Degree
 from language.model_errors import LexemeError
+from language.polish.feat.degree import Degree
 
 # TODO handle comparative and superlative?
 
