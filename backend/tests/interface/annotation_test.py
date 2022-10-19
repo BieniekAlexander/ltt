@@ -1,13 +1,14 @@
 #%% imports
-import os, sys, json, pytest
+import json
+
+import pytest
+from language.lexeme import LexemeDecoder
 from mongomock import MongoClient
-
-
+from scraping.annotation_utils import annotate_text
+from storage.datastore_schemata.polish_schemata import (lexeme_index,
+                                                        user_vocabulary_index)
 from storage.language_datastore import LanguageDatastore
 from storage.vocabulary_connector import VocabularyConnector
-from language.lexeme import LexemeDecoder
-from scraping.annotation_utils import annotate_text
-from storage.datastore_schemata.polish_schemata import lexeme_index, user_vocabulary_index
 from training.sm2.stats import Stats
 
 # constants

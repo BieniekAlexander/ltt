@@ -31,7 +31,7 @@ def lexicon_connector():
 #%% tests
 def test_push_and_get_lexeme_entry(lexicon_connector):
   lexeme = Lexeme('ope', 'CONJUNCTION', [])
-  lexeme_dict = lexeme.to_json_dictionary()
+  lexeme_dict = lexeme.to_json()
   lexicon_connector.push_lexeme_entry(lexeme_dict)
   entry = lexicon_connector.get_lexeme_entry(lemma=lexeme.lemma, pos=lexeme.pos)
 
@@ -52,7 +52,7 @@ def test_push_and_get_lexeme_entries(lexicon_connector):
 # push and delete
 def test_push_and_delete_lexeme_entry(lexicon_connector):
   lexeme = Lexeme('ope', 'CONJUNCTION', [])
-  lexeme_dict = lexeme.to_json_dictionary()
+  lexeme_dict = lexeme.to_json()
   lexicon_connector.push_lexeme_entry(lexeme_dict)
   lexicon_connector.delete_lexeme_entry(lemma=lexeme.lemma, pos=lexeme.pos)
 

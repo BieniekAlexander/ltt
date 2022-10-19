@@ -1,9 +1,8 @@
 # imports
+import os
+
 from flask import Blueprint, request
-import os, sys
 from pymongo import MongoClient
-
-
 from storage.lexicon_connector import LexiconConnector
 
 # constants

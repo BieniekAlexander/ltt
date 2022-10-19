@@ -1,15 +1,11 @@
 # imports
-import sys, os
+import json
 from copy import deepcopy
-from xml.dom.minidom import Document
+
 from bson.objectid import ObjectId
-from pymongo import collection
-from language import lexeme
-from training.sm2.stats import Stats
-
-
 from storage.collection_connector import CollectionConnector
 from storage.datastore_utils import generate_query
+from training.sm2.stats import Stats, StatsDecoder
 
 # constants
 COLLECTION = "vocabulary"
@@ -19,6 +15,7 @@ class VocabularyConnector(CollectionConnector):
   """
   A [CollectionConnector] used specifically for recording terms known by a given user
   """
+
   def __init__(self, uri, language):
     """
     Constructor
@@ -26,7 +23,6 @@ class VocabularyConnector(CollectionConnector):
     language = language.lower()
     super(VocabularyConnector, self).__init__(uri, language, COLLECTION)
     self.language = language
-
 
   def get_deserialized_document(self, document: dict) -> dict:
     """
@@ -39,48 +35,18 @@ class VocabularyConnector(CollectionConnector):
         dict: the in-memory python dictionary
     """
     dictionary = deepcopy(document)
-    dictionary['stats'] = Stats(**document['stats'])
-
-    for key in ['_id', 'lexeme_id', 'user_id']:
-      dictionary[key] = str(document[key])
-
+    dictionary['stats'] = Stats(**dictionary['stats'])
     return dictionary
-    # TODO use this function everywhere
-    # I want everything in python memory to be in this form
 
-
-  def get_serialized_document(self, dictionary: dict) -> dict:
-    """
-    Serialize the datastore document into an in-memory python dictionary
-
-    Args:
-        document (dict): the document from the datastore
-
-    Returns:
-        dict: the in-memory python dictionary
-    """
-    document = deepcopy(dictionary)
-    document['stats'] = dictionary['stats'].to_json_str()
-
-    for key in ['_id', 'lexeme_id', 'user_id']:
-      document[key] = ObjectId(dictionary[key])
-
-    return document
-    # TODO use this function everywhere
-
-  
-  
   def push_vocabulary_entry(self, lexeme_id: str, stats: Stats, user_id: str) -> str:
     """
     Add a new vocabulary entry to the datastore, represented by a [lexeme_id], [stats], and [user_id]
     """
-    assert user_id
-    assert isinstance(stats, Stats)
+    assert type(stats) == Stats
 
-    entry = {'lexeme_id': ObjectId(lexeme_id), 'stats': stats.to_json_dictionary(), 'user_id': ObjectId(user_id)}
+    entry = {'lexeme_id': ObjectId(lexeme_id), 'stats': stats.to_json(), 'user_id': ObjectId(user_id)}
 
     return super(VocabularyConnector, self).push_document(entry)
-
 
   def push_vocabulary_entries(self, entries: list) -> list:
     """
@@ -92,14 +58,14 @@ class VocabularyConnector(CollectionConnector):
 
     for entry in entries:
       assert isinstance(entry, dict)
-      assert all(key in entry for key in ['lexeme_id', 'user_id', 'stats']), "Each vocabulary entry must contain a lexeme_id, user_id, and stats"
+      assert all(key in entry for key in [
+                 'lexeme_id', 'user_id', 'stats']), "Each vocabulary entry must contain a lexeme_id, user_id, and stats"
       assert isinstance(entry['stats'], Stats)
       entry['lexeme_id'] = ObjectId(entry['lexeme_id'])
       entry['user_id'] = ObjectId(entry['user_id'])
-      entry['stats'] = entry['stats'].to_json_dictionary()
+      entry['stats'] = entry['stats'].to_json()
 
     return super(VocabularyConnector, self).push_documents(entries)
-
 
   def get_vocabulary_entry(self, lexeme_id: str, user_id: str) -> dict:
     """
@@ -107,19 +73,19 @@ class VocabularyConnector(CollectionConnector):
     """
     assert lexeme_id and user_id
 
-    if lexeme_id: lexeme_id = ObjectId(lexeme_id)
+    if lexeme_id:
+      lexeme_id = ObjectId(lexeme_id)
     user_id = ObjectId(user_id)
     query = generate_query(lexeme_id=lexeme_id, user_id=user_id)
     document = super(VocabularyConnector, self).get_document(query)
     return self.get_deserialized_document(document)
 
-  
   def get_vocabulary_entries(self, lexeme_ids: list, user_ids: list) -> dict:
     """
     Get vocabulary entries and their _ids, given the [lexeme_ids] and [user_ids]
     """
     assert user_ids
-    
+
     if isinstance(lexeme_ids, list):
       lexeme_ids = list(map(ObjectId, lexeme_ids))
     elif lexeme_ids:
@@ -134,16 +100,15 @@ class VocabularyConnector(CollectionConnector):
     results = super(VocabularyConnector, self).get_documents(query)
     return list(map(lambda x: self.get_deserialized_document(x), results))
 
-
   def delete_vocabulary_entry(self, lexeme_id: str, user_id: str) -> dict:
     """
     Delete vocabulary data entry and its _id, given the [lexeme_id], [form], and [pos]
     """
-    if lexeme_id: lexeme_id = ObjectId(lexeme_id)
+    if lexeme_id:
+      lexeme_id = ObjectId(lexeme_id)
     query = generate_query(lexeme_id=lexeme_id, user_id=user_id)
     return super(VocabularyConnector, self).delete_document(query)
-  
-  
+
   def delete_vocabulary_entries(self, lexeme_ids: list, user_ids: list) -> dict:
     """
     Delete vocabulary data entries and their _ids, given the [lexeme_ids] and [user_ids]
@@ -162,7 +127,6 @@ class VocabularyConnector(CollectionConnector):
     query = generate_query(lexeme_id=lexeme_ids, user_id=user_ids)
     return super(VocabularyConnector, self).delete_documents(query)
 
-
   def update_vocabulary_entry(self, lexeme_id: str, stats: Stats, user_id: str) -> str:
     """
     Udpate an existing vocabulary entry to the datastore, represented by a [lexeme_id], [stats], and [user_id]
@@ -170,10 +134,17 @@ class VocabularyConnector(CollectionConnector):
     assert user_id
     assert isinstance(stats, Stats)
 
-    entry = {'lexeme_id': ObjectId(lexeme_id), 'stats': stats.to_json_dictionary(), 'user_id': ObjectId(user_id)}
-    query = generate_query(lexeme_id=entry['lexeme_id'], user_id=entry['user_id'])
-    return super(VocabularyConnector, self).update_document(query, entry)
+    # ignore saving the recall from the training session to the datastore - it will be reinstantiated during the next session
+    try:
+      stats.__dict__.pop('recall')
+    except:
+      pass
 
+    entry = {'lexeme_id': ObjectId(
+        lexeme_id), 'stats': stats.to_json(), 'user_id': ObjectId(user_id)}
+    query = generate_query(
+        lexeme_id=entry['lexeme_id'], user_id=entry['user_id'])
+    return super(VocabularyConnector, self).update_document(query, entry)
 
   def update_vocabulary_entries(self, entries: list) -> list:
     """
@@ -185,18 +156,20 @@ class VocabularyConnector(CollectionConnector):
 
     for entry in entries:
       assert isinstance(entry, dict)
-      assert all(key in entry for key in ['lexeme_id', 'user_id', 'stats']), "Each vocabulary entry must contain a lexeme_id, user_id, and stats"
+      assert all(key in entry for key in [
+                 'lexeme_id', 'user_id', 'stats']), "Each vocabulary entry must contain a lexeme_id, user_id, and stats"
       assert isinstance(entry['stats'], Stats)
 
       entry['lexeme_id'] = ObjectId(entry['lexeme_id'])
       entry['user_id'] = ObjectId(entry['user_id'])
-      query = generate_query(lexeme_id=entry['lexeme_id'], user_id=entry['user_id'])
+      query = generate_query(
+          lexeme_id=entry['lexeme_id'], user_id=entry['user_id'])
       super(VocabularyConnector, self).update_document(query, entry)
- 
 
-#%% main
+
+# %% main
 def main():
-  pass  
+  pass
 
 
 if __name__ == "__main__":

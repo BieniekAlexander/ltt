@@ -2,11 +2,15 @@ beautifulsoup4==4.10.0
 coverage==6.2
 flask==2.1.2
 Flask-Cors==3.0.10
-Flask-JWT==0.3.2
-flask-session
+Flask-DotEnv==0.1.2
+Flask-JWT-Extended==4.4.4
+flask-restx==0.5.1
+flask-session==0.4.0
 mongomock==4.0.0
 pandas==1.4.2
 pymongo==4.0.1
 pytest==6.2.5
+python-dotenv==0.21.0
 requests==2.26.0
 trafilatura==1.0.0
+Werkzeug==2.1.2

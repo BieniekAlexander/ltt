@@ -7,7 +7,7 @@ from language.inflected_lexeme import InflectedLexeme
 from scraping.wiktionary_scrape_lexeme_utils import get_inflection_table, get_summary_paragraph, get_definition_ol, get_definition_strings
 from scraping.html_parse_utils import parse_inflection_table
 from scraping.scraping_errors import ScrapingFindError, ScrapingValueError
-from language.lexeme import LexemeEncoder
+from utils.json_utils import JSONSerializableEncoder
 from language import model_class_map
 from language.polish.feat.case import Case
 
@@ -367,7 +367,7 @@ def main():
   page = requests.get(termUrl)
   soup = BeautifulSoup(page.content, "html.parser")
   ret = extract_lexeme(soup, lemma, pos, language)
-  json_str = json.dumps(ret, cls=LexemeEncoder)
+  json_str = json.dumps(ret, cls=JSONSerializableEncoder)
   print(json_str)
 
 

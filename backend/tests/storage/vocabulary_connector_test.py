@@ -94,7 +94,7 @@ def test_push_vocabulary_duplicate_entries_fail(vocabulary_connector):
   vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, stats=stats, user_id=user_id_1)
   
   with pytest.raises(Exception):
-    vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, stats=stats.to_json_dictionary())
+    vocabulary_connector.push_vocabulary_entry(lexeme_id=lexeme_id, stats=stats.to_json())
 
 
 def main():

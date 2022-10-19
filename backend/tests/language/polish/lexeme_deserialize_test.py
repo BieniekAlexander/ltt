@@ -74,7 +74,7 @@ def test_encoding_invertible_polish_noun():
   soup = BeautifulSoup(page_content, "html.parser")
   lexeme = extract_lexeme(soup, lemma, pos, language)
 
-  json_str = json.dumps(lexeme, cls=LexemeEncoder)
+  json_str = json.dumps(lexeme, cls=JSONSerializableEncoder)
   decoded_lexeme = json.loads(json_str, cls=LexemeDecoder)
   assert lexeme == decoded_lexeme
 

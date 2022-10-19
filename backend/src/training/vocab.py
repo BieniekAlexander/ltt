@@ -1,7 +1,9 @@
-from training.sm2.stats import Stats
+import json
+
+from training.sm2.stats import Stats, StatsDecoder
 
 
-class Vocab(object):
+class Vocabulary(object):
   """
   An object that represents a vocab term being studied
   """
@@ -10,3 +12,14 @@ class Vocab(object):
     self.vocab_id = vocab_id
     self.lexeme = lexeme
     self.stats = stats
+
+
+class VocabularyDecoder(json.JSONDecoder):
+  """ 
+  Decodes a JSON object into a [Term]
+  """
+  def decode(self, input_str):
+    json_dict = json.loads(input_str)
+    json_dict['stats'] = json.loads(str(json_dict['stats']), cls=StatsDecoder)
+
+    return Vocabulary(**json_dict)

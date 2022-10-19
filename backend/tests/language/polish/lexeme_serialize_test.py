@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 
 from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
-from language.lexeme import LexemeEncoder
+from utils.json_utils import JSONSerializableEncoder
 
 # constants
 CRAWL_DELAY = 5
@@ -22,14 +22,14 @@ def web_crawler_delay():
 
 
 #% tests
-def test_serialize_polish_lexeme_to_json_dictionary():
+def test_serialize_polish_lexeme_to_json():
   lemma, pos, language = "jeszcze", "particle", "Polish"
   page_content = open(f'tests/data/wiktionary/en/wiki_{lemma}.html', 'r').read()
   soup = BeautifulSoup(page_content, "html.parser")
 
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
-  lexeme_json_dict = lexeme.to_json_dictionary()
+  lexeme_json_dict = lexeme.to_json()
   assert lexeme_json_dict
 
 
@@ -40,7 +40,7 @@ def test_serialize_polish_lexeme_with_json_encoder():
 
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
-  lexeme_json_dict = json.dumps(lexeme, cls=LexemeEncoder)
+  lexeme_json_dict = json.dumps(lexeme, cls=JSONSerializableEncoder)
   assert isinstance(lexeme_json_dict, str)
 
 
@@ -63,7 +63,7 @@ def test_serialize_polish_noun():
 
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
-  lexeme_json_dict = lexeme.to_json_dictionary()
+  lexeme_json_dict = lexeme.to_json()
   assert lexeme_json_dict['pos'] == "NOUN"
   assert lexeme_json_dict['lemma'] == "kot"
   assert lexeme_json_dict['inflections']['P']['A'] == "koty"
@@ -76,7 +76,7 @@ def test_serialize_polish_verb():
 
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
-  lexeme_json_dict = lexeme.to_json_dictionary()
+  lexeme_json_dict = lexeme.to_json()
   assert lexeme_json_dict['pos'] == "VERB"
   assert lexeme_json_dict['lemma'] == "mieć"
   assert lexeme_json_dict['inflections']['S']['M']['Pres']['1'] == "mam"
@@ -89,7 +89,7 @@ def test_serialize_polish_adjective():
 
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
-  lexeme_json_dict = lexeme.to_json_dictionary()
+  lexeme_json_dict = lexeme.to_json()
   assert lexeme_json_dict['pos'] == "ADJECTIVE"
   assert lexeme_json_dict['lemma'] == "brzydszy"
   assert lexeme_json_dict['degree'] == "COMPARATIVE"
@@ -103,7 +103,7 @@ def test_serialize_polish_adverb():
 
   lexeme = extract_lexeme(soup, lemma, pos, language)
   
-  lexeme_json_dict = lexeme.to_json_dictionary()
+  lexeme_json_dict = lexeme.to_json()
   assert lexeme_json_dict['pos'] == "ADVERB"
   assert lexeme_json_dict['lemma'] == "najszybciej"
   assert lexeme_json_dict['degree'] == "SUPERLATIVE"

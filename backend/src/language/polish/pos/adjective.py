@@ -1,10 +1,7 @@
 # https://en.wiktionary.org/wiki/Category:Polish_adjectives
-import sys, os
-
-
 from language.inflected_lexeme import InflectedLexeme
-from language.polish.feat.degree import Degree
 from language.model_errors import LexemeError
+from language.polish.feat.degree import Degree
 
 
 class Adjective(InflectedLexeme):

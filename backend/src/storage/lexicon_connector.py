@@ -1,15 +1,14 @@
 # imports
-import sys, os
-from bson.objectid import ObjectId
-from pymongo import MongoClient
+import os
+import sys
 
-from storage.collection_connector import CollectionConnector
-from storage.datastore_utils import cast_enum_to_str, generate_query
-from language.lexeme import LexemeEncoder, Lexeme
+from bson.objectid import ObjectId
+from language.lexeme import Lexeme
 from language.part_of_speech import PartOfSpeech
 from language.polish.pos.preposition import Preposition
-from language import lexeme
-from language import model_class_map
+from pymongo import MongoClient
+from storage.collection_connector import CollectionConnector
+from storage.datastore_utils import cast_enum_to_str, generate_query
 
 # constants
 COLLECTION = "lexicon"
@@ -71,7 +70,7 @@ class LexiconConnector(CollectionConnector):
     assert isinstance(lexeme, dict) or isinstance(lexeme, Lexeme)
 
     if isinstance(lexeme, Lexeme):
-      return lexeme.to_json_dictionary()
+      return lexeme.to_json()
     else:
       return lexeme
 

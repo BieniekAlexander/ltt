@@ -151,7 +151,7 @@ class WiktionarySpider(object):
 def main():
   # spider = WiktionarySpider()
   # result = spider.query_lexeme('zimna', 'noun', 'polish')
-  # print(result.to_json_dictionary())
+  # print(result.to_json())
 
   spider = WiktionarySpider()
   results = spider.query_lexemes('piekło', 'polish')

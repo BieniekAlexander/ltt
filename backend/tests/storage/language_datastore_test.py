@@ -1,11 +1,10 @@
 #%% imports
-import os, sys, json, pytest
+import json
+
+import pytest
+from language.lexeme_decoder import LexemeDecoder
 from mongomock import MongoClient
-
-
 from storage.language_datastore import LanguageDatastore
-from language.lexeme import Lexeme, LexemeDecoder
-from storage.datastore_schemata.polish_schemata import lexeme_index
 
 # constants
 LANGUAGE = "polish"

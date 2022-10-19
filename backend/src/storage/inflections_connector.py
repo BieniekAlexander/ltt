@@ -5,10 +5,6 @@ from pymongo import MongoClient
 
 from storage.collection_connector import CollectionConnector
 from storage.datastore_utils import generate_query
-from language.lexeme import LexemeEncoder, Lexeme
-from language.part_of_speech import PartOfSpeech
-from language.polish.pos.preposition import Preposition
-from language import model_class_map
 
 # constants
 COLLECTION = "inflections"

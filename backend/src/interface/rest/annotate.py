@@ -1,10 +1,8 @@
 # imports
-from flask import Blueprint, current_app, request, jsonify
-from flask_jwt import jwt_required, current_identity
-import os, sys
-
-from storage.language_datastore import LanguageDatastore
+from flask import Blueprint, current_app, jsonify, request
+from flask_jwt_extended import jwt_required
 from scraping.annotation_utils import annotate_text
+from storage.language_datastore import LanguageDatastore
 from storage.vocabulary_connector import VocabularyConnector
 
 # constants

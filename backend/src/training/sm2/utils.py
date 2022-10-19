@@ -5,7 +5,6 @@ source: https://www.supermemo.com/en/archives1990-2015/english/ol/sm2
 """
 from math import ceil
 
-
 from training.sm2.recall import Recall
 
 

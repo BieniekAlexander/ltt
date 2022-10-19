@@ -1,5 +1,6 @@
 # A script that I'll use to update data in my datastore when I change my schema
 import json
+import os
 from copy import deepcopy
 
 
@@ -28,7 +29,7 @@ for term in backup_terms:
 json.dump(backup_terms, open("hotfix_backup.json", "w"))
 
 for term in terms:
-  term['stats'] = Stats().to_json_dictionary()
+  term['stats'] = Stats().to_json()
 
 language_datastore.vocabulary_connector.collection.delete_many(q)
 language_datastore.vocabulary_connector.collection.insert_many(terms)

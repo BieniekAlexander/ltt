@@ -1,10 +1,14 @@
-import json, sys, os
+import json
+import os
+import sys
 from enum import Enum, auto
 
-
-from language.part_of_speech import PartOfSpeech
 from language.lexeme import Lexeme
-from utils.data_structure_utils import replace_dict_keys_recursive, flatten_dict_keys, split_dict_vals, get_nested_iterable_values
+from language.part_of_speech import PartOfSpeech
+from utils.data_structure_utils import (flatten_dict_keys,
+                                        get_nested_iterable_values,
+                                        replace_dict_keys_recursive,
+                                        split_dict_vals)
 
 
 class InflectedLexeme(Lexeme):

@@ -38,7 +38,7 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, user_id: str
         if discovery_mode:
           spider = WiktionarySpider()
           lexeme = spider.query_lexemes(term, language)[0]
-          annotation['lexeme'] = lexeme.to_json_dictionary()
+          annotation['lexeme'] = lexeme.to_json()
           annotation['lexeme_id'] = str(language_datastore.add_lexeme(lexeme)) # TOOD this requires a lexeme, fails on JSON?
         else:
           logging.warning(f"Failed to annotate the {i}th term - {term} (discovery disabled)")
@@ -50,7 +50,7 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, user_id: str
           
           if entry:
             annotation['vocabulary_id'] = entry['_id']
-            annotation['stats'] = entry['stats'].to_json_dictionary()
+            annotation['stats'] = entry['stats'].to_json()
           else: # set to null to indicate that we tried to tie to vocabulary and found nothing
             annotation['vocabulary_id'] = None
             annotation['stats'] = None
