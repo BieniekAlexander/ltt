@@ -1,6 +1,8 @@
-#% imports
+# % imports
 # pytest testing that exceptions are raised - https://stackoverflow.com/a/29855337
-import os, sys, json, pytest, requests, time
+import pytest
+import requests
+import time
 from bs4 import BeautifulSoup
 
 
@@ -10,31 +12,32 @@ from scraping.wiktionary_scrape_summary_utils import wiktionary_get_all_lang_pos
 CRAWL_DELAY = 5
 
 
-#%% pytest fixtures
+# %% pytest fixtures
 # https://stackoverflow.com/questions/22627659/run-code-before-and-after-each-test-in-py-test, https://docs.pytest.org/en/6.2.x/fixture.html
 @pytest.fixture(autouse=True)
 def web_crawler_delay():
-  # setup
-  time.sleep(CRAWL_DELAY)
-  
-  # run test
-  yield
+    # setup
+    time.sleep(CRAWL_DELAY)
+
+    # run test
+    yield
 
 
-#% tests
+# % tests
 def test_get_all_polish_prepositions():
-  page_content = open('tests/data/wiktionary/en/wiki_polish_prepositions.html', 'r').read()
-  soup = BeautifulSoup(page_content, "html.parser")
-  lemmas = wiktionary_get_all_lang_pos_lemmas(soup)
-  
-  for lemma in ['dla', 'miast', 'niby', 'w celu']:
-    assert lemma in lemmas
+    page_content = open(
+        'tests/data/wiktionary/en/wiki_polish_prepositions.html', 'r').read()
+    soup = BeautifulSoup(page_content, "html.parser")
+    lemmas = wiktionary_get_all_lang_pos_lemmas(soup)
+
+    for lemma in ['dla', 'miast', 'niby', 'w celu']:
+        assert lemma in lemmas
 
 
-#% main
+# % main
 def main():
-  test_get_all_polish_prepositions()
+    test_get_all_polish_prepositions()
 
 
 if __name__ == "__main__":
-  main()
+    main()

@@ -1,10 +1,6 @@
 # %% imports
-import sys
 import os
 import requests
-import time
-import json
-import re
 import logging
 from bs4 import BeautifulSoup
 

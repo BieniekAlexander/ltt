@@ -14,7 +14,7 @@ db_client = MongoClient(MONGODB_URI)
 lexicon_connector = LexiconConnector(db_client, LANGUAGE)
 
 # interface
-bp = Blueprint('lexicon', __name__,url_prefix="/lexicon")
+bp = Blueprint('lexicon', __name__, url_prefix="/lexicon")
 
 
 @bp.route("", methods=['GET'])

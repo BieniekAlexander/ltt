@@ -1,5 +1,4 @@
 # imports
-import json
 from copy import deepcopy
 
 from bson.objectid import ObjectId
@@ -12,165 +11,166 @@ COLLECTION = "vocabulary"
 
 
 class VocabularyConnector(CollectionConnector):
-  """
-  A [CollectionConnector] used specifically for recording terms known by a given user
-  """
-
-  def __init__(self, uri, language):
     """
-    Constructor
+    A [CollectionConnector] used specifically for recording terms known by a given user
     """
-    language = language.lower()
-    super(VocabularyConnector, self).__init__(uri, language, COLLECTION)
-    self.language = language
 
-  def get_deserialized_document(self, document: dict) -> dict:
-    """
-    Deserialize the datastore document into an in-memory python dictionary
+    def __init__(self, uri, language):
+        """
+        Constructor
+        """
+        language = language.lower()
+        super(VocabularyConnector, self).__init__(uri, language, COLLECTION)
+        self.language = language
 
-    Args:
-        document (dict): the document from the datastore
+    def get_deserialized_document(self, document: dict) -> dict:
+        """
+        Deserialize the datastore document into an in-memory python dictionary
 
-    Returns:
-        dict: the in-memory python dictionary
-    """
-    dictionary = deepcopy(document)
-    dictionary['stats'] = Stats(**dictionary['stats'])
-    return dictionary
+        Args:
+            document (dict): the document from the datastore
 
-  def push_vocabulary_entry(self, lexeme_id: str, stats: Stats, user_id: str) -> str:
-    """
-    Add a new vocabulary entry to the datastore, represented by a [lexeme_id], [stats], and [user_id]
-    """
-    assert type(stats) == Stats
+        Returns:
+            dict: the in-memory python dictionary
+        """
+        dictionary = deepcopy(document)
+        dictionary['stats'] = Stats(**dictionary['stats'])
+        return dictionary
 
-    entry = {'lexeme_id': ObjectId(lexeme_id), 'stats': stats.to_json(), 'user_id': ObjectId(user_id)}
+    def push_vocabulary_entry(self, lexeme_id: str, stats: Stats, user_id: str) -> str:
+        """
+        Add a new vocabulary entry to the datastore, represented by a [lexeme_id], [stats], and [user_id]
+        """
+        assert type(stats) == Stats
 
-    return super(VocabularyConnector, self).push_document(entry)
+        entry = {'lexeme_id': ObjectId(
+            lexeme_id), 'stats': stats.to_json(), 'user_id': ObjectId(user_id)}
 
-  def push_vocabulary_entries(self, entries: list) -> list:
-    """
-    Add list of vocabulary entries to the datastore, each represented by a dictionary
+        return super(VocabularyConnector, self).push_document(entry)
 
-    dictionaries must contain 'lexeme_id', 'user_id', and 'stats'
-    """
-    assert isinstance(entries, list)
+    def push_vocabulary_entries(self, entries: list) -> list:
+        """
+        Add list of vocabulary entries to the datastore, each represented by a dictionary
 
-    for entry in entries:
-      assert isinstance(entry, dict)
-      assert all(key in entry for key in [
-                 'lexeme_id', 'user_id', 'stats']), "Each vocabulary entry must contain a lexeme_id, user_id, and stats"
-      assert isinstance(entry['stats'], Stats)
-      entry['lexeme_id'] = ObjectId(entry['lexeme_id'])
-      entry['user_id'] = ObjectId(entry['user_id'])
-      entry['stats'] = entry['stats'].to_json()
+        dictionaries must contain 'lexeme_id', 'user_id', and 'stats'
+        """
+        assert isinstance(entries, list)
 
-    return super(VocabularyConnector, self).push_documents(entries)
+        for entry in entries:
+            assert isinstance(entry, dict)
+            assert all(key in entry for key in [
+                       'lexeme_id', 'user_id', 'stats']), "Each vocabulary entry must contain a lexeme_id, user_id, and stats"
+            assert isinstance(entry['stats'], Stats)
+            entry['lexeme_id'] = ObjectId(entry['lexeme_id'])
+            entry['user_id'] = ObjectId(entry['user_id'])
+            entry['stats'] = entry['stats'].to_json()
 
-  def get_vocabulary_entry(self, lexeme_id: str, user_id: str) -> dict:
-    """
-    Get a vocabulary entry and its _id, given the [lexeme_id] and [user_id]
-    """
-    assert lexeme_id and user_id
+        return super(VocabularyConnector, self).push_documents(entries)
 
-    if lexeme_id:
-      lexeme_id = ObjectId(lexeme_id)
-    user_id = ObjectId(user_id)
-    query = generate_query(lexeme_id=lexeme_id, user_id=user_id)
-    document = super(VocabularyConnector, self).get_document(query)
-    return self.get_deserialized_document(document)
+    def get_vocabulary_entry(self, lexeme_id: str, user_id: str) -> dict:
+        """
+        Get a vocabulary entry and its _id, given the [lexeme_id] and [user_id]
+        """
+        assert lexeme_id and user_id
 
-  def get_vocabulary_entries(self, lexeme_ids: list, user_ids: list) -> dict:
-    """
-    Get vocabulary entries and their _ids, given the [lexeme_ids] and [user_ids]
-    """
-    assert user_ids
+        if lexeme_id:
+            lexeme_id = ObjectId(lexeme_id)
+        user_id = ObjectId(user_id)
+        query = generate_query(lexeme_id=lexeme_id, user_id=user_id)
+        document = super(VocabularyConnector, self).get_document(query)
+        return self.get_deserialized_document(document)
 
-    if isinstance(lexeme_ids, list):
-      lexeme_ids = list(map(ObjectId, lexeme_ids))
-    elif lexeme_ids:
-      lexeme_ids = ObjectId(lexeme_ids)
+    def get_vocabulary_entries(self, lexeme_ids: list, user_ids: list) -> dict:
+        """
+        Get vocabulary entries and their _ids, given the [lexeme_ids] and [user_ids]
+        """
+        assert user_ids
 
-    if isinstance(user_ids, list):
-      user_ids = list(map(ObjectId, user_ids))
-    elif user_ids:
-      user_ids = ObjectId(user_ids)
+        if isinstance(lexeme_ids, list):
+            lexeme_ids = list(map(ObjectId, lexeme_ids))
+        elif lexeme_ids:
+            lexeme_ids = ObjectId(lexeme_ids)
 
-    query = generate_query(lexeme_id=lexeme_ids, user_id=user_ids)
-    results = super(VocabularyConnector, self).get_documents(query)
-    return list(map(lambda x: self.get_deserialized_document(x), results))
+        if isinstance(user_ids, list):
+            user_ids = list(map(ObjectId, user_ids))
+        elif user_ids:
+            user_ids = ObjectId(user_ids)
 
-  def delete_vocabulary_entry(self, lexeme_id: str, user_id: str) -> dict:
-    """
-    Delete vocabulary data entry and its _id, given the [lexeme_id], [form], and [pos]
-    """
-    if lexeme_id:
-      lexeme_id = ObjectId(lexeme_id)
-    query = generate_query(lexeme_id=lexeme_id, user_id=user_id)
-    return super(VocabularyConnector, self).delete_document(query)
+        query = generate_query(lexeme_id=lexeme_ids, user_id=user_ids)
+        results = super(VocabularyConnector, self).get_documents(query)
+        return list(map(lambda x: self.get_deserialized_document(x), results))
 
-  def delete_vocabulary_entries(self, lexeme_ids: list, user_ids: list) -> dict:
-    """
-    Delete vocabulary data entries and their _ids, given the [lexeme_ids] and [user_ids]
-    """
-    # TODO would it ever make sense to query for multiple user IDs?
-    if isinstance(lexeme_ids, list):
-      lexeme_ids = list(map(ObjectId, lexeme_ids))
-    elif lexeme_ids:
-      lexeme_ids = ObjectId(lexeme_ids)
+    def delete_vocabulary_entry(self, lexeme_id: str, user_id: str) -> dict:
+        """
+        Delete vocabulary data entry and its _id, given the [lexeme_id], [form], and [pos]
+        """
+        if lexeme_id:
+            lexeme_id = ObjectId(lexeme_id)
+        query = generate_query(lexeme_id=lexeme_id, user_id=user_id)
+        return super(VocabularyConnector, self).delete_document(query)
 
-    if isinstance(user_ids, list):
-      ser_ids = list(map(ObjectId, user_ids))
-    elif user_ids:
-      ser_ids = ObjectId(user_ids)
+    def delete_vocabulary_entries(self, lexeme_ids: list, user_ids: list) -> dict:
+        """
+        Delete vocabulary data entries and their _ids, given the [lexeme_ids] and [user_ids]
+        """
+        # TODO would it ever make sense to query for multiple user IDs?
+        if isinstance(lexeme_ids, list):
+            lexeme_ids = list(map(ObjectId, lexeme_ids))
+        elif lexeme_ids:
+            lexeme_ids = ObjectId(lexeme_ids)
 
-    query = generate_query(lexeme_id=lexeme_ids, user_id=user_ids)
-    return super(VocabularyConnector, self).delete_documents(query)
+        if isinstance(user_ids, list):
+            ser_ids = list(map(ObjectId, user_ids))
+        elif user_ids:
+            ser_ids = ObjectId(user_ids)
 
-  def update_vocabulary_entry(self, lexeme_id: str, stats: Stats, user_id: str) -> str:
-    """
-    Udpate an existing vocabulary entry to the datastore, represented by a [lexeme_id], [stats], and [user_id]
-    """
-    assert user_id
-    assert isinstance(stats, Stats)
+        query = generate_query(lexeme_id=lexeme_ids, user_id=user_ids)
+        return super(VocabularyConnector, self).delete_documents(query)
 
-    # ignore saving the recall from the training session to the datastore - it will be reinstantiated during the next session
-    try:
-      stats.__dict__.pop('recall')
-    except:
-      pass
+    def update_vocabulary_entry(self, lexeme_id: str, stats: Stats, user_id: str) -> str:
+        """
+        Udpate an existing vocabulary entry to the datastore, represented by a [lexeme_id], [stats], and [user_id]
+        """
+        assert user_id
+        assert isinstance(stats, Stats)
 
-    entry = {'lexeme_id': ObjectId(
-        lexeme_id), 'stats': stats.to_json(), 'user_id': ObjectId(user_id)}
-    query = generate_query(
-        lexeme_id=entry['lexeme_id'], user_id=entry['user_id'])
-    return super(VocabularyConnector, self).update_document(query, entry)
+        # ignore saving the recall from the training session to the datastore - it will be reinstantiated during the next session
+        try:
+            stats.__dict__.pop('recall')
+        except:
+            pass
 
-  def update_vocabulary_entries(self, entries: list) -> list:
-    """
-    Add list of vocabulary entries to the datastore, each represented by a dictionary
+        entry = {'lexeme_id': ObjectId(
+            lexeme_id), 'stats': stats.to_json(), 'user_id': ObjectId(user_id)}
+        query = generate_query(
+            lexeme_id=entry['lexeme_id'], user_id=entry['user_id'])
+        return super(VocabularyConnector, self).update_document(query, entry)
 
-    dictionaries must contain 'lexeme_id', 'user_id', and 'stats'
-    """
-    assert isinstance(entries, list)
+    def update_vocabulary_entries(self, entries: list) -> list:
+        """
+        Add list of vocabulary entries to the datastore, each represented by a dictionary
 
-    for entry in entries:
-      assert isinstance(entry, dict)
-      assert all(key in entry for key in [
-                 'lexeme_id', 'user_id', 'stats']), "Each vocabulary entry must contain a lexeme_id, user_id, and stats"
-      assert isinstance(entry['stats'], Stats)
+        dictionaries must contain 'lexeme_id', 'user_id', and 'stats'
+        """
+        assert isinstance(entries, list)
 
-      entry['lexeme_id'] = ObjectId(entry['lexeme_id'])
-      entry['user_id'] = ObjectId(entry['user_id'])
-      query = generate_query(
-          lexeme_id=entry['lexeme_id'], user_id=entry['user_id'])
-      super(VocabularyConnector, self).update_document(query, entry)
+        for entry in entries:
+            assert isinstance(entry, dict)
+            assert all(key in entry for key in [
+                       'lexeme_id', 'user_id', 'stats']), "Each vocabulary entry must contain a lexeme_id, user_id, and stats"
+            assert isinstance(entry['stats'], Stats)
+
+            entry['lexeme_id'] = ObjectId(entry['lexeme_id'])
+            entry['user_id'] = ObjectId(entry['user_id'])
+            query = generate_query(
+                lexeme_id=entry['lexeme_id'], user_id=entry['user_id'])
+            super(VocabularyConnector, self).update_document(query, entry)
 
 
 # %% main
 def main():
-  pass
+    pass
 
 
 if __name__ == "__main__":
-  main()
+    main()

@@ -1,4 +1,3 @@
-
 """
 Utils for object serialization and deserialization with python. For portability, any object that gets persisted to a NoSQL database
 should implement JSONSerializable to make this portability easier.
@@ -16,44 +15,47 @@ from enum import Enum
 
 
 def jsonify(obj):
-	"""
-	Helper method, recursively turn objects or items into a JSON-serializable format
-	"""
-	if isinstance(obj, JSONSerializable):
-		return obj.to_json()
-	elif isinstance(obj, str) and isinstance(obj, Enum):
-		return str(obj.value)
-	elif isinstance(obj, list):
-		return list(map(lambda x: jsonify(x), obj))
-	elif isinstance(obj, dict):
-		return {k: jsonify(v) for k, v in obj.items()}
-	else:
-		return obj
+    """
+    Helper method, recursively turn objects or items into a JSON-serializable format
+    """
+    if isinstance(obj, JSONSerializable):
+        return obj.to_json()
+    elif isinstance(obj, str) and isinstance(obj, Enum):
+        return str(obj.value)
+    elif isinstance(obj, list):
+        return list(map(lambda x: jsonify(x), obj))
+    elif isinstance(obj, dict):
+        return {k: jsonify(v) for k, v in obj.items()}
+    else:
+        return obj
+
 
 class JSONSerializable(metaclass=abc.ABCMeta):
-	@classmethod
-	def __subclasshook__(cls, subclass):
-		return (hasattr(subclass, 'to_json') and
-						callable(subclass.to_json) or
-						NotImplemented)
+    @classmethod
+    def __subclasshook__(cls, subclass):
+        return (hasattr(subclass, 'to_json') and
+                callable(subclass.to_json) or
+                NotImplemented)
 
-	def to_json(self) -> dict:
-		"""
-		Convert the [Lexeme] into a JSON dictionary 
-		"""
-		return jsonify(self.__dict__)
+    def to_json(self) -> dict:
+        """
+        Convert the [Lexeme] into a JSON dictionary 
+        """
+        return jsonify(self.__dict__)
 
-	# @abc.abstractmethod
-	# def to_json(self) -> dict:
-	# 	"""
-	# 	Convert the JSONSeralizable object into a JSON dictionary
-	# 	"""
-	# 	raise NotImplementedError
+    # @abc.abstractmethod
+    # def to_json(self) -> dict:
+    # 	"""
+    # 	Convert the JSONSeralizable object into a JSON dictionary
+    # 	"""
+    # 	raise NotImplementedError
+
 
 class JSONSerializableEncoder(json.JSONEncoder):
     """
     Encodes an object, which implements [JSONSerializable], into a JSON object
     """
+
     def default(self, obj):
         if isinstance(obj, JSONSerializable):
             return obj.to_json()
@@ -63,21 +65,21 @@ class JSONSerializableEncoder(json.JSONEncoder):
 
 if __name__ == "__main__":
 
-	class A():
-		pass
+    class A():
+        pass
 
-	class B(JSONSerializable):
-		pass
+    class B(JSONSerializable):
+        pass
 
-	class C(JSONSerializable):
-		def to_json() -> dict:
-			return {'key': 'value'}
+    class C(JSONSerializable):
+        def to_json() -> dict:
+            return {'key': 'value'}
 
-	for cls in [A,B,C]:
-		print(f"{cls} is a subclass of {JSONSerializable}?: {issubclass(cls, JSONSerializable)}")
-		
-		try:
-			cls()
-		except Exception as e:
-			print(f"\t{e}")
+    for cls in [A, B, C]:
+        print(
+            f"{cls} is a subclass of {JSONSerializable}?: {issubclass(cls, JSONSerializable)}")
 
+        try:
+            cls()
+        except Exception as e:
+            print(f"\t{e}")

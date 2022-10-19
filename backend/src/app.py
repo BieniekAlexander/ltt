@@ -18,7 +18,7 @@ LANGUAGE = "polish"
 USER_ID = "a"*24
 
 
-# Flask Setup 
+# Flask Setup
 api = Api(title="Language Training Toolkit API")
 app = Flask(__name__)
 api.init_app(app)

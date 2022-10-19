@@ -27,7 +27,7 @@ entry_fields_get = ns.model('vocabulary_get', {
     'user_id': fields.String(description='The ID of the user for whom we want to pull a vocabulary term'),
     'lexeme_id': fields.String(description='The ID of the term to manage'),
     'language': fields.String(description='The language in which the term exists'),
-    
+
 })
 
 entry_fields_put = ns.model('vocabulary_put', {
@@ -40,9 +40,9 @@ entry_fields_put = ns.model('vocabulary_put', {
 
 @ns.route('')
 class Entries(Resource):
-  """
-  Get, put, post, and delete vocabulary entries
-  """
+    """
+    Get, put, post, and delete vocabulary entries
+    """
 #   @ns.expect(get_parser, validate=False)
 #   def get(self) -> list:
 #     """
@@ -50,61 +50,66 @@ class Entries(Resource):
 #     TODO not implemented
 #     """
 #     return []
-  @ns.doc(body=entry_fields_get)
-  def get(self) -> dict:
-    """
-    Get a vocabulary entry, given its unique identifiers
-    """
-    request_data = request.get_json()
-    language = request_data['language']
-    user_id = request_data['user_id']
-    lexeme_id = request_data['lexeme_id']
+    @ns.doc(body=entry_fields_get)
+    def get(self) -> dict:
+        """
+        Get a vocabulary entry, given its unique identifiers
+        """
+        request_data = request.get_json()
+        language = request_data['language']
+        user_id = request_data['user_id']
+        lexeme_id = request_data['lexeme_id']
 
-    language_datastore = LanguageDatastore(current_app.ds_client, language)
-    return language_datastore.get_vocabulary_entry(lexeme_id, user_id)
+        language_datastore = LanguageDatastore(current_app.ds_client, language)
+        return language_datastore.get_vocabulary_entry(lexeme_id, user_id)
 
-  @ns.doc(body=entry_fields_put)
-  def post(self):
-    """
-    Post a new vocabulary entry for a given user, term, and language
-    """
-    request_data = request.get_json()
-    language = request_data['language']
-    user_id = request_data['user_id']
-    lexeme_id = request_data['lexeme_id']
+    @ns.doc(body=entry_fields_put)
+    def post(self):
+        """
+        Post a new vocabulary entry for a given user, term, and language
+        """
+        request_data = request.get_json()
+        language = request_data['language']
+        user_id = request_data['user_id']
+        lexeme_id = request_data['lexeme_id']
 
-    try:
-      language_datastore = LanguageDatastore(current_app.ds_client, language)
-      vocab_entry = language_datastore.get_vocabulary_entry(lexeme_id, user_id)
-      print(vocab_entry)
-      return
-      lexeme_id = request_data['lexeme_id']
-      user_id = request_data['user_id']
-      stats = Stats(request_data['stats'])
-      vocabulary_id = language_datastore.add_vocabulary_entry(lexeme_id, stats, user_id)  # TODO check if the stats get loaded properly
-      response = jsonify({'vocabulary_id': str(vocabulary_id)})
-      return response
-    except AssertionError as e:
-      return "bad request"
+        try:
+            language_datastore = LanguageDatastore(
+                current_app.ds_client, language)
+            vocab_entry = language_datastore.get_vocabulary_entry(
+                lexeme_id, user_id)
+            print(vocab_entry)
+            return
+            lexeme_id = request_data['lexeme_id']
+            user_id = request_data['user_id']
+            stats = Stats(request_data['stats'])
+            vocabulary_id = language_datastore.add_vocabulary_entry(
+                lexeme_id, stats, user_id)  # TODO check if the stats get loaded properly
+            response = jsonify({'vocabulary_id': str(vocabulary_id)})
+            return response
+        except AssertionError as e:
+            return "bad request"
 
-  @ns.doc(body=entry_fields_put)
-  def put(self, user_id, lexeme_id, language, stats):
-    """
-    Update the given term with new stats
-    """
-    request_data = request.get_json()
-    language = request_data['language']
-    user_id = request_data['user_id']
-    lexeme_id = request_data['lexeme_id']
-    stats = request_data['stats']
+    @ns.doc(body=entry_fields_put)
+    def put(self, user_id, lexeme_id, language, stats):
+        """
+        Update the given term with new stats
+        """
+        request_data = request.get_json()
+        language = request_data['language']
+        user_id = request_data['user_id']
+        lexeme_id = request_data['lexeme_id']
+        stats = request_data['stats']
 
-    try:
-      language_datastore = LanguageDatastore(current_app.ds_client, language)
-      lexeme_id = request_data['lexeme_id']
-      user_id = request_data['user_id']
-      stats = Stats(request_data['stats'])
-      vocabulary_id = language_datastore.add_vocabulary_entry(lexeme_id, stats, user_id)  # TODO check if the stats get loaded properly
-      response = jsonify({'vocabulary_id': str(vocabulary_id)})
-      return response
-    except AssertionError as e:
-      return "bad request"
+        try:
+            language_datastore = LanguageDatastore(
+                current_app.ds_client, language)
+            lexeme_id = request_data['lexeme_id']
+            user_id = request_data['user_id']
+            stats = Stats(request_data['stats'])
+            vocabulary_id = language_datastore.add_vocabulary_entry(
+                lexeme_id, stats, user_id)  # TODO check if the stats get loaded properly
+            response = jsonify({'vocabulary_id': str(vocabulary_id)})
+            return response
+        except AssertionError as e:
+            return "bad request"

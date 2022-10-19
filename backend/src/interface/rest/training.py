@@ -25,37 +25,39 @@ training_fields_put = ns.model('terms_put', {
     'user_id': fields.String(description="The user for whom we are updating terms"),
     'language': fields.String(description="The language being studied"),
     'entries': fields.List(
-        fields.Nested(entry_fields_put, description="The study terms to update"),
-                      description="boop")
+        fields.Nested(entry_fields_put,
+                      description="The study terms to update"),
+        description="boop")
 })
+
 
 @ns.route('')
 class StudySet(Resource):
-  """
-  Manage training sessions
-  """
-  @ns.doc(body=training_fields_get)
-  @ns.marshal_list_with(entry_fields_put)
-  def get(self):
     """
-    Get a set of vocabulary terms as a training session
+    Manage training sessions
     """
-    request_data = request.get_json()
-    user_id = request_data['user_id']
-    language = request_data['language']
-    count = request_data['count']
+    @ns.doc(body=training_fields_get)
+    @ns.marshal_list_with(entry_fields_put)
+    def get(self):
+        """
+        Get a set of vocabulary terms as a training session
+        """
+        request_data = request.get_json()
+        user_id = request_data['user_id']
+        language = request_data['language']
+        count = request_data['count']
 
-    get_study_entries(user_id, language, count=count)
+        get_study_entries(user_id, language, count=count)
 
-  @ns.doc(body=training_fields_put)
-  def put(self):
-    """
-    Update a set of vocabulary study term stats
-    TODO this endpoint redundantly requiers language and user_id
-    """
-    request_data = request.get_json()
-    user_id = request_data['user_id']
-    language = request_data['language']
-    entries = request_data['entries']
+    @ns.doc(body=training_fields_put)
+    def put(self):
+        """
+        Update a set of vocabulary study term stats
+        TODO this endpoint redundantly requiers language and user_id
+        """
+        request_data = request.get_json()
+        user_id = request_data['user_id']
+        language = request_data['language']
+        entries = request_data['entries']
 
-    put_studied_entries(user_id, language, current_app.ds_client, entries)
+        put_studied_entries(user_id, language, current_app.ds_client, entries)

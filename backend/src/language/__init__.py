@@ -12,28 +12,28 @@ from language.polish.pos.pronoun import Pronoun as PlPronoun
 from language.polish.pos.verb import Verb as PlVerb
 
 model_class_map = {
-  "POLISH": {
-    "ADJECTIVE": PlAdjective,
-    "ADVERB": PlAdverb,
-    "CONJUNCTION": PlConjunction,
-    "NUMERAL": PlNumeral,
-    "PARTICLE": PlParticle,
-    "INTERJECTION": PlInterjection,
-    "NOUN": PlNoun,
-    "PREPOSITION": PlPreposition,
-    "PRONOUN": PlPronoun,
-    "VERB": PlVerb
-  },
-  "TEST": {
-    "ADJECTIVE": PlAdjective,
-    "ADVERB": PlAdverb,
-    "CONJUNCTION": PlConjunction,
-    "NUMERAL": PlNumeral,
-    "PARTICLE": PlParticle,
-    "INTERJECTION": PlInterjection,
-    "NOUN": PlNoun,
-    "PREPOSITION": PlPreposition,
-    "PRONOUN": PlPronoun,
-    "VERB": PlVerb
-  }
+    "POLISH": {
+        "ADJECTIVE": PlAdjective,
+        "ADVERB": PlAdverb,
+        "CONJUNCTION": PlConjunction,
+        "NUMERAL": PlNumeral,
+        "PARTICLE": PlParticle,
+        "INTERJECTION": PlInterjection,
+        "NOUN": PlNoun,
+        "PREPOSITION": PlPreposition,
+        "PRONOUN": PlPronoun,
+        "VERB": PlVerb
+    },
+    "TEST": {
+        "ADJECTIVE": PlAdjective,
+        "ADVERB": PlAdverb,
+        "CONJUNCTION": PlConjunction,
+        "NUMERAL": PlNumeral,
+        "PARTICLE": PlParticle,
+        "INTERJECTION": PlInterjection,
+        "NOUN": PlNoun,
+        "PREPOSITION": PlPreposition,
+        "PRONOUN": PlPronoun,
+        "VERB": PlVerb
+    }
 }

@@ -7,66 +7,66 @@ from utils.json_utils import JSONSerializable
 
 
 class Stats(JSONSerializable):
-  def __init__(self, repetition: int = 0, interval: int = 1, ef: float = 2.5, recall: Recall = None):
-    """
-    A struct that represents when a user will next review a term
+    def __init__(self, repetition: int = 0, interval: int = 1, ef: float = 2.5, recall: Recall = None):
+        """
+        A struct that represents when a user will next review a term
 
-    based on the Supermemory 2 Algorithm
+        based on the Supermemory 2 Algorithm
 
-    Args:
-        ef (float): easiness factor
-        repetition (int): the number of times this term has been studied
-    """
-    assert repetition >= 0
+        Args:
+            ef (float): easiness factor
+            repetition (int): the number of times this term has been studied
+        """
+        assert repetition >= 0
 
-    self.repetition = repetition
-    self.interval = interval
-    self.ef = ef
-    self.recall = recall
+        self.repetition = repetition
+        self.interval = interval
+        self.ef = ef
+        self.recall = recall
 
-  def update(self, recall: Recall) -> None:
-    """
-    Recalculate the memory stats of a term
+    def update(self, recall: Recall) -> None:
+        """
+        Recalculate the memory stats of a term
 
-    Args:
-        recall (Recall): the recall quality of the term
-    """
-    self.ef = get_easiness_factor(self.ef, recall)
-    self.recall = recall
+        Args:
+            recall (Recall): the recall quality of the term
+        """
+        self.ef = get_easiness_factor(self.ef, recall)
+        self.recall = recall
 
-  def session_init(self) -> None:
-    """
-    Initialize the stats of a study term at the start of a study session
-    """
-    self.ef = 2.5
-    self.recall = None
+    def session_init(self) -> None:
+        """
+        Initialize the stats of a study term at the start of a study session
+        """
+        self.ef = 2.5
+        self.recall = None
 
-  def session_update(self) -> None:
-    """
-    Update the stats of the object after it's been studied
-    """
-    if self.recall:
-      self.repetition = get_repetition(self.repetition, self.recall)
-      self.interval = get_repetition_interval(self.repetition, self.ef)
+    def session_update(self) -> None:
+        """
+        Update the stats of the object after it's been studied
+        """
+        if self.recall:
+            self.repetition = get_repetition(self.repetition, self.recall)
+            self.interval = get_repetition_interval(self.repetition, self.ef)
 
-  def __str__(self) -> str:
-    """
-    Represent the [Stats] as JSON string 
-    """
-    return str(self.to_json())
+    def __str__(self) -> str:
+        """
+        Represent the [Stats] as JSON string 
+        """
+        return str(self.to_json())
 
 
 class StatsDecoder(json.JSONDecoder):
-  """ 
-  Decodes a JSON object into a [Stats]
-  """
+    """ 
+    Decodes a JSON object into a [Stats]
+    """
 
-  def decode(self, input_str):
-    json_dict = json.loads(input_str)
+    def decode(self, input_str):
+        json_dict = json.loads(input_str)
 
-    try:
-      json_dict.pop('stats')
-    except:
-      pass
+        try:
+            json_dict.pop('stats')
+        except:
+            pass
 
-    return Stats(**json_dict)
+        return Stats(**json_dict)
