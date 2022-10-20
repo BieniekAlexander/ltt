@@ -1,13 +1,11 @@
 # %% imports
 import json
 
-import pytest
-import requests
 from bs4 import BeautifulSoup
-from language.lexeme import LexemeDecoder, LexemeEncoder
+from language.lexeme_decoder import LexemeDecoder
 from language.part_of_speech import PartOfSpeech
-from language.polish.pos.particle import Particle
 from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
+from utils.json_utils import JSONSerializableEncoder
 
 # %% pytest fixtures
 

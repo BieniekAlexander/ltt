@@ -2,7 +2,8 @@
 import json
 
 import pytest
-from language.lexeme import Lexeme, LexemeDecoder
+from language.lexeme import Lexeme
+from language.lexeme_decoder import LexemeDecoder
 from mongomock import MongoClient
 from storage.lexicon_connector import LexiconConnector
 

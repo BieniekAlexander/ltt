@@ -31,24 +31,17 @@ def jsonify(obj):
 
 
 class JSONSerializable(metaclass=abc.ABCMeta):
-    @classmethod
-    def __subclasshook__(cls, subclass):
-        return (hasattr(subclass, 'to_json') and
-                callable(subclass.to_json) or
-                NotImplemented)
-
     def to_json(self) -> dict:
         """
         Convert the [Lexeme] into a JSON dictionary 
         """
         return jsonify(self.__dict__)
 
-    # @abc.abstractmethod
-    # def to_json(self) -> dict:
-    # 	"""
-    # 	Convert the JSONSeralizable object into a JSON dictionary
-    # 	"""
-    # 	raise NotImplementedError
+    def to_json_str(self):
+        """
+        Convert the [Lexeme] into a JSON string
+        """
+        return json.dumps(self.to_json(), sort_keys=True, indent=4)
 
 
 class JSONSerializableEncoder(json.JSONEncoder):

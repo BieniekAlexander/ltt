@@ -2,7 +2,7 @@
 import json
 
 import pytest
-from language.lexeme import LexemeDecoder
+from language.lexeme_decoder import LexemeDecoder
 from mongomock import MongoClient
 from scraping.annotation_utils import annotate_text
 from storage.datastore_schemata.polish_schemata import (lexeme_index,

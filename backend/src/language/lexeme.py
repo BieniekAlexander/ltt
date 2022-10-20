@@ -8,6 +8,7 @@ from .part_of_speech import PartOfSpeech
 
 
 class Lexeme(JSONSerializable):
+# class Lexeme(object):
     """
     A representation of a basic word of a language from which ideas are derived.
 
@@ -33,12 +34,6 @@ pos (PartOfSpeech): The part of speech of the word.
         self.lemma = lemma
         self.pos = pos
         self.definitions = definitions
-
-    def to_json_str(self):
-        """
-        Convert the [Lexeme] into a JSON string
-        """
-        return json.dumps(self.to_json(), sort_keys=True, indent=4)
 
     def __eq__(self, other) -> bool:
         """

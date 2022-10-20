@@ -1,5 +1,4 @@
 # https://en.wiktionary.org/wiki/Category:Polish_particles
-from language.inflected_lexeme import InflectedLexeme
 from language.lexeme import Lexeme
 
 

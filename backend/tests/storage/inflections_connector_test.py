@@ -4,7 +4,8 @@ import json
 import pymongo
 import pytest
 from bson.objectid import ObjectId
-from language.lexeme import LexemeDecoder
+from language.lexeme import Lexeme
+from language.lexeme_decoder import LexemeDecoder
 from mongomock import MongoClient
 from storage.inflections_connector import InflectionsConnector
 from storage.lexicon_connector import LexiconConnector

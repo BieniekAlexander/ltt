@@ -23,9 +23,11 @@ def extract_lexeme(soup, lemma, pos, language):
     Extract the information from the [soup] webpage for the given [lemma], [pos], and [language] and returns it in a model object
     """
     model_class = model_class_map[language.upper()][pos.upper()]
+    print(pos)
     kwargs = {}
 
     if issubclass(model_class, InflectedLexeme):
+        print(model_class)
         inflection_table = get_inflection_table(soup, pos, language)
         inflection_dict = parse_inflection_table(inflection_table)
 
