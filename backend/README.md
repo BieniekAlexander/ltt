@@ -28,18 +28,12 @@ fi
 ### Adding project packages to the PYTHONPATH
 ```
 #!/bin/bash
-if [ ! -s .env ] ; then
+if [ ! -s .env ] || [ -z "$(grep -E "^PYTHONPATH=" .env)" ] ; then
   PYTHONPATH="$(pwd)/src"
-  echo "PYTHONPATH=$PYTHONPATH" > .env
+  echo "PYTHONPATH=$PYTHONPATH" >> .env
+else
+  sed -i -E "s|^PYTHONPATH=.*|PYTHONPATH=$PYTHONPATH|" .env
 fi
-```
-
-### For CLI development
-```
-#!/bin/bash
-set -a
-. .env
-set +a
 ```
 
 ### For VSCode
@@ -48,7 +42,7 @@ set +a
 #!/bin/bash
 if [ ! -s ../.vscode/settings.json ] ; then
   mkdir -p ../.vscode
-  echo "{}" > ../.vscode
+  echo "{}" > ../.vscode/settings.json
 fi
 ```
 
@@ -61,6 +55,31 @@ fi
 "python.envFile": "${workspaceFolder}/backend/.env"
 ...
 ```
+
+## MongoDB Connectivity Setup
+```
+#!/bin/bash
+# set your MongoDB URI
+# for MongoDB Atlas database - https://www.mongodb.com/docs/atlas/tutorial/connect-to-your-cluster/#connect-to-your-atlas-cluster
+MONGODB_URI=mongodb://localhost:27017/
+
+if [ ! -s .env ] || [ -z "$(grep -E "^MONGODB_URI=" .env)" ] ; then
+  echo "MONGODB_URI=$MONGODB_URI" >> .env
+else
+  sed -i -E "s|^MONGODB_URI=.*|MONGODB_URI=$MONGODB_URI|" .env
+fi
+```
+
+### MongoDB Atlas Database
+
+## Export Environment Variables
+```
+#!/bin/bash
+set -a
+. .env
+set +a
+```
+
 
 
 # Running

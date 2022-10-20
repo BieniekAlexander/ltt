@@ -1,6 +1,5 @@
 class ModelError(Exception):
     """Base class for exceptions related to creating data objects in the language models"""
-    pass
 
 
 class LexemeError(ModelError):
@@ -13,6 +12,7 @@ class LexemeError(ModelError):
         arguments (dict): A dictionary containing the relevant information supplied for the construction of the [Lexeme].
         .
     """
+
     def __init__(self, lemma, pos, arguments, description):
         self.lemma = lemma
         self.pos = pos

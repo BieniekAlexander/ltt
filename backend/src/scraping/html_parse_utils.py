@@ -1,14 +1,13 @@
-#%% imports
-import sys, os
-from bs4 import BeautifulSoup, Tag, NavigableString
+# %% imports
 import trafilatura as traf
+from bs4 import BeautifulSoup, NavigableString, Tag
+from utils.data_structure_utils import (dict_key_list_assign,
+                                        flatten_dict_keys,
+                                        list_pop_adjacent_same_values,
+                                        split_dict_vals)
 
 
-
-from utils.data_structure_utils import list_pop_adjacent_same_values, dict_key_list_assign, flatten_dict_keys, split_dict_vals
-
-
-#%% utils
+# %% utils
 def bs_clone(el):
     """
     Function that safely clones BeautifulSoup elements.
@@ -60,12 +59,12 @@ def spread_table_spans(table):
     # spread the colspan items
     dc_table = bs_clone(table)
     rows = dc_table.find_all('tr')
-    
+
     for i in range(len(rows)):
         row = rows[i]
         children = row.find_all(['td', 'th'])
         j = 0
-        
+
         while (j < len(children)):
             child = children[j]
 
@@ -76,7 +75,7 @@ def spread_table_spans(table):
                 for _ in range(colspan-1):
                     child_clone = bs_clone(child)
                     insert_table_element(dc_table, i, j, child_clone)
-                    j+=1
+                    j += 1
 
                 children = row.find_all()
 
@@ -84,11 +83,11 @@ def spread_table_spans(table):
 
     # spread the rowspan items
     rows = dc_table.find_all('tr')
-    
+
     for i in range(len(rows)):
         row = rows[i]
         children = row.find_all(['td', 'th'])
-        
+
         for j in range(len(children)):
             child = children[j]
 
@@ -131,8 +130,10 @@ def get_table_col_headers(table):
             break
 
     for row in rows[:n_header_rows]:
-        col_header_row = [header.text.strip() for header in row.find_all('th')[col_padding:]]
-        col_header_row = list(map(lambda x: x.replace(u'\xa0', u' '), col_header_row))
+        col_header_row = [header.text.strip()
+                          for header in row.find_all('th')[col_padding:]]
+        col_header_row = list(
+            map(lambda x: x.replace(u'\xa0', u' '), col_header_row))
         col_header_rows.append(col_header_row)
 
     return col_header_rows
@@ -157,11 +158,12 @@ def get_table_row_headers(table):
 
     for row in rows[n_header_rows:]:
         headers = row.find_all('th')
-        
+
         for (i, header) in enumerate(headers):
             text = header.text.strip()
-            text = text.replace(u'\xa0', u' ') # replace '&nbsp;' (no break space) 
-        
+            # replace '&nbsp;' (no break space)
+            text = text.replace(u'\xa0', u' ')
+
             if len(row_header_cols) <= i:
                 row_header_cols.append([])
 
@@ -176,10 +178,10 @@ def get_table_data(table):
     """
     data_rows = []
     rows = table.find_all('tr')
-    
+
     for row in rows:
         data = row.find_all('td')
-        
+
         if data:
             data_rows.append([datum.text.strip() for datum in data])
 
@@ -227,7 +229,7 @@ def get_page_main_content(html_string):
     return traf.extract(html_string)
 
 
-#%% main
+# %% main
 def main():
     html = open('tests/scraping/data/czerwony_inflections.html').read()
     soup = BeautifulSoup(html, "html.parser")

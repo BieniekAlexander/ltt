@@ -1,21 +1,20 @@
 # imports
+import os
+
 from flask import Blueprint, request
-import os, sys
 from pymongo import MongoClient
-
-
 from storage.lexicon_connector import LexiconConnector
 
 # constants
-MONGODB_URL = "mongodb://localhost:27017/"
+MONGODB_URI = os.environ['MONGODB_URI']
 LANGUAGE = "polish"
 
 # objects
-db_client = MongoClient(MONGODB_URL)
+db_client = MongoClient(MONGODB_URI)
 lexicon_connector = LexiconConnector(db_client, LANGUAGE)
 
 # interface
-bp = Blueprint('lexicon', __name__,url_prefix="/lexicon")
+bp = Blueprint('lexicon', __name__, url_prefix="/lexicon")
 
 
 @bp.route("", methods=['GET'])

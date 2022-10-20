@@ -1,5 +1,6 @@
-from enum import Enum, auto
+from enum import Enum
+
 
 class Aspect(str, Enum):
-  PERFECT: str = "PERFECT"
-  IMPERFECT: str = "IMPERFECT"
+    PERFECT: str = "PERFECT"
+    IMPERFECT: str = "IMPERFECT"

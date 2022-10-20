@@ -1,164 +1,169 @@
-from re import search
+import logging
+
+import requests
 from bs4 import BeautifulSoup
-import requests, os, sys, logging
-
-
-from scraping.wiktionary_crawl_utils import is_entries_page, is_no_entries_page, is_search_results_page, get_search_result_links
+from scraping import (get_soup_from_url, get_wiktionary_search_url,
+                      get_wiktionary_term_url)
+from scraping.wiktionary_crawl_utils import (get_search_result_links,
+                                             is_entries_page,
+                                             is_no_entries_page,
+                                             is_search_results_page)
 from scraping.wiktionary_extract_lexeme_utils import extract_lexeme
-from scraping.wiktionary_scrape_lexeme_utils import get_lemma, get_term_parts_of_speech, get_page_term, find_language_header
-from scraping import get_wiktionary_term_url, get_soup_from_url, get_wiktionary_search_url
+from scraping.wiktionary_scrape_lexeme_utils import (find_language_header,
+                                                     get_lemma, get_page_term,
+                                                     get_term_parts_of_speech)
 
 
 class WiktionarySpider(object):
-  """Object for managing the acquiring of data from wiktionary."""
-  def __init__(self):
-    """Constructor"""
-    self.steps = []
+    """Object for managing the acquiring of data from wiktionary."""
 
+    def __init__(self):
+        """Constructor"""
+        self.steps = []
 
-  def step(self, url: str) -> BeautifulSoup:
-    """Go to the next webpage and add the webpage to the call stack
+    def step(self, url: str) -> BeautifulSoup:
+        """Go to the next webpage and add the webpage to the call stack
 
-    Args:
-        url (str): the next url that the spider is visiting
+        Args:
+            url (str): the next url that the spider is visiting
 
-    Returns:
-        BeautifulSoup: a beautifulsoup object to parse
-    """
-    assert isinstance(url, str)
+        Returns:
+            BeautifulSoup: a beautifulsoup object to parse
+        """
+        assert isinstance(url, str)
 
-    self.steps.append(url)
-    return get_soup_from_url(url)
+        self.steps.append(url)
+        return get_soup_from_url(url)
 
+    # TODO the two query functions have duplicate code, I wonder if I can merge them nicely
 
-  # TODO the two query functions have duplicate code, I wonder if I can merge them nicely
-  def query_lexeme(self, term: str, pos: str, language: str, max_step_count: int = 5):
-    """Runs a DFS to get the lexeme described by the arguments
+    def query_lexeme(self, term: str, pos: str, language: str, max_step_count: int = 5):
+        """Runs a DFS to get the lexeme described by the arguments
 
-    Args:
-        term (str): [description]
-        pos (str): the part of speech we want
-        language (str): [description]
-        depth (int): The maximum number of steps to take when looking for the lexeme
+        Args:
+            term (str): [description]
+            pos (str): the part of speech we want
+            language (str): [description]
+            depth (int): The maximum number of steps to take when looking for the lexeme
 
-    Returns:
-        [type]: [description]
-    """
-    assert isinstance(language, str)
-    assert isinstance(term, str)
-    assert isinstance(max_step_count, int)
+        Returns:
+            [type]: [description]
+        """
+        assert isinstance(language, str)
+        assert isinstance(term, str)
+        assert isinstance(max_step_count, int)
 
-    pos = pos.lower()
-    url_stack = [get_wiktionary_term_url(term)]
-    steps_left = max_step_count
+        pos = pos.lower()
+        url_stack = [get_wiktionary_term_url(term)]
+        steps_left = max_step_count
 
-    while url_stack and steps_left > 0:
-      url = url_stack.pop()
-      soup = self.step(url)
+        while url_stack and steps_left > 0:
+            url = url_stack.pop()
+            soup = self.step(url)
 
-      if is_no_entries_page(soup): # this page doesn't have any entries, jump to the search page (we'll probably only hit this once?)
-        url_stack.append(get_wiktionary_search_url(term))
-        logging.info(f"Found no entries on this page - {url}")
+            # this page doesn't have any entries, jump to the search page (we'll probably only hit this once?)
+            if is_no_entries_page(soup):
+                url_stack.append(get_wiktionary_search_url(term))
+                logging.info(f"Found no entries on this page - {url}")
 
-      elif is_search_results_page(soup):
-        search_result_links = get_search_result_links(soup)
-        search_result_links.reverse()
-        print(search_result_links)
-        url_stack = search_result_links + url_stack
+            elif is_search_results_page(soup):
+                search_result_links = get_search_result_links(soup)
+                search_result_links.reverse()
+                print(search_result_links)
+                url_stack = search_result_links + url_stack
 
-      elif is_entries_page(soup): # if the page has entries, process them
-        if not find_language_header(soup, language):
-          continue
-        
-        page_term = get_page_term(soup)
-        parts_of_speech = get_term_parts_of_speech(soup, language)
-        
-        if pos in parts_of_speech: # only get a result for the part of speech we're interested in
-          lemma = get_lemma(soup, pos, language)
-          
-          if page_term == lemma: # our lexeme is on this page
-            result = extract_lexeme(soup, lemma, pos, language)
-            return result
+            elif is_entries_page(soup):  # if the page has entries, process them
+                if not find_language_header(soup, language):
+                    continue
 
-          else: # our lexeme is not on this page, let's go to the page for the lemma described
-            url_stack.append(get_wiktionary_term_url(lemma))
+                page_term = get_page_term(soup)
+                parts_of_speech = get_term_parts_of_speech(soup, language)
 
+                if pos in parts_of_speech:  # only get a result for the part of speech we're interested in
+                    lemma = get_lemma(soup, pos, language)
 
-      steps_left -= 1
+                    if page_term == lemma:  # our lexeme is on this page
+                        result = extract_lexeme(soup, lemma, pos, language)
+                        return result
 
-    return None
+                    else:  # our lexeme is not on this page, let's go to the page for the lemma described
+                        url_stack.append(get_wiktionary_term_url(lemma))
 
+            steps_left -= 1
 
-  def query_lexemes(self, term, language, max_step_count: int = 5):
-    """Runs a DFS to get the lexemes described by the arguments
+        return None
 
-    Args:
-        language (str): [description]
-        term (type): [description]
-        depth (int): The maximum number of steps to take when looking for the lexeme
+    def query_lexemes(self, term, language, max_step_count: int = 5):
+        """Runs a DFS to get the lexemes described by the arguments
 
-    Returns:
-        [type]: [description]
-    """
-    assert isinstance(language, str)
-    assert isinstance(term, str)
-    assert isinstance(max_step_count, int)
+        Args:
+            language (str): [description]
+            term (type): [description]
+            depth (int): The maximum number of steps to take when looking for the lexeme
 
-    url_stack = [get_wiktionary_term_url(term)]
-    steps_left = max_step_count
-    results = []
+        Returns:
+            [type]: [description]
+        """
+        assert isinstance(language, str)
+        assert isinstance(term, str)
+        assert isinstance(max_step_count, int)
 
-    while url_stack and steps_left > 0:
-      url = url_stack.pop()
-      soup = self.step(url)
+        url_stack = [get_wiktionary_term_url(term)]
+        steps_left = max_step_count
+        results = []
 
-      if is_no_entries_page(soup): # this page doesn't have any entries, jump to the search page (we'll probably only hit this once?)
-        url_stack.append(get_wiktionary_search_url(term))
-        logging.info(f"Found no entries on this page - {url}")
+        while url_stack and steps_left > 0:
+            url = url_stack.pop()
+            soup = self.step(url)
 
-      elif is_search_results_page(soup):
-        search_result_links = get_search_result_links(soup)
-        search_result_links.reverse()
-        url_stack = search_result_links + url_stack
+            # this page doesn't have any entries, jump to the search page (we'll probably only hit this once?)
+            if is_no_entries_page(soup):
+                url_stack.append(get_wiktionary_search_url(term))
+                logging.info(f"Found no entries on this page - {url}")
 
-      elif is_entries_page(soup): # if the page has entries, process them
-        if not find_language_header(soup, language):
-          continue
-        
-        page_term = get_page_term(soup)
-        parts_of_speech = get_term_parts_of_speech(soup, language)
-        
-        for pos in parts_of_speech:
-          lemma = get_lemma(soup, pos, language)
-          
-          if page_term == lemma: # our lexeme is on this page
-            result = extract_lexeme(soup, lemma, pos, language)
-  
-            if all(result != r for r in results): # ignore duplicate entries
-              results.append(result)
+            elif is_search_results_page(soup):
+                search_result_links = get_search_result_links(soup)
+                search_result_links.reverse()
+                url_stack = search_result_links + url_stack
 
-          else: # our lexeme is not on this page, let's go to the page for the lemma described
-            url = get_wiktionary_term_url(lemma)
-            
-            if url not in self.steps and url not in url_stack:
-              url_stack.append(get_wiktionary_term_url(lemma))
+            elif is_entries_page(soup):  # if the page has entries, process them
+                if not find_language_header(soup, language):
+                    continue
 
-      steps_left -= 1
+                page_term = get_page_term(soup)
+                parts_of_speech = get_term_parts_of_speech(soup, language)
 
-    return results
+                for pos in parts_of_speech:
+                    lemma = get_lemma(soup, pos, language)
+
+                    if page_term == lemma:  # our lexeme is on this page
+                        result = extract_lexeme(soup, lemma, pos, language)
+
+                        if all(result != r for r in results):  # ignore duplicate entries
+                            results.append(result)
+
+                    else:  # our lexeme is not on this page, let's go to the page for the lemma described
+                        url = get_wiktionary_term_url(lemma)
+
+                        if url not in self.steps and url not in url_stack:
+                            url_stack.append(get_wiktionary_term_url(lemma))
+
+            steps_left -= 1
+
+        return results
 
 
 def main():
-  # spider = WiktionarySpider()
-  # result = spider.query_lexeme('zimna', 'noun', 'polish')
-  # print(result.to_json_dictionary())
+    # spider = WiktionarySpider()
+    # result = spider.query_lexeme('zimna', 'noun', 'polish')
+    # print(result.to_json())
 
-  spider = WiktionarySpider()
-  results = spider.query_lexemes('piekło', 'polish')
-  
-  for r in results:
-    print(r.to_json_dictionary)
+    spider = WiktionarySpider()
+    results = spider.query_lexemes('piekło', 'polish')
+
+    for r in results:
+        print(r.to_json_dictionary)
 
 
 if __name__ == "__main__":
-  main()
+    main()

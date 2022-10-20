@@ -1,5 +1,6 @@
 # https://en.wikipedia.org/wiki/Comparison_(grammar)
-from enum import Enum, auto
+from enum import Enum
+
 
 class Degree(str, Enum):
     POSITIVE: str = "POSITIVE"
