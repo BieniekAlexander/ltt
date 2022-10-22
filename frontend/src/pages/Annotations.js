@@ -38,6 +38,7 @@ export default function AnnotationsBody() {
     const [text, setText] = useState(null);
 
     const getAnnotationRequestBody = (text, language) => {
+        console.log(userId)
         return JSON.stringify({
             text: text,
             language: language,
@@ -56,7 +57,6 @@ export default function AnnotationsBody() {
             ).catch(error => {
                 console.error(error)
             }).then(data => {
-                console.log(data)
                 setAnnotations(data.annotations);
             }).catch(error => {
                 console.error(error)

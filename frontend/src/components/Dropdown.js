@@ -27,38 +27,39 @@ export const DropdownNav = styled.nav`
 `;
 
 export const styling = {
-  'position': 'relative',
-  'display': 'flex'
+    'position': 'relative',
+    'display': 'flex'
 }
 
 export default function Dropdown() {
-  const dropdownRef = useRef(null);
-  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
-  const closeDropdown = () => setIsActive(false);
-  const onClick = () => setIsActive(!isActive);
+    // TODO dropdown gets messed up when I mess around with annotation popups too
+    const dropdownRef = useRef(null);
+    const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
+    const closeDropdown = () => setIsActive(false);
+    const onClick = () => setIsActive(!isActive);
 
-  return (
-    <div className="container">
-      <div className="menu-container" style={styling}>
-        <NavLink to="#" onClick={onClick} className="navbar">
-          Training <i className='fas fa-caret-down' />
-        </NavLink>
+    return (
+        <div className="container">
+            <div className="menu-container" style={styling}>
+                <NavLink to="#" onClick={onClick} className="navbar">
+                    Training <i className='fas fa-caret-down' />
+                </NavLink>
 
-        {isActive && 
-        <DropdownNav ref={dropdownRef} className="menu">
-          <DropdownUL>
-            <DropdownLI>
-              <NavLink to="/annotations" onClick={closeDropdown} className="navbar">Annotations</NavLink>
-            </DropdownLI>
-            <DropdownLI>
-              <NavLink to="/inflections" onClick={closeDropdown} className="navbar">Inflections</NavLink>
-            </DropdownLI>
-            <DropdownLI>
-              <NavLink to="/vocabulary" onClick={closeDropdown} className="navbar">Vocabulary</NavLink>
-            </DropdownLI>
-          </DropdownUL>
-        </DropdownNav>}
-      </div>
-    </div>
-  );
+                {isActive &&
+                    <DropdownNav ref={dropdownRef} className="menu">
+                        <DropdownUL>
+                            <DropdownLI>
+                                <NavLink to="/annotations" onClick={closeDropdown} className="navbar">Annotations</NavLink>
+                            </DropdownLI>
+                            <DropdownLI>
+                                <NavLink to="/inflections" onClick={closeDropdown} className="navbar">Inflections</NavLink>
+                            </DropdownLI>
+                            <DropdownLI>
+                                <NavLink to="/vocabulary" onClick={closeDropdown} className="navbar">Vocabulary</NavLink>
+                            </DropdownLI>
+                        </DropdownUL>
+                    </DropdownNav>}
+            </div>
+        </div>
+    );
 }
