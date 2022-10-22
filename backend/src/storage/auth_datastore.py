@@ -1,14 +1,21 @@
 from bson import ObjectId
 from pymongo import MongoClient
 from storage.collection_connector import CollectionConnector
+from utils.json_utils import JSONSerializable
 
 
-class User(object):
+class User(JSONSerializable):
     def __init__(self, _id: ObjectId, username: str, password: str):
         self.id = str(_id)
         self.username = username
         self.password = password
 
+    def to_json(self) -> dict:
+        return {
+            'username': self.username,
+            'password': self.password,
+            'id': self.id
+        }
 
 class AuthDatastore(object):
     """

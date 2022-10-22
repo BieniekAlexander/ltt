@@ -93,10 +93,10 @@ export default function AnnotatedTerm(props) {
   )
 
   // TODO when I add a lexeme to my vocabulary, make sure that the same lexeme in the text is no longer highlighted
+  console.log(vocabularyId)
   return (
     <span>
       <span onClick={annotatedTermOnClick} className={`annotatedText ${marked ? "marked" : ""} ${!lexeme ? "missing" : ""} ${vocabularyId!==undefined ? (vocabularyId!==null ? "known" : "unknown") : ""}`}>
-      {/* <span onClick={annotatedTermOnClick} className={`annotatedText ${vocabularyId!==undefined ? (vocabularyId!==null ? "known" : "unknown") : ""}`}> */}
         {props.term}
       </span>
       <Popover

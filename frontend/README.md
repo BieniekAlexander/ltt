@@ -6,6 +6,14 @@ Frontend
 ## Preconditions
 - Backend running
 
+## Supply Environment Variables
+```
+cat > .env <<EOF
+REACT_APP_BACKEND_URL=localhost:5000
+EOF
+```
+
+
 ## Running
 ```
 npm start	# runs app in development mode
@@ -26,3 +34,4 @@ https://minutemailer.github.io/react-popup/
 https://react-bootstrap.github.io/components/overlays/ - I think this is the one that I want
 https://www.youtube.com/watch?v=VzWBLj_CfpE
 https://www.youtube.com/watch?v=T2MhVxJxsL0
+[React Environment Variables](https://create-react-app.dev/docs/adding-custom-environment-variables/)
