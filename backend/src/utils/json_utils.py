@@ -8,6 +8,7 @@ https://stackoverflow.com/questions/24481852/serialising-an-enum-member-to-json
 https://realpython.com/python-interface/
 """
 import abc
+from bson import ObjectId
 import json
 from enum import Enum
 
@@ -26,6 +27,8 @@ def jsonify(obj):
         return list(map(lambda x: jsonify(x), obj))
     elif isinstance(obj, dict):
         return {k: jsonify(v) for k, v in obj.items()}
+    elif isinstance(obj, ObjectId):
+        return str(obj)
     else:
         return obj
 
