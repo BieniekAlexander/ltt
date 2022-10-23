@@ -6,6 +6,8 @@ from flask_restx import Namespace, Resource, fields
 from interface.rest.vocabulary import entry_fields_put
 from training.training_session import get_study_entries, put_studied_entries
 from utils.json_utils import jsonify
+from training.sm2.recall import Recall
+from training.sm2.stats import Stats
 
 # constants
 MONGODB_URI = os.environ['MONGODB_URI']
@@ -32,7 +34,7 @@ training_fields_put = ns.model('terms_put', {
 })
 
 
-@ns.route('')
+@ns.route('/study_set')
 class StudySet(Resource):
     """
     Manage training sessions
@@ -44,7 +46,6 @@ class StudySet(Resource):
         Get a set of vocabulary terms as a training session
         """
         request_data = request.args.to_dict()
-        print(request_data)
         user_id = request_data['user_id']
         language = request_data['language']
         count = int(request_data['count'])
@@ -72,4 +73,11 @@ class StudySet(Resource):
         language = request_data['language']
         entries = request_data['entries']
 
-        put_studied_entries(user_id, language, current_app.ds_client, entries)
+        try:
+            for entry in entries:
+                entry['stats']['recall'] = Recall(entry['stats']['recall'])
+                entry['stats'] = Stats(**entry['stats'])
+
+            put_studied_entries(user_id, language, current_app.ds_client, entries)
+        except Exception as e:
+            print(str(e))

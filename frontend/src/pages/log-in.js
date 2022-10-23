@@ -8,8 +8,8 @@ const LogInBody = () => {
     const { setJwt } = useAuth();
     const navigate = useNavigate();
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("abieniek");
+    const [password, setPassword] = useState("password");
 
     const handleLogin = async e => {
         e.preventDefault();
@@ -34,10 +34,10 @@ const LogInBody = () => {
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '90vh' }}>
                 <form onSubmit={handleLogin}>
                     <label>
-                        Username:<input type="text" onChange={e => setUsername(e.target.value)} />
+                        Username:<input type="text" value={username} onChange={e => setUsername(e.target.value)} />
                     </label>
                     <label>
-                        Password:<input type="text" onChange={e => setPassword(e.target.value)} />
+                        Password:<input type="text" value={password} onChange={e => setPassword(e.target.value)} />
                     </label>
                     <input type="submit" value="Submit" />
                 </form>

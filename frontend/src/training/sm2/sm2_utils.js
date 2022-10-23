@@ -11,9 +11,9 @@
  * @param {int} recall 
  * @return {float} the easiness factor
  */
-function get_easiness_factor(ef, recall) {
+export function get_easiness_factor(ef, recall) {
     let q = recall
-    return max(ef - .8 + .28 * q - .02 * q ** 2, 1.3)
+    return Math.max(ef - .8 + .28 * q - .02 * q ** 2, 1.3)
 }
 
 /**
@@ -22,7 +22,7 @@ function get_easiness_factor(ef, recall) {
  * @param {float} repetition 
  * @return {int} the number of sessions until next review
  */
-function get_repetition_interval(repetition, ef) {
+export function get_repetition_interval(repetition, ef) {
     let interval = 0
 
     if (repetition == 1) {
@@ -42,7 +42,7 @@ function get_repetition_interval(repetition, ef) {
  * @param {float} recall 
  * @return {int} the repetition count
  */
-function get_repetition(repetition, recall) {
+export function get_repetition(repetition, recall) {
     if (recall > 2) {
         return repetition + 1
     } else {
@@ -55,15 +55,16 @@ function get_repetition(repetition, recall) {
  * @param {object} stats
  * @param {int} recall
  */
-function stats_update(stats, recall) {
+export function stats_update(stats, recall) {
     stats.ef = get_easiness_factor(stats.ef, recall)
+    stats.recall = recall
 }
 
 /**
  * Initialize the Stats object for the training session
  * @param {object} stats
  */
-function stats_init(stats) {
+export function stats_session_init(stats) {
     stats.ef = 2.5
     stats.recall = null
 }
@@ -72,9 +73,20 @@ function stats_init(stats) {
  *  Update the stats of the object after it's been studied
  * @param {object} stats
  */
-function session_update(stats) {
-    if (stats.recall != null) {
-        statas.repetition = get_repetition(stats.repetition, stats.recall)
+export function session_update(stats) {
+    if (stats.recall !== null) {
+        stats.repetition = get_repetition(stats.repetition, stats.recall)
         stats.interval = get_repetition_interval(stats.repetition, stats.ef)
+    }
+}
+
+/**
+ * Puts the study entry back into the queue if the Recall is too low
+ * @param {list} studyQueue
+ */
+export function push_study_entry(studyQueue, entry) {
+    if (entry.stats.recall !== null && entry['stats'].recall < 4) {
+        // less than Recall.GREAT
+        studyQueue.push(entry)
     }
 }

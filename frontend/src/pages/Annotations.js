@@ -38,7 +38,6 @@ export default function AnnotationsBody() {
     const [text, setText] = useState(null);
 
     const getAnnotationRequestBody = (text, language) => {
-        console.log(userId)
         return JSON.stringify({
             text: text,
             language: language,

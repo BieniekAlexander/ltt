@@ -21,7 +21,6 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         if (jwt) {
             let jwt_contents = jwt_decode(jwt);
-            console.log(jwt_contents)
             setUsername(jwt_contents.sub.username)
             setUserId(jwt_contents.sub.user_id)
         } else {
