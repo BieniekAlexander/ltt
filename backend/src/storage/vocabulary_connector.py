@@ -69,7 +69,7 @@ class VocabularyConnector(CollectionConnector):
 
     def get_vocabulary_entry(self, lexeme_id: str, user_id: str) -> dict:
         """
-        Get a vocabulary entry and its _id, given the [lexeme_id] and [user_id]
+        Get a vocabulary entry and its _id, given the [lexeme_id] and [user_id] if it exists - otherwise, return an empty dictionary
         """
         assert lexeme_id and user_id
 
@@ -78,7 +78,7 @@ class VocabularyConnector(CollectionConnector):
         user_id = ObjectId(user_id)
         query = generate_query(lexeme_id=lexeme_id, user_id=user_id)
         document = super(VocabularyConnector, self).get_document(query)
-        return self.get_deserialized_document(document)
+        return self.get_deserialized_document(document) if document else {}
 
     def get_vocabulary_entries(self, lexeme_ids: list, user_ids: list) -> dict:
         """

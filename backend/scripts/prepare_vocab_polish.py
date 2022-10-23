@@ -1,8 +1,8 @@
 '''
-This script initializes a user's vocabulary with the set of terms from duolingo's wordbase
+Initialize a user's vocabulary with the set of terms from duolingo's wordbase
 '''
 import logging
-# %% imports
+import argparse
 import os
 
 import pandas as pd
@@ -10,16 +10,19 @@ from pymongo import MongoClient
 from storage.language_datastore import LanguageDatastore
 from training.sm2.stats import Stats
 
+# constants
 MONGODB_URI = os.environ['MONGODB_URI']
-PATH_TO_CSV = f"{os.getcwd()}/data/polish/duolingo_vocab.csv"
-
-
-# %% setup
-# set up mongodb connection
+DUOLINGO_CSV = f"{os.getcwd()}/data/polish/duolingo_vocab.csv"
 language = "polish"
-polish_terms_df = pd.read_csv(PATH_TO_CSV)
-polish_terms = list(polish_terms_df['Polish'])
-USER_ID = "62a57d5bfa96028f59ac1d75"
+
+# parse runtime args from command line
+parser = argparse.ArgumentParser(description="Initialize a user's vocabulary with the set of terms from duolingo's wordbase")
+parser.add_argument('--user_id', type=str, required=True, help='The user to add the vocab to')
+args = parser.parse_args()
+
+# 
+user_id = args.user_id
+duolingo_terms_polish = list(pd.read_csv(DUOLINGO_CSV, comment="#")['Polish'])
 
 ds_client = MongoClient(MONGODB_URI)
 language_datastore = LanguageDatastore(ds_client, language)
@@ -27,9 +30,8 @@ language_datastore = LanguageDatastore(ds_client, language)
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-
-# %%
-for term in polish_terms:
+# loop over the terms, find them in the lexicon, and add them to the user's vocab
+for term in duolingo_terms_polish:
     term = term.lower()
     potential_lexeme_dictionary_mappings = language_datastore.get_lexemes_from_form(
         form=term.lower())
@@ -42,8 +44,11 @@ for term in polish_terms:
         for lexeme_id in lexeme_ids:
             try:
                 language_datastore.add_vocabulary_entry(
-                    lexeme_id, Stats(), USER_ID)
+                    lexeme_id, Stats(), user_id)
             except Exception as e:  # eee storage exceptions
+                # TODO I'm not seeing this get logged, I'm not sure why
                 logger.info("Skipping duplicate vocabulary entry")
     else:
         logger.error(f"Cound not find any lexemes for the term {term}")
+
+

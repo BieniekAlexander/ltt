@@ -1,4 +1,5 @@
 # reference: https://flask-jwt-extended.readthedocs.io/en/stable/basic_usage/
+# TODO I guess JWT stuff isn't very secure, probably change this in the future
 import os
 
 from flask import Blueprint, current_app, jsonify, make_response, request
@@ -39,7 +40,7 @@ user_fields = ns.model('user', {
 
 
 @ns.route('/login')
-class Register(Resource):
+class Login(Resource):
     @ns.doc(body=user_fields)
     def post(self):
         """
@@ -49,12 +50,17 @@ class Register(Resource):
         username = request_data['username']
         password = request_data['password']
 
-        auth = authenticate(username, password)
+        user = authenticate(username, password)
 
-        if not auth:
+        if not user:
             return "Bad username and password combination", 401
         else:
-            access_token = create_access_token(username)
+            user_data = user.to_json()
+            token_data = {
+                'user_id': user_data['id'],
+                'username': user_data['username']
+            }
+            access_token = create_access_token(token_data)
             return {"access_token": access_token}
 
 

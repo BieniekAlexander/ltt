@@ -79,6 +79,7 @@ class Entries(Resource):
             vocab_entry = language_datastore.get_vocabulary_entry(
                 lexeme_id, user_id)
             print(vocab_entry)
+            # TODO
             return
             lexeme_id = request_data['lexeme_id']
             user_id = request_data['user_id']

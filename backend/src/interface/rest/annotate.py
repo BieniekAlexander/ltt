@@ -24,7 +24,6 @@ annotation_fields = ns.model('annotation_request', {
 
 @ns.route('')
 class Annotate(Resource):
-    # @jwt_required()
     @ns.doc(body=annotation_fields)
     def post(self):
         """
