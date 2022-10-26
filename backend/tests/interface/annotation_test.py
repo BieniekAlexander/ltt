@@ -126,5 +126,5 @@ def test_annotate_some_vocabulary(language_datastore, vocabulary_connector: Voca
 
     print(annotations)
     assert annotations[0]['vocabulary_id'] != None
-    assert 'vocabulary_id' not in annotations[1]
-    assert 'vocabulary_id' not in annotations[2]
+    assert 'vocabulary_id' not in annotations[1] or annotations[1]['vocabulary_id'] == None
+    assert 'vocabulary_id' not in annotations[2] or annotations[2]['vocabulary_id'] == None

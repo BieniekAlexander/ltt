@@ -38,7 +38,7 @@ class Annotate(Resource):
             # TODO something about this isn't getting the vocab annotations, not sure why
             # id = current_identity.id
             language_datastore = LanguageDatastore(current_app.ds_client, language)
-            annotated_text = annotate_text(text, language_datastore, user_id=user_id, discovery_mode=False)
+            annotated_text = annotate_text(text, language_datastore, user_id=user_id, discovery_mode=False) # TODO how should we decide if in discovery mode
             response = jsonify({'annotations': annotated_text})
             return response
         except AssertionError as e:

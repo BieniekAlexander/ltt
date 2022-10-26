@@ -2,11 +2,12 @@
 # imports
 import os
 
-from flask import Blueprint, current_app, jsonify, request
+from flask import Blueprint, current_app, request
 from flask_restx import Namespace, Resource, fields
 from pymongo import MongoClient
 from storage.language_datastore import LanguageDatastore
 from training.sm2.stats import Stats
+from utils.json_utils import jsonify
 
 # constants
 MONGODB_URI = os.environ['MONGODB_URI']
@@ -66,30 +67,44 @@ class Entries(Resource):
     @ns.doc(body=entry_fields_put)
     def post(self):
         """
-        Post a new vocabulary entry for a given user, term, and language
+        Post a new vocabulary entry for a given user, term, and language (or return the existing one if it already exists)
         """
         request_data = request.get_json()
         language = request_data['language']
         user_id = request_data['user_id']
         lexeme_id = request_data['lexeme_id']
+        print(lexeme_id)
 
         try:
             language_datastore = LanguageDatastore(
                 current_app.ds_client, language)
             vocab_entry = language_datastore.get_vocabulary_entry(
                 lexeme_id, user_id)
-            print(vocab_entry)
-            # TODO
-            return
-            lexeme_id = request_data['lexeme_id']
-            user_id = request_data['user_id']
-            stats = Stats(request_data['stats'])
-            vocabulary_id = language_datastore.add_vocabulary_entry(
-                lexeme_id, stats, user_id)  # TODO check if the stats get loaded properly
-            response = jsonify({'vocabulary_id': str(vocabulary_id)})
-            return response
-        except AssertionError as e:
-            return "bad request"
+
+            if vocab_entry:
+                return jsonify({
+                    "vocabulary_id": vocab_entry['_id'],
+                    'stats': vocab_entry['stats'],
+                    'user_id': user_id,
+                    'lexeme_id': lexeme_id,
+                    'language': language
+                })
+            else:
+                stats = Stats(**request_data['stats']) if 'stats' in request_data else Stats()
+                vocabulary_id = language_datastore.add_vocabulary_entry(
+                    lexeme_id, stats, user_id)  # TODO check if the stats get loaded properly
+                ret = jsonify({
+                    'vocabulary_id': str(vocabulary_id),
+                    'stats': jsonify(stats),
+                    'user_id': user_id,
+                    'lexeme_id': lexeme_id,
+                    'language': language
+                })
+
+                return ret
+        except Exception as e:
+            print(f"error - {str(e)}")
+            return "", 500
 
     @ns.doc(body=entry_fields_put)
     def put(self, user_id, lexeme_id, language, stats):
