@@ -50,10 +50,12 @@ export default function AnnotationsBody() {
         setText(values.text)
         let requestBody = getAnnotationRequestBody(values.text, values.language)
 
-        axios.post(
-            `${process.env.REACT_APP_BACKEND_URL}/annotate`,
-            requestBody
-        ).then(response => response.json()
+        axios({
+            method: 'POST',
+            url: `${process.env.REACT_APP_BACKEND_URL}/annotate`,
+            headers: { 'Content-Type': 'application/json' },
+            data: requestBody
+        }).then(response => response.json()
         ).catch(error => {
             console.error(error)
         }).then(data => {

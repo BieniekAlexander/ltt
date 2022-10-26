@@ -54,13 +54,16 @@ export default function AnnotatedTerm(props) {
     };
 
     const addVocabularyTerm = (lexemeId, userId) => {
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}//vocabulary`,
-            JSON.stringify({
+        axios({
+            method: "POST",
+            url: `${process.env.REACT_APP_BACKEND_URL}//vocabulary`,
+            headers: { 'Content-Type': 'application/json' },
+            data: JSON.stringify({
                 lexeme_id: lexemeId,
                 user_id: userId,
                 language: "polish" // don't hardcode
             })
-        ).then(response =>
+    }).then(response =>
             response.json()
         ).catch(error => {
             console.error(error)

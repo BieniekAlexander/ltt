@@ -62,14 +62,16 @@ export default function VocabularyBody() {
         } else {
             console.log(state.current.vocabulary)
             // TODO terms are getting consumed, something here is failing with the PUT
-            axios.put(
-                `${process.env.REACT_APP_BACKEND_URL}/training/study_set`,
-                {
+            axios({
+                method: 'PUT',
+                url: `${process.env.REACT_APP_BACKEND_URL}/training/study_set`,
+                headers: { 'Content-Type': 'application/json' },
+                data: {
                     user_id: userId,
                     language: language,
                     entries: state.current.vocabulary // naming here is confusing
                 }
-            ).then(response => {
+            }).then(response => {
                 console.log('persisted studied terms')
                 setCurrentEntry(null)
                 state.current.entries = null
