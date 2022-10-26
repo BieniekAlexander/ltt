@@ -52,24 +52,28 @@ export default function AnnotatedTerm(props) {
         setAnchorEl(null);
     };
 
-    const getAddVocabularyBody = (lexemeId, userId) => {
-        return {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                lexeme_id: lexemeId,
-                rating: 1.0,
-                user_id: userId
-            })
-        }
-    }
-
     const addVocabularyTerm = (lexemeId, userId) => {
-        let requestBody = getAddVocabularyBody(lexemeId, userId)
-        fetch('http://localhost:8000/vocabulary/addTerm', requestBody)
-            .then(response => response.json())
+        fetch(`${process.env.REACT_APP_BACKEND_URL}//vocabulary`,
+            {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    lexeme_id: lexemeId,
+                    user_id: userId,
+                    language: "polish" // don't hardcode
+                    // TODO working on this - fix the REST endpoint and handle response
+                })
+            }
+        ).then(response =>
+            response.json()
+        ).catch(error => {
+            console.error(error)
+        })
             .then(data => {
                 setVocabularyId(data.vocabulary_id);
+            })
+            .catch(error => {
+                console.error(error)
             })
     }
 
@@ -95,7 +99,6 @@ export default function AnnotatedTerm(props) {
     )
 
     // TODO when I add a lexeme to my vocabulary, make sure that the same lexeme in the text is no longer highlighted
-    console.log(vocabularyId)
     return (
         <span>
             <span onClick={annotatedTermOnClick} className={`annotatedText ${marked ? "marked" : ""} ${!lexeme ? "missing" : ""} ${vocabularyId !== undefined ? (vocabularyId !== null ? "known" : "unknown") : ""}`}>
