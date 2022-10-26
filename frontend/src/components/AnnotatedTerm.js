@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import styled from 'styled-components';
 import './AnnotatedTerm.css';
 import { useAuth } from '../auth/AuthProvider';
+import axios from 'axios';
 
 // styling
 export const AnnotationPopover = styled(Popover)`
@@ -53,17 +54,12 @@ export default function AnnotatedTerm(props) {
     };
 
     const addVocabularyTerm = (lexemeId, userId) => {
-        fetch(`${process.env.REACT_APP_BACKEND_URL}//vocabulary`,
-            {
-                method: 'post',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    lexeme_id: lexemeId,
-                    user_id: userId,
-                    language: "polish" // don't hardcode
-                    // TODO working on this - fix the REST endpoint and handle response
-                })
-            }
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}//vocabulary`,
+            JSON.stringify({
+                lexeme_id: lexemeId,
+                user_id: userId,
+                language: "polish" // don't hardcode
+            })
         ).then(response =>
             response.json()
         ).catch(error => {

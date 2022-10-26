@@ -4,6 +4,7 @@ import AnnotatedTerm from '../components/AnnotatedTerm';
 import styled from 'styled-components';
 import './Annotations.css';
 import { useAuth } from '../auth/AuthProvider';
+import axios from 'axios';
 
 // styling
 export const AnnotatedTextDiv = styled.div`
@@ -33,7 +34,7 @@ const getAnnotatedText = (text, annotations) => {
 
 export default function AnnotationsBody() {
     // const [annotated, setIsAnnotated] = useState(false);
-    const {userId} = useAuth();
+    const { userId } = useAuth();
     const [annotations, setAnnotations] = useState(null);
     const [text, setText] = useState(null);
 
@@ -49,17 +50,17 @@ export default function AnnotationsBody() {
         setText(values.text)
         let requestBody = getAnnotationRequestBody(values.text, values.language)
 
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/annotate`, {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: requestBody}).then(response => response.json()
-            ).catch(error => {
-                console.error(error)
-            }).then(data => {
-                setAnnotations(data.annotations);
-            }).catch(error => {
-                console.error(error)
-            })
+        axios.post(
+            `${process.env.REACT_APP_BACKEND_URL}/annotate`,
+            requestBody
+        ).then(response => response.json()
+        ).catch(error => {
+            console.error(error)
+        }).then(data => {
+            setAnnotations(data.annotations);
+        }).catch(error => {
+            console.error(error)
+        })
 
 
     }
