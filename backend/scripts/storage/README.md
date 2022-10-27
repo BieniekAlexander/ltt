@@ -1,0 +1,2 @@
+# Introduction
+This space contains scripts that I use for managing backend data in a MongoDB instance. Refer to MongoDB documentation for how to connect to an instance with a MongoDB URI, and make sure you have the right privileges to perform the MongoDB configuration.

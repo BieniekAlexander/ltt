@@ -1,6 +1,3 @@
-# https://www.mongodb.com/docs/manual/reference/operator/query/jsonSchema/#mongodb-query-op.-jsonSchema
-# https://stackoverflow.com/questions/55025621/mongodb-add-schema-for-existing-collection
-# https://www.mongodb.com/docs/manual/reference/bson-types/
 import pymongo
 from language.part_of_speech import PartOfSpeech
 
