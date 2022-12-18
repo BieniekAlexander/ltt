@@ -1,8 +1,3 @@
-/**
- * Functions of the Supermemory 2 algorithm
- *
- * source: https://www.supermemo.com/en/archives1990-2015/english/ol/sm2
-*/
 // TODO do BFF pattern insteasd of duplicating algorithm
 
 /**
@@ -65,7 +60,6 @@ export function stats_update(stats, recall) {
  * @param {object} stats
  */
 export function stats_session_init(stats) {
-    stats.ef = 2.5
     stats.recall = null
 }
 
@@ -83,6 +77,7 @@ export function session_update(stats) {
 /**
  * Puts the study entry back into the queue if the Recall is too low
  * @param {list} studyQueue
+ * @param {object} entry
  */
 export function push_study_entry(studyQueue, entry) {
     if (entry.stats.recall !== null && entry['stats'].recall < 4) {

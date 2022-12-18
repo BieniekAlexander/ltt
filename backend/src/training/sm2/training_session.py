@@ -20,6 +20,7 @@ def push_study_entry(study_queue: list, entry: dict) -> None:
 def get_study_entries(user_id: str, language: str, datastore_client: MongoClient, interval: int = 1, count: int = 50):
     """
     Collects the vocabulary being used by the user in the training session
+    TODO this isn't technically true to the sm2 implementation, because sm2 will just give you the terms each day according to the interval
     """
     # init DAOs
     language_datastore = LanguageDatastore(datastore_client, language)

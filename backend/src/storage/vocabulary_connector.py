@@ -4,7 +4,7 @@ from copy import deepcopy
 from bson.objectid import ObjectId
 from storage.collection_connector import CollectionConnector
 from storage.datastore_utils import generate_query
-from training.sm2.stats import Stats, StatsDecoder
+from training.sm2_anki.stats import Stats, StatsDecoder
 
 # constants
 COLLECTION = "vocabulary"
@@ -13,6 +13,8 @@ COLLECTION = "vocabulary"
 class VocabularyConnector(CollectionConnector):
     """
     A [CollectionConnector] used specifically for recording terms known by a given user
+
+    TODO stabilize the implementation of this connector with how I'll be representing the studying of a term
     """
 
     def __init__(self, uri, language):
@@ -33,18 +35,20 @@ class VocabularyConnector(CollectionConnector):
         Returns:
             dict: the in-memory python dictionary
         """
+        # TODO clean up vocabulary stats representation, this will be hardcoded here for now
+        # TODO I keep changing the algo I use for learning, how am I tracking this?
         dictionary = deepcopy(document)
-        dictionary['stats'] = Stats(**dictionary['stats'])
+        dictionary['stats'] = {'definition': Stats(**dictionary['stats']['definition'])}
         return dictionary
 
-    def push_vocabulary_entry(self, lexeme_id: str, stats: Stats, user_id: str) -> str:
+    def push_vocabulary_entry(self, lexeme_id: str, stats: dict, user_id: str) -> str:
         """
         Add a new vocabulary entry to the datastore, represented by a [lexeme_id], [stats], and [user_id]
         """
-        assert type(stats) == Stats
+        assert type(stats) == dict
 
         entry = {'lexeme_id': ObjectId(
-            lexeme_id), 'stats': stats.to_json(), 'user_id': ObjectId(user_id)}
+            lexeme_id), 'stats': {k: stats[k].to_json() for k in stats}, 'user_id': ObjectId(user_id)}
 
         return super(VocabularyConnector, self).push_document(entry)
 
@@ -132,7 +136,7 @@ class VocabularyConnector(CollectionConnector):
         Udpate an existing vocabulary entry to the datastore, represented by a [lexeme_id], [stats], and [user_id]
         """
         assert user_id
-        assert isinstance(stats, Stats)
+        assert isinstance(stats, dict)
 
         # ignore saving the recall from the training session to the datastore - it will be reinstantiated during the next session
         try:
@@ -141,7 +145,7 @@ class VocabularyConnector(CollectionConnector):
             pass
 
         entry = {'lexeme_id': ObjectId(
-            lexeme_id), 'stats': stats.to_json(), 'user_id': ObjectId(user_id)}
+            lexeme_id), 'stats': {'definition': stats['definition'].to_json()}, 'user_id': ObjectId(user_id)}
         query = generate_query(
             lexeme_id=entry['lexeme_id'], user_id=entry['user_id'])
         return super(VocabularyConnector, self).update_document(query, entry)
@@ -158,7 +162,7 @@ class VocabularyConnector(CollectionConnector):
             assert isinstance(entry, dict)
             assert all(key in entry for key in [
                        'lexeme_id', 'user_id', 'stats']), "Each vocabulary entry must contain a lexeme_id, user_id, and stats"
-            assert isinstance(entry['stats'], Stats)
+            assert isinstance(entry['stats'], dict)
 
             entry['lexeme_id'] = ObjectId(entry['lexeme_id'])
             entry['user_id'] = ObjectId(entry['user_id'])

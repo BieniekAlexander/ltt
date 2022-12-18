@@ -6,7 +6,7 @@ from flask import Blueprint, current_app, request
 from flask_restx import Namespace, Resource, fields
 from pymongo import MongoClient
 from storage.language_datastore import LanguageDatastore
-from training.sm2.stats import Stats
+from training.sm2_anki.stats import Stats
 from utils.json_utils import jsonify
 
 # constants
@@ -21,6 +21,7 @@ stats_fields = ns.model('stats', {
     'repetition': fields.Integer(description='The number of times that the user has studied the term'),
     'ef': fields.Float(description='The easiness factor for the user'),
     'interval': fields.Integer(description='The number of sessions until which a user should study the term again'),
+    'ste': fields.Integer(description="The step towards graduation of the term to review mode"),
     # 'recall': fields.Integer(description="the user's ability to recall the entry during a study session") # TODO this is handled only in study sessions, not relevant here
 })
 
@@ -35,9 +36,8 @@ entry_fields_put = ns.model('vocabulary_put', {
     'user_id': fields.String(description='The ID of the user for whom we want to pull a vocabulary term'),
     'lexeme_id': fields.String(description='The ID of the term to manage'),
     'language': fields.String(description='The language in which the term exists'),
-    'stats': fields.Nested(stats_fields, description="The study stats of the term")
+    'stats': fields.Nested(fields.Nested(stats_fields, description="data for studying the term"), description="A map of study stat entries, for each aspect of studying the term")
 })
-
 
 @ns.route('')
 class Entries(Resource):
@@ -90,7 +90,7 @@ class Entries(Resource):
                     'language': language
                 })
             else:
-                stats = Stats(**request_data['stats']) if 'stats' in request_data else Stats()
+                stats = {k: (Stats(**request_data['stats'][k])) for k in request_data['stats']} if 'stats' in request_data else {'definitions': Stats()}
                 vocabulary_id = language_datastore.add_vocabulary_entry(
                     lexeme_id, stats, user_id)  # TODO check if the stats get loaded properly
                 ret = jsonify({
@@ -107,7 +107,7 @@ class Entries(Resource):
             return "", 500
 
     @ns.doc(body=entry_fields_put)
-    def put(self, user_id, lexeme_id, language, stats):
+    def put(self, user_id: str, lexeme_id: str, language: str, stats: list):
         """
         Update the given term with new stats
         """
@@ -122,7 +122,7 @@ class Entries(Resource):
                 current_app.ds_client, language)
             lexeme_id = request_data['lexeme_id']
             user_id = request_data['user_id']
-            stats = Stats(request_data['stats'])
+            stats = {key: Stats(**stats[key]) for key in stats}
             vocabulary_id = language_datastore.add_vocabulary_entry(
                 lexeme_id, stats, user_id)  # TODO check if the stats get loaded properly
             response = jsonify({'vocabulary_id': str(vocabulary_id)})

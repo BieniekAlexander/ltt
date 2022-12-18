@@ -54,12 +54,11 @@ export default function AnnotationsBody() {
             method: 'POST',
             url: `${process.env.REACT_APP_BACKEND_URL}/annotate`,
             headers: { 'Content-Type': 'application/json' },
-            data: requestBody
-        }).then(response => response.json()
-        ).catch(error => {
-            console.error(error)
-        }).then(data => {
-            setAnnotations(data.annotations);
+            data: requestBody,
+            timeout: 60*30*1000
+        }).then(response => {
+            console.log(response)
+            setAnnotations(response.data.annotations);
         }).catch(error => {
             console.error(error)
         })

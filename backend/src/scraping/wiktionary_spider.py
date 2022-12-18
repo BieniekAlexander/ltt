@@ -93,7 +93,7 @@ class WiktionarySpider(object):
 
         return None
 
-    def query_lexemes(self, term, language, max_step_count: int = 5):
+    def query_lexemes(self, term, language, max_step_count: int = 5) -> list:
         """Runs a DFS to get the lexemes described by the arguments
 
         Args:

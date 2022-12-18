@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useAuth } from '../auth/AuthProvider';
-import { stats_update, stats_session_init, push_study_entry } from '../training/sm2/sm2_utils'
+import { stats_update, stats_session_init, push_study_entry } from '../training/sm2_anki/sm2_anki_utils'
 const url = require('url');
+
+const RECALL_OPTIONS = ['0','1','2','3']
 
 export default function VocabularyBody() {
     const { userId } = useAuth()
-    const [entryCount, setEntryCount] = useState(100)
+    const [entryCount, setEntryCount] = useState(10)
     const [language, setLanguage] = useState("polish")
     const [currentEntry, setCurrentEntry] = useState(null)
     const [showHint, setShowHint] = useState(false)
@@ -21,7 +23,7 @@ export default function VocabularyBody() {
             if (event.key === ' ') {
                 event.preventDefault()
                 setShowHint(!showHint)
-            } else if (event.key in ['0','1','2','3','4','5']) {
+            } else if (event.key in RECALL_OPTIONS) {
                 handleStudyTerm(parseInt(event.key))
                 setShowHint(false)
             }
@@ -49,7 +51,7 @@ export default function VocabularyBody() {
             state.current.vocabulary = response.data.entries
             state.current.entries = [...state.current.vocabulary]
             for (let i = 0; i < state.current.entries.length; i++) {
-                stats_session_init(state.current.entries[i].stats)
+                stats_session_init(state.current.entries[i].stats.definition)
             }
 
             consumeStudyTerm()
@@ -82,7 +84,7 @@ export default function VocabularyBody() {
 
     const handleStudyTerm = (recall) => {
         let entry = currentEntry
-        stats_update(entry.stats, recall)
+        stats_update(entry.stats.definition, recall)
         push_study_entry(state.current.entries, entry)
         consumeStudyTerm()
     }
@@ -97,7 +99,7 @@ export default function VocabularyBody() {
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '30vh' }}>
                             <div>
                                 {
-                                    [...Array(6).keys()].map((i) => {
+                                    [...Array(RECALL_OPTIONS.length).keys()].map((i) => {
                                         return <button key={`recall${i}`} value={i} onClick={() => { handleStudyTerm(i) }}>{i}</button>
                                     })
                                 }

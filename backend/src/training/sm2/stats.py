@@ -1,13 +1,13 @@
 import json
+from typing import Union
 
 from training.sm2.recall import Recall
 from training.sm2.utils import (get_easiness_factor, get_repetition,
                                 get_repetition_interval)
 from utils.json_utils import JSONSerializable
 
-
 class Stats(JSONSerializable):
-    def __init__(self, repetition: int = 0, interval: int = 1, ef: float = 2.5, recall: Recall = None):
+    def __init__(self, repetition: int = 0, interval: int = 1, ef: float = 2.5, recall: Union[Recall, int] = None):
         """
         A struct that represents when a user will next review a term
 
@@ -22,9 +22,9 @@ class Stats(JSONSerializable):
         self.repetition = repetition
         self.interval = interval
         self.ef = ef
-        self.recall = recall
+        self.recall = Recall(recall)
 
-    def update(self, recall: Recall) -> None:
+    def update(self, recall: Union[Recall, int]) -> None:
         """
         Recalculate the memory stats of a term
 
@@ -38,7 +38,6 @@ class Stats(JSONSerializable):
         """
         Initialize the stats of a study term at the start of a study session
         """
-        self.ef = 2.5
         self.recall = None
 
     def session_update(self) -> None:
@@ -63,10 +62,4 @@ class StatsDecoder(json.JSONDecoder):
 
     def decode(self, input_str):
         json_dict = json.loads(input_str)
-
-        try:
-            json_dict.pop('stats')
-        except:
-            pass
-
         return Stats(**json_dict)

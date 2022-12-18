@@ -4,11 +4,12 @@ Functions of the Supermemory 2 algorithm
 source: https://www.supermemo.com/en/archives1990-2015/english/ol/sm2
 """
 from math import ceil
+from typing import Union
 
 from training.sm2.recall import Recall
 
 
-def get_easiness_factor(ef: float, recall: Recall) -> float:
+def get_easiness_factor(ef: float, recall: Union[Recall, int]) -> float:
     """
     Recalculate the easiness factor
 
@@ -19,9 +20,9 @@ def get_easiness_factor(ef: float, recall: Recall) -> float:
     Returns:
       float: The new easiness factor
     """
-    assert recall in Recall
+    assert type(recall) in [Recall, int]
 
-    q = recall.value
+    q = Recall(recall).value
     return max(ef - .8 + .28*q - .02*q**2, 1.3)
 
 
@@ -49,7 +50,7 @@ def get_repetition_interval(repetition: int, ef: float) -> int:
     return ceil(interval)
 
 
-def get_repetition(repetition: int, recall: Recall) -> int:
+def get_repetition(repetition: int, recall: Union[Recall, int]) -> int:
     """
     Recalculate the repetition count we're on
 
@@ -62,7 +63,7 @@ def get_repetition(repetition: int, recall: Recall) -> int:
     Returns:
         int: the repetition count
     """
-    if recall.value > 2:
+    if Recall(recall).value > 2:
         return repetition+1
     else:
         return 1

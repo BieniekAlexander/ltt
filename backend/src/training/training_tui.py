@@ -2,8 +2,8 @@ import curses
 import os
 
 from pymongo import MongoClient
-from training.sm2.recall import Recall
-from training.training_session import (get_study_entries, push_study_entry,
+from training.sm2_anki.recall import Recall
+from training.sm2_anki.training_session import (get_study_entries, push_study_entry,
                                        put_studied_entries)
 
 ##### CONSTANTS #####
@@ -112,9 +112,9 @@ def main(stdscr: curses.window):
             answer_window.nodelay(False)
         elif c == ord(' '):  # toggle hint
             show_hint = show_hint == False
-        elif c in list(map(ord, '012345')):
-            recall = recall_dict[list(map(ord, '012345')).index(c)]
-            entry['stats'].update(recall)
+        elif c in list(map(ord, '0123')):
+            recall = recall_dict[list(map(ord, '0123')).index(c)]
+            entry['stats']['definition'].update(recall)
             push_study_entry(study_queue, entry)
             get_next_entry = True
 

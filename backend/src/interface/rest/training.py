@@ -4,10 +4,10 @@ import os
 from flask import Blueprint, current_app, request
 from flask_restx import Namespace, Resource, fields
 from interface.rest.vocabulary import entry_fields_put
-from training.training_session import get_study_entries, put_studied_entries
+from training.sm2_anki.training_session import get_study_entries, put_studied_entries
 from utils.json_utils import jsonify
-from training.sm2.recall import Recall
-from training.sm2.stats import Stats
+from training.sm2_anki.recall import Recall
+from training.sm2_anki.stats import Stats
 
 # constants
 MONGODB_URI = os.environ['MONGODB_URI']
@@ -66,7 +66,7 @@ class StudySet(Resource):
     def put(self):
         """
         Update a set of vocabulary study term stats
-        TODO this endpoint redundantly requiers language and user_id
+        TODO this endpoint redundantly requires language and user_id
         """
         request_data = request.get_json()
         user_id = request_data['user_id']
@@ -75,8 +75,7 @@ class StudySet(Resource):
 
         try:
             for entry in entries:
-                entry['stats']['recall'] = Recall(entry['stats']['recall'])
-                entry['stats'] = Stats(**entry['stats'])
+                entry['stats'] = {item: Stats(**entry['stats'][item]) for item in entry['stats']}
 
             put_studied_entries(user_id, language, current_app.ds_client, entries)
         except Exception as e:

@@ -63,18 +63,14 @@ export default function AnnotatedTerm(props) {
                 user_id: userId,
                 language: "polish" // don't hardcode
             })
-    }).then(response =>
-            response.json()
-        ).catch(error => {
-            console.error(error)
+        }).then(response => {
+            setVocabularyId(response.data.vocabulary_id);
         })
-            .then(data => {
-                setVocabularyId(data.vocabulary_id);
-            })
             .catch(error => {
                 console.error(error)
             })
-    }
+        }
+
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
