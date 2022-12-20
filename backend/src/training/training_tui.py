@@ -1,5 +1,6 @@
 import curses
 import os
+import argparse
 
 from pymongo import MongoClient
 from training.sm2_anki.recall import Recall
@@ -46,11 +47,11 @@ def add_linebreaks(string: str, line_length: int) -> str:
     return ret_string
 
 
-def main(stdscr: curses.window):
+def main(stdscr: curses.window, card_count):
     # initialize training session
     datastore_client = MongoClient(MONGODB_URI)
     vocabulary = get_study_entries(
-        USER_ID, 'polish', datastore_client, interval=1, count=10)
+        USER_ID, 'polish', datastore_client, interval=1, count=card_count)
     study_queue = vocabulary.copy()
 
     # initialize things for TUI
@@ -123,4 +124,11 @@ def main(stdscr: curses.window):
 
 
 if __name__ == "__main__":
-    curses.wrapper(main)
+    parser = argparse.ArgumentParser(
+                    prog = 'training_tui',
+                    description = 'text interface utility for studying',)
+    
+    parser.add_argument('-c', '--count', default=10, help="the number of cards to retrieve for studying", type=int)
+    args = parser.parse_args()
+
+    curses.wrapper(main, card_count=args.count)

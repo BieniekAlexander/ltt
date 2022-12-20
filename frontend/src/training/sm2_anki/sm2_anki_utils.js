@@ -31,15 +31,21 @@ export function stats_update(stats, recall) {
                 stats.interval *= RECALL_INTERVALS[recall]
              } else {
                 stats.ef *= Math.max(RECALL_EASINESS_FACTORS[recall], 1.3)
-                stats.interval *= stats.ef
+                stats.interval = Math.max(stats.ef*stats.interval, 1)
             }
         } else { // in learning phase
             if (recall == 0) {
                 stats.step = 0
             } else if (recall == 2) {
-                stats.step = stats.step+1==STEP_INTERVALS.length ? -1 : stats.step+1
+                if (stats.step+1==STEP_INTERVALS.length) {
+                    stats.step = -1
+                    stats.interval = 1
+                } else {
+                    stats.step += 1
+                }
             } else if (recall == 3) {
                 stats.step = -1
+                stats.interval = 4
             }
 
             if (stats.step != -1) {

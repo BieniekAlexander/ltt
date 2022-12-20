@@ -54,7 +54,7 @@ def annotate_text(text: str, language_datastore: LanguageDatastore, user_id: str
 
                     if entry:
                         annotation['vocabulary_id'] = entry['_id']
-                        annotation['stats'] = entry['stats'].to_json()
+                        annotation['stats'] = entry['stats']['definition'].to_json() # TODO figure out data model
                     else:  # set to null to indicate that we tried to tie to vocabulary and found nothing
                         annotation['vocabulary_id'] = None
                         annotation['stats'] = None

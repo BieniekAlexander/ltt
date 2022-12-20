@@ -90,7 +90,7 @@ class Entries(Resource):
                     'language': language
                 })
             else:
-                stats = {k: (Stats(**request_data['stats'][k])) for k in request_data['stats']} if 'stats' in request_data else {'definitions': Stats()}
+                stats = {k: (Stats(**request_data['stats'][k])) for k in request_data['stats']} if 'stats' in request_data else {'definition': Stats()}
                 vocabulary_id = language_datastore.add_vocabulary_entry(
                     lexeme_id, stats, user_id)  # TODO check if the stats get loaded properly
                 ret = jsonify({

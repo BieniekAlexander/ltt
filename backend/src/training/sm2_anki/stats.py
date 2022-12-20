@@ -28,7 +28,7 @@ class Stats(JSONSerializable):
         self.interval = interval
         self.ef = max(ef, 1.3)
         self.recall = recall
-        self.step = -1
+        self.step = step
 
     def update(self, recall: Recall) -> None:
         """
@@ -44,7 +44,7 @@ class Stats(JSONSerializable):
         # TODO Anki's sm2 has a less direct manner of deciding what needs to be studied again in this session vs what gets saved for the next session
         # words are instead sort of studied either loosely later in the session (i.e. in 10 min?) or, depending on the step, sometime in another session
         # it's eventually graduated and the intervals are calculated differently
-        self.recall = recall
+        self.recall = Recall(recall)
 
         if self.step == -1: # in review phase
             if recall == 0:
@@ -55,14 +55,19 @@ class Stats(JSONSerializable):
                 self.interval *= RECALL_INTERVALS[recall]
             else:
                 self.ef *= max(RECALL_EASINESS_FACTORS[recall], 1.3)
-                self.interval *= self.ef
+                self.interval = max(self.ef*self.interval, 4)
         else: # in learning phase
             if recall == 0:
                 self.step = 0
             elif recall == 2:
-                self.step = -1 if self.step+1==len(STEP_INTERVALS) else self.step+1
+                if self.step+1==len(STEP_INTERVALS):
+                    self.step = -1
+                    self.interval = 1
+                else:
+                    self.step += 1
             elif recall == 3:
                 self.step = -1
+                self.interval = 4
 
             if self.step != -1:
                 self.interval = STEP_INTERVALS[self.step]

@@ -16,7 +16,7 @@ def push_study_entry(study_queue: list, entry: dict) -> None:
     step = entry['stats']['definition'].step
     interval = STEP_INTERVALS[step]
 
-    if step >= 0 and interval != 0:
+    if interval == 0:
         study_queue.append(entry)
 
 

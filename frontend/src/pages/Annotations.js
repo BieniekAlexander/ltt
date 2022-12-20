@@ -55,7 +55,8 @@ export default function AnnotationsBody() {
             url: `${process.env.REACT_APP_BACKEND_URL}/annotate`,
             headers: { 'Content-Type': 'application/json' },
             data: requestBody,
-            timeout: 60*30*1000
+            timeout: 60*30*1000,
+            maxContentLength: 2e100,
         }).then(response => {
             console.log(response)
             setAnnotations(response.data.annotations);
