@@ -1,8 +1,11 @@
 import json
 
-from training.sm2.stats import Stats, StatsDecoder
+from training.sm2_anki.stats import Stats, StatsDecoder
 
 
+# TODO make data class
+# from dataclasses import dataclass
+#@dataclass
 class Vocabulary(object):
     """
     An object that represents a vocab term being studied
@@ -19,10 +22,10 @@ class VocabularyDecoder(json.JSONDecoder):
     """ 
     Decodes a JSON object into a [Term]
     """
-
     def decode(self, input_str):
         json_dict = json.loads(input_str)
-        json_dict['stats'] = json.loads(
-            str(json_dict['stats']), cls=StatsDecoder)
+        json_dict['stats'] = {
+            key: json.loads(str(json_dict['stats']), cls=StatsDecoder)
+            for key in json_dict['stats']}
 
         return Vocabulary(**json_dict)

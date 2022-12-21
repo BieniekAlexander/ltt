@@ -62,12 +62,14 @@ class VocabularyConnector(CollectionConnector):
 
         for entry in entries:
             assert isinstance(entry, dict)
+            assert isinstance(entry['stats'], dict)
+
             assert all(key in entry for key in [
                        'lexeme_id', 'user_id', 'stats']), "Each vocabulary entry must contain a lexeme_id, user_id, and stats"
-            assert isinstance(entry['stats'], Stats)
+            
             entry['lexeme_id'] = ObjectId(entry['lexeme_id'])
             entry['user_id'] = ObjectId(entry['user_id'])
-            entry['stats'] = entry['stats'].to_json()
+            entry['stats'] = {k: entry['stats'][k].to_json() for k in entry['stats']}
 
         return super(VocabularyConnector, self).push_documents(entries)
 

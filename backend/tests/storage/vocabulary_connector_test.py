@@ -4,7 +4,7 @@ import pytest
 from bson.objectid import ObjectId
 from mongomock import MongoClient
 from storage.vocabulary_connector import VocabularyConnector
-from training.sm2.stats import Stats
+from training.sm2_anki.stats import Stats
 
 # constants
 LANGUAGE = "polish"
@@ -37,8 +37,8 @@ def test_push_and_get_vocabulary_entry(vocabulary_connector):
     user_id_1 = ObjectId()
     user_id_2 = ObjectId()
     lexeme_id = ObjectId()
-    stats_1 = Stats()
-    stats_2 = Stats()
+    stats_1 = {'definition': Stats()}
+    stats_2 = {'definition': Stats()}
     entry_2 = {'lexeme_id': lexeme_id, 'user_id': user_id_2, 'stats': stats_2}
 
     vocabulary_connector.push_vocabulary_entry(
@@ -55,9 +55,9 @@ def test_push_and_get_vocabulary_entries(vocabulary_connector):
     user_id_1 = ObjectId()
     user_id_2 = ObjectId()
     lexeme_id = ObjectId()
-    stats_1 = Stats()
-    stats_2 = Stats()
-    entries = [{'lexeme_id': lexeme_id, 'stats': stats_1, 'user_id': user_id_1},
+    stats_1 = {'definition': Stats()}
+    stats_2 = {'definition': Stats()}
+    entries = [{'lexeme_id': lexeme_id, 'user_id': user_id_1, 'stats': stats_1},
                {'lexeme_id': lexeme_id, 'user_id': user_id_2, 'stats': stats_2}
                ]
 
@@ -69,7 +69,7 @@ def test_push_and_get_vocabulary_entries(vocabulary_connector):
 def test_push_and_delete_vocabulary_entry(vocabulary_connector):
     user_id = ObjectId()
     lexeme_id = ObjectId()
-    stats = Stats()
+    stats = {'definition': Stats()}
 
     vocabulary_connector.push_vocabulary_entry(
         lexeme_id=lexeme_id, stats=stats, user_id=user_id)
@@ -81,9 +81,9 @@ def test_push_and_delete_vocabulary_entries(vocabulary_connector):
     user_id_1 = ObjectId()
     user_id_2 = ObjectId()
     lexeme_id = ObjectId()
-    stats_1 = Stats()
-    stats_2 = Stats()
-    entries = [{'lexeme_id': lexeme_id, 'stats': stats_1, 'user_id': user_id_1},
+    stats_1 = {'definition': Stats()}
+    stats_2 = {'definition': Stats()}
+    entries = [{'lexeme_id': lexeme_id, 'user_id': user_id_1, 'stats': stats_1},
                {'lexeme_id': lexeme_id, 'user_id': user_id_2, 'stats': stats_2}
                ]
 
@@ -95,14 +95,14 @@ def test_push_and_delete_vocabulary_entries(vocabulary_connector):
 def test_push_vocabulary_duplicate_entries_fail(vocabulary_connector):
     user_id_1 = ObjectId()
     lexeme_id = ObjectId()
-    stats = Stats()
+    stats = {'definition': Stats()}
 
     vocabulary_connector.push_vocabulary_entry(
         lexeme_id=lexeme_id, stats=stats, user_id=user_id_1)
 
     with pytest.raises(Exception):
         vocabulary_connector.push_vocabulary_entry(
-            lexeme_id=lexeme_id, stats=stats.to_json())
+            lexeme_id=lexeme_id, stats=stats)
 
 
 def main():

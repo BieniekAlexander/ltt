@@ -8,7 +8,7 @@ import os
 import pandas as pd
 from pymongo import MongoClient
 from storage.language_datastore import LanguageDatastore
-from training.sm2.stats import Stats
+from training.sm2_anki.stats import Stats
 
 # constants
 MONGODB_URI = os.environ['MONGODB_URI']
