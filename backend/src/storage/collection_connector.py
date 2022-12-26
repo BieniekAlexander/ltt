@@ -2,25 +2,27 @@
 import pymongo
 from bson.objectid import ObjectId
 from pymongo import MongoClient
+from storage.datastore_utils import generate_query
+# TODO updating collection connector to make it easier to extend
 
 
-class CollectionConnector(object):
+class CollectionConnector:
     """
     An interface that lets us connect to a document store 
     """
 
-    def __init__(self, datastore_client: MongoClient, database_name: str, collection_name: str):
+    def __init__(self, datastore_client: MongoClient, database_name: str, collection_name: str, connector_schema: dict):
         """
         Establish an initial connection to the document store
         """
         self.collection = datastore_client[database_name][collection_name]
+        self.connector_schema = connector_schema
 
     def get_document(self, query: dict) -> dict:
         """
         Wrapper for getting documents from datastore, given a [query]
         """
-        assert isinstance(query, dict)
-        results = list(self.collection.find(query))
+        results = self.get_documents(query)
 
         if len(results) > 1:
            # TODO make specific error type
@@ -31,20 +33,14 @@ class CollectionConnector(object):
         # TODO clean up - how are these collection connectors consistently dealing with the [ObjectId] type?
         else:
             result = results[0]
-            result['_id'] = str(result['_id'])
             return result
 
     def get_documents(self, query: dict) -> dict:
         """
         Get a documents, given a query
         """
-        assert isinstance(query, dict)
-        result_list = list(self.collection.find(query))
-        for result in result_list:  # TODO clean up, as above
-            result['_id'] = str(result['_id'])
-
-        return list(result_list)
-
+        return list(self.collection.find(query))
+        
     def push_document(self, document) -> ObjectId:
         """
         Insert a [document] and get the _id it gets mapped to
@@ -67,7 +63,6 @@ class CollectionConnector(object):
         """
         Delete a single document, given a query
         """
-        assert isinstance(query, dict)
         document = self.get_document(query)
         _id = document['_id']
         self.collection.delete_one({'_id': ObjectId(_id)})
@@ -78,23 +73,23 @@ class CollectionConnector(object):
 
         https://stackoverflow.com/a/18567093
         """
-        assert isinstance(query, dict)
         self.collection.delete_many(query)
 
-    def update_document(self, query, document) -> ObjectId:
+    def update_document(self, query: dict, document: dict) -> None:
         """
         Update a [document] and get the _id it gets mapped to
         """
-        assert isinstance(document, dict)
         self.collection.update_one(query, {"$set": document})
 
 
 # main
 def main():
-    ds_client = MongoClient("mongodb://localhost:27017/")
-    db = CollectionConnector(ds_client, 'polish', 'lexicon')
-    print(list(db.collection.find({'lemma': 'z'})))
+    from storage.datastore_schemata.chinese_schemata import character_schema as zh_character_schema
+    import os
 
+    ds_client = MongoClient(os.getenv('MONGODB_URI'))
+    chinese_character_connector = CollectionConnector(ds_client, 'chinese', 'characters', zh_character_schema['$jsonSchema'])
+    # chinese_character_connector.push_document({'lemma': 'wow'})
 
 if __name__ == "__main__":
     main()

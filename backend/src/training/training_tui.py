@@ -2,6 +2,7 @@ import curses
 import os
 import argparse
 
+from bson.objectid import ObjectId
 from pymongo import MongoClient
 from training.sm2_anki.recall import Recall
 from training.sm2_anki.training_session import (get_study_entries, push_study_entry,
@@ -10,7 +11,7 @@ from training.sm2_anki.training_session import (get_study_entries, push_study_en
 ##### CONSTANTS #####
 # connectivity
 MONGODB_URI = os.environ['MONGODB_URI']
-USER_ID = "62a57d5bfa96028f59ac1d75"
+USER_ID = ObjectId("62a57d5bfa96028f59ac1d75")
 
 # display
 # TODO revisit sizes, I think this crashes when it's too small, this is quite hardcoded
@@ -47,11 +48,11 @@ def add_linebreaks(string: str, line_length: int) -> str:
     return ret_string
 
 
-def main(stdscr: curses.window, card_count):
+def main(stdscr: curses.window, language, card_count):
     # initialize training session
     datastore_client = MongoClient(MONGODB_URI)
     vocabulary = get_study_entries(
-        USER_ID, 'polish', datastore_client, interval=1, count=card_count)
+        USER_ID, language, datastore_client, interval=1, count=card_count)
     study_queue = vocabulary.copy()
 
     # initialize things for TUI
@@ -128,7 +129,8 @@ if __name__ == "__main__":
                     prog = 'training_tui',
                     description = 'text interface utility for studying',)
     
+    parser.add_argument('-l', '--language', default="polish", help="the language to study terms from", type=int)
     parser.add_argument('-c', '--count', default=10, help="the number of cards to retrieve for studying", type=int)
     args = parser.parse_args()
 
-    curses.wrapper(main, card_count=args.count)
+    curses.wrapper(main, language=args.language, card_count=args.count)

@@ -1,46 +1,55 @@
-# https://en.wiktionary.org/wiki/Category:Polish_adverbs
-
+from enforce_typing import enforce_types
+from dataclasses import dataclass, field
+from typing import Union
 
 from language.lexeme import Lexeme
 from language.model_errors import LexemeError
 from language.polish.feat.degree import Degree
+from language.part_of_speech import PartOfSpeech
 
 # TODO handle comparative and superlative?
 
-
+@enforce_types
+@dataclass
 class Adverb(Lexeme):
-    def __init__(self, lemma, pos, definitions, degree, positive=[], comparative=[], superlative=[], adjective=[], not_comparable=False):
-        """[summary]
+    """
+    Polish adverb
 
-        Args:
-            lemma ([type]): [description]
-            pos ([type]): [description]
-            definitions ([type]): [description]
-            degree ([type]): [description]
-            positive (list, optional): [description]. Defaults to [].
-            comparative (list, optional): [description]. Defaults to [].
-            superlative (list, optional): [description]. Defaults to [].
-            adjective (list, optional): [description]. Defaults to [].
-            not_comparable (bool, optional): [description]. Defaults to False.
-
-        Raises:
-            LexemeError: [description]
+    Args:
+        lemma ([type]): [description]
+        pos ([type]): [description]
+        definitions ([type]): [description]
+        degree ([type]): [description]
+        positive (list, optional): [description]. Defaults to [].
+        comparative (list, optional): [description]. Defaults to [].
+        superlative (list, optional): [description]. Defaults to [].
+        adjective (list, optional): [description]. Defaults to [].
+        not_comparable (bool, optional): [description]. Defaults to False.
+    """
+    lemma: str
+    pos: Union[PartOfSpeech, str]
+    definitions: list[str]
+    degree: Union[Degree, str]
+    positive: list[str] = field(default_factory=list)
+    comparative: list[str] = field(default_factory=list)
+    superlative: list[str] = field(default_factory=list)
+    adjective: list[str] = field(default_factory=list)
+    not_comparable: bool = False
+    
+    def __post_init__(self):
         """
-        if degree and not isinstance(degree, Degree):
-            degree = Degree[degree.upper()]
+        Test assertions on this lexeme after construction
+        """
+        if self.degree and not isinstance(self.degree, Degree):
+            self.degree = Degree[self.degree.upper()]
 
-        if not self.validate_degrees(degree, positive, comparative, superlative, not_comparable):
-            args = {'degree': degree, 'positive': positive, 'comparative': comparative,
-                    'superlative': superlative, 'not_comparable': not_comparable}
+        if not self.validate_degrees(self.degree, self.positive, self.comparative, self.superlative, self.not_comparable):
+            args = {'degree': self.degree, 'positive': self.positive, 'comparative': self.comparative,
+                    'superlative': self.superlative, 'not_comparable': self.not_comparable}
             raise LexemeError(
-                lemma, pos, args, f"The adverb had invalid arguments regarding degree - {args}")
+                self.lemma, self.pos, args, f"The adverb had invalid arguments regarding degree - {args}")
 
-        super(Adverb, self).__init__(lemma, pos, definitions)
-        self.degree = degree
-        self.positive = positive
-        self.comparative = comparative
-        self.superlative = superlative
-        self.not_comparable = not_comparable
+        super(Adverb, self).__post_init__()
 
     def validate_degrees(self, degree, positive, comparative, superlative, not_comparable):
         """

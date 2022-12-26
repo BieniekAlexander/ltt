@@ -1,39 +1,32 @@
-import json
+from dataclasses import dataclass
+from enforce_typing import enforce_types
+from typing import Union
 
 from utils.json_utils import JSONSerializable
+from language.part_of_speech import PartOfSpeech
 
-from .part_of_speech import PartOfSpeech
-
-# TODO add definitions and translations
-
-
+# TODO add translations
+@enforce_types
+@dataclass
 class Lexeme(JSONSerializable):
-# class Lexeme(object):
     """
     A representation of a basic word of a language from which ideas are derived.
 
-    https://en.wikipedia.org/wiki/Lexeme
-
     Attributes:
-lemma (str): The most basic form of the word.
-pos (PartOfSpeech): The part of speech of the word.
+        lemma (str): The most basic form of the word.
+        pos (PartOfSpeech): The part of speech of the word.
+        definitions (list): the definitions of the trm.
     """
-
-    def __init__(self, lemma, pos, definitions):
+    lemma: str
+    pos: Union[PartOfSpeech, str]
+    definitions: list
+    
+    def __post_init__(self):
         """
-        Term constructor, which instantiates the object and checks its validity in the language's semantic model.
+        Postprocess fields after construction
         """
-        # check input types
-        assert isinstance(pos, PartOfSpeech) or isinstance(pos, str)
-        assert isinstance(pos, str)
-        assert isinstance(definitions, list)
-
-        if type(pos) != PartOfSpeech:
-            pos = PartOfSpeech[pos.upper()]
-
-        self.lemma = lemma
-        self.pos = pos
-        self.definitions = definitions
+        if type(self.pos) in [str, PartOfSpeech]:
+            self.pos = PartOfSpeech[self.pos.upper()]
 
     def __eq__(self, other) -> bool:
         """

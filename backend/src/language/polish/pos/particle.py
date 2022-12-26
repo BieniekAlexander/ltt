@@ -1,14 +1,26 @@
-# https://en.wiktionary.org/wiki/Category:Polish_particles
+from enforce_typing import enforce_types
+from dataclasses import dataclass
+from typing import Union
+
 from language.lexeme import Lexeme
+from language.part_of_speech import PartOfSpeech
 
-
+@enforce_types
+@dataclass
 class Particle(Lexeme):
-    def __init__(self, lemma, pos, definitions):
-        """[summary]
+    """Polish Particle
 
-        Args:
-            lemma ([type]): [description]
-            pos ([type]): [description]
-            definitions ([type]): [description]
+    Args:
+        lemma ([type]): [description]
+        pos ([type]): [description]
+        definitions ([type]): [description]
+    """
+    lemma: str
+    pos: Union[PartOfSpeech, str]
+    definitions: list[str]
+
+    def __post_init__(self):
         """
-        super(Particle, self).__init__(lemma, pos, definitions)
+        Run checks
+        """
+        super().__post_init__()

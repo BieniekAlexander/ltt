@@ -4,10 +4,11 @@ Initialize a user's vocabulary with the set of terms from duolingo's wordbase
 import logging
 import argparse
 import os
-
 import pandas as pd
+
+from bson.objectid import ObjectId
 from pymongo import MongoClient
-from storage.language_datastore import LanguageDatastore
+from storage.language_datastores.polish_datastore import PolishDatastore
 from training.sm2_anki.stats import Stats
 
 # constants
@@ -25,7 +26,7 @@ user_id = args.user_id
 duolingo_terms_polish = list(pd.read_csv(DUOLINGO_CSV, comment="#")['Polish'])
 
 ds_client = MongoClient(MONGODB_URI)
-language_datastore = LanguageDatastore(ds_client, language)
+language_datastore = PolishDatastore(ds_client, language)
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -44,7 +45,7 @@ for term in duolingo_terms_polish:
         for lexeme_id in lexeme_ids:
             try:
                 language_datastore.add_vocabulary_entry(
-                    lexeme_id, Stats(), user_id)
+                    ObjectId(lexeme_id), {'definition': Stats()}, ObjectId(user_id))
             except Exception as e:  # eee storage exceptions
                 # TODO I'm not seeing this get logged, I'm not sure why
                 logger.info("Skipping duplicate vocabulary entry")

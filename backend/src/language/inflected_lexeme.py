@@ -1,3 +1,6 @@
+from typing import Union
+from dataclasses import dataclass
+from enforce_typing import enforce_types
 
 from language.lexeme import Lexeme
 from language.part_of_speech import PartOfSpeech
@@ -7,6 +10,8 @@ from utils.data_structure_utils import (flatten_dict_keys,
                                         split_dict_vals)
 
 
+@enforce_types
+@dataclass
 class InflectedLexeme(Lexeme):
     """
     A representation of a basic, uninflected word of a language, from which ideas are derived.
@@ -14,20 +19,21 @@ class InflectedLexeme(Lexeme):
     Attributes:
       lemma (str): The most basic form of the word.
       pos (PartOfSpeech): The part of speech of the word.
+      definitions (list): the definitions for the term.
+      inflections (dict): the inflected forms of the term.
     """
+    lemma: str
+    pos: Union[PartOfSpeech, str]
+    definitions: list
+    inflections: dict
 
-    def __init__(self, lemma, pos, definitions, inflections):
+    def __post_init__(self):
         """
         Inflected term constructor.
         """
         # check input types
-        assert isinstance(pos, PartOfSpeech) or isinstance(pos, str)
-        assert isinstance(pos, str)
-        assert isinstance(definitions, list)
-        assert isinstance(inflections, dict)
-
-        super(InflectedLexeme, self).__init__(lemma, pos, definitions)
-        self.store_inflections(inflections)
+        super().__post_init__()
+        self.store_inflections(self.inflections)
 
     def store_inflections(self, inflections):
         """

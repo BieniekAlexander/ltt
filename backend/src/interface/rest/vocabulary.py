@@ -2,10 +2,11 @@
 # imports
 import os
 
+from bson.objectid import ObjectId
 from flask import Blueprint, current_app, request
 from flask_restx import Namespace, Resource, fields
 from pymongo import MongoClient
-from storage.language_datastore import LanguageDatastore
+from storage.language_datastores.polish_datastore import PolishDatastore
 from training.sm2_anki.stats import Stats
 from utils.json_utils import jsonify
 
@@ -61,7 +62,7 @@ class Entries(Resource):
         user_id = request_data['user_id']
         lexeme_id = request_data['lexeme_id']
 
-        language_datastore = LanguageDatastore(current_app.ds_client, language)
+        language_datastore = PolishDatastore(current_app.ds_client, language)
         return language_datastore.get_vocabulary_entry(lexeme_id, user_id)
 
     @ns.doc(body=entry_fields_put)
@@ -73,13 +74,12 @@ class Entries(Resource):
         language = request_data['language']
         user_id = request_data['user_id']
         lexeme_id = request_data['lexeme_id']
-        print(lexeme_id)
 
         try:
-            language_datastore = LanguageDatastore(
+            language_datastore = PolishDatastore(
                 current_app.ds_client, language)
             vocab_entry = language_datastore.get_vocabulary_entry(
-                lexeme_id, user_id)
+                lexeme_id, ObjectId(user_id))
 
             if vocab_entry:
                 return jsonify({
@@ -92,7 +92,7 @@ class Entries(Resource):
             else:
                 stats = {k: (Stats(**request_data['stats'][k])) for k in request_data['stats']} if 'stats' in request_data else {'definition': Stats()}
                 vocabulary_id = language_datastore.add_vocabulary_entry(
-                    lexeme_id, stats, user_id)  # TODO check if the stats get loaded properly
+                    ObjectId(lexeme_id), stats, ObjectId(user_id))  # TODO check if the stats get loaded properly
                 ret = jsonify({
                     'vocabulary_id': str(vocabulary_id),
                     'stats': jsonify(stats),
@@ -118,13 +118,13 @@ class Entries(Resource):
         stats = request_data['stats']
 
         try:
-            language_datastore = LanguageDatastore(
+            language_datastore = PolishDatastore(
                 current_app.ds_client, language)
             lexeme_id = request_data['lexeme_id']
             user_id = request_data['user_id']
             stats = {key: Stats(**stats[key]) for key in stats}
             vocabulary_id = language_datastore.add_vocabulary_entry(
-                lexeme_id, stats, user_id)  # TODO check if the stats get loaded properly
+                ObjectId(lexeme_id), stats, ObjectId(user_id))  # TODO check if the stats get loaded properly
             response = jsonify({'vocabulary_id': str(vocabulary_id)})
             return response
         except AssertionError as e:

@@ -1,19 +1,19 @@
 # %% imports
 import json
-
 import pytest
+
+from bson.objectid import ObjectId
 from language.lexeme_decoder import LexemeDecoder
 from mongomock import MongoClient
 from scraping.annotation_utils import annotate_text
 from storage.datastore_schemata.polish_schemata import (lexeme_index,
-                                                        user_vocabulary_index)
-from storage.language_datastore import LanguageDatastore
-from storage.vocabulary_connector import VocabularyConnector
+                                                        vocabulary_index)
+from storage.language_datastores.polish_datastore import PolishDatastore
 from training.sm2_anki.stats import Stats
 
 # constants
 LANGUAGE = "polish"
-USER_ID = "0"*24
+USER_ID = ObjectId("0"*24)
 ds_client = MongoClient()
 
 
@@ -24,32 +24,17 @@ def language_datastore():
     """
     Establish a connection to the mongodb database
     """
-    test_language_datastore = LanguageDatastore(ds_client, LANGUAGE)
+    test_language_datastore = PolishDatastore(ds_client)
 
     # run test
     yield test_language_datastore
 
     # cleanup
     test_language_datastore.lexicon_connector.collection.drop({})
-    test_language_datastore.inflections_connector.collection.drop({})
-
-
-@pytest.fixture()
-def vocabulary_connector():
-    """
-    Establish a connection to the mongodb database
-    """
-    test_vocabulary_connector = VocabularyConnector(ds_client, LANGUAGE)
-
-    # run test
-    yield test_vocabulary_connector
-
-    # cleanup
-    test_vocabulary_connector.collection.drop({})
 
 
 # %% tests
-def test_annotate_text_all_known_no_vocabulary(language_datastore):
+def test_annotate_text_all_known_no_vocabulary(language_datastore: PolishDatastore):
     lexeme_0_str = open('tests/interface/data/noun_ciało.json').read()
     lexeme_0 = json.loads(lexeme_0_str, cls=LexemeDecoder)
     lexeme_1_str = open('tests/interface/data/verb_być.json').read()
@@ -68,7 +53,7 @@ def test_annotate_text_all_known_no_vocabulary(language_datastore):
         assert lexeme.lemma == annotation_lexeme['lemma']
 
 
-def test_annotate_text_some_known(language_datastore):
+def test_annotate_text_some_known(language_datastore: PolishDatastore):
     lexeme_0_str = open('tests/interface/data/noun_ciało.json').read()
     lexeme_0 = json.loads(lexeme_0_str, cls=LexemeDecoder)
     lexeme_1_str = open('tests/interface/data/verb_być.json').read()
@@ -84,7 +69,7 @@ def test_annotate_text_some_known(language_datastore):
     assert 'lexeme' not in annotations[2]
 
 
-def test_annotate_text_some_known_discover(language_datastore):
+def test_annotate_text_some_known_discover(language_datastore: PolishDatastore):
     lexeme_0_str = open('tests/interface/data/noun_ciało.json').read()
     lexeme_0 = json.loads(lexeme_0_str, cls=LexemeDecoder)
     lexeme_1_str = open('tests/interface/data/verb_być.json').read()
@@ -103,7 +88,7 @@ def test_annotate_text_some_known_discover(language_datastore):
     assert annotations[2]['lexeme']['lemma'] == lexeme_2.lemma
 
 
-def test_annotate_some_vocabulary(language_datastore, vocabulary_connector: VocabularyConnector):
+def test_annotate_some_vocabulary(language_datastore: PolishDatastore):
     lexeme_0_str = open('tests/interface/data/noun_ciało.json').read()
     lexeme_0 = json.loads(lexeme_0_str, cls=LexemeDecoder)
     lexeme_1_str = open('tests/interface/data/verb_być.json').read()
@@ -115,7 +100,7 @@ def test_annotate_some_vocabulary(language_datastore, vocabulary_connector: Voca
     lexeme_ids = language_datastore.add_lexemes(lexemes)
 
     entry = {'lexeme_id': lexeme_ids[0], 'stats': {'definition': Stats()}, 'user_id': USER_ID}
-    vocabulary_mapping = vocabulary_connector.push_vocabulary_entry(**entry)
+    language_datastore.add_vocabulary_entry(**entry)
 
     text = "ciało jest prawdziwe."
     annotations = annotate_text(text, language_datastore, user_id=USER_ID)

@@ -15,7 +15,7 @@ def get_wiktionary_search_url(
 # "https://en.wiktionary.org/w/index.php?search={term}"
 
 
-@delay(5)
+@delay(1)
 def get_soup_from_url(url: str):
     """
     Helper function to get the [BeautifulSoup] object from a URL 

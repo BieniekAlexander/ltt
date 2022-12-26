@@ -1,53 +1,60 @@
-# https://en.wiktionary.org/wiki/Category:Polish_verbs
+from enforce_typing import enforce_types
+from dataclasses import dataclass, field
+from typing import Union, Optional
 
-
+from language.part_of_speech import PartOfSpeech
 from language.inflected_lexeme import InflectedLexeme
 from language.model_errors import LexemeError
 from language.polish.feat.abstraction import Abstraction
 from language.polish.feat.aspect import Aspect
 
 
+@enforce_types
+@dataclass
 class Verb(InflectedLexeme):
-    def __init__(self, lemma, pos, definitions, inflections, aspect, abstraction=None, is_frequentative=False,
-                 imperfective=[], perfective=[], indeterminate=[], frequentative=[]):
-        """[summary]
+    """[summary]
 
-        Args:
-            lemma ([type]): [description]
-            pos ([type]): [description]
-            definitions ([type]): [description]
-            inflections ([type]): [description]
-            aspect ([type]): [description]
-            abstraction ([type], optional): [description]. Defaults to None.
-            is_frequentative (bool, optional): [description]. Defaults to False.
-            imperfective (list, optional): [description]. Defaults to [].
-            perfective (list, optional): [description]. Defaults to [].
-            indeterminate (list, optional): [description]. Defaults to [].
-            frequentative (list, optional): [description]. Defaults to [].
+    Args:
+        lemma ([type]): [description]
+        pos ([type]): [description]
+        definitions ([type]): [description]
+        inflections ([type]): [description]
+        aspect ([type]): [description]
+        abstraction ([type], optional): [description]. Defaults to None.
+        is_frequentative (bool, optional): [description]. Defaults to False.
+        imperfective (list, optional): [description]. Defaults to [].
+        perfective (list, optional): [description]. Defaults to [].
+        indeterminate (list, optional): [description]. Defaults to [].
+        frequentative (list, optional): [description]. Defaults to [].
+    """
+    lemma: str
+    pos: Union[PartOfSpeech, str]
+    definitions: list[str]
+    inflections: dict
+    aspect: Union[Aspect, str]
+    abstraction: Optional[Union[Abstraction, str]] = None
+    is_frequentative: bool = False
+    imperfective: list[str] = field(default_factory=list)
+    perfective: list[str] = field(default_factory=list)
+    indeterminate: list[str] = field(default_factory=list)
+    frequentative: list[str] = field(default_factory=list)
 
-        Raises:
-            LexemeError: [description]
+    def __post_init__(self):
+        """
+        postprocess verb
         """
         # preprocess gender information
-        if aspect and not isinstance(aspect, Aspect):
-            aspect = Aspect[aspect.upper()]
-        if abstraction and not isinstance(abstraction, Abstraction):
-            abstraction = Abstraction[abstraction.upper()]
+        if self.aspect and not isinstance(self.aspect, Aspect):
+            self.aspect = Aspect[self.aspect.upper()]
+        if self.abstraction and not isinstance(self.abstraction, Abstraction):
+            self.abstraction = Abstraction[self.abstraction.upper()]
 
-        if not self.validate_form(aspect, abstraction, is_frequentative):
-            arguments = {'aspect': aspect, 'abstraction': abstraction,
-                         'frequentative': is_frequentative}
-            raise LexemeError(lemma, pos, arguments, 'invalid verb form logic')
+        if not self.validate_form(self.aspect, self.abstraction, self.is_frequentative):
+            arguments = {'aspect': self.aspect, 'abstraction': self.abstraction,
+                         'frequentative': self.is_frequentative}
+            raise LexemeError(self.lemma, self.pos, arguments, 'invalid verb form logic')
 
-        # load in fields
-        super(Verb, self).__init__(lemma, pos, definitions, inflections)
-        self.aspect = aspect
-        self.abstraction = abstraction
-        self.is_frequentative = is_frequentative
-        self.imperfective = imperfective
-        self.perfective = perfective
-        self.indeterminate = indeterminate
-        self.frequentative = frequentative
+        super().__post_init__()
 
     def validate_form(self, aspect, abstraction, is_frequentative) -> bool:
         """[summary]

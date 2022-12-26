@@ -1,0 +1,5810 @@
+{
+    "\u4e00": {
+        "definitions": [
+            "one",
+            "[1] [numeral/article] one; a; an; the",
+            "[2] [adj] same; whole; all; throughout",
+            "[3] [pron] each; certain; another",
+            "[4] [adv] once; as soon as (as short for \u4e00\u65e6)",
+            "[5] [adv] a little; slightly",
+            "[6] [adv] suddenly; completelyPinyin yi1 is standard reading, but changes tone to yi4 before characters of tones 1, 2, 3, and to yi2 before characters of tone 4."
+        ],
+        "radicals": [
+            "\u4e00"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "jat1",
+            "pinyin": "yi1"
+        },
+        "forms": {
+            "traditional": "\u4e00",
+            "simplified": "\u4e00"
+        },
+        "stroke_counts": {
+            "traditional": 1,
+            "simplified": 1
+        },
+        "lemma": "\u4e00",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u4e28": {
+        "definitions": [
+            "line",
+            "Kangxi radical 2Stroke count: 1"
+        ],
+        "radicals": [
+            "\u4e28"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "kwan2",
+            "pinyin": "gun3"
+        },
+        "forms": {
+            "traditional": "\u4e28",
+            "simplified": "\u4e28"
+        },
+        "stroke_counts": {
+            "traditional": 1,
+            "simplified": 1
+        },
+        "lemma": "\u4e28",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u4e36": {
+        "definitions": [
+            "dot",
+            "[1] interpunction [2] comma [3] Kangxi radical 3Stroke count: 1"
+        ],
+        "radicals": [
+            "\u4e36"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "zyu2",
+            "pinyin": "zhu3"
+        },
+        "forms": {
+            "traditional": "\u4e36",
+            "simplified": "\u4e36"
+        },
+        "stroke_counts": {
+            "traditional": 1,
+            "simplified": 1
+        },
+        "lemma": "\u4e36",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u4e3f": {
+        "definitions": [
+            "slash",
+            "[1] left stroke in Chinese writing",
+            "[2] Kangxi radical 4 (slash)Stroke count: 1"
+        ],
+        "radicals": [
+            "\u4e3f"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "pit3",
+            "pinyin": "pie3"
+        },
+        "forms": {
+            "traditional": "\u4e3f",
+            "simplified": "\u4e3f"
+        },
+        "stroke_counts": {
+            "traditional": 1,
+            "simplified": 1
+        },
+        "lemma": "\u4e3f",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u4e40",
+            "\u2e84"
+        ]
+    },
+    "\u4e59": {
+        "definitions": [
+            "second",
+            "[1] second, \"2\" or \"B\" item",
+            "[2] second of the ten heavenly stems",
+            "[3] one unit (as literary variant of \"\u4e00\")Jyutping jyut3 is standard reading; jyut6 is variant."
+        ],
+        "radicals": [
+            "\u4e59"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "jyut3",
+            "pinyin": "yi3"
+        },
+        "forms": {
+            "traditional": "\u4e59",
+            "simplified": "\u4e59"
+        },
+        "stroke_counts": {
+            "traditional": 1,
+            "simplified": 1
+        },
+        "lemma": "\u4e59",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u4e5a",
+            "\u4e5b"
+        ]
+    },
+    "\u4e85": {
+        "definitions": [
+            "hook",
+            "[1] perpendicular hook; one of the strokes in Chinese writing",
+            "[2] Kangxi radical 6Stroke count: 1"
+        ],
+        "radicals": [
+            "\u4e85"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "kyut3",
+            "pinyin": "jue2"
+        },
+        "forms": {
+            "traditional": "\u4e85",
+            "simplified": "\u4e85"
+        },
+        "stroke_counts": {
+            "traditional": 1,
+            "simplified": 1
+        },
+        "lemma": "\u4e85",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u4e8c": {
+        "definitions": [
+            "two",
+            "[1] two [2] second; twice [3] (indicates reiteration of the previous character, i.e. \\\"ditto\\\") [4]KangXi radical #7Alternate and formal form used on checks, in accounting and banking: \u8cb3",
+            "The reiteration mark as most often seen in handwriting: \u303b",
+            "Default PoS:  Additional PoS: Stroke count: 2"
+        ],
+        "radicals": [
+            "\u4e8c"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "ji6",
+            "pinyin": "er4"
+        },
+        "forms": {
+            "traditional": "\u4e8c",
+            "simplified": "\u4e8c"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u4e8c",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u4ea0": {
+        "definitions": [
+            "lid",
+            "watchtower; Kangxi radical 8Stroke count: 2"
+        ],
+        "radicals": [
+            "\u4ea0"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "tau4",
+            "pinyin": "tou2"
+        },
+        "forms": {
+            "traditional": "\u4ea0",
+            "simplified": "\u4ea0"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u4ea0",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u4eba": {
+        "definitions": [
+            "person",
+            "[1] person; people; human being",
+            "[2] everybody; each; all",
+            "[3] grown-up; adult; manhood",
+            "[4] persons of a certain kind",
+            "[5] a person's character, reputation, etc",
+            "[6] a person's physical or mental condition",
+            "[7] manpower; staff; human resources(Classifier(s): \u500b, \u73ed, \u7fa4)"
+        ],
+        "radicals": [
+            "\u4ebb"
+        ],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "jan4",
+            "pinyin": "ren2"
+        },
+        "forms": {
+            "traditional": "\u4eba",
+            "simplified": "\u4eba"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u4eba",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u4ebb"
+        ]
+    },
+    "\u513f": {
+        "definitions": [
+            "legs"
+        ],
+        "lemma": "\u513f",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u513f"],
+        "forms": {"simplified": "\u513f", "traditional": "\u513f"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u5165": {
+        "definitions": [
+            "enter",
+            "[1] [v] enter; come/go in(to) [2] [v] join; come into the company of [3] [v] arrive at; reach [4] [v] put in [5] receipts; income [6] [v] get out of sight; disappear [7] [v] get (inside, picked, elected, etc.) [8] [v] agree with; conform to [9] one of the four tones of a characterStroke count: 2"
+        ],
+        "radicals": [
+            "\u5165"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "jap6",
+            "pinyin": "ru4"
+        },
+        "forms": {
+            "traditional": "\u5165",
+            "simplified": "\u5165"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u5165",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u516b": {
+        "definitions": [
+            "eight",
+            "eight\u634c is a variant of \u516b, the \"full form\" of \u516b, used in certain formal settings such as when dealing",
+            "Default PoS:  Additional PoS: Stroke count: 2"
+        ],
+        "radicals": [
+            "\u516b"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "baat3",
+            "pinyin": "ba1"
+        },
+        "forms": {
+            "traditional": "\u516b",
+            "simplified": "\u516b"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u516b",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u4e37"
+        ]
+    },
+    "\u5182": {
+        "definitions": [
+            "down box",
+            "[1] wide",
+            "[2] Kangxi radical 13Stroke count: 2"
+        ],
+        "radicals": [
+            "\u5182"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "gwing2/1",
+            "pinyin": "jiong1"
+        },
+        "forms": {
+            "traditional": "\u5182",
+            "simplified": "\u5182"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u5182",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5196": {
+        "definitions": [
+            "cover",
+            "[1] cover",
+            "[2] Kangxi radical 14Stroke count: 2"
+        ],
+        "radicals": [
+            "\u5196"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "mik6",
+            "pinyin": "mi4"
+        },
+        "forms": {
+            "traditional": "\u5196",
+            "simplified": "\u5196"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u5196",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u51ab": {
+        "definitions": [
+            "ice",
+            "[1] ice",
+            "[2] Kangxi radical 15This \"character\" is used only as a component of another character."
+        ],
+        "radicals": [
+            "\u51ab"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "bing1",
+            "pinyin": "bing1"
+        },
+        "forms": {
+            "traditional": "\u51ab",
+            "simplified": "\u51ab"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u51ab",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u51e0": {
+        "definitions": [
+            "table"
+        ],
+        "lemma": "\u51e0",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u51e0"],
+        "forms": {"simplified": "\u51e0", "traditional": "\u51e0"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u51f5": {
+        "definitions": [
+            "open box",
+            "[1] [n] receptacle",
+            "[2] [n] open box, open mouth",
+            "[3] [Hakka] [v] cough",
+            "[4] Kangxi radical 17Stroke count: 2"
+        ],
+        "radicals": [
+            "\u51f5"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "ham2",
+            "pinyin": "kan4"
+        },
+        "forms": {
+            "traditional": "\u51f5",
+            "simplified": "\u51f5"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u51f5",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5200": {
+        "definitions": [
+            "knife",
+            "[1] knife; (single-edged) sword",
+            "[2] knife-shaped thing(Classifier(s): \u628a, \u5f35)",
+            "In Chinese, \u528d are double-edged and straight; \u5200 are single-edged and may be curved."
+        ],
+        "radicals": [
+            "\u5200"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "dou1",
+            "pinyin": "dao1"
+        },
+        "forms": {
+            "traditional": "\u5200",
+            "simplified": "\u5200"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u5200",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u2e88",
+            "\u5202"
+        ]
+    },
+    "\u529b": {
+        "definitions": [
+            "power",
+            "[1] strength [2] force; power [3] ability; capability [4] vigor [5] vigorously; earnestly [6] [v] do one's best",
+            "[7] KangXi radical 19 Default PoS:  Additional PoS: Stroke count: 2"
+        ],
+        "radicals": [
+            "\u529b"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "lik6",
+            "pinyin": "li4"
+        },
+        "forms": {
+            "traditional": "\u529b",
+            "simplified": "\u529b"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u529b",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u52f9": {
+        "definitions": [
+            "wrap",
+            "[1] wrap",
+            "[2] Kangxi radical 20 (wrap)Stroke count: 2"
+        ],
+        "radicals": [
+            "\u52f9"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "baau1",
+            "pinyin": "bao1"
+        },
+        "forms": {
+            "traditional": "\u52f9",
+            "simplified": "\u52f9"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u52f9",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5315": {
+        "definitions": [
+            "ladle",
+            "[1] dagger; knife",
+            "[2] spoon; ladleStroke count: 2"
+        ],
+        "radicals": [
+            "\u5315"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "bei3",
+            "pinyin": "bi3"
+        },
+        "forms": {
+            "traditional": "\u5315",
+            "simplified": "\u5315"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u5315",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u531a": {
+        "definitions": [
+            "right open box",
+            "[1] box",
+            "[2] Kangxi radical 22 (right open box)Stroke count: 2"
+        ],
+        "radicals": [
+            "\u531a"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "fong1",
+            "pinyin": "fang1"
+        },
+        "forms": {
+            "traditional": "\u531a",
+            "simplified": "\u531a"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u531a",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5338": {
+        "definitions": [
+            "hiding enclosure",
+            "[1] box",
+            "[2] Kangxi radical 23 (hiding enclosure)Stroke count: 2"
+        ],
+        "radicals": [
+            "\u5338"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "hai2",
+            "pinyin": "xi3"
+        },
+        "forms": {
+            "traditional": "\u5338",
+            "simplified": "\u5338"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u5338",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5341": {
+        "definitions": [
+            "ten",
+            "[1] ten; tenth",
+            "[2] complete; completely; perfect; extremely; perfectly",
+            "[3] KangXi radical 24alternate and formal form used on checks, in accounting and banking: \u62fe",
+            "Default PoS:  Additional PoS: Stroke count: 2"
+        ],
+        "radicals": [
+            "\u5341"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "sap6",
+            "pinyin": "shi2"
+        },
+        "forms": {
+            "traditional": "\u5341",
+            "simplified": "\u5341"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u5341",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u535c": {
+        "definitions": [
+            "divination"
+        ],
+        "lemma": "\u535c",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u535c"],
+        "forms": {"simplified": "\u535c", "traditional": "\u535c"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u5369": {
+        "definitions": [
+            "seal",
+            "[1] kneel",
+            "[2] Kangxi radical 26Stroke count: 2"
+        ],
+        "radicals": [
+            "\u5369"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "zit3",
+            "pinyin": "jie2"
+        },
+        "forms": {
+            "traditional": "\u5369",
+            "simplified": "\u5369"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u5369",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u353e"
+        ]
+    },
+    "\u5382": {
+        "definitions": [
+            "cliff"
+        ],
+        "lemma": "\u5382",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u5382"],
+        "forms": {"simplified": "\u5382", "traditional": "\u5382"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u53b6": {
+        "definitions": [
+            "private",
+            "[1] private; secret",
+            "[2] Kangxi radical 28 (private)Stroke count: 2"
+        ],
+        "radicals": [
+            "\u53b6"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "si1",
+            "pinyin": "si1"
+        },
+        "forms": {
+            "traditional": "\u53b6",
+            "simplified": "\u53b6"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u53b6",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u53c8": {
+        "definitions": [
+            "again",
+            "[1] and; also; again; in addition to [2] moreover; furthermore [3] and (used in a mixed fraction such as one and three fourths)Stroke count: 2"
+        ],
+        "radicals": [
+            "\u53c8"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "jau6",
+            "pinyin": "you4"
+        },
+        "forms": {
+            "traditional": "\u53c8",
+            "simplified": "\u53c8"
+        },
+        "stroke_counts": {
+            "traditional": 2,
+            "simplified": 1
+        },
+        "lemma": "\u53c8",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u53e3": {
+        "definitions": [
+            "mouth",
+            "[1] [n] mouth",
+            "[2] open end; opening",
+            "[3] entrance; gate (especially in the Great Wall or city walls)",
+            "[4] [n] person",
+            "[5] a certain article (as a cistern, a big jar, etc)",
+            "[6] [n] edge or blade of a knife",
+            "[7] [n] crack",
+            "[8] KangXi radical 30 (mouth) Default PoS:  Additional PoS: Stroke count: 3"
+        ],
+        "radicals": [
+            "\u53e3"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "hau2",
+            "pinyin": "kou3"
+        },
+        "forms": {
+            "traditional": "\u53e3",
+            "simplified": "\u53e3"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u53e3",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u56d7": {
+        "definitions": [
+            "enclosure",
+            "[1] erect; proud",
+            "[2] upright",
+            "[3] bald",
+            "[4] KangXi radical 31 (enclosure)Stroke count: 3"
+        ],
+        "radicals": [
+            "\u56d7"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "wai4",
+            "pinyin": "wei2"
+        },
+        "forms": {
+            "traditional": "\u56d7",
+            "simplified": "\u56d7"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u56d7",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u571f": {
+        "definitions": [
+            "earth",
+            "[1] soil; earth; [2] land; territory; domain [3] local; native; indigenous [4] unrefined; unenlightened [5] rustic; countrified [6] opium [7] an abbreviation for Turkey",
+            "[8] KangXi radical 32 (earth)Stroke count: 3"
+        ],
+        "radicals": [
+            "\u571f"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "tou2",
+            "pinyin": "tu3"
+        },
+        "forms": {
+            "traditional": "\u571f",
+            "simplified": "\u571f"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u571f",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u58eb": {
+        "definitions": [
+            "scholar",
+            "[1] commendable person; scholar",
+            "[2] person trained in a certain field",
+            "[3] soldier; noncommissioned officer"
+        ],
+        "radicals": [
+            "\u58eb"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "si6",
+            "pinyin": "shi4"
+        },
+        "forms": {
+            "traditional": "\u58eb",
+            "simplified": "\u58eb"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u58eb",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5902": {
+        "definitions": [
+            "go",
+            "[1] go",
+            "[2] Kangxi radical 34 (go)Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5902"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "zi1",
+            "pinyin": "zhi3"
+        },
+        "forms": {
+            "traditional": "\u5902",
+            "simplified": "\u5902"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5902",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u590a": {
+        "definitions": [
+            "go slowly",
+            "[1] Kangxi radical 35 (go slowly)",
+            "[2] go slowlyStroke count: 3"
+        ],
+        "radicals": [
+            "\u590a"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "seoi1",
+            "pinyin": "sui1"
+        },
+        "forms": {
+            "traditional": "\u590a",
+            "simplified": "\u590a"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u590a",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5915": {
+        "definitions": [
+            "night",
+            "[1] sunset; evening; night",
+            "[2] last period of year, season, month, etcPinyin xi1 is China reading; xi4 is Taiwan reading."
+        ],
+        "radicals": [
+            "\u5915"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "zik6",
+            "pinyin": "xi1"
+        },
+        "forms": {
+            "traditional": "\u5915",
+            "simplified": "\u5915"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5915",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5927": {
+        "definitions": [
+            "big",
+            "[1] big; vast; large [2] great [3] much [4] very; highly; extremely; really [5] your (politely) [6] the eldest; senior [7] full-grown; [n] adult [8] before; after (referring to dates only) [9] [v] make large; make great [10] a Chinese family nameThe Mandarin /dai4/ is used in the term \u5927\u592b, meaning \"doctor\".",
+            "Default PoS:  Additional PoS: Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5927"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "daai6",
+            "pinyin": "da4"
+        },
+        "forms": {
+            "traditional": "\u5927",
+            "simplified": "\u5927"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5927",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5973": {
+        "definitions": [
+            "woman",
+            "[1] woman; female; lady",
+            "[2] daughter; girlJyutping neoi5 is literary reading; neoi2 is colloquial.",
+            "Default PoS:  Additional PoS: Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5973"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "neoi5",
+            "pinyin": "nv3"
+        },
+        "forms": {
+            "traditional": "\u5973",
+            "simplified": "\u5973"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5973",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5b50": {
+        "definitions": [
+            "child",
+            "[1] [n] son; child; offspring",
+            "[2] [n] person; learned or virtuous man",
+            "[3] [n] egg; seed; young/newborn animal",
+            "[4] [adj] young; tender; small",
+            "[5] [adj] subsidiary; subordinate | [ant] \u6bcd",
+            "[6] [n] a rank of the nobility equivalent to a viscount",
+            "[7] [n] first of the twelve Earthly Branches"
+        ],
+        "radicals": [
+            "\u5b50"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "zi2",
+            "pinyin": "zi3"
+        },
+        "forms": {
+            "traditional": "\u5b50",
+            "simplified": "\u5b50"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5b50",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5b80": {
+        "definitions": [
+            "roof",
+            "[1] [n] roof (figuratively as protection) [2] Kangxi radical no. 40Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5b80"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "min4",
+            "pinyin": "mian2/1"
+        },
+        "forms": {
+            "traditional": "\u5b80",
+            "simplified": "\u5b80"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5b80",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5bf8": {
+        "definitions": [
+            "inch",
+            "[1] [n] inch; unit of length",
+            "[2] [adj] very small/little/short",
+            "[3] [\u7cb5] [adj] [slang] cocky; arrogant; vain | [Var] \u4e32 Default PoS:  Additional PoS: Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5bf8"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "cyun3",
+            "pinyin": "cun4"
+        },
+        "forms": {
+            "traditional": "\u5bf8",
+            "simplified": "\u5bf8"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5bf8",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5c0f": {
+        "definitions": [
+            "small",
+            "[1] small; tiny; little [2] minor [3] young; junior [4] humble; mean; lowly [5] insignificant; light; unimportant; trivial; petty Default PoS:  Additional PoS: Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5c0f"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "siu2",
+            "pinyin": "xiao3"
+        },
+        "forms": {
+            "traditional": "\u5c0f",
+            "simplified": "\u5c0f"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5c0f",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u2e8d",
+            "\u2e8c"
+        ]
+    },
+    "\u5c22": {
+        "definitions": [
+            "lame",
+            "crippled; lame   KangXi radical 43"
+        ],
+        "radicals": [
+            "\u5c22"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "jau4",
+            "pinyin": "you2"
+        },
+        "forms": {
+            "traditional": "\u5c22",
+            "simplified": "\u5c22"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5c22",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5c38": {
+        "definitions": [
+            "corpse"
+        ],
+        "lemma": "\u5c38",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u5c38"],
+        "forms": {"simplified": "\u5c38", "traditional": "\u5c38"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u5c6e": {
+        "definitions": [
+            "sprout",
+            "[1] sprout",
+            "[2] Kangxi radical 45Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5c6e"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "cou2",
+            "pinyin": "cao3"
+        },
+        "forms": {
+            "traditional": "\u5c6e",
+            "simplified": "\u5c6e"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5c6e",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5c71": {
+        "definitions": [
+            "mountain",
+            "This character is used in both Cantonese and Mandarin/Standard written Chinese."
+        ],
+        "radicals": [
+            "\u5c71"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "saan1",
+            "pinyin": "shan1"
+        },
+        "forms": {
+            "traditional": "\u5c71",
+            "simplified": "\u5c71"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5c71",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5ddb": {
+        "definitions": [
+            "river",
+            "[1] [n] river",
+            "[2] Kangxi radical 47",
+            "[3] standard form of ?Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5ddd"
+        ],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "cyun1",
+            "pinyin": "shun4"
+        },
+        "forms": {
+            "traditional": "\u5ddb",
+            "simplified": "\u5ddb"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5ddb",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u5ddd"
+        ]
+    },
+    "\u5de5": {
+        "definitions": [
+            "work",
+            "[1] [n] labor; work [2] [n] worker; laborer [3] [n] shift; time used in doing a piece of work [4] [n] day's work [5] [n] engineering or building project [6] [n] defense work [7] fine; delicate [8] [v] be skilled in [9] KangXi radical 48 Default PoS:  Additional PoS: Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5de5"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "gung1",
+            "pinyin": "gong1"
+        },
+        "forms": {
+            "traditional": "\u5de5",
+            "simplified": "\u5de5"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5de5",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5df1": {
+        "definitions": [
+            "oneself",
+            "[1] [pron] oneself; one's own; personal",
+            "[2] [n] the sixth of the ten Heavenly Stems Default PoS:  Additional PoS: Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5df1"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "gei2",
+            "pinyin": "ji3"
+        },
+        "forms": {
+            "traditional": "\u5df1",
+            "simplified": "\u5df1"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5df1",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5dfe": {
+        "definitions": [
+            "towel",
+            "[1] [n] handkerchief; napkin; towel",
+            "[2] [n] headgear; articles for dressing the hair",
+            "[3] Kangxi radical 50 (turban)Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5dfe"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "gan1",
+            "pinyin": "jin1"
+        },
+        "forms": {
+            "traditional": "\u5dfe",
+            "simplified": "\u5dfe"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5dfe",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5e72": {
+        "definitions": [
+            "dry"
+        ],
+        "lemma": "\u5e72",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u5e72"],
+        "forms": {"simplified": "\u5e72", "traditional": "\u5e72"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u5e7a": {
+        "definitions": [
+            "thread",
+            "[1] [n] one (used for the numeral \"1\")",
+            "[2] [adj] youngest (family member)",
+            "[3] [adj] tiny; small; insignificant[www.cantonese.sheik.co.uk]",
+            "Default PoS:  Additional PoS: Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5e7a"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "jiu1",
+            "pinyin": "yao1"
+        },
+        "forms": {
+            "traditional": "\u5e7a",
+            "simplified": "\u5e7a"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5e7a",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u4e48"
+        ]
+    },
+    "\u5e7f": {
+        "definitions": [
+            "shelter"
+        ],
+        "lemma": "\u5e7f",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u5e7f"],
+        "forms": {"simplified": "\u5e7f", "traditional": "\u5e7f"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u5ef4": {
+        "definitions": [
+            "stride",
+            "[1] go",
+            "[2] Kangxi radical 54 (long stride)Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5ef4"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "jan2",
+            "pinyin": "yin3"
+        },
+        "forms": {
+            "traditional": "\u5ef4",
+            "simplified": "\u5ef4"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5ef4",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5efe": {
+        "definitions": [
+            "hands joined",
+            "[1] two hands",
+            "[2] Kangxi radical 55 (two hands)Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5efe"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "jaa6",
+            "pinyin": "nian4"
+        },
+        "forms": {
+            "traditional": "\u5efe",
+            "simplified": "\u5efe"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5efe",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5f0b": {
+        "definitions": [
+            "shoot with a bow",
+            "[1] [v] catch; take; arrest",
+            "[2] [v] shoot with arrow and bow",
+            "[3] KangXi radical 56 (shoot)Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5f0b"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "jik6",
+            "pinyin": "yi4"
+        },
+        "forms": {
+            "traditional": "\u5f0b",
+            "simplified": "\u5f0b"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5f0b",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5f13": {
+        "definitions": [
+            "bow",
+            "[1] [n] bow; anything bow-shaped",
+            "[2] [v] bend; arch; bow",
+            "[3] [n] a measure of length (equal to five Chinese ft) Default PoS:  Additional PoS: Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5f13"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "gung1",
+            "pinyin": "gong1"
+        },
+        "forms": {
+            "traditional": "\u5f13",
+            "simplified": "\u5f13"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5f13",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5f50": {
+        "definitions": [
+            "snout",
+            "[1] snout",
+            "[2] Kangxi radical 58 (snout)Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5f50"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "gai3",
+            "pinyin": "ji4"
+        },
+        "forms": {
+            "traditional": "\u5f50",
+            "simplified": "\u5f50"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5f50",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u5f51"
+        ]
+    },
+    "\u5f61": {
+        "definitions": [
+            "hair",
+            "[1] hair",
+            "[2] Kangxi radical 59 (bristle)Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5f61"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "saam1",
+            "pinyin": "shan1"
+        },
+        "forms": {
+            "traditional": "\u5f61",
+            "simplified": "\u5f61"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5f61",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5f73": {
+        "definitions": [
+            "step",
+            "[1] [n] step taken with the left foot",
+            "[2] short steps or paces",
+            "[3] Zhuyin symbol",
+            "[4] Kangxi radical 60 (step)Stroke count: 3"
+        ],
+        "radicals": [
+            "\u5f73"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "cik1",
+            "pinyin": "chi4"
+        },
+        "forms": {
+            "traditional": "\u5f73",
+            "simplified": "\u5f73"
+        },
+        "stroke_counts": {
+            "traditional": 3,
+            "simplified": 1
+        },
+        "lemma": "\u5f73",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u5fc3": {
+        "definitions": [
+            "heart",
+            "[1] [n] heart [2] mind [3] conscience; moral nature [4] intention; idea; ambition; design [5] [n] core; middle; center; inside [6] one of the 28 constellations [7] Kangxi radical 61Stroke count: 4"
+        ],
+        "radicals": [
+            "\u5fc3"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "sam1",
+            "pinyin": "xin1"
+        },
+        "forms": {
+            "traditional": "\u5fc3",
+            "simplified": "\u5fc3"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u5fc3",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u5fc4",
+            "\u2e97"
+        ]
+    },
+    "\u6208": {
+        "definitions": [
+            "spear",
+            "dagger-axe; halberd; spear; lance; javelinStroke count: 4"
+        ],
+        "radicals": [
+            "\u6208"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "gwo1",
+            "pinyin": "ge1"
+        },
+        "forms": {
+            "traditional": "\u6208",
+            "simplified": "\u6208"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u6208",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u6236": {
+        "definitions": [
+            "door",
+            "[1] door (with one leaf)",
+            "[2] household; family",
+            "[3] (bank) account[synonym] \u5bb6"
+        ],
+        "radicals": [
+            "\u6236"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "wu6",
+            "pinyin": "hu4"
+        },
+        "forms": {
+            "traditional": "\u6236",
+            "simplified": "\u6236"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u6236",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u6237",
+            "\u6238"
+        ]
+    },
+    "\u624b": {
+        "definitions": [
+            "hand",
+            "[1] [n] hand",
+            "[2] [v] hold/have in one's hand",
+            "[3] [adj] handy, portable; handwritten",
+            "[4] [adv] personally",
+            "[5] [n] skill; skilled person",
+            "[6] [n] person engaging in a certain activity",
+            "[7] verb measure for skill or proficiency",
+            "[8] noun measure used in firsthand, secondhand, etc and also for smallest tradable unit (of stocks)(Classifier(s): [\u83ef] (for first meaning) \u96bb, \u96d9, \u5c0d)",
+            "Default PoS:  Additional PoS: Show all nouns that can use this classifierStroke count: 4"
+        ],
+        "radicals": [
+            "\u624c"
+        ],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "sau2",
+            "pinyin": "shou3"
+        },
+        "forms": {
+            "traditional": "\u624b",
+            "simplified": "\u624b"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u624b",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u624c",
+            "\u9fb5"
+        ]
+    },
+    "\u652f": {
+        "definitions": [
+            "branch",
+            "[1] prop up; erect; set up",
+            "[2] sustain; support; withstand",
+            "[3] protrude; raise; prick up",
+            "[4] branch; offshoot; subdivision",
+            "[5] separate; divide; dismember",
+            "[6] send away; dispatch; put sb off",
+            "[7] pay/draw (money); disburse",
+            "[8] classifier for long, slender, inflexible objects (pen, toothpaste, pistol)",
+            "[9] twelve earthly branchesAdditional PoS: Show all nouns that can use this classifierStroke count: 4"
+        ],
+        "radicals": [
+            "\u652f"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "zi1",
+            "pinyin": "zhi1"
+        },
+        "forms": {
+            "traditional": "\u652f",
+            "simplified": "\u652f"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u652f",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u6534": {
+        "definitions": [
+            "rap",
+            "[1] knock; tap lightly",
+            "[2] Kangxi radical 66 (rap)This often appears as \u6535 when it is a component in a character with more than one component."
+        ],
+        "radicals": [
+            "\u6534"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "pok3",
+            "pinyin": "pu1"
+        },
+        "forms": {
+            "traditional": "\u6534",
+            "simplified": "\u6534"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u6534",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u6535"
+        ]
+    },
+    "\u6587": {
+        "definitions": [
+            "script",
+            "[1] [n] written language; script; character",
+            "[2] [n] literary composition; article; document",
+            "[3] [adj] literary; classical | [ant] \u767d",
+            "[4] [n] liberal arts; humanities | [ant] \u7406",
+            "[5] [adj] civilian; civil | [ant] \u6b66",
+            "[6] [n] culture; civilization",
+            "[7] [adj] gentle; refined; mild",
+            "[8] [n] formal ritual; etiquette",
+            "[8] [n] certain natural phenomenon"
+        ],
+        "radicals": [
+            "\u6587"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "man4",
+            "pinyin": "wen2"
+        },
+        "forms": {
+            "traditional": "\u6587",
+            "simplified": "\u6587"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u6587",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u6597": {
+        "definitions": [
+            "dipper"
+        ],
+        "lemma": "\u6597",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u6597"],
+        "forms": {"simplified": "\u6597", "traditional": "\u6597"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u65a4": {
+        "definitions": [
+            "axe",
+            "[1] catty (unit of weight = 10 \u4e21)",
+            "[2] [archaic] axe; chopperStroke count: 4"
+        ],
+        "radicals": [
+            "\u65a4"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "gan1",
+            "pinyin": "jin1"
+        },
+        "forms": {
+            "traditional": "\u65a4",
+            "simplified": "\u65a4"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u65a4",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u65b9": {
+        "definitions": [
+            "square",
+            "[1] square; rectangular [2] honest; morally upright [3] [n] region; area; place [4] [n] prescription; recipe [5] [n] direction [6] occultism [7] just now; just then; just [8] power (mathematics) [9] short for square meter or cubic meter (classifier) [10] [n] method; way [11] [n] aspect [12] one side [13] a Chinese family nameStroke count: 4"
+        ],
+        "radicals": [
+            "\u65b9"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "fong1",
+            "pinyin": "fang1"
+        },
+        "forms": {
+            "traditional": "\u65b9",
+            "simplified": "\u65b9"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u65b9",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u65e0": {
+        "definitions": [
+            "not",
+            "[1] negative; no; not; none [2] without; destitute of; wanting; [v] lack; have not [3] no matter what (or how); not yet [4] a Chinese family nameStroke count: 12"
+        ],
+        "radicals": [
+            "\u706b"
+        ],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "mou4",
+            "pinyin": "wu2"
+        },
+        "forms": {
+            "traditional": "\u7121",
+            "simplified": "\u7121"
+        },
+        "stroke_counts": {
+            "traditional": 12,
+            "simplified": 1
+        },
+        "lemma": "\u7121",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u65e1"
+        ]
+    },
+    "\u65e5": {
+        "definitions": [
+            "sun",
+            "[1] [n] sun [2] [n] day [3] daily; every day [4] Japan; Japanese [5] time [6] day; daytimeAlthough the typeface displayed may not show it, the difference between \u65e5 and \u66f0 is that the first and second strokes of \u65e5 touch, while they do not touch in \u66f0, regardless of their shape."
+        ],
+        "radicals": [
+            "\u65e5"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "jat6",
+            "pinyin": "ri4"
+        },
+        "forms": {
+            "traditional": "\u65e5",
+            "simplified": "\u65e5"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u65e5",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u66f0": {
+        "definitions": [
+            "say",
+            "say; call; name1. The word is used mainly in written text."
+        ],
+        "radicals": [
+            "\u66f0"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "joek6",
+            "pinyin": "yue1"
+        },
+        "forms": {
+            "traditional": "\u66f0",
+            "simplified": "\u66f0"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u66f0",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u6708": {
+        "definitions": [
+            "moon",
+            "[1] [n] moon [2] [n] month [3] Kangxi radical 74Stroke count: 4"
+        ],
+        "radicals": [
+            "\u6708"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "jyut6",
+            "pinyin": "yue4"
+        },
+        "forms": {
+            "traditional": "\u6708",
+            "simplified": "\u6708"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u6708",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u6728": {
+        "definitions": [
+            "tree",
+            "[1] [n] tree [2] wood; lumber; timber [3] made of wood; wooden [4] simple; honest [5] senseless; benumbed; dull [6] [n] coffinStroke count: 4"
+        ],
+        "radicals": [
+            "\u6728"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "muk6",
+            "pinyin": "mu4"
+        },
+        "forms": {
+            "traditional": "\u6728",
+            "simplified": "\u6728"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u6728",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u6b20": {
+        "definitions": [
+            "lack",
+            "[1] lack; want; fall short of",
+            "[2] owe; be behind with",
+            "[3] raise slightly (a part of the body)",
+            "[4] yawnStroke count: 4"
+        ],
+        "radicals": [
+            "\u6b20"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "him3",
+            "pinyin": "qian4"
+        },
+        "forms": {
+            "traditional": "\u6b20",
+            "simplified": "\u6b20"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u6b20",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u6b62": {
+        "definitions": [
+            "stop",
+            "[1] [v] stop; halt; desist; still [2] [v] rest in; stay [3] [v] detain [4] deportment [5] [v] prohibit [6] [v] come to; arrive at [7] still; calm; stagnant [8] onlyStroke count: 4"
+        ],
+        "radicals": [
+            "\u6b62"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "zi2",
+            "pinyin": "zhi3"
+        },
+        "forms": {
+            "traditional": "\u6b62",
+            "simplified": "\u6b62"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u6b62",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u6b79": {
+        "definitions": [
+            "death",
+            "bad; evil; vicious; malicious; depraved; wicked; crooked"
+        ],
+        "radicals": [
+            "\u6b79"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "daai2",
+            "pinyin": "dai3"
+        },
+        "forms": {
+            "traditional": "\u6b79",
+            "simplified": "\u6b79"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u6b79",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u6b7a"
+        ]
+    },
+    "\u6bb3": {
+        "definitions": [
+            "weapon",
+            "[1] [n] halberd; an old weapon made of bamboo [2] Kangxi radical 79Stroke count: 4"
+        ],
+        "radicals": [
+            "\u6bb3"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "syu4",
+            "pinyin": "shu1"
+        },
+        "forms": {
+            "traditional": "\u6bb3",
+            "simplified": "\u6bb3"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u6bb3",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u6bcb": {
+        "definitions": [
+            "mother/do not",
+            "[1] do not; not; no [2] a Chinese family name [3] Kangxi radical 80Stroke count: 4"
+        ],
+        "radicals": [
+            "\u6bcb"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "mou4",
+            "pinyin": "wu2"
+        },
+        "forms": {
+            "traditional": "\u6bcb",
+            "simplified": "\u6bcb"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u6bcb",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u6bcd"
+        ]
+    },
+    "\u6bd4": {
+        "definitions": [
+            "compare",
+            "[1] [v] compare/compete with; emulate",
+            "[2] [v] liken to; be comparable to/with",
+            "[3] [prep] than | [\u7cb5] \u904e",
+            "[4] [v] be the ratio of; to (in a score)"
+        ],
+        "radicals": [
+            "\u6bd4"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "bei2",
+            "pinyin": "bi3"
+        },
+        "forms": {
+            "traditional": "\u6bd4",
+            "simplified": "\u6bd4"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u6bd4",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u6bdb": {
+        "definitions": [
+            "fur",
+            "[1] hair; fur; feathers; down [2] vegetation [3] ten cents; dime [4] gross; untouched; unpolished [5] panic-stricken; scared; flurried [6] very young; little [7] a Chinese family nameStroke count: 4"
+        ],
+        "radicals": [
+            "\u6bdb"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "mou4",
+            "pinyin": "mao2"
+        },
+        "forms": {
+            "traditional": "\u6bdb",
+            "simplified": "\u6bdb"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u6bdb",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u6c0f": {
+        "definitions": [
+            "clan",
+            "[1] surname; family name; nee",
+            "[2] used after famous persons such as scientists, inventors, etc"
+        ],
+        "radicals": [
+            "\u6c0f"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "si6",
+            "pinyin": "shi4"
+        },
+        "forms": {
+            "traditional": "\u6c0f",
+            "simplified": "\u6c0f"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u6c0f",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u6c14": {
+        "definitions": [
+            "steam"
+        ],
+        "lemma": "\u6c14",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u6c14"],
+        "forms": {"simplified": "\u6c14", "traditional": "\u6c14"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u6c34": {
+        "definitions": [
+            "water",
+            "[1] water; river; seas",
+            "[2] liquid; juice; fluid",
+            "[3] [\u7cb5] [slang] dough (money)",
+            "[4] extra charge/income(Classifier(s): \u6ef4, \u676f, \u7058)"
+        ],
+        "radicals": [
+            "\u6c34"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "seoi2",
+            "pinyin": "shui3"
+        },
+        "forms": {
+            "traditional": "\u6c34",
+            "simplified": "\u6c34"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u6c34",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u6c35",
+            "\u6c3a"
+        ]
+    },
+    "\u706b": {
+        "definitions": [
+            "fire",
+            "[1] [n] fire; flame; burn with fire [2] [n] anger; rage; anger; temper [3] [n] urgency; urgent; imminent; pressing [4] the latent heat in a human body (Chinese medicine) [5] a group (people) [6] a Chinese family name [7] Kangxi radical 86Stroke count: 4"
+        ],
+        "radicals": [
+            "\u706b"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "fo2",
+            "pinyin": "huo3"
+        },
+        "forms": {
+            "traditional": "\u706b",
+            "simplified": "\u706b"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u706b",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u706c"
+        ]
+    },
+    "\u722a": {
+        "definitions": [
+            "claw",
+            "claw; talon; paw; unguis; nailPinyin zhao3 is standard reading; zhua3 is variant."
+        ],
+        "radicals": [
+            "\u722a"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "zaau2",
+            "pinyin": "zhao3"
+        },
+        "forms": {
+            "traditional": "\u722a",
+            "simplified": "\u722a"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u722a",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u722b"
+        ]
+    },
+    "\u7236": {
+        "definitions": [
+            "father",
+            "[1] father",
+            "[2] male relative of a senior generation"
+        ],
+        "radicals": [
+            "\u7236"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "fu6",
+            "pinyin": "fu4"
+        },
+        "forms": {
+            "traditional": "\u7236",
+            "simplified": "\u7236"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u7236",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u723b": {
+        "definitions": [
+            "lines on a trigram",
+            "[1] single and divided lines in eight groups of three lines each as specified in the Book of changes",
+            "[2] KangXi radical 89 (double crosses)Stroke count: 4"
+        ],
+        "radicals": [
+            "\u723b"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "ngaau4",
+            "pinyin": "yao2"
+        },
+        "forms": {
+            "traditional": "\u723b",
+            "simplified": "\u723b"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u723b",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u723f": {
+        "definitions": [
+            "half of a tree trunk",
+            "[1] strip/piece of split bamboo or chopped wood",
+            "[2] [classifier] strip/piece of field",
+            "[3] [classifier] unit for shops, stores, factories"
+        ],
+        "radicals": [
+            "\u723f"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "baan6",
+            "pinyin": "pan2"
+        },
+        "forms": {
+            "traditional": "\u723f",
+            "simplified": "\u723f"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u723f",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u4e2c"
+        ]
+    },
+    "\u7247": {
+        "definitions": [
+            "slice",
+            "[1] [n] flat, thin piece; slice; sheet",
+            "[2] [v] cut into slices; pare",
+            "[3] [adj] fragmentary; one-sided; brief",
+            "[4] [classifier] slice; sheet; tract"
+        ],
+        "radicals": [
+            "\u7247"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "pin3",
+            "pinyin": "pian4"
+        },
+        "forms": {
+            "traditional": "\u7247",
+            "simplified": "\u7247"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u7247",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u7259": {
+        "definitions": [
+            "tooth",
+            "[1] teeth; tooth [2] [v] bite [3] ivory articles [4] [n] broker [5] Kangxi radical 92 Default PoS:  Additional PoS: Stroke count: 4"
+        ],
+        "radicals": [
+            "\u7259"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "ngaa4",
+            "pinyin": "ya2"
+        },
+        "forms": {
+            "traditional": "\u7259",
+            "simplified": "\u7259"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u7259",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u725b": {
+        "definitions": [
+            "cow",
+            "[1] [n] cow; ox; bull; cattle [2] a Chinese family name [3] stubborn; headstrong (person) [4] Kangxi radical 93Stroke count: 4"
+        ],
+        "radicals": [
+            "\u725b"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "ngau4",
+            "pinyin": "niu2"
+        },
+        "forms": {
+            "traditional": "\u725b",
+            "simplified": "\u725b"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u725b",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u725c",
+            "\u2ea7"
+        ]
+    },
+    "\u72ac": {
+        "definitions": [
+            "dog",
+            "dog; canine | [Syn] \u72d7Stroke count: 4"
+        ],
+        "radicals": [
+            "\u72ac"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "hyun2",
+            "pinyin": "quan3"
+        },
+        "forms": {
+            "traditional": "\u72ac",
+            "simplified": "\u72ac"
+        },
+        "stroke_counts": {
+            "traditional": 4,
+            "simplified": 1
+        },
+        "lemma": "\u72ac",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u72ad"
+        ]
+    },
+    "\u7384": {
+        "definitions": [
+            "profound",
+            "[1] far and obscure; occult; mystic",
+            "[2] black with some red; dark",
+            "[3] deep and profound; abstruse and subtle",
+            "[4] silent and meditative",
+            "[5] pretending",
+            "[6] a Chinese family name",
+            "[7] Kangxi radical 95 (profound)Stroke count: 5"
+        ],
+        "radicals": [
+            "\u7384"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "jyun4",
+            "pinyin": "xuan2"
+        },
+        "forms": {
+            "traditional": "\u7384",
+            "simplified": "\u7384"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u7384",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u7389": {
+        "definitions": [
+            "jade",
+            "[1] [n] jade; precious stone; gem",
+            "[2] (of a woman) pure; fair; beautiful",
+            "[3] [adj] graceful; slender; elegant",
+            "[4] [adj] a polite expression for \"your\"",
+            "Jyutping juk6*2 is often used in last syllable of bi- or multi-syllabic nouns.",
+            "Default PoS:  Additional PoS: Stroke count: 5"
+        ],
+        "radicals": [
+            "\u7389"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "juk6",
+            "pinyin": "yu4"
+        },
+        "forms": {
+            "traditional": "\u7389",
+            "simplified": "\u7389"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u7389",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u738b",
+            "\u738a"
+        ]
+    },
+    "\u74dc": {
+        "definitions": [
+            "melon",
+            "[1] gourd; melon; cucumber",
+            "[2] [\u7cb5] [slang] die Default PoS:  Additional PoS: Stroke count: 5"
+        ],
+        "radicals": [
+            "\u74dc"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "gwaa1",
+            "pinyin": "gua1"
+        },
+        "forms": {
+            "traditional": "\u74dc",
+            "simplified": "\u74dc"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u74dc",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u74e6": {
+        "definitions": [
+            "tile",
+            "[1] [n] tile; earthenware; pottery",
+            "[3] [measure] short for \u74e6\u7279 (watt)"
+        ],
+        "radicals": [
+            "\u74e6"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "ngaa5",
+            "pinyin": "wa3"
+        },
+        "forms": {
+            "traditional": "\u74e6",
+            "simplified": "\u74e6"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u74e6",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u7518": {
+        "definitions": [
+            "sweet",
+            "[1] [adj] sweet; tasty; delicious | [Ant] \u82e6",
+            "[2] [adj] pleasant; satisfactory; timely",
+            "[3] [adv] willingly; readily; of one's own accord",
+            "[4] [n] a Chinese surname Default PoS:  Additional PoS: Stroke count: 5"
+        ],
+        "radicals": [
+            "\u7518"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "gam1",
+            "pinyin": "gan1"
+        },
+        "forms": {
+            "traditional": "\u7518",
+            "simplified": "\u7518"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u7518",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u751f": {
+        "definitions": [
+            "life",
+            "[1] [v] give birth to; be born; exist",
+            "[2] [v] grow; breed; beget; cause",
+            "[3] [n] life; lifetime; livelihood",
+            "[4] [n] student; scholar; practitioner",
+            "[5] [adj] alive; living; lively",
+            "[6] [adj] unripe; uncooked; raw",
+            "[7] [adj] unfamiliar; strange; unacquainted",
+            "[8] [adj] unskilled; crude; stiff",
+            "[9] [n] male role in traditional Chinese opera",
+            "[10] [\u7cb5] Mr; mister (abbreviation for \u5148\u751f)Jyutping sang1 is literary reading; saang1 is colloquial. Please refer to [www.cantonese.sheik.co.uk]",
+            "Additional PoS: Stroke count: 5"
+        ],
+        "radicals": [
+            "\u751f"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "saang1",
+            "pinyin": "sheng1"
+        },
+        "forms": {
+            "traditional": "\u751f",
+            "simplified": "\u751f"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u751f",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u7528": {
+        "definitions": [
+            "use",
+            "[1] [v]use; employ; apply; operate [2] [v] exert [3] [n] use [4] effect [5] finance [6] [vn] need [7] [v] eat; drink [8] Kangxi radical 101Stroke count: 5"
+        ],
+        "radicals": [
+            "\u7528"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "jung6",
+            "pinyin": "yong4"
+        },
+        "forms": {
+            "traditional": "\u7528",
+            "simplified": "\u7528"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u7528",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u7530": {
+        "definitions": [
+            "field",
+            "[1] [n] agricultural land; field; cultivated land; arable land; rice field [2] [v] hunt game [3] a Chinese family name [4] Kangxi radical 102Stroke count: 5"
+        ],
+        "radicals": [
+            "\u7530"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "tin4",
+            "pinyin": "tian2"
+        },
+        "forms": {
+            "traditional": "\u7530",
+            "simplified": "\u7530"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u7530",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u758b": {
+        "definitions": [
+            "cloth",
+            "This character is used in both Cantonese and Mandarin/Standard written Chinese."
+        ],
+        "radicals": [
+            "\u758b"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "pat1",
+            "pinyin": "pi3"
+        },
+        "forms": {
+            "traditional": "\u758b",
+            "simplified": "\u758b"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u758b",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u2eaa"
+        ]
+    },
+    "\u7592": {
+        "definitions": [
+            "ill",
+            "[1] sick, sickness",
+            "[2] Kangxi radical 104 (sickness)Stroke count: 5"
+        ],
+        "radicals": [
+            "\u7592"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "nik6",
+            "pinyin": "chuang2"
+        },
+        "forms": {
+            "traditional": "\u7592",
+            "simplified": "\u7592"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u7592",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u7676": {
+        "definitions": [
+            "foot steps",
+            "[1] legs",
+            "[2] Kangxi radical 105 (dotted tent)Stroke count: 5"
+        ],
+        "radicals": [
+            "\u7676"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "but6",
+            "pinyin": "bo1"
+        },
+        "forms": {
+            "traditional": "\u7676",
+            "simplified": "\u7676"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u7676",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u767d": {
+        "definitions": [
+            "white",
+            "[1] white; clear; pure; unblemished; bright; clean; plain [2] empty; blank [3] in vain; for nothing [4] free of charge; gratis [5] the spoken part in an opera, etc. [6] [v] state; explain [7] a Chinese family name Default PoS:  Additional PoS: Stroke count: 5"
+        ],
+        "radicals": [
+            "\u767d"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "baak6",
+            "pinyin": "bai2"
+        },
+        "forms": {
+            "traditional": "\u767d",
+            "simplified": "\u767d"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u767d",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u76ae": {
+        "definitions": [
+            "skin",
+            "[1] [n] skin; peel; rind",
+            "[2] [n] leather; hide; fur",
+            "[3] [n] wrapper; cover; thin sheet",
+            "[4] [adj] naughty; mischievous"
+        ],
+        "radicals": [
+            "\u76ae"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "pei4",
+            "pinyin": "pi2"
+        },
+        "forms": {
+            "traditional": "\u76ae",
+            "simplified": "\u76ae"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u76ae",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u76bf": {
+        "definitions": [
+            "dish",
+            "utensils; containers (esp for domestic use)Stroke count: 5"
+        ],
+        "radicals": [
+            "\u76bf"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "ming5",
+            "pinyin": "min3"
+        },
+        "forms": {
+            "traditional": "\u76bf",
+            "simplified": "\u76bf"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u76bf",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u76ee": {
+        "definitions": [
+            "eye",
+            "[1] [n] eye [2] [v] look; regard; see [3] [n] table of contents; categoryStroke count: 5"
+        ],
+        "radicals": [
+            "\u76ee"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "muk6",
+            "pinyin": "mu4"
+        },
+        "forms": {
+            "traditional": "\u76ee",
+            "simplified": "\u76ee"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u76ee",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u2eab"
+        ]
+    },
+    "\u77db": {
+        "definitions": [
+            "spear",
+            "spear; pike; lance Stroke count: 5"
+        ],
+        "radicals": [
+            "\u77db"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "maau4",
+            "pinyin": "mao2"
+        },
+        "forms": {
+            "traditional": "\u77db",
+            "simplified": "\u77db"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u77db",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u77e2": {
+        "definitions": [
+            "arrow",
+            "[1] [n] arrow; dart [2] [v] vow; swear; take an oath; pledge [3] [v] display [4] straightforward [5] arrow radicalStroke count: 5"
+        ],
+        "radicals": [
+            "\u77e2"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "ci2",
+            "pinyin": "shi3"
+        },
+        "forms": {
+            "traditional": "\u77e2",
+            "simplified": "\u77e2"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u77e2",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u77f3": {
+        "definitions": [
+            "stone",
+            "[1] stone; rock",
+            "[2] stone inscription",
+            "[3] medicinal minerals",
+            "[4] a Chinese surname"
+        ],
+        "radicals": [
+            "\u77f3"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "sek6",
+            "pinyin": "shi2"
+        },
+        "forms": {
+            "traditional": "\u77f3",
+            "simplified": "\u77f3"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u77f3",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u793a": {
+        "definitions": [
+            "spirit",
+            "[1] [v] show; indicate [2] [v] make known; notify; [n] notice [3] [v] instruct [4] [v] demonstrateStroke count: 5"
+        ],
+        "radicals": [
+            "\u793a"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "si6",
+            "pinyin": "shi4"
+        },
+        "forms": {
+            "traditional": "\u793a",
+            "simplified": "\u793a"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u793a",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u793b"
+        ]
+    },
+    "\u79b8": {
+        "definitions": [
+            "track",
+            "[1] rump",
+            "[2] Kangxi radical 114 (track)Stroke count: 5"
+        ],
+        "radicals": [
+            "\u79b8"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "kau4",
+            "pinyin": "qiu2"
+        },
+        "forms": {
+            "traditional": "\u79b8",
+            "simplified": "\u79b8"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u79b8",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u2f71"
+        ]
+    },
+    "\u79be": {
+        "definitions": [
+            "grain",
+            "[1] [n] grain still on its stalk [2] [n] rice plant; rice cropStroke count: 5"
+        ],
+        "radicals": [
+            "\u79be"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "wo4",
+            "pinyin": "he2"
+        },
+        "forms": {
+            "traditional": "\u79be",
+            "simplified": "\u79be"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u79be",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u7a74": {
+        "definitions": [
+            "cave",
+            "[1] cave; hole; den",
+            "[2] grave",
+            "[3] acupoint; acupuncture pointPinyin xue2 is China reading; xue4 is Taiwan reading."
+        ],
+        "radicals": [
+            "\u7a74"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "jyut6",
+            "pinyin": "xue2"
+        },
+        "forms": {
+            "traditional": "\u7a74",
+            "simplified": "\u7a74"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u7a74",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u7acb": {
+        "definitions": [
+            "stand",
+            "[1] [v] stand; be on one's feet",
+            "[2] [v] erect; establish; set up",
+            "[3] [adj] upright; vertical; standing",
+            "[4] [v] appoint; designate; enthrone",
+            "[5] [v] exist; live; be present",
+            "[6] [adv] immediately; instantaneouslyJyutping lap6 is literary reading; laap6 is colloquial. They are, however, interchangeable in most cases.",
+            "Default PoS:  Additional PoS: Stroke count: 5"
+        ],
+        "radicals": [
+            "\u7acb"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "laap6",
+            "pinyin": "li4"
+        },
+        "forms": {
+            "traditional": "\u7acb",
+            "simplified": "\u7acb"
+        },
+        "stroke_counts": {
+            "traditional": 5,
+            "simplified": 1
+        },
+        "lemma": "\u7acb",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u7af9": {
+        "definitions": [
+            "bamboo",
+            "[1] [n] bamboo [2] slips of bamboo for writing [3] a Chinese family name [4] Kangxi radical 118Stroke count: 6"
+        ],
+        "radicals": [
+            "\u7af9"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "zuk1",
+            "pinyin": "zhu2"
+        },
+        "forms": {
+            "traditional": "\u7af9",
+            "simplified": "\u7af9"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u7af9",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u2eae"
+        ]
+    },
+    "\u7c73": {
+        "definitions": [
+            "rice",
+            "[1] uncooked/hulled/husked rice",
+            "[2] shelled/husked seed",
+            "[3] grain-like things",
+            "[4] metre (unit of length) | variant: \u516c\u5c3a(Classifier(s): [1] \u7c92 (grain))"
+        ],
+        "radicals": [
+            "\u7c73"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "mai5",
+            "pinyin": "mi3"
+        },
+        "forms": {
+            "traditional": "\u7c73",
+            "simplified": "\u7c73"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u7c73",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u7cf8": {
+        "definitions": [
+            "silk",
+            "[1] silk",
+            "[2] Kangxi radical 120 (silk)Stroke count: 6"
+        ],
+        "radicals": [
+            "\u7cf8"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "si1",
+            "pinyin": "si1"
+        },
+        "forms": {
+            "traditional": "\u7cf8",
+            "simplified": "\u7cf8"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u7cf8",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u7cf9",
+            "\u7e9f"
+        ]
+    },
+    "\u7f36": {
+        "definitions": [
+            "jar",
+            "[1] earthen wine vessel with a narrow opening",
+            "[2] percussion musical instrumentStroke count: 6"
+        ],
+        "radicals": [
+            "\u7f36"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "fau2",
+            "pinyin": "fou3"
+        },
+        "forms": {
+            "traditional": "\u7f36",
+            "simplified": "\u7f36"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u7f36",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u7f51": {
+        "definitions": [
+            "net"
+        ],
+        "lemma": "\u7f51",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u7f53",
+            "\u2eb3",
+            "\u2eab"
+        ],
+        "is_radical": true,
+        "radicals": ["\u7f51"],
+        "forms": {"simplified": "\u7f51", "traditional": "\u7f51"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u7f8a": {
+        "definitions": [
+            "sheep",
+            "sheep; goat; lambStroke count: 6"
+        ],
+        "radicals": [
+            "\u7f8a"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "joeng4",
+            "pinyin": "yang2"
+        },
+        "forms": {
+            "traditional": "\u7f8a",
+            "simplified": "\u7f8a"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u7f8a",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u2eb6",
+            "\u2eb7"
+        ]
+    },
+    "\u7fbd": {
+        "definitions": [
+            "feather",
+            "[1] [n] feather; plume [2] [n] wings of a bird [3] one of the five notes in the Chinese musical scale [4] Kangxi radical 124Stroke count: 6"
+        ],
+        "radicals": [
+            "\u7fbd"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "jyu5",
+            "pinyin": "yu3"
+        },
+        "forms": {
+            "traditional": "\u7fbd",
+            "simplified": "\u7fbd"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u7fbd",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u8001": {
+        "definitions": [
+            "old",
+            "[1] old; aged; venerable [2] always [3] the youngest [4] very [5] a particle indicating ordinal numbers to designate order of birth [6] parents; [7] a particle used before a man's family name to indicate familiarity and friendship [8] tough (meat); overcooked [9] [v] treat with the reverence [10] dark (color) [11] [Wu] very Default PoS:  Additional PoS: Stroke count: 6"
+        ],
+        "radicals": [
+            "\u8001"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "lou5",
+            "pinyin": "lao3"
+        },
+        "forms": {
+            "traditional": "\u8001",
+            "simplified": "\u8001"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u8001",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u8002"
+        ]
+    },
+    "\u800c": {
+        "definitions": [
+            "and",
+            "[1] and; also [2] and yet; but; nevertheless [3] accordingly; otherwise [4] on the condition that; supposing that; if [5] youStroke count: 6"
+        ],
+        "radicals": [
+            "\u800c"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "ji4",
+            "pinyin": "er2"
+        },
+        "forms": {
+            "traditional": "\u800c",
+            "simplified": "\u800c"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u800c",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u8012": {
+        "definitions": [
+            "plow",
+            "[1] handle of a plough",
+            "[2] fork-like farm implementJyutping leoi6 is standard reading; loi6 is variant."
+        ],
+        "radicals": [
+            "\u8012"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "leoi6",
+            "pinyin": "lei3"
+        },
+        "forms": {
+            "traditional": "\u8012",
+            "simplified": "\u8012"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u8012",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u8033": {
+        "definitions": [
+            "ear",
+            "[1] [n] ear; ears [2] merely, only, contraction of \u800c\u5df2 [3] a Chinese family nameStroke count: 6"
+        ],
+        "radicals": [
+            "\u8033"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "ji5",
+            "pinyin": "er3"
+        },
+        "forms": {
+            "traditional": "\u8033",
+            "simplified": "\u8033"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u8033",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u807f": {
+        "definitions": [
+            "brush",
+            "[1] writing brush",
+            "[2] a particle used in introducing a phrase or sentence",
+            "[3] agile and quick; nimble",
+            "[4] person's namevariant pronunciation: [\u7cb5] jyut6",
+            "Additional PoS: Stroke count: 6"
+        ],
+        "radicals": [
+            "\u807f"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "leot6",
+            "pinyin": "yu4"
+        },
+        "forms": {
+            "traditional": "\u807f",
+            "simplified": "\u807f"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u807f",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u2eba",
+            "\u2ebb"
+        ]
+    },
+    "\u8089": {
+        "definitions": [
+            "meat",
+            "[1] flesh; meat [2] physical; carnal [3] meat of animals; meat or pulp of fruits [4] flesh and blood; dearest (as owns children) [5] slow- motion [6] Kangxi radical 130Stroke count: 6"
+        ],
+        "radicals": [
+            "\u8089"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "juk6",
+            "pinyin": "rou4"
+        },
+        "forms": {
+            "traditional": "\u8089",
+            "simplified": "\u8089"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u8089",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u2ebc"
+        ]
+    },
+    "\u81e3": {
+        "definitions": [
+            "minister",
+            "[1] [n] subject; vassal [2] [v] subjugate; conquer [3] [n] minister; statesman; official [4] a term for \"I\" used when addressing the king or emperor [5] a polite term for \"I\"Stroke count: 6"
+        ],
+        "radicals": [
+            "\u81e3"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "san4",
+            "pinyin": "chen2"
+        },
+        "forms": {
+            "traditional": "\u81e3",
+            "simplified": "\u81e3"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u81e3",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u81ea": {
+        "definitions": [
+            "oneself",
+            "[1] self; private; personal [2] from [3] natural; naturally; a Chinese family nameStroke count: 6"
+        ],
+        "radicals": [
+            "\u81ea"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "zi6",
+            "pinyin": "zi4"
+        },
+        "forms": {
+            "traditional": "\u81ea",
+            "simplified": "\u81ea"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u81ea",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u81f3": {
+        "definitions": [
+            "arrive",
+            "[1] [v] reach (destination); arrive at",
+            "[2] extremely; very; to indicate the superlative degree; the most",
+            "[3][\u7cb5] only then (shortened for \u5148\u81f3)",
+            "[4][\u7cb5] most; extremely [\u83ef]: \u6700Stroke count: 6"
+        ],
+        "radicals": [
+            "\u81f3"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "zi3",
+            "pinyin": "zhi4"
+        },
+        "forms": {
+            "traditional": "\u81f3",
+            "simplified": "\u81f3"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u81f3",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u81fc": {
+        "definitions": [
+            "mortar",
+            "[1] [n] mortar for unhusking rice [2] [adj] mortar-shaped [3] joint (of bones)Stroke count: 6"
+        ],
+        "radicals": [
+            "\u81fc"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "kau5",
+            "pinyin": "jiu4"
+        },
+        "forms": {
+            "traditional": "\u81fc",
+            "simplified": "\u81fc"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u81fc",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u820c": {
+        "definitions": [
+            "tongue",
+            "[1] the tongue",
+            "[2] tongue-shaped object",
+            "[3] words; speechJyutping sit6 is the more popular standard reading; variant sit3 is now rarely used."
+        ],
+        "radicals": [
+            "\u820c"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "sit6",
+            "pinyin": "she2"
+        },
+        "forms": {
+            "traditional": "\u820c",
+            "simplified": "\u820c"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u820c",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u821b": {
+        "definitions": [
+            "contrary",
+            "[1] [adj] mistaken; erroneous; wrong",
+            "[2] [adj] unfortunate; hapless; unlucky",
+            "[3] [v] run counter to; go against; contradict Default PoS:  Additional PoS: Stroke count: 6"
+        ],
+        "radicals": [
+            "\u821b"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "cyun2",
+            "pinyin": "chuan3"
+        },
+        "forms": {
+            "traditional": "\u821b",
+            "simplified": "\u821b"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u821b",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u821f": {
+        "definitions": [
+            "boat",
+            "[1] [n] boat; ship; vessel",
+            "[2] Kangxi radical 137 (boat)Stroke count: 6"
+        ],
+        "radicals": [
+            "\u821f"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "zau1",
+            "pinyin": "zhou1"
+        },
+        "forms": {
+            "traditional": "\u821f",
+            "simplified": "\u821f"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u821f",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u826e": {
+        "definitions": [
+            "mountain",
+            "[1] tough; leathery (food)",
+            "[2] straightforward; outspoken; blunt",
+            "[3] simple (clothing)",
+            "[4] honest; upright (personality)",
+            "[5] the seventh of the Eight diagrams for divination",
+            "[6] KangXi Radical 138 (stopping)Stroke count: 6"
+        ],
+        "radicals": [
+            "\u826e"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "gan3",
+            "pinyin": "gen4"
+        },
+        "forms": {
+            "traditional": "\u826e",
+            "simplified": "\u826e"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u826e",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u8272": {
+        "definitions": [
+            "color",
+            "[1] [n] colour; tint; tinge; hue; shade",
+            "[2] facial expression; look; appearance",
+            "[3] sensuality; desire for beauty; lust; lewdness; carnal pleasure",
+            "[4] worldly things",
+            "[5] a kind; sort",
+            "[6] Kangxi radical 139 (color)Stroke count: 6"
+        ],
+        "radicals": [
+            "\u8272"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "sik1",
+            "pinyin": "se4"
+        },
+        "forms": {
+            "traditional": "\u8272",
+            "simplified": "\u8272"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u8272",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u8278": {
+        "definitions": [
+            "grass",
+            "[1] [n] grass; straw; weeds",
+            "[2] Kangxi radical 140 (grass)Stroke count: 6"
+        ],
+        "radicals": [
+            "\u8278"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "cou2",
+            "pinyin": "cao3"
+        },
+        "forms": {
+            "traditional": "\u8278",
+            "simplified": "\u8278"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u8278",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u2ebf",
+            "\u8279"
+        ]
+    },
+    "\u864d": {
+        "definitions": [
+            "tiger"
+        ],
+        "lemma": "\u864d",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u864d"],
+        "forms": {"simplified": "\u864d", "traditional": "\u864d"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u866b": {
+        "definitions": [
+            "insect"
+        ],
+        "lemma": "\u866b",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u866b"],
+        "forms": {"simplified": "\u866b", "traditional": "\u866b"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u8840": {
+        "definitions": [
+            "blood",
+            "[1] [n/adj] blood; related by blood",
+            "[2] [adj] energetic and high-spiritedPinyin xue4 is literary reading; xie3 is colloquial.",
+            "Default PoS:  Additional PoS: Stroke count: 6"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "hyut3",
+            "pinyin": "xue4"
+        },
+        "forms": {
+            "traditional": "\u8840",
+            "simplified": "\u8840"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u8840",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u884c": {
+        "definitions": [
+            "walk",
+            "[1] [v] walk; go; travel",
+            "[2] [v] circulate; be current; prevail",
+            "[3] [v] do; act; perform; practise",
+            "[4] [\u570b] [v] be all right; be allowed; will do",
+            "[5] [\u570b] [adj] capable; able; competent"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "hang4",
+            "pinyin": "xing2"
+        },
+        "forms": {
+            "traditional": "\u884c",
+            "simplified": "\u884c"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u884c",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u8863": {
+        "definitions": [
+            "clothes",
+            "[1] [n] clothing; clothes; garment; dress",
+            "[2] [n] coating; covering; membrane",
+            "[3] [n] (human) placenta"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "ji1",
+            "pinyin": "yi1"
+        },
+        "forms": {
+            "traditional": "\u8863",
+            "simplified": "\u8863"
+        },
+        "stroke_counts": {
+            "traditional": 6,
+            "simplified": 1
+        },
+        "lemma": "\u8863",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u2ec2"
+        ]
+    },
+    "\u897e": {
+        "definitions": [
+            "west"
+        ],
+        "lemma": "\u897e",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u897f",
+            "\u8980"
+        ],
+        "is_radical": true,
+        "radicals": ["\u897e"],
+        "forms": {"simplified": "\u897e", "traditional": "\u897e"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u898b": {
+        "definitions": [
+            "see",
+            "[1] [v] see; catch sight of; observe",
+            "[2] [v] meet; call on; visit",
+            "[3] [n] view; opinion; idea",
+            "[4] [v] show evidence of; appear to be",
+            "[5] [v] (used before a verb to indicate the passive)",
+            "[6] [v] [\u7cb5] feel (cold, dizzy, sick, etc)"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "gin3",
+            "pinyin": "jian4"
+        },
+        "forms": {
+            "traditional": "\u898b",
+            "simplified": "\u898b"
+        },
+        "stroke_counts": {
+            "traditional": 7,
+            "simplified": 1
+        },
+        "lemma": "\u898b",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u89c1"
+        ]
+    },
+    "\u89d2": {
+        "definitions": [
+            "horn",
+            "[1] [n] (of an animal) horn; antenna; feeler",
+            "[2] [n] bugle; horn; horn-shaped thing",
+            "[3] [n] corner; angle",
+            "[4] [n] cape; promontory",
+            "[5] [n] dime; a tenth of a dollar | [Syn] \u6beb"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "gok3",
+            "pinyin": "jiao3"
+        },
+        "forms": {
+            "traditional": "\u89d2",
+            "simplified": "\u89d2"
+        },
+        "stroke_counts": {
+            "traditional": 7,
+            "simplified": 1
+        },
+        "lemma": "\u89d2",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u2ec7"
+        ]
+    },
+    "\u8a00": {
+        "definitions": [
+            "speech",
+            "[1] [n] words; speech [2] [v] speak; say; talk; mean; express [3] [n] language; dialect; tongue [4] used as a particle, adverb, etc. in various ancient expressions without meaning [5] Kangxi radical 149Stroke count: 7"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "jin4",
+            "pinyin": "yan2"
+        },
+        "forms": {
+            "traditional": "\u8a00",
+            "simplified": "\u8a00"
+        },
+        "stroke_counts": {
+            "traditional": 7,
+            "simplified": 1
+        },
+        "lemma": "\u8a00",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u8ba0"
+        ]
+    },
+    "\u8c37": {
+        "definitions": [
+            "valley"
+        ],
+        "lemma": "\u8c37",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u8c37"],
+        "forms": {"simplified": "\u8c37", "traditional": "\u8c37"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u8c46": {
+        "definitions": [
+            "bean"
+        ],
+        "lemma": "\u8c46",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u8c46"],
+        "forms": {"simplified": "\u8c46", "traditional": "\u8c46"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u8c55": {
+        "definitions": [
+            "pig"
+        ],
+        "lemma": "\u8c55",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u8c55"],
+        "forms": {"simplified": "\u8c55", "traditional": "\u8c55"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u8c78": {
+        "definitions": [
+            "badger"
+        ],
+        "lemma": "\u8c78",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u8c78"],
+        "forms": {"simplified": "\u8c78", "traditional": "\u8c78"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u8c9d": {
+        "definitions": [
+            "shell",
+            "[1] [n] shells; shellfish [2] [n] cowries used as money [3] Kangxi radical 154Stroke count: 7"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "bui3",
+            "pinyin": "bei4"
+        },
+        "forms": {
+            "traditional": "\u8c9d",
+            "simplified": "\u8c9d"
+        },
+        "stroke_counts": {
+            "traditional": 7,
+            "simplified": 1
+        },
+        "lemma": "\u8c9d",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u8d1d"
+        ]
+    },
+    "\u8d64": {
+        "definitions": [
+            "red",
+            "[1] red; crimson; revolutionary",
+            "[2] bare; naked; desolate",
+            "[3] loyal; sincere; pure"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "cek3",
+            "pinyin": "chi4"
+        },
+        "forms": {
+            "traditional": "\u8d64",
+            "simplified": "\u8d64"
+        },
+        "stroke_counts": {
+            "traditional": 7,
+            "simplified": 1
+        },
+        "lemma": "\u8d64",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u8d70": {
+        "definitions": [
+            "walk",
+            "[1] [\u7cb5] run (see Note)",
+            "[2] [\u570b] walk; go on foot",
+            "[3] leave; go away; move",
+            "[4] leak; reveal; let out",
+            "[5] lose the original shape, flavour, etcNote: The meaning of \"run\" is mainly used in Cantonese, not in Mandarin. However, we can still find some idiomatic usage of \"run\" in Standard Written Chinese, e.g. \u8d70\u99ac\u770b\u82b1, \u5954\u8d70\u76f8\u544a."
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "zau2",
+            "pinyin": "zou3"
+        },
+        "forms": {
+            "traditional": "\u8d70",
+            "simplified": "\u8d70"
+        },
+        "stroke_counts": {
+            "traditional": 7,
+            "simplified": 1
+        },
+        "lemma": "\u8d70",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u8db3": {
+        "definitions": [
+            "foot",
+            "[1] foot; leg [2] enough; sufficient; adequate [3] fully; as much asKangxi radical 157"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "zuk1",
+            "pinyin": "zu2"
+        },
+        "forms": {
+            "traditional": "\u8db3",
+            "simplified": "\u8db3"
+        },
+        "stroke_counts": {
+            "traditional": 7,
+            "simplified": 1
+        },
+        "lemma": "\u8db3",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u2eca"
+        ]
+    },
+    "\u8eab": {
+        "definitions": [
+            "body",
+            "[1] body; trunk; hull",
+            "[2] life; lifetime",
+            "[3] oneself; in person",
+            "[4] moral character; social status Default PoS:  Additional PoS: Stroke count: 7"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "san1",
+            "pinyin": "shen1"
+        },
+        "forms": {
+            "traditional": "\u8eab",
+            "simplified": "\u8eab"
+        },
+        "stroke_counts": {
+            "traditional": 7,
+            "simplified": 1
+        },
+        "lemma": "\u8eab",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u2f9e": {
+        "definitions": [
+            "cart"
+        ],
+        "lemma": "\u2f9e",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u8f66"
+        ],
+        "is_radical": true,
+        "radicals": ["\u2f9e"],
+        "forms": {"simplified": "\u2f9e", "traditional": "\u2f9e"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u8f9b": {
+        "definitions": [
+            "bitter",
+            "[1] hard; laborious",
+            "[2] sad; miserable",
+            "[3] pungent; hot (in flavour); acrid",
+            "[4] eighth of the ten Heavenly Stems",
+            "[5] a Chinese family name  Default PoS:  Additional PoS: Stroke count: 7"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "san1",
+            "pinyin": "xin1"
+        },
+        "forms": {
+            "traditional": "\u8f9b",
+            "simplified": "\u8f9b"
+        },
+        "stroke_counts": {
+            "traditional": 7,
+            "simplified": 1
+        },
+        "lemma": "\u8f9b",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u8fb0": {
+        "definitions": [
+            "morning",
+            "[1] the fifth of the twelve Terrestrial Branches",
+            "[2] early morning; 7:00-9:00 in the morning",
+            "[3] a time",
+            "[4] fortune; luck",
+            "[5] a heavenly body; sun, moon, and stars",
+            "[6] Kangxi radical 161Stroke count: 7"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "san4",
+            "pinyin": "chen2"
+        },
+        "forms": {
+            "traditional": "\u8fb0",
+            "simplified": "\u8fb0"
+        },
+        "stroke_counts": {
+            "traditional": 7,
+            "simplified": 1
+        },
+        "lemma": "\u8fb0",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u8fb5": {
+        "definitions": [
+            "walk",
+            "[1] Walk",
+            "[2] Kangxi radical 162Stroke count: 7"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "coek3",
+            "pinyin": "chuo4"
+        },
+        "forms": {
+            "traditional": "\u8fb5",
+            "simplified": "\u8fb5"
+        },
+        "stroke_counts": {
+            "traditional": 7,
+            "simplified": 1
+        },
+        "lemma": "\u8fb5",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u8fb6",
+            "\u2ecd",
+            "\u2ece"
+        ]
+    },
+    "\u9091": {
+        "definitions": [
+            "city",
+            "[1] [n] town [2] a political district in ancient China [3] [n] county [4] [n] state [5] [n] capital city [6] same as $ [7] Kangxi radical 163Stroke count: 7"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "jap1",
+            "pinyin": "yi4"
+        },
+        "forms": {
+            "traditional": "\u9091",
+            "simplified": "\u9091"
+        },
+        "stroke_counts": {
+            "traditional": 7,
+            "simplified": 1
+        },
+        "lemma": "\u9091",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u2ecf"
+        ]
+    },
+    "\u9149": {
+        "definitions": [
+            "wine",
+            "[1] the tenth of the twelve Terrestrial Branches",
+            "[2] 5:00-7:00 p.m.",
+            "[3] Kangxi radical 164 (wine)Stroke count: 7"
+        ],
+        "radicals": [
+            "\u9149"
+        ],
+        "is_radical": true,
+        "romanizations": {
+            "jyutping": "jau5",
+            "pinyin": "you3"
+        },
+        "forms": {
+            "traditional": "\u9149",
+            "simplified": "\u9149"
+        },
+        "stroke_counts": {
+            "traditional": 7,
+            "simplified": 1
+        },
+        "lemma": "\u9149",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u91c6": {
+        "definitions": [
+            "distinguish",
+            "old variant of \u8fa8Stroke count: 7"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "bin6",
+            "pinyin": "bian4"
+        },
+        "forms": {
+            "traditional": "\u91c6",
+            "simplified": "\u91c6"
+        },
+        "stroke_counts": {
+            "traditional": 7,
+            "simplified": 1
+        },
+        "lemma": "\u91c6",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u91cc": {
+        "definitions": [
+            "village"
+        ],
+        "lemma": "\u91cc",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u91cc"],
+        "forms": {"simplified": "\u91cc", "traditional": "\u91cc"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u91d1": {
+        "definitions": [
+            "metal",
+            "[1] gold [2] metal; metals in general [3] [n] money; wealth [4] weapons; arms [5] precious; excellent; fine [6] golden [7] durable [8] name of the Tungusic dynasty (1115-1234), which dominated Manchuria and North China [9] a Chinese family name [10] Kangxi radical 167Stroke count: 8"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "gam1",
+            "pinyin": "jin1"
+        },
+        "forms": {
+            "traditional": "\u91d1",
+            "simplified": "\u91d1"
+        },
+        "stroke_counts": {
+            "traditional": 8,
+            "simplified": 1
+        },
+        "lemma": "\u91d1",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u9485",
+            "\u91d2"
+        ]
+    },
+    "\u9577": {
+        "definitions": [
+            "long",
+            "[1] [adj] (of distance and time) long | [antonym] \u77ed",
+            "[2] [n] length; distance",
+            "[3] [n] forte; strong point",
+            "[4] [v] excel in; be good at"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "coeng4",
+            "pinyin": "chang2"
+        },
+        "forms": {
+            "traditional": "\u9577",
+            "simplified": "\u9577"
+        },
+        "stroke_counts": {
+            "traditional": 8,
+            "simplified": 1
+        },
+        "lemma": "\u9577",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u9578",
+            "\u957f"
+        ]
+    },
+    "\u9580": {
+        "definitions": [
+            "gate",
+            "[1] [n] gate; door; entrance; opening [2] [n] family; clan [3] [n] sect; school; gang [4] [n] class; category [5] the key; turning point [6] a piece of (artillery); cannon [7] gate-keeping [8] a Chinese familly name [9] Kangxi radical 169Stroke count: 8"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "mun4",
+            "pinyin": "men2"
+        },
+        "forms": {
+            "traditional": "\u9580",
+            "simplified": "\u9580"
+        },
+        "stroke_counts": {
+            "traditional": 8,
+            "simplified": 1
+        },
+        "lemma": "\u9580",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u95e8"
+        ]
+    },
+    "\u961c": {
+        "definitions": [
+            "mound",
+            "[1] [n] mound; small hill [2] abundant; ample; numerous; flourishing [3] the continent; the mainland [4] Kangxi radical 170Stroke count: 8"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "fau6",
+            "pinyin": "fu4"
+        },
+        "forms": {
+            "traditional": "\u961c",
+            "simplified": "\u961c"
+        },
+        "stroke_counts": {
+            "traditional": 8,
+            "simplified": 1
+        },
+        "lemma": "\u961c",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u2ecf"
+        ]
+    },
+    "\u96b6": {
+        "definitions": [
+            "slave",
+            "[1] [v] be subordinate/affiliated to; be under",
+            "[2] [n] slave; person in servitude; underling",
+            "[3] [n] official script - a style of Chinese calligraphy Additional PoS: Stroke count: 17"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "dai6",
+            "pinyin": "li4"
+        },
+        "forms": {
+            "traditional": "\u96b8",
+            "simplified": "\u96b8"
+        },
+        "stroke_counts": {
+            "traditional": 17,
+            "simplified": 1
+        },
+        "lemma": "\u96b8",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u96b9": {
+        "definitions": [
+            "short-tailed bird",
+            "short-tailed birdStroke count: 8"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "zeoi1",
+            "pinyin": "zhui1"
+        },
+        "forms": {
+            "traditional": "\u96b9",
+            "simplified": "\u96b9"
+        },
+        "stroke_counts": {
+            "traditional": 8,
+            "simplified": 1
+        },
+        "lemma": "\u96b9",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u96e8": {
+        "definitions": [
+            "rain",
+            "Default PoS:  Additional PoS: Stroke count: 8"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "jyu5",
+            "pinyin": "yu3"
+        },
+        "forms": {
+            "traditional": "\u96e8",
+            "simplified": "\u96e8"
+        },
+        "stroke_counts": {
+            "traditional": 8,
+            "simplified": 1
+        },
+        "lemma": "\u96e8",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u2ed7"
+        ]
+    },
+    "\u9751": {
+        "definitions": [
+            "blue"
+        ],
+        "lemma": "\u9751",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u9752"
+        ],
+        "is_radical": true,
+        "radicals": ["\u9751"],
+        "forms": {"simplified": "\u9751", "traditional": "\u9751"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u975e": {
+        "definitions": [
+            "wrong",
+            "[1] [v/adj/adv] not; negative; non-; be not",
+            "[2] [n/adj] wrong; unjustified; wrongdoing",
+            "[3] [v] blame; censure; criticize",
+            "[4] [adv] unless; simply must; have got toAdditional PoS: Stroke count: 8"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "fei1",
+            "pinyin": "fei1"
+        },
+        "forms": {
+            "traditional": "\u975e",
+            "simplified": "\u975e"
+        },
+        "stroke_counts": {
+            "traditional": 8,
+            "simplified": 1
+        },
+        "lemma": "\u975e",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u9762": {
+        "definitions": [
+            "face"
+        ],
+        "lemma": "\u9762",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u9763"
+        ],
+        "is_radical": true,
+        "radicals": ["\u9762"],
+        "forms": {"simplified": "\u9762", "traditional": "\u9752"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u9769": {
+        "definitions": [
+            "leather",
+            "[1] [n] leather; hide; skin",
+            "[2] [v] change; alter; transform",
+            "[3] [v] get rid of; dismiss; abolish"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "gaak3",
+            "pinyin": "ge2"
+        },
+        "forms": {
+            "traditional": "\u9769",
+            "simplified": "\u9769"
+        },
+        "stroke_counts": {
+            "traditional": 9,
+            "simplified": 1
+        },
+        "lemma": "\u9769",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u97cb": {
+        "definitions": [
+            "soft leather",
+            "[1] [literary] leather; tanned leather",
+            "[2] a surnameAlthough most dictionaries support wai4 as standard reading, wai5 seems to be the more popular reading that is supported by \u5ee3\u5dde\u97f3\u5b57\u5178."
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "wai5",
+            "pinyin": "wei2"
+        },
+        "forms": {
+            "traditional": "\u97cb",
+            "simplified": "\u97cb"
+        },
+        "stroke_counts": {
+            "traditional": 9,
+            "simplified": 1
+        },
+        "lemma": "\u97cb",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u97e6"
+        ]
+    },
+    "\u97ed": {
+        "definitions": [
+            "leek"
+        ],
+        "lemma": "\u97ed",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u97ed"],
+        "forms": {"simplified": "\u97ed", "traditional": "\u97ed"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u97f3": {
+        "definitions": [
+            "sound",
+            "[1] [n] sound; voice; noise [2] [n] tone; pitch; accent; pronunciation; timbre [3] [n] musical note [4] news; information; tidings (usually used in correspondence) [5] Kangxi radical 180Stroke count: 9"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "jam1",
+            "pinyin": "yin1"
+        },
+        "forms": {
+            "traditional": "\u97f3",
+            "simplified": "\u97f3"
+        },
+        "stroke_counts": {
+            "traditional": 9,
+            "simplified": 1
+        },
+        "lemma": "\u97f3",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u9801": {
+        "definitions": [
+            "page",
+            "page; leaf; sheetStroke count: 9"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "jip6",
+            "pinyin": "ye4"
+        },
+        "forms": {
+            "traditional": "\u9801",
+            "simplified": "\u9801"
+        },
+        "stroke_counts": {
+            "traditional": 9,
+            "simplified": 1
+        },
+        "lemma": "\u9801",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u9875"
+        ]
+    },
+    "\u98a8": {
+        "definitions": [
+            "wind",
+            "[1] wind; breeze; gale",
+            "[2] style; bearing; attitude",
+            "[3] news; information; rumour",
+            "[4] practice; custom; tendency",
+            "[5] scenery; view; landscape",
+            "[6] certain disease supposedly caused by wind"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "fung1",
+            "pinyin": "feng1"
+        },
+        "forms": {
+            "traditional": "\u98a8",
+            "simplified": "\u98a8"
+        },
+        "stroke_counts": {
+            "traditional": 9,
+            "simplified": 1
+        },
+        "lemma": "\u98a8",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u98ce"
+        ]
+    },
+    "\u98db": {
+        "definitions": [
+            "fly",
+            "[1] fly; flit; flutter",
+            "[2] move swiftly",
+            "[3] unexpected; accidental",
+            "[4] [\u7cb5] cut (hair)",
+            "[5] [\u7cb5] [loanword] fare; ticket(Classifier(s): [\u7cb5] \u5f35 (for [5]))",
+            "Default PoS:  Additional PoS: Stroke count: 9"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "fei1",
+            "pinyin": "fei1"
+        },
+        "forms": {
+            "traditional": "\u98db",
+            "simplified": "\u98db"
+        },
+        "stroke_counts": {
+            "traditional": 9,
+            "simplified": 1
+        },
+        "lemma": "\u98db",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u98de"
+        ]
+    },
+    "\u98df": {
+        "definitions": [
+            "eat",
+            "[1] [v] eat; have a meal | [syn] \u5403",
+            "[2] [n] food; meal; (poultry) feed",
+            "[3] [n] sth edible; sth used for cooking",
+            "[4] [n] eclipse (usu \u8755)"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "sik6",
+            "pinyin": "shi2"
+        },
+        "forms": {
+            "traditional": "\u98df",
+            "simplified": "\u98df"
+        },
+        "stroke_counts": {
+            "traditional": 9,
+            "simplified": 1
+        },
+        "lemma": "\u98df",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u98e0",
+            "\u9963"
+        ]
+    },
+    "\u9996": {
+        "definitions": [
+            "head",
+            "[1] the head [2] [n] king; emperor; leader; chief [3] the first; beginning [4] [n] a numerical classifier for poems, songs, etc. [5] Kangxi radical 185Stroke count: 9"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "sau2",
+            "pinyin": "shou3"
+        },
+        "forms": {
+            "traditional": "\u9996",
+            "simplified": "\u9996"
+        },
+        "stroke_counts": {
+            "traditional": 9,
+            "simplified": 1
+        },
+        "lemma": "\u9996",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u9999": {
+        "definitions": [
+            "fragrant",
+            "[1] fragrant; sweet smelling; aromatic; balmy [2] tasty; delicious [3] fair; beautiful [4] incense; spice; balm [5] Kangxi radical 186Stroke count: 9"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "hoeng1",
+            "pinyin": "xiang1"
+        },
+        "forms": {
+            "traditional": "\u9999",
+            "simplified": "\u9999"
+        },
+        "stroke_counts": {
+            "traditional": 9,
+            "simplified": 1
+        },
+        "lemma": "\u9999",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u99ac": {
+        "definitions": [
+            "horse",
+            "[1] [n] horse [2] a Chinese family name [3] Kangxi radical 187(Classifier(s): \u5339)"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "maa5",
+            "pinyin": "ma3"
+        },
+        "forms": {
+            "traditional": "\u99ac",
+            "simplified": "\u99ac"
+        },
+        "stroke_counts": {
+            "traditional": 10,
+            "simplified": 1
+        },
+        "lemma": "\u99ac",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u9a6c"
+        ]
+    },
+    "\u9aa8": {
+        "definitions": [
+            "bone",
+            "[1] [n] bone",
+            "[2] [n] skeleton; framework; frame",
+            "[3] [n] moral character; mettle; spirit"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "gwat1",
+            "pinyin": "gu3"
+        },
+        "forms": {
+            "traditional": "\u9aa8",
+            "simplified": "\u9aa8"
+        },
+        "stroke_counts": {
+            "traditional": 10,
+            "simplified": 1
+        },
+        "lemma": "\u9aa8",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u9ad8": {
+        "definitions": [
+            "high",
+            "[1] high; tall [2] lofty [3] of a high level or degree; above the average [4] a Chinese family name [5] Kangxi radical 189Stroke count: 10"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "gou1",
+            "pinyin": "gao1"
+        },
+        "forms": {
+            "traditional": "\u9ad8",
+            "simplified": "\u9ad8"
+        },
+        "stroke_counts": {
+            "traditional": 10,
+            "simplified": 1
+        },
+        "lemma": "\u9ad8",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u9ad9"
+        ]
+    },
+    "\u9adf": {
+        "definitions": [
+            "long hair",
+            "hairStroke count: 10"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "biu1",
+            "pinyin": "biao1"
+        },
+        "forms": {
+            "traditional": "\u9adf",
+            "simplified": "\u9adf"
+        },
+        "stroke_counts": {
+            "traditional": 10,
+            "simplified": 1
+        },
+        "lemma": "\u9adf",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u9b25": {
+        "definitions": [
+            "fight",
+            "[1] fight; tussle; combat",
+            "[2] contest/contend with; compete against",
+            "[3] make animals fight (as a game)",
+            "[4] come close together; piece together1. \u9b25 has uncommon variants in the form of \u9b2d and \u9b2a."
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "dau3",
+            "pinyin": "dou4"
+        },
+        "forms": {
+            "traditional": "\u9b25",
+            "simplified": "\u9b25"
+        },
+        "stroke_counts": {
+            "traditional": 10,
+            "simplified": 1
+        },
+        "lemma": "\u9b25",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u6597"
+        ]
+    },
+    "\u9b2f": {
+        "definitions": [
+            "sacrificial wine"
+        ],
+        "lemma": "\u9b2f",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u9b2f"],
+        "forms": {"simplified": "\u9b2f", "traditional": "\u9b2f"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u9b32": {
+        "definitions": [
+            "cauldron"
+        ],
+        "lemma": "\u9b32",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "is_radical": true,
+        "radicals": ["\u9b32"],
+        "forms": {"simplified": "\u9b32", "traditional": "\u9b32"},
+        "romanizations": {},
+        "stroke_counts": {}
+    },
+    "\u9b3c": {
+        "definitions": [
+            "ghost",
+            "[1] [n] ghost; spirit; apparition",
+            "[2] [n] devil (a term of contempt or endearment)",
+            "[3] [adj] dishonest; improper; illicit",
+            "[4] [adj] terrible; horrible; damnable",
+            "[5] [n] sinister plot; dirty trick",
+            "[6] [\u7cb5] [adv] incredibly; extremely",
+            "[7] [\u7cb5] [adv] the hell (used as infix)",
+            "Additional PoS: Stroke count: 10"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "gwai2",
+            "pinyin": "gui3"
+        },
+        "forms": {
+            "traditional": "\u9b3c",
+            "simplified": "\u9b3c"
+        },
+        "stroke_counts": {
+            "traditional": 10,
+            "simplified": 1
+        },
+        "lemma": "\u9b3c",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u9b5a": {
+        "definitions": [
+            "fish",
+            "fish (Classifier(s): \u689d, \u5c3e, \u7fa4)",
+            "Often pronounced in Jyutping with changed tone jyu4*2 when used as a single word and in many compounds."
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "jyu4",
+            "pinyin": "yu2"
+        },
+        "forms": {
+            "traditional": "\u9b5a",
+            "simplified": "\u9b5a"
+        },
+        "stroke_counts": {
+            "traditional": 11,
+            "simplified": 1
+        },
+        "lemma": "\u9b5a",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u9c7c"
+        ]
+    },
+    "\u9ce5": {
+        "definitions": [
+            "bird",
+            "birdStroke count: 11"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "niu5",
+            "pinyin": "niao3"
+        },
+        "forms": {
+            "traditional": "\u9ce5",
+            "simplified": "\u9ce5"
+        },
+        "stroke_counts": {
+            "traditional": 11,
+            "simplified": 1
+        },
+        "lemma": "\u9ce5",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u9e1f"
+        ]
+    },
+    "\u9e75": {
+        "definitions": [
+            "salty",
+            "[1] rock salt; natural salt",
+            "[2] saline soil; alkaline soil",
+            "[3] [chemistry] halogen\u5364 is simplified form for both \u9e75 and \u6ef7."
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "lou5",
+            "pinyin": "lu3"
+        },
+        "forms": {
+            "traditional": "\u9e75",
+            "simplified": "\u9e75"
+        },
+        "stroke_counts": {
+            "traditional": 11,
+            "simplified": 1
+        },
+        "lemma": "\u9e75",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u5364"
+        ]
+    },
+    "\u9e7f": {
+        "definitions": [
+            "deer",
+            "[1] deer; stag; doe",
+            "[2] state powerStroke count: 11"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "luk6",
+            "pinyin": "lu4"
+        },
+        "forms": {
+            "traditional": "\u9e7f",
+            "simplified": "\u9e7f"
+        },
+        "stroke_counts": {
+            "traditional": 11,
+            "simplified": 1
+        },
+        "lemma": "\u9e7f",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u9ea5": {
+        "definitions": [
+            "wheat",
+            "[1] wheat; barley; oats; rye",
+            "[2] a Chinese surname(Classifier(s): \u7c92, \u6346)",
+            "Jyutping mak6 is literary reading; maak6 is colloquial. The former is far more popular and has been used in most colloquial context."
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "mak6",
+            "pinyin": "mai4"
+        },
+        "forms": {
+            "traditional": "\u9ea5",
+            "simplified": "\u9ea5"
+        },
+        "stroke_counts": {
+            "traditional": 11,
+            "simplified": 1
+        },
+        "lemma": "\u9ea5",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u9ea6"
+        ]
+    },
+    "\u9ebb": {
+        "definitions": [
+            "hemp"
+        ],
+        "lemma": "\u9ebb",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "forms": {
+            "traditional": "\u9ebb",
+            "simplified": "\u9ebb"
+        },
+        "stroke_counts": {
+            "traditional": 11,
+            "simplified": 1
+        },
+        "is_radical": true,
+        "radicals": ["\u9ebb"],
+        "romanizations": {}
+    },
+    "\u9ec4": {
+        "definitions": [
+            "yellow"
+        ],
+        "lemma": "\u9ec4",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "forms": {
+            "traditional": "\u9ec4",
+            "simplified": "\u9ec4"
+        },
+        "stroke_counts": {
+            "traditional": 11,
+            "simplified": 1
+        },
+        "is_radical": true,
+        "radicals": ["\u9ec4"],
+        "romanizations": {}
+    },
+    "\u9ecd": {
+        "definitions": [
+            "millet"
+        ],
+        "lemma": "\u9ecd",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [],
+        "forms": {
+            "traditional": "\u9ecd",
+            "simplified": "\u9ecd"
+        },
+        "stroke_counts": {
+            "traditional": 11,
+            "simplified": 1
+        },
+        "is_radical": true,
+        "radicals": ["\u9ecd"],
+        "romanizations": {}
+    },
+    "\u9ed1": {
+        "definitions": [
+            "black",
+            "[1] black; dark",
+            "[2] secret; shady; unlawful",
+            "[3] wicked; sinister; evil",
+            "[4] (of facial expression) gloomy; glumJyutping hak1 is literary reading; haak1 is colloquial."
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "hak1",
+            "pinyin": "hei1"
+        },
+        "forms": {
+            "traditional": "\u9ed1",
+            "simplified": "\u9ed1"
+        },
+        "stroke_counts": {
+            "traditional": 12,
+            "simplified": 1
+        },
+        "lemma": "\u9ed1",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u9ef9": {
+        "definitions": [
+            "embroidery",
+            "needlework; embroideryStroke count: 12"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "zi2",
+            "pinyin": "zhi3"
+        },
+        "forms": {
+            "traditional": "\u9ef9",
+            "simplified": "\u9ef9"
+        },
+        "stroke_counts": {
+            "traditional": 12,
+            "simplified": 1
+        },
+        "lemma": "\u9ef9",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u9efd": {
+        "definitions": [
+            "frog"
+        ],
+        "lemma": "\u9efd",
+        "variants": [
+            "\u9efe"
+        ],
+        "stroke_counts": {
+            "traditional": 12,
+            "simplified": 1
+        },
+        "pos": [
+            "Noun"
+        ],
+        "forms": {
+            "traditional": "\u9efd",
+            "simplified": "\u9efd"
+        },
+        "is_radical": true,
+        "radicals": ["\u9efd"],
+        "romanizations": {}
+    },
+    "\u9f0e": {
+        "definitions": [
+            "tripod",
+            "[1] [n] ancient cooking vessel with two loop handles and three or four legs [2] [n] throne [3] [adj] big; great; important [4] [n] tripartite balance [5] [adv] during; in course ofStroke count: 12"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "ding2",
+            "pinyin": "ding3"
+        },
+        "forms": {
+            "traditional": "\u9f0e",
+            "simplified": "\u9f0e"
+        },
+        "stroke_counts": {
+            "traditional": 12,
+            "simplified": 1
+        },
+        "lemma": "\u9f0e",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u9f13": {
+        "definitions": [
+            "drum",
+            "[1] [n] drum [2] [v] drum; beat a drum [3] [v] vibrate; quiver [4] [v] rouse; stir up; instigate [5] Kangxi radical 207Stroke count: 13"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "gu2",
+            "pinyin": "gu3"
+        },
+        "forms": {
+            "traditional": "\u9f13",
+            "simplified": "\u9f13"
+        },
+        "stroke_counts": {
+            "traditional": 13,
+            "simplified": 1
+        },
+        "lemma": "\u9f13",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u9f20": {
+        "definitions": [
+            "rat",
+            "[1] [n] rat; mouse",
+            "[2] Kangxi radical 208 Default PoS:  Additional PoS: Stroke count: 13"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "syu2",
+            "pinyin": "shu3"
+        },
+        "forms": {
+            "traditional": "\u9f20",
+            "simplified": "\u9f20"
+        },
+        "stroke_counts": {
+            "traditional": 13,
+            "simplified": 1
+        },
+        "lemma": "\u9f20",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u9f3b": {
+        "definitions": [
+            "nose",
+            "[1] [n] nose [2] before any others; first [3] Kangxi radical 209Stroke count: 14"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "bei6",
+            "pinyin": "bi2"
+        },
+        "forms": {
+            "traditional": "\u9f3b",
+            "simplified": "\u9f3b"
+        },
+        "stroke_counts": {
+            "traditional": 14,
+            "simplified": 1
+        },
+        "lemma": "\u9f3b",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    },
+    "\u9f4a": {
+        "definitions": [
+            "even",
+            "[1] even; neat; uniform; trim",
+            "[2] identical; together; in unison",
+            "[3] all ready; all present; complete",
+            "[4] reach the height of; on the same plane with",
+            "[5] name of an ancient feudal state and a dynasty"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "cai4",
+            "pinyin": "qi2"
+        },
+        "forms": {
+            "traditional": "\u9f4a",
+            "simplified": "\u9f4a"
+        },
+        "stroke_counts": {
+            "traditional": 14,
+            "simplified": 1
+        },
+        "lemma": "\u9f4a",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u6589",
+            "\u9f50"
+        ]
+    },
+    "\u9f52": {
+        "definitions": [
+            "tooth",
+            "[1] teeth [2] age [3] [v] speak of; mention [4] a tooth-like part of anything [5] Kangxi radical 211Stroke count: 15"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "ci2",
+            "pinyin": "chi3"
+        },
+        "forms": {
+            "traditional": "\u9f52",
+            "simplified": "\u9f52"
+        },
+        "stroke_counts": {
+            "traditional": 15,
+            "simplified": 1
+        },
+        "lemma": "\u9f52",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u9f7f"
+        ]
+    },
+    "\u9f8d": {
+        "definitions": [
+            "dragon",
+            "[1] [n] dragon [2] of the emperor; imperial [3] a huge extinct reptile [4] a Chinese family name [5] Kangxi radical 212Stroke count: 16"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "lung4",
+            "pinyin": "long2"
+        },
+        "forms": {
+            "traditional": "\u9f8d",
+            "simplified": "\u9f8d"
+        },
+        "stroke_counts": {
+            "traditional": 16,
+            "simplified": 1
+        },
+        "lemma": "\u9f8d",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u9f99"
+        ]
+    },
+    "\u9f9c": {
+        "definitions": [
+            "turtle",
+            "[1] [n] turtle; tortoise [2] Kangxi radical 213 [3] slang for the penisStroke count: 18"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "gwai1",
+            "pinyin": "gui1"
+        },
+        "forms": {
+            "traditional": "\u9f9c",
+            "simplified": "\u9f9c"
+        },
+        "stroke_counts": {
+            "traditional": 18,
+            "simplified": 1
+        },
+        "lemma": "\u9f9c",
+                "pos": [
+            "Noun"
+        ],
+        "variants": [
+            "\u9f9f"
+        ]
+    },
+    "\u9fa0": {
+        "definitions": [
+            "flute",
+            "[1] [n] a kind of flute [2] a kind of ancient measuring vessel [3] Kangxi radical 214Also \u7c65",
+            "Default PoS:  Additional PoS: Show all nouns that can use this classifierStroke count: 17"
+        ],
+        "radicals": [],
+        "is_radical": false,
+        "romanizations": {
+            "jyutping": "joek6",
+            "pinyin": "yue4"
+        },
+        "forms": {
+            "traditional": "\u9fa0",
+            "simplified": "\u9fa0"
+        },
+        "stroke_counts": {
+            "traditional": 17,
+            "simplified": 1
+        },
+        "lemma": "\u9fa0",
+                "pos": [
+            "Noun"
+        ],
+        "variants": []
+    }
+}

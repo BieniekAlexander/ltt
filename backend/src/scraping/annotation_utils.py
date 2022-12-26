@@ -2,13 +2,14 @@
 import logging
 import re
 
+from bson.objectid import ObjectId
 from scraping.wiktionary_spider import WiktionarySpider
-from storage.language_datastore import LanguageDatastore
+from storage.language_datastores.polish_datastore import PolishDatastore
 
 
 # %% utils
 # TODO I seem to have messed up this function with the WiktionarySpider refactor :(
-def annotate_text(text: str, language_datastore: LanguageDatastore, user_id: str = None, discovery_mode: bool = False):
+def annotate_text(text: str, language_datastore: PolishDatastore, user_id: ObjectId = None, discovery_mode: bool = False):
     """
     Take in a piece of text and annotate it using data from the given language_datastore
 

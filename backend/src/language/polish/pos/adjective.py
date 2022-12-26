@@ -1,45 +1,56 @@
-# https://en.wiktionary.org/wiki/Category:Polish_adjectives
+from dataclasses import dataclass, field
+from enforce_typing import enforce_types
+from typing import Union
+
 from language.inflected_lexeme import InflectedLexeme
 from language.model_errors import LexemeError
+from language.part_of_speech import PartOfSpeech 
 from language.polish.feat.degree import Degree
 
 
+@enforce_types
+@dataclass
 class Adjective(InflectedLexeme):
-    def __init__(self, lemma, pos, definitions, inflections, degree, positive=[], comparative=[], superlative=[], adverb=[], not_comparable=False):
-        """Adjective constructor
+    """Polish Adjective
 
-        Args:
-            lemma (str): lemma form
-            pos
-            definitions (list)
-            inflections (dict)
-            degree
-            positive (list, optional): the positive forms of the adjective, if they exist and this isn't it
-            comparative (list, optional): the comparative forms of the adjective, if they exist and this isn't it
-            superlative (list, optional): the superlative forms of the adjective, if they exist and this isn't it
-            adverb (list, optional): the adverb forms of the adjective, if they exist
-            not_comparable (bool, optional): true if this adjective is not comparable
+    Args:
+        lemma (str): lemma form
+        pos
+        definitions (list)
+        inflections (dict)
+        degree
+        positive (list, optional): the positive forms of the adjective, if they exist and this isn't it
+        comparative (list, optional): the comparative forms of the adjective, if they exist and this isn't it
+        superlative (list, optional): the superlative forms of the adjective, if they exist and this isn't it
+        adverb (list, optional): the adverb forms of the adjective, if they exist
+        not_comparable (bool, optional): true if this adjective is not comparable
+    """
+    lemma: str
+    pos: Union[PartOfSpeech, str]
+    definitions: list[str]
+    inflections: dict
+    degree: Union[Degree, str]
+    positive: list[str] = field(default_factory=list)
+    comparative: list[str] = field(default_factory=list)
+    superlative: list[str] = field(default_factory=list)
+    adverb: list[str] = field(default_factory=list)
+    not_comparable: bool = False
 
-        Raises:
-            LexemeError: [description]
+    def __post_init__(self):
         """
-        if degree and not isinstance(degree, Degree):
-            degree = Degree[degree.upper()]
+        check initialization
+        """
+        if self.degree and not isinstance(self.degree, Degree):
+            self.degree = Degree[self.degree.upper()]
 
-        if not self.validate_degrees(degree, positive, comparative, superlative, not_comparable):
-            args = {'degree': degree, 'positive': positive, 'comparative': comparative,
-                    'superlative': superlative, 'not_comparable': not_comparable}
+        if not self.validate_degrees(self.degree, self.positive, self.comparative, self.superlative, self.not_comparable):
+            args = {'degree': self.degree, 'positive': self.positive, 'comparative': self.comparative,
+                    'superlative': self.superlative, 'not_comparable': self.not_comparable}
             raise LexemeError(
-                lemma, pos, args, f"The adjective had invalid arguments regarding degree - {args}")
+                self.lemma, self.pos, args, f"The adjective had invalid arguments regarding degree - {args}")
 
-        # load in fields
-        super(Adjective, self).__init__(lemma, pos, definitions, inflections)
-        self.degree = degree
-        self.positive = positive
-        self.comparative = comparative
-        self.superlative = superlative
-        self.adverb = adverb
-        self.not_comparable = not_comparable
+        super().__post_init__()
+        
 
     def validate_degrees(self, degree, positive, comparative, superlative, not_comparable):
         """

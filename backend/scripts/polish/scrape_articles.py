@@ -6,14 +6,14 @@ import requests
 from pymongo import MongoClient
 from scraping.annotation_utils import annotate_text
 from scraping.html_parse_utils import get_page_main_content
-from storage.language_datastore import LanguageDatastore
+from storage.language_datastores.polish_datastore import PolishDatastore
 
 # constants
 MONGODB_URI = os.environ['MONGODB_URI']
 ARTICLE_URLS_PATH = f"{os.getcwd()}/data/polish/articles.txt"
 
 ds_client = MongoClient(MONGODB_URI)
-polish_language_datastore = LanguageDatastore(ds_client, "polish")
+polish_language_datastore = PolishDatastore(ds_client, "polish")
 
 language = "Polish"
 article_urls = open(ARTICLE_URLS_PATH, "r").read().splitlines()

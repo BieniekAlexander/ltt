@@ -1,11 +1,12 @@
 # imports
 import os
 
+from bson.objectid import ObjectId
 from flask import Blueprint, current_app, jsonify, request
 from flask_jwt_extended import jwt_required
 from flask_restx import Namespace, Resource, fields
 from scraping.annotation_utils import annotate_text
-from storage.language_datastore import LanguageDatastore
+from storage.language_datastores.polish_datastore import PolishDatastore
 from storage.vocabulary_connector import VocabularyConnector
 
 # constants
@@ -34,10 +35,11 @@ class Annotate(Resource):
             text = request_data['text']
             language = request_data['language']
             user_id = request_data.get('user_id', None)
+            if user_id is not None: user_id = ObjectId(user_id)
 
             # TODO something about this isn't getting the vocab annotations, not sure why
             # id = current_identity.id
-            language_datastore = LanguageDatastore(current_app.ds_client, language)
+            language_datastore = PolishDatastore(current_app.ds_client, language)
             annotated_text = annotate_text(text, language_datastore, user_id=user_id, discovery_mode=True) # TODO how should we decide if in discovery mode
             response = jsonify({'annotations': annotated_text})
             return response

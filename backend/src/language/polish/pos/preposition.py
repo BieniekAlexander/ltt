@@ -1,21 +1,33 @@
-from language.inflected_lexeme import InflectedLexeme
+from enforce_typing import enforce_types
+from dataclasses import dataclass, field
+from typing import Union
+
+from language.part_of_speech import PartOfSpeech
 from language.lexeme import Lexeme
 from language.polish.feat.case import Case
-from utils.data_structure_utils import replace_dict_keys_recursive
-
 
 # TODO Prepositions are used with what cases?
+@enforce_types
+@dataclass
 class Preposition(Lexeme):
-    def __init__(self, lemma, pos, definitions, cases=[]):
-        """[summary]
+    """Polish preposition
 
-        Args:
-            lemma ([type]): [description]
-            pos ([type]): [description]
-            definitions ([type]): [description]
-            cases (list, optional): [description]. Defaults to [].
+    Args:
+        lemma ([type]): [description]
+        pos ([type]): [description]
+        definitions ([type]): [description]
+        cases (list, optional): [description]. Defaults to [].
+    """
+    lemma: str
+    pos: Union[PartOfSpeech, str]
+    definitions: list[str]
+    cases: list[Union[Case, str]] = field(default_factory=list)
+
+    def __post_init__(self):
         """
-        cases = list(map(lambda x: Case[x.upper()], cases))
+        Run postprocessing after construction
+        """
+        self.cases = list(map(lambda x: Case[x.upper()], self.cases))
 
-        super(Preposition, self).__init__(lemma, pos, definitions)
-        self.cases = cases
+        super().__post_init__()
+        

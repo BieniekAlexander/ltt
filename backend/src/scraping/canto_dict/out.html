@@ -1,0 +1,434 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+<meta content="Adam Sheik - Celerity Design" name="author"/>
+<meta content="CantoDict: an Online Collaborative Chinese (Cantonese) Dictionary." name="description"/>
+<meta content="cantonese, chinese, mandarin, dictionary, traditional, characters, lessons,
+educational, putonghua, reference, words, translation, translations, translate, english" name="keywords"/>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Search - CantoDict</title>
+<link href="http://www.cantonese.sheik.co.uk/cantonese.css" rel="stylesheet" type="text/css"/>
+<link href="http://www.cantonese.sheik.co.uk/cantodict.css" rel="stylesheet" type="text/css"/>
+<link href="http://www.cantonese.sheik.co.uk/print.css" media="print" rel="stylesheet" type="text/css"/>
+<link href="http://www.cantodict.com/favicon.ico" rel="shortcut icon"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
+<script src="./javascript/overlibmws.js" type="text/javascript"></script>
+<script src="./javascript/overlibdefaults.js" type="text/javascript"></script>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-125239-2";
+urchinTracker();
+</script>
+</head>
+<body>
+<div id="container">
+<table id="topnav class=" nopad="" width="100%">
+<tr>
+<td class="nopad" valign="top" width="40%"> </td>
+<td align="center" class="nopad" valign="middle">
+<a href="/"><img align="center" alt="Home" border="0" src="http://www.cantonese.sheik.co.uk/images/icons/home.gif" title="'sau2 jip6' - Back to the main 'Learn Chinese' website"/></a>
+<br/>
+</td>
+<td class="nopad" valign="top" width="40%">
+<a href="/dictionary/"><img align="right" alt="CantoDict Home" class="noborder" hspace="0" src="http://www.cantonese.sheik.co.uk/images/cantodict/cantodict_nav_1_home.gif" title="CantoDict Home"/></a><a href="/donate.htm#customise"><img align="right" alt="CantoDict Settings" class="noborder" hspace="0" src="http://www.cantonese.sheik.co.uk/images/cantodict/cantodict_nav_2_customise.gif" title="Customise CantoDict, change settings etc"/></a>
+</td>
+</tr>
+<tr>
+<td align="center" class="nopad" colspan="3">
+<div class="topnav">
+<br/>
+<a href="/scripts/masterlist.htm">Characters</a> |
+<a href="/dictionary/words/">Words</a> |
+<a href="/scripts/examplelist.htm">Sentences</a> |
+<a href="/dictionary/parser/">Chinese Translation</a> |
+<a href="/tests/">Chinese Tests</a> |
+<a href="/phorum/">Forums</a> |
+<a href="/scripts/wordsearch.php"><b>Search</b></a>
+<br/>
+<small>
+<a href="/donate.htm#customise">Customise CantoDict</a> | <a href="/scripts/vocablist.php">My Vocab Lists</a> | <a href="/scripts/dbstats.htm">Useful Reports and Stats</a> |
+<a href="/phorum/list.php?14">CantoDict Forum</a>
+</small>
+</div>
+</td>
+</tr>
+</table>
+<center>
+<div class="noprint">
+<small><a href="http://www.cantonese.sheik.co.uk/donate.htm#subscribe">Remove Adverts and gain lots of extra features</a></small>
+<br/>
+<script type="text/javascript"><!--
+	google_ad_client = "pub-7666422977838952";
+	google_ad_width = 728;
+	google_ad_height = 90;
+	google_ad_format = "728x90_as";
+	google_ad_type = "text_image";
+	google_ad_channel ="7359994566";
+	google_color_border = "990000";
+	google_color_bg = "FFFFFF";
+	google_color_link = "006633";
+	google_color_url = "FF0000";
+	google_color_text = "000000";
+	//--></script>
+<script src="http://pagead2.googlesyndication.com/pagead/show_ads.js" type="text/javascript">
+</script>
+</div>
+</center>
+<div class="normalpage">
+<h2 align="center">Dictionary Search</h2>
+<p>
+	This dictionary is a collaborative project started in November 2003. Entries are added and mistakes corrected by a team of volunteers from around the world.
+	<br/>
+	If you can spare even ten minutes a week to help with this project then please
+	<a href="http://www.cantonese.sheik.co.uk/phorum/read.php?f=1&amp;i=6727&amp;t=6727">volunteer.</a> Editing is easy, you just use your web browser!
+	</p>
+<div align="center">
+<div id="searchbox">
+<form action="http://www.cantonese.sheik.co.uk/scripts/wordsearch.php?level=0" class="searchbox" method="post" name="searchform">
+Search CantoDict
+ <small>(<a href="http://www.cantodict.org/safesearch.htm" target="_blank">safe search</a> is on)</small>
+<br/>
+<input class="cantodict_search_input" name="TEXT" size="13" type="text" value="曇"/>
+<select class="cantodict_search_input" name="SEARCHTYPE" onchange="disableButton();">
+<option value="4">English meaning</option>
+<option selected="" value="2">Chinese Character</option>
+<option value="1">Chinese Word</option>
+<option value="6">Chinese Word (initial)</option>
+<option value="7">Chinese Word (final)</option>
+<option value="3">Jyutping (Cantonese)</option>
+<option value="5">Pinyin (Mandarin)</option>
+<option value="8">Radical</option>
+<option value="11">Unicode value</option>
+<optgroup label="Search Example Sentences">
+<option value="12">Meaning of sentence</option>
+</optgroup>
+</select>
+<select class="radicaldropdown" name="radicaldropdown" style="display:inline; font-family: 'arial unicode MS',MingLiu">
+<option selected="" value="0"></option>
+<optgroup label="1 stroke">
+<option value="1">1: 一 (one)</option>
+<option value="2">2: 丨 (line)</option>
+<option value="3">3: 丶 (dot)</option>
+<option value="4">4: 丿 (slash)</option>
+<option value="5">5: 乙 or 乚 (second)</option>
+<option value="6">6: 亅 (hook)</option>
+</optgroup>
+<optgroup label="2 strokes">
+<option value="7">7: 二 (two)</option>
+<option value="8">8: 亠 (lid)</option>
+<option value="9">9: 亻 or 人 (man)</option>
+<option value="10">10: 儿 (legs)</option>
+<option value="11">11: 入 (enter)</option>
+<option value="12">12: 八 (eight)</option>
+<option value="13">13: 冂 (down box)</option>
+<option value="14">14: 冖 (cover)</option>
+<option value="15">15: 冫 (ice)</option>
+<option value="16">16: 几 (table)</option>
+<option value="17">17: 凵 (open box)</option>
+<option value="18">18: 刀 or 刂 (knife)</option>
+<option value="19">19: 力 (power)</option>
+<option value="20">20: 勹 (wrap)</option>
+<option value="21">21: 匕 (spoon)</option>
+<option value="22">22: 匚 (right open box)</option>
+<option value="23">23: 匸 (hiding enclosure)</option>
+<option value="24">24: 十 (ten)</option>
+<option value="25">25: 卜 (divination)</option>
+<option value="26">26: 卩 (seal)</option>
+<option value="27">27: 厂 (cliff)</option>
+<option value="28">28: 厶 (private)</option>
+<option value="29">29: 又 (again)</option>
+</optgroup>
+<optgroup label="3 strokes">
+<option value="30">30: 口 (mouth)</option>
+<option value="31">31: 囗 (enclosure)</option>
+<option value="32">32: 土 (earth)</option>
+<option value="33">33: 士 (scholar)</option>
+<option value="34">34: 夂 (go)</option>
+<option value="35">35: 夊 (go slowly)</option>
+<option value="36">36: 夕 (evening)</option>
+<option value="37">37: 大 (big)</option>
+<option value="38">38: 女 (woman)</option>
+<option value="39">39: 子 (child)</option>
+<option value="40">40: 宀 (roof)</option>
+<option value="41">41: 寸 (inch)</option>
+<option value="42">42: 小 (small)</option>
+<option value="43">43: 尢 (lame)</option>
+<option value="44">44: 尸 (corpse)</option>
+<option value="45">45: 屮 (sprout)</option>
+<option value="46">46: 山 (mountain)</option>
+<option value="47">47: 川 or 巛 (river)</option>
+<option value="48">48: 工 (work)</option>
+<option value="49">49: 己 (oneself)</option>
+<option value="50">50: 巾 (turban)</option>
+<option value="51">51: 干 (dry)</option>
+<option value="52">52: 幺 (tiny)</option>
+<option value="53">53: 广 (house on cliff)</option>
+<option value="54">54: 廴 (long stride)</option>
+<option value="55">55: 廾 (two hands)</option>
+<option value="56">56: 弋 (shoot)</option>
+<option value="57">57: 弓 (bow)</option>
+<option value="58">58: 彐 or 彑 (snout)</option>
+<option value="59">59: 彡 (bristle)</option>
+<option value="60">60: 彳 (step)</option>
+</optgroup>
+<optgroup label="4 strokes">
+<option value="61">61: 心 or 忄 (heart)</option>
+<option value="62">62: 戈 (halberd)</option>
+<option value="63">63: 戶 (door)</option>
+<option value="64">64: 扌 or 支 (hand)</option>
+<option value="65">65: 支 (branch)</option>
+<option value="66">66: 攴 or 攵 (rap)</option>
+<option value="67">67: 文 (script)</option>
+<option value="68">68: 斗 (dipper)</option>
+<option value="69">69: 斤 (axe)</option>
+<option value="70">70: 方 (square)</option>
+<option value="71">71: 无 or 旡 (not)</option>
+<option value="72">72: 日 (sun)</option>
+<option value="73">73: 曰 (say)</option>
+<option value="74">74: 月 (moon)</option>
+<option value="75">75: 木 (tree)</option>
+<option value="76">76: 欠 (yawn)</option>
+<option value="77">77: 止 (stop)</option>
+<option value="78">78: 歹 or 歺 (death)</option>
+<option value="79">79: 殳 (weapon)</option>
+<option value="80">80: 毋 or 母(do not)</option>
+<option value="81">81: 比 (compare)</option>
+<option value="82">82: 毛 (fur)</option>
+<option value="83">83: 氏 (clan)</option>
+<option value="84">84: 气 (steam)</option>
+<option value="85">85: 水,氵 or 氺 (water)</option>
+<option value="86">86: 火 or 灬 (fire)</option>
+<option value="87">87: 爪 or 爫 (claw)</option>
+<option value="88">88: 父 (father)</option>
+<option value="89">89: 爻 (double crosses)</option>
+<option value="90">90: 爿/丬 (bed)</option>
+<option value="91">91: 片 (slice)</option>
+<option value="92">92: 牙 (fang)</option>
+<option value="93">93: 牛 (cow)</option>
+<option value="94">94: 犬 or 犭(dog)</option>
+</optgroup>
+<optgroup label="5 strokes">
+<option value="95">95: 玄 (profound)</option>
+<option value="96">96: 玉 or 王 (jade)</option>
+<option value="97">97: 瓜 (melon)</option>
+<option value="98">98: 瓦 (earthenware)</option>
+<option value="99">99: 甘 (sweet)</option>
+<option value="100">100: 生 (life)</option>
+<option value="101">101: 用 (use)</option>
+<option value="102">102: 田 (field)</option>
+<option value="103">103: 疋 (bolt of cloth)</option>
+<option value="104">104: 疒 (sickness)</option>
+<option value="105">105: 癶 (dotted tent)</option>
+<option value="106">106: 白 (white)</option>
+<option value="107">107: 皮 (skin)</option>
+<option value="108">108: 皿 (dish)</option>
+<option value="109">109: 目 (eye)</option>
+<option value="110">110: 矛 (halberd)</option>
+<option value="111">111: 矢 (arrow)</option>
+<option value="112">112: 石 (stone)</option>
+<option value="113">113: 示 or 礻 (spirit)</option>
+<option value="114">114: 禸 (track)</option>
+<option value="115">115: 禾 (grain)</option>
+<option value="116">116: 穴 (cave)</option>
+<option value="117">117: 立 (stand)</option>
+</optgroup>
+<optgroup label="6 strokes">
+<option value="118">118: 竹 (bamboo)</option>
+<option value="119">119: 米 (rice)</option>
+<option value="120">120: 糸/纟 or 糹 (silk)</option>
+<option value="121">121: 缶 (jar)</option>
+<option value="122">122: 网 or 罒 (net)</option>
+<option value="123">123: 羊 (sheep)</option>
+<option value="124">124: 羽 (feather)</option>
+<option value="125">125: 老 or 耂 (old)</option>
+<option value="126">126: 而 (and)</option>
+<option value="127">127: 耒 (plow)</option>
+<option value="128">128: 耳 (ear)</option>
+<option value="129">129: 聿 (brush)</option>
+<option value="130">130: 肉 (meat)</option>
+<option value="131">131: 臣 (minister)</option>
+<option value="132">132: 自 (self)</option>
+<option value="133">133: 至 (arrive)</option>
+<option value="134">134: 臼 (mortar)</option>
+<option value="135">135: 舌 (tongue)</option>
+<option value="136">136: 舛 (oppose)</option>
+<option value="137">137: 舟 (boat)</option>
+<option value="138">138: 艮 (stopping)</option>
+<option value="139">139: 色 (color)</option>
+<option value="140">140: 艸 or 艹 (grass)</option>
+<option value="141">141: 虍 (tiger)</option>
+<option value="142">142: 虫 (insect)</option>
+<option value="143">143: 血 (blood)</option>
+<option value="144">144: 行 (walk)</option>
+<option value="145">145: 衣 or 衤 (clothes)</option>
+<option value="146">146: 西 or 覀 or 襾 (west)</option>
+</optgroup>
+<optgroup label="7 strokes">
+<option value="147">147: 見/见 (see)</option>
+<option value="148">148: 角 (horn)</option>
+<option value="149">149: 言 or 訁/讠 (speech)</option>
+<option value="150">150: 谷 (valley)</option>
+<option value="151">151: 豆 (bean)</option>
+<option value="152">152: 豕 (pig)</option>
+<option value="153">153: 豸 (badger)</option>
+<option value="154">154: 貝/贝 (shell)</option>
+<option value="155">155: 赤 (red)</option>
+<option value="156">156: 走 (run)</option>
+<option value="157">157: 足 (foot)</option>
+<option value="158">158: 身 (body)</option>
+<option value="159">159: 車/车 (car)</option>
+<option value="160">160: 辛 (bitter)</option>
+<option value="161">161: 辰 (morning)</option>
+<option value="162">162: 辵 or 辶 (walk)</option>
+<option value="163">163: 邑 (city)</option>
+<option value="164">164: 酉 (wine)</option>
+<option value="165">165: 釆 (distinguish)</option>
+<option value="166">166: 里 (village)</option>
+</optgroup>
+<optgroup label="8 strokes">
+<option value="167">167: 金 or 釒/钅 (metal)</option>
+<option value="168">168: 長/长 or 镸 (long)</option>
+<option value="169">169: 門/门 (gate)</option>
+<option value="170">170: 阜 or 阝 (mound)</option>
+<option value="171">171: 隶 (slave)</option>
+<option value="172">172: 隹 (small bird)</option>
+<option value="173">173: 雨 (rain)</option>
+<option value="174">174: 靑 or 青 (blue)</option>
+<option value="175">175: 非 (wrong)</option>
+</optgroup>
+<optgroup label="9 strokes">
+<option value="176">176: 面 (face)</option>
+<option value="177">177: 革 (leather)</option>
+<option value="178">178: 韋/韦 (tanned leather)</option>
+<option value="179">179: 韭 (leek)</option>
+<option value="180">180: 音 (sound)</option>
+<option value="181">181: 頁/页 (face)</option>
+<option value="182">182: 風/风 (wind)</option>
+<option value="183">183: 飛/飞 (fly)</option>
+<option value="184">184: 食 or 飠/饣 (eat)</option>
+<option value="185">185: 首 (head)</option>
+<option value="186">186: 香 (fragrant)</option>
+</optgroup>
+<optgroup label="10 strokes">
+<option value="187">187: 馬/马 (horse)</option>
+<option value="188">188: 骨 (bone)</option>
+<option value="189">189: 高 (tall)</option>
+<option value="190">190: 髟 (hair)</option>
+<option value="191">191: 鬥 (fight)</option>
+<option value="192">192: 鬯 (sacrificial wine)</option>
+<option value="193">193: 鬲 (cauldron)</option>
+<option value="194">194: 鬼 (ghost)</option>
+</optgroup>
+<optgroup label="11 strokes">
+<option value="195">195: 魚/鱼 (fish)</option>
+<option value="196">196: 鳥/鸟 (bird)</option>
+<option value="197">197: 鹵 (alkaline)</option>
+<option value="198">198: 鹿 (deer)</option>
+<option value="199">199: 麥/麦 (wheat)</option>
+<option value="200">200: 麻 (hemp)</option>
+</optgroup>
+<optgroup label="12 strokes">
+<option value="201">201: 黃 (yellow)</option>
+<option value="202">202: 黍 (millet)</option>
+<option value="203">203: 黑 (black)</option>
+<option value="204">204: 黹 (needlework)</option>
+</optgroup>
+<optgroup label="13 strokes">
+<option value="205">205: 黽/黾 (amphibian)</option>
+<option value="206">206: 鼎 (tripod)</option>
+<option value="207">207: 鼓 (drum)</option>
+<option value="208">208: 鼠 (rat)</option>
+</optgroup>
+<optgroup label="14 strokes">
+<option value="209">209: 鼻 (nose)</option>
+<option value="210">210: 齊/齐 or 斉 (uniformly)</option>
+</optgroup>
+<optgroup label="15 strokes">
+<option value="211">211: 齒/齿 or 歯 (tooth)</option>
+</optgroup>
+<optgroup label="16 strokes">
+<option value="212">212: 龍/龙 or 竜 (dragon)</option>
+<option value="213">213: 龜/龟/亀 (tortoise)</option>
+</optgroup>
+<optgroup label="17 strokes">
+<option value="214">214: 龠 (flute)</option>
+</optgroup>
+</select>
+<input name="searchsubmit" title="This is the normal search, and should be used by default." type="submit" value="search"/>
+<input name="searchsubmitfull" title="This option will return more results, some of which may not be as relevant to your query." type="submit" value="full search"/>
+<br/>
+<div id="search_info_label" style="display: block">
+Please note, CantoDict currently supports searching for Simplified Chinese, but results will be returned in Traditional Chinese.
+</div>
+<label for="HIDEWRITTENANDSPOKEN">Hide Written and Spoken</label> <input id="HIDEWRITTENANDSPOKEN" name="HIDEWRITTENANDSPOKEN" type="checkbox"/>
+<label for="HIDEWRITTEN">Hide Written <a title="Mandarin / Standard written Chinese only."><span class="mandarinbox">國</span></a></label> <input id="HIDEWRITTEN" name="HIDEWRITTEN" type="checkbox"/>
+<label for="HIDECANTONESE">Hide Spoken<a title="Cantonese only, (usually spoken but can be written)"><span class="cantonesebox">粵</span></a></label> <input id="HIDECANTONESE" name="HIDECANTONESE" type="checkbox"/>
+</form>
+</div>
+<script language="javascript">
+		function disableButton(){
+			var searchType;
+			searchType = document.searchform.SEARCHTYPE.options[document.searchform.SEARCHTYPE.selectedIndex].value;
+			if (searchType != 4){
+				document.searchform.searchsubmitfull.disabled = true;
+			}
+			else{
+				document.searchform.searchsubmitfull.disabled = false;
+			}
+
+			if (searchType != 8 ){
+				document.searchform.radicaldropdown.style.display="none";
+				document.searchform.TEXT.disabled = false;
+				document.searchform.TEXT.style.display = "inline";
+			}
+			else{
+				document.searchform.radicaldropdown.style.display="inline";
+				document.searchform.TEXT.disabled=true;
+				document.searchform.TEXT.style.display = "none";
+			}
+if ((searchType == 2) || (searchType == 6) || (searchType == 7)){
+document.searchform.TEXT.size=13;
+}
+else if (searchType == 1){
+document.searchform.TEXT.size=13;
+}
+else{
+document.searchform.TEXT.size=16;
+}
+if ((searchType == 2) || (searchType == 1) || (searchType == 7) || (searchType == 6)){
+document.searchform.TEXT.style.fontFamily="MingLiu";
+document.searchform.TEXT.style.fontSize="12pt";
+}
+else{
+document.searchform.TEXT.style.fontFamily="";
+document.searchform.TEXT.style.fontSize="";
+}
+if ((searchType == 3) || (searchType == 5)){
+document.searchform.TEXT.style.fontStyle="italic";
+}
+else{
+document.searchform.TEXT.style.fontStyle="normal";
+}
+if (searchType == 5){
+document.getElementById("search_info_label").innerHTML = 'CantoDict uses separate pinyin syllables with spaces and (optional) tone numbers:  eg: <i>ni hao</i> or <i>ni3 hao3.</i> <a href="http://www.cantonese.sheik.co.uk/phorum/read.php?14,66044,66044" target="_blank">More information...</a>';
+}
+else if (searchType == 3){
+document.getElementById("search_info_label").innerHTML = 'For help, please see our <a href="http://www.cantonese.sheik.co.uk/phorum/read.php?14,66046" target="_blank">Jyutping guide.</a>';
+}
+else if (searchType == 1){
+document.getElementById("search_info_label").innerHTML = 'Wildcard searching is supported:  eg: <font color="blue">*&#37941;*&#37341;*</font> &nbsp; <a href="http://www.cantonese.sheik.co.uk/phorum/read.php?14,56845" target="_blank">More information...</a>';
+}
+else if (searchType == 11){
+document.getElementById("search_info_label").innerHTML = 'i.e. U+xxxx';
+}
+else{
+document.getElementById("search_info_label").innerHTML = "Please note, CantoDict currently supports searching for Simplified Chinese, but results will be returned in Traditional Chinese.";
+}
+}
+disableButton()
+</script>
+</div>
+One character found, if your page does not redirect please <a href="http://www.cantonese.sheik.co.uk/dictionary/characters/8999/">click here.</a>
+<meta content="1;url=http://www.cantonese.sheik.co.uk/dictionary/characters/8999/" http-equiv="refresh"/>
+</div></div></body></html>

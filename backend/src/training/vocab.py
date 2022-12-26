@@ -1,22 +1,23 @@
 import json
+from bson import ObjectId
+from typing import Optional
+from enforce_typing import enforce_types
+from dataclasses import dataclass
 
+from language.lexeme import Lexeme
 from training.sm2_anki.stats import Stats, StatsDecoder
 
-
-# TODO make data class
-# from dataclasses import dataclass
-#@dataclass
-class Vocabulary(object):
+@enforce_types
+@dataclass
+class Vocabulary:
     """
     An object that represents a vocab term being studied
     """
-
-    def __init__(self, lexeme_id: str, vocab_id: str, lexeme: dict, stats: Stats):
-        self.lexeme_id = lexeme_id
-        self.vocab_id = vocab_id
-        self.lexeme = lexeme
-        self.stats = stats
-
+    lexeme_id: str
+    vocab_id: str
+    lexeme: Lexeme
+    stats: dict
+    
 
 class VocabularyDecoder(json.JSONDecoder):
     """ 

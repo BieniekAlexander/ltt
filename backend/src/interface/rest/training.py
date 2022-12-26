@@ -1,6 +1,7 @@
 # imports
 import os
 
+from bson.objectid import ObjectId
 from flask import Blueprint, current_app, request
 from flask_restx import Namespace, Resource, fields
 from interface.rest.vocabulary import entry_fields_put
@@ -46,7 +47,7 @@ class StudySet(Resource):
         Get a set of vocabulary terms as a training session
         """
         request_data = request.args.to_dict()
-        user_id = request_data['user_id']
+        user_id = ObjectId(request_data['user_id'])
         language = request_data['language']
         count = int(request_data['count'])
 

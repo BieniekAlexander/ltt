@@ -1,20 +1,32 @@
-from language.inflected_lexeme import InflectedLexeme
-from language.lexeme import Lexeme
-from utils.data_structure_utils import replace_dict_keys_recursive
+from enforce_typing import enforce_types
+from dataclasses import dataclass
+from typing import Union
 
+from language.part_of_speech import PartOfSpeech
+from language.inflected_lexeme import InflectedLexeme
 
 # TODO there's probably a limited set of these terms (with some alternate forms, e.g. swoje -> swe), how to handle this?
+@enforce_types
+@dataclass
 class Pronoun(InflectedLexeme):
-    def __init__(self, lemma, pos, definitions, inflections):
-        """[summary]
+    """Polish pronoun
 
-        Args:
-            lemma ([type]): [description]
-            pos ([type]): [description]
-            definitions ([type]): [description]
-            inflections ([type]): [description]
+    Args:
+        lemma ([type]): [description]
+        pos ([type]): [description]
+        definitions ([type]): [description]
+        inflections ([type]): [description]
+    """
+    lemma: str
+    pos: Union[PartOfSpeech, str]
+    definitions: list[str]
+    inflections: dict
+    
+    def __post_init__(self):
         """
-        super(Pronoun, self).__init__(lemma, pos, definitions, inflections)
+        Post construction processing
+        """
+        super().__post_init__()
 
     # reference - https://en.wiktionary.org/wiki/biec#Conjugation
     form_abbreviation_dict = {

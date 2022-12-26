@@ -144,14 +144,6 @@ def get_nested_iterable_values(iterable):
                 yield v
 
 
-def get_values(d):
-    for v in d.values():
-        if isinstance(v, dict):
-            yield from get_values(v)
-        else:
-            yield v
-
-
 # % main
 if __name__ == "__main__":
     a = {4: 1, 6: 2, 7: {8: [3, 9, [10, 11]],

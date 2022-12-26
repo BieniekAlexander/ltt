@@ -1,15 +1,27 @@
-# https://en.wiktionary.org/wiki/Category:Polish_conjunctions
-from language.inflected_lexeme import InflectedLexeme
+from enforce_typing import enforce_types
+from dataclasses import dataclass
+from typing import Union
+
 from language.lexeme import Lexeme
+from language.part_of_speech import PartOfSpeech
 
 
+@enforce_types
+@dataclass
 class Conjunction(Lexeme):
-    def __init__(self, lemma, pos, definitions):
-        """[summary]
+    """Polish Conjunction
 
-        Args:
-            lemma ([type]): [description]
-            pos ([type]): [description]
-            definitions ([type]): [description]
+    Args:
+        lemma ([type]): [description]
+        pos ([type]): [description]
+        definitions ([type]): [description]
+    """
+    lemma: str
+    pos: Union[PartOfSpeech, str]
+    definitions: list[str]
+    
+    def __post_init__(self):
         """
-        super(Conjunction, self).__init__(lemma, pos, definitions)
+        Test assertions of polish conjunction state
+        """    
+        super().__post_init__()

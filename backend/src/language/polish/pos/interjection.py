@@ -1,15 +1,26 @@
-from language.inflected_lexeme import InflectedLexeme
+from enforce_typing import enforce_types
+from dataclasses import dataclass
+from typing import Union
+
 from language.lexeme import Lexeme
-from utils.data_structure_utils import replace_dict_keys_recursive
+from language.part_of_speech import PartOfSpeech
 
-
+@enforce_types
+@dataclass
 class Interjection(Lexeme):
-    def __init__(self, lemma, pos, definitions):
-        """[summary]
+    """Polish Interjection
 
-        Args:
-            lemma ([type]): [description]
-            pos ([type]): [description]
-            definitions ([type]): [description]
+    Args:
+        lemma ([type]): [description]
+        pos ([type]): [description]
+        definitions ([type]): [description]
+    """
+    lemma: str
+    pos: Union[PartOfSpeech, str]
+    definitions: list[str]
+
+    def __post_init__(self):
         """
-        super(Interjection, self).__init__(lemma, pos, definitions)
+        Test assertions of constructing an interjection
+        """
+        super(Interjection, self).__post_init__()

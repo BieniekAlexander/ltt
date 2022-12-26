@@ -12,7 +12,7 @@ from pymongo import MongoClient
 from pymongo.errors import DuplicateKeyError
 from scraping.scraping_errors import ScrapingError
 from scraping.wiktionary_spider import WiktionarySpider
-from storage.language_datastore import LanguageDatastore
+from storage.language_datastores.polish_datastore import PolishDatastore
 
 MONGODB_URI = os.environ['MONGODB_URI']
 PATH_TO_CSV = f"{os.getcwd()}/data/polish/duolingo_vocab.csv"
@@ -26,7 +26,7 @@ polish_terms_df = pd.read_csv(PATH_TO_CSV)
 polish_terms = list(polish_terms_df['Polish'])
 
 ds_client = MongoClient(MONGODB_URI)
-language_datastore = LanguageDatastore(ds_client, language)
+language_datastore = PolishDatastore(ds_client, language)
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
