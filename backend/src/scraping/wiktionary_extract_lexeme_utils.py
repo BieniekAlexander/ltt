@@ -5,7 +5,7 @@ import re
 
 import requests
 from bs4 import BeautifulSoup, Tag
-from language import model_class_map
+from language import MODEL_CLASS_MAP
 from language.inflected_lexeme import InflectedLexeme
 from language.polish.feat.case import Case
 from scraping.html_parse_utils import parse_inflection_table
@@ -22,7 +22,7 @@ def extract_lexeme(soup, lemma, pos, language):
     """
     Extract the information from the [soup] webpage for the given [lemma], [pos], and [language] and returns it in a model object
     """
-    model_class = model_class_map[language.upper()][pos.upper()]
+    model_class = MODEL_CLASS_MAP[language.upper()][pos.upper()]
     kwargs = {}
 
     if issubclass(model_class, InflectedLexeme):

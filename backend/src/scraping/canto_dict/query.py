@@ -1,10 +1,3 @@
-# decompyle3 version 3.9.0
-# Python bytecode version base 3.7.0 (3394)
-# Decompiled from: Python 3.9.12 (main, Apr  5 2022, 06:56:58) 
-# [GCC 7.5.0]
-# Embedded file name: /home/alex/projects/cobweb/examples/cantoDict/src/crawling/query.py
-# Compiled at: 2022-07-18 17:05:37
-# Size of source mod 2**32: 1301 bytes
 import requests
 from bs4 import BeautifulSoup
 api_url = ' http://www.cantonese.sheik.co.uk/scripts/wordsearch.php?level=0'
@@ -21,11 +14,13 @@ def query(query_str: str, search_type: int):
     data = f"TEXT={query_str}&SEARCHTYPE={search_type}&radicaldropdown=0&searchsubmit=search"
     return BeautifulSoup(requests.post(api_url, data=data.encode('utf-8'), headers=headers).text, 'lxml')
 
+# reference: on the site: run a search, navigate to "inspect element", and inspect the payload of the network request - http://www.cantonese.sheik.co.uk/
 def query_jyutping(query_str: str): return query(query_str, 3)
 def query_english(query_str: str): return query(query_str, 4)
 def query_character(query_str: str): return query(query_str, 2)
+def query_word(query_str: str): return query(query_str, 1)
 
 if __name__ == "__main__":
-    soup = query_character("己")
+    soup = query_word("己")
     # with open('out.html', 'w') as file: TODO remove
     #     file.write(str(soup))

@@ -28,8 +28,8 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 # loop over the terms, find them in the lexicon, and add them to the user's vocab
-radicals = list(chinese_datastore.get_characters(is_radical=True))
+radicals = list(chinese_datastore.get_lexemes(is_radical=True))
 
 for radical in radicals:
-    stats = {'definition': Stats().to_json()}
-    chinese_datastore.add_vocabulary_entry(character_id=radical['_id'], user_id=ObjectId(user_id), stats=stats)
+    stats = {'written': Stats().to_json()}
+    chinese_datastore.add_vocabulary_entries([dict(character_id=radical['_id'], user_id=ObjectId(user_id), stats=stats)])

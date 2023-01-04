@@ -3,9 +3,9 @@ import pymongo
 from bson.objectid import ObjectId
 from pymongo import MongoClient
 from storage.datastore_utils import generate_query
-# TODO updating collection connector to make it easier to extend
 
 
+# TODO I might remove this entirely, it might just make the most sense to use collections natively
 class CollectionConnector:
     """
     An interface that lets us connect to a document store 
@@ -48,16 +48,16 @@ class CollectionConnector:
         assert isinstance(document, dict)
 
         result = self.collection.insert_one(document)
-        return result.inserted_id
+        return ObjectId(result.inserted_id)
 
-    def push_documents(self, documents: list) -> list:
+    def push_documents(self, documents: list) -> list[ObjectId]:
         """
         Insert a list of [lexemes] and get the _ids that they map to
         """
         # TODO what if some fail?
         assert all(isinstance(document, dict) for document in documents)
         results = self.collection.insert_many(documents)
-        return list(map(str, results.inserted_ids))
+        return results.inserted_ids
 
     def delete_document(self, query: dict) -> None:
         """
@@ -79,6 +79,9 @@ class CollectionConnector:
         """
         Update a [document] and get the _id it gets mapped to
         """
+        if list(self.collection.find(query)) == []:
+            raise Exception("No documents to update found")
+
         self.collection.update_one(query, {"$set": document})
 
 
@@ -88,7 +91,7 @@ def main():
     import os
 
     ds_client = MongoClient(os.getenv('MONGODB_URI'))
-    chinese_character_connector = CollectionConnector(ds_client, 'chinese', 'characters', zh_character_schema['$jsonSchema'])
+    chinese_character_connector = CollectionConnector(ds_client, 'chinese', 'lexicon', zh_character_schema['$jsonSchema'])
     # chinese_character_connector.push_document({'lemma': 'wow'})
 
 if __name__ == "__main__":

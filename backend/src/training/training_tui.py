@@ -1,9 +1,20 @@
 import curses
 import os
 import argparse
-
+from enforce_typing import enforce_types
 from bson.objectid import ObjectId
 from pymongo import MongoClient
+
+from training.tui.repr_polish import (
+    definition_answer_repr as definition_answer_repr_pl,
+    definition_hint_repr as definition_hint_repr_pl
+)
+from training.tui.repr_chinese import (
+    written_answer_repr as definition_answer_repr_zh,
+    written_hint_repr as definition_hint_repr_zh
+)
+
+from training.tui.utils import add_linebreaks
 from training.sm2_anki.recall import Recall
 from training.sm2_anki.training_session import (get_study_entries, push_study_entry,
                                        put_studied_entries)
@@ -15,7 +26,7 @@ USER_ID = ObjectId("62a57d5bfa96028f59ac1d75")
 
 # display
 # TODO revisit sizes, I think this crashes when it's too small, this is quite hardcoded
-PANEL_HEIGHT = 10
+PANEL_HEIGHT = 20
 PANEL_WIDTH = 50
 Y_PADDING = 3
 X_PADDING = 10
@@ -23,37 +34,25 @@ X_PADDING = 10
 # training evaluation
 recall_dict = dict(list(enumerate(Recall)))
 
-
-def add_linebreaks(string: str, line_length: int) -> str:
-    """
-    Add linebreaks to a string before words that would break the line
-
-    Args:
-        string (str): the string to which we'll add line breaks
-        line_length (int): the length of the line
-
-    Returns:
-        str: the line with new linebreaks
-    """
-    idx = line_length
-    ret_string = string
-
-    while idx < len(ret_string):
-        while ret_string[idx] != ' ':
-            idx -= 1
-
-        ret_string = f'{ret_string[:idx]}\n{ret_string[idx:]}'
-        idx += line_length+1
-
-    return ret_string
+repr_dict = {
+    "polish":  {
+        "definition": (definition_hint_repr_pl, definition_answer_repr_pl)
+    },
+    "chinese": {
+        "written": (definition_hint_repr_zh, definition_answer_repr_zh),
+        "spoken": (definition_hint_repr_zh, definition_answer_repr_zh)
+    }
+}
 
 
-def main(stdscr: curses.window, language, card_count):
+@enforce_types
+def main(stdscr: curses.window, language: str, fact: str, card_count: int):
     # initialize training session
     datastore_client = MongoClient(MONGODB_URI)
-    vocabulary = get_study_entries(
-        USER_ID, language, datastore_client, interval=1, count=card_count)
+    vocabulary = get_study_entries(USER_ID, language, datastore_client, fact=fact, interval=1, count=card_count)
     study_queue = vocabulary.copy()
+
+    get_hint, get_answer = repr_dict[language][fact]
 
     # initialize things for TUI
     SCREEN_HEIGHT, SCREEN_WIDTH = stdscr.getmaxyx()
@@ -82,12 +81,10 @@ def main(stdscr: curses.window, language, card_count):
         answer_window.clear()
         recall_window.clear()
 
-        term_string = add_linebreaks(
-            f"{entry['lexeme']['lemma']}\n\n{entry['lexeme']['pos'].lower()}", PANEL_WIDTH)
-        answer_string = add_linebreaks(
-            f"{entry['lexeme']['definitions'][0]}", PANEL_WIDTH)
+        term_string = add_linebreaks(get_hint(entry), PANEL_WIDTH)
+        answer_string = add_linebreaks(get_answer(entry), PANEL_WIDTH)
 
-        question_window.addstr(0, 0, "Term")
+        question_window.addstr(0, 0, "Hint")
         question_window.addstr(2, 0, term_string)
         answer_window.addstr(0, 0, "Answer")
 
@@ -116,12 +113,14 @@ def main(stdscr: curses.window, language, card_count):
             show_hint = show_hint == False
         elif c in list(map(ord, '0123')):
             recall = recall_dict[list(map(ord, '0123')).index(c)]
-            entry['stats']['definition'].update(recall)
-            push_study_entry(study_queue, entry)
+            entry['stats'][fact].update(recall)
+            push_study_entry(study_queue, entry, fact)
             get_next_entry = True
 
     # update the terms and persist them in the backend
-    put_studied_entries(USER_ID, 'polish', datastore_client, vocabulary)
+    put_studied_entries(USER_ID, language, datastore_client, fact, vocabulary)
+    with open('out.json', 'w') as file:
+        file.write(str(vocabulary))
 
 
 if __name__ == "__main__":
@@ -129,8 +128,9 @@ if __name__ == "__main__":
                     prog = 'training_tui',
                     description = 'text interface utility for studying',)
     
-    parser.add_argument('-l', '--language', default="polish", help="the language to study terms from", type=int)
+    parser.add_argument('-l', '--language', default="polish", help="the language to study terms from", type=str)
+    parser.add_argument('-f', '--fact', default="definition", help="the fact to study", type=str)
     parser.add_argument('-c', '--count', default=10, help="the number of cards to retrieve for studying", type=int)
     args = parser.parse_args()
 
-    curses.wrapper(main, language=args.language, card_count=args.count)
+    curses.wrapper(main, language=args.language, fact=args.fact, card_count=args.count)

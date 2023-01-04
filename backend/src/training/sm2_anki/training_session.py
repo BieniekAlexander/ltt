@@ -1,75 +1,63 @@
 import os
+from random import shuffle
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
-from training.sm2_anki.stats import Stats
-from storage.language_datastores.polish_datastore import PolishDatastore
 from training.sm2_anki.stats import STEP_INTERVALS
+from storage.language_datastores import LANGUAGE_DATASTORE_MAP
 
 # constants
 MONGODB_URI = os.environ['MONGODB_URI']
 
 
-def push_study_entry(study_queue: list, entry: dict) -> None:
+def push_study_entry(study_queue: list, entry: dict, fact: str) -> None:
     """
     Puts the study entry back into the queue if it's still in learning mode and the interval is more than 0 days
     """
-    step = entry['stats']['definition'].step
+    step = entry['stats'][fact].step
     interval = STEP_INTERVALS[step]
 
     if interval == 0:
         study_queue.append(entry)
 
 
-def get_study_entries(user_id: ObjectId, language: str, datastore_client: MongoClient, interval: int = 1, count: int = 50):
+def get_study_entries(user_id: ObjectId, language: str, datastore_client: MongoClient, fact: str, interval: int = 1, count: int = 50) -> list:
     """
     Collects the vocabulary being used by the user in the training session
     TODO this isn't technically true to the sm2 implementation, because sm2 will just give you the terms each day according to the interval
     """
     # init DAOs
-    language_datastore = PolishDatastore(datastore_client, language)
-
-    # get the entries and the user's vocab entries
-    vocabulary = sorted(language_datastore.get_vocabulary_entries(
-        lexeme_ids=[], user_id=user_id), key=lambda x: x['lexeme_id'])
-    lexeme_ids = list(map(lambda x: x['lexeme_id'], vocabulary))
-    lexemes = sorted(language_datastore.get_lexemes(
-        _id=lexeme_ids), key=lambda x: x['_id'])
-    lexemes = [lexeme.to_json() for lexeme in lexemes] # TODO refactor this area to handle lexeme, maybe?
-    study_entries = []
-
-    # join the entries and vocab entries on the id
-    for v, l in zip(vocabulary, lexemes):
-        assert str(v['lexeme_id']) == str(
-            l['_id']), f"'{v['lexeme_id']}' != '{l['_id']}'"
-
-        vocab = {
-            'lexeme_id': (v['lexeme_id']),
-            "vocab_id": str(l['_id']),
-            "lexeme": l,
-            "stats": v['stats']
-        }
-
-        study_entries.append(vocab)
-
-    study_entries = sorted(study_entries, key=lambda x: x['stats']['definition'].interval)
-    return study_entries[:count]
+    language_datastore_class = LANGUAGE_DATASTORE_MAP[language.lower()]
+    language_datastore = language_datastore_class(datastore_client)
+    entries = language_datastore.get_vocabulary_entries(lexeme_id=[], user_id=user_id)
+    entries = list(filter(lambda x: fact in x['stats'], entries))
+    study_entries = sorted(entries, key=lambda x: x['stats'][fact].interval)[:count]
+    shuffle(study_entries)
+    return study_entries
 
 
-def put_studied_entries(user_id: str, language: str, datastore_client: MongoClient, studied_entries: list):
+def put_studied_entries(user_id: str, language: str, datastore_client: MongoClient, fact: str, studied_entries: list[dict]):
     """
     Updates and pushes a studied set of vocabulary entries to the database 
     """
     # init DAOs
-    language_datastore = PolishDatastore(datastore_client, language)
+    language_datastore_class = LANGUAGE_DATASTORE_MAP[language.lower()]
+    language_datastore = language_datastore_class(datastore_client)
 
     # get the entries and the user's vocab entries
     for entry in studied_entries:
-        if entry['stats']['definition'].recall is not None:
-            # TODO deserialize stats better
-            stats = {k: Stats(**entry['stats'][k]) for k in entry['stats']}
-
+        if entry['stats'][fact].recall is not None:
             language_datastore.update_vocabulary_entry(
-                lexeme_id=ObjectId(entry['lexeme_id']), stats=stats, user_id=ObjectId(user_id))
+                lexeme_id=ObjectId(entry['lexeme_id']), stats=entry['stats'], user_id=ObjectId(user_id))
         else:
             print('bounce')
+
+if __name__ == "__main__":
+    import os
+
+    user_id = ObjectId("62a57d5bfa96028f59ac1d75")
+    MONGODB_URI = os.getenv("MONGODB_URI")
+    ds_client = MongoClient(MONGODB_URI)
+    language = "chinese"
+
+    print(get_study_entries(user_id, language, ds_client, 'spoken'))

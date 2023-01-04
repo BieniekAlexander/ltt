@@ -1,20 +1,23 @@
 import pymongo
 
 character_index = {
-    'keys': [("lemma", pymongo.ASCENDING)],
+    'keys': [("characters", pymongo.ASCENDING)],
     'name': "character index",
     'unique': True
 }
 
 character_schema = {"$jsonSchema": {
     "bsonType": "object",
-    "required": ["_id", "lemma", "pos", "definitions"],
+    "required": ["_id", "lemma", "pos", "definitions", "is_radical", "radicals", "variants", "written_forms", "romanizations", "stroke_counts"],
     "properties": {
         "_id": {
             "bsonType": "objectId",
         },
-        "lemma": {
-            "bsonType": "string",
+        "characters": {
+            "bsonType": "string"
+        },
+        "character_ids": {
+            "bsonType": "list"
         },
         "pos": {
             "bsonType": "array",
@@ -22,7 +25,10 @@ character_schema = {"$jsonSchema": {
         "definitions": {
             "bsonType": "array"
         },
-        "forms": {
+        "written_forms": {
+            "bsonType": "object"
+        },
+        "written_forms_list": {
             "bsonType": "object"
         },
         "romanizations": {
@@ -31,14 +37,14 @@ character_schema = {"$jsonSchema": {
         "radical": {
             "bsonType": "bool"
         },
-        "strokes": {
+        "stroke_counts": {
             "bsonType": "int"
         }
     }
 }}
 
 vocabulary_index = {
-    'keys': [("character_id", pymongo.ASCENDING)],
+    'keys': [("character_id", pymongo.ASCENDING), ("word_id", pymongo.ASCENDING)],
     'name': "vocabulary index",
     'unique': True
 }

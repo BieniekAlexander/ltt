@@ -63,7 +63,7 @@ class Entries(Resource):
         lexeme_id = request_data['lexeme_id']
 
         language_datastore = PolishDatastore(current_app.ds_client, language)
-        return language_datastore.get_vocabulary_entry(lexeme_id, user_id)
+        return language_datastore.get_vocabulary_entries(lexeme_id, user_id)[0]
 
     @ns.doc(body=entry_fields_put)
     def post(self):
@@ -78,8 +78,8 @@ class Entries(Resource):
         try:
             language_datastore = PolishDatastore(
                 current_app.ds_client, language)
-            vocab_entry = language_datastore.get_vocabulary_entry(
-                lexeme_id, ObjectId(user_id))
+            vocab_entry = language_datastore.get_vocabulary_entries(
+                lexeme_id=[ObjectId(lexeme_id)], user_id=ObjectId(user_id))[0]
 
             if vocab_entry:
                 return jsonify({

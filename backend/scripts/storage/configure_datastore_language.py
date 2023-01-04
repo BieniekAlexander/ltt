@@ -4,8 +4,11 @@ import pymongo
 from storage.datastore_schemata.chinese_schemata import (
     character_index as zh_character_index,
     character_schema as zh_character_schema,
+    word_index as zh_word_index,
+    word_schema as zh_word_schema,
     vocabulary_index as zh_vocabulary_index,
     vocabulary_schema as zh_vocabulary_schema)
+    # TODO maybe but these configurations in some sort of object and load them in with an abstraction
 
 from storage.datastore_schemata.polish_schemata import (
     inflections_index as pl_inflections_index,
@@ -63,12 +66,12 @@ def configure_mongodb_language(mongodb_uri: str, language: str):
     ##################
     elif language.lower() in ['zh', 'chinese']:
         db = client["chinese"]
-        db['characters'].drop_indexes()
-        db['characters'].create_index(**zh_character_index)
-        if 'characters' not in db.list_collection_names():
-            db.create_collection('characters')
+        db['lexicon'].drop_indexes()
+        db['lexicon'].create_index(**zh_character_index)
+        if 'lexicon' not in db.list_collection_names():
+            db.create_collection('lexicon')
         db.command({
-            "collMod": "characters",
+            "collMod": "lexicon",
             "validator": zh_character_schema,
             "validationLevel": "strict"
         })

@@ -6,7 +6,6 @@ from enforce_typing import enforce_types
 from training.sm2_anki.recall import Recall, RECALL_EASINESS_FACTORS, RECALL_INTERVALS
 from utils.json_utils import JSONSerializable
 
-
 # number of days betwen study sessions when the card is in learning mode
 STEP_INTERVALS = [0, 1, 3, 10]
 
@@ -20,13 +19,11 @@ class Stats(JSONSerializable):
     based on the Anki sm2 algorithm
 
     Args:
-        repetition (int): the number of times this term has been studied
         interval (int): the number of days until the next time you have to study the term
         ef (float): easiness factor
         recall (Recall): your ability to recall the term (updated in the study session)
         step (int): the number of times you've studied the term towards graduation (-1 if graduated)
     """
-    repetition: int = 0
     interval: int = 0
     ef: float = 2.5
     recall: Optional[Union[Recall, int]] = None
@@ -37,7 +34,6 @@ class Stats(JSONSerializable):
         Assert values after initialization
         """
         assert self.ef >= 1.3
-        assert self.repetition >= 0
         assert self.step >= -1
 
     def update(self, recall: Recall) -> None:
@@ -58,10 +54,10 @@ class Stats(JSONSerializable):
                 self.ef *= max(RECALL_EASINESS_FACTORS[recall], 1.3)
             elif recall == 1:
                 self.ef *= max(RECALL_EASINESS_FACTORS[recall], 1.3)
-                self.interval *= RECALL_INTERVALS[recall]
+                self.interval *= int(RECALL_INTERVALS[recall])
             else:
                 self.ef *= max(RECALL_EASINESS_FACTORS[recall], 1.3)
-                self.interval = max(self.ef*self.interval, 4)
+                self.interval = int(max(self.ef*self.interval, 4))
         else: # in learning phase
             if recall == 0:
                 self.step = 0

@@ -11,7 +11,7 @@ from language.polish.pos.preposition import Preposition as PlPreposition
 from language.polish.pos.pronoun import Pronoun as PlPronoun
 from language.polish.pos.verb import Verb as PlVerb
 
-model_class_map = {
+MODEL_CLASS_MAP = {
     "POLISH": {
         "ADJECTIVE": PlAdjective,
         "ADVERB": PlAdverb,

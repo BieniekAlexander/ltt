@@ -7,9 +7,8 @@ from scraping.wiktionary_spider import WiktionarySpider
 from storage.language_datastores.polish_datastore import PolishDatastore
 
 
-# %% utils
-# TODO I seem to have messed up this function with the WiktionarySpider refactor :(
-def annotate_text(text: str, language_datastore: PolishDatastore, user_id: ObjectId = None, discovery_mode: bool = False):
+# TODO this might be better off accessing mongodb directly
+def annotate_text(text: str, language_datastore: PolishDatastore, language: str, user_id: ObjectId = None, discovery_mode: bool = False):
     """
     Take in a piece of text and annotate it using data from the given language_datastore
 
@@ -18,7 +17,6 @@ def annotate_text(text: str, language_datastore: PolishDatastore, user_id: Objec
     assert isinstance(text, str)
 
     terms = list(re.findall(r'\w+', text))
-    language = language_datastore.language
     annotations = []
 
     for i, term in enumerate(terms):
@@ -49,13 +47,14 @@ def annotate_text(text: str, language_datastore: PolishDatastore, user_id: Objec
 
             if 'lexeme' in annotation:
                 # try to get lexeme from a user's vocabulary
-                if user_id:
-                    entry = language_datastore.get_vocabulary_entry(
-                        annotation['lexeme_id'], user_id=user_id)
+                if user_id is not None:
+                    entries = language_datastore.get_vocabulary_entries(
+                        lexeme_id=[ObjectId(annotation['lexeme_id'])], user_id=user_id)
 
-                    if entry:
-                        annotation['vocabulary_id'] = entry['_id']
-                        annotation['stats'] = entry['stats']['definition'].to_json() # TODO figure out data model
+                    if len(entries) > 0:
+                        entry = entries[0]
+                        annotation['vocabulary_id'] = entry['vocabulary_id']
+                        annotation['stats'] = entry['stats']
                     else:  # set to null to indicate that we tried to tie to vocabulary and found nothing
                         annotation['vocabulary_id'] = None
                         annotation['stats'] = None

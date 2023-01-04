@@ -1,13 +1,13 @@
-# decompyle3 version 3.9.0
-# Python bytecode version base 3.7.0 (3394)
-# Decompiled from: Python 3.9.12 (main, Apr  5 2022, 06:56:58) 
-# [GCC 7.5.0]
-# Embedded file name: /home/alex/projects/cobweb/examples/cantoDict/src/scraping/search_results_scraping.py
-# Compiled at: 2022-07-18 14:47:35
-# Size of source mod 2**32: 1671 bytes
-from cgitb import text
-from bs4 import BeautifulSoup
 import logging
+import re
+from enforce_typing import enforce_types
+from bs4 import BeautifulSoup
+
+RESULT_TABLE_REGEX_PATTERN_DICT = {
+    'characters': r'Found \d+ character entr(y|ies) for .*',
+    'words': r'Found \d+ word entr(y|ies) for .*',
+    'examples': r'Found \d+ Chinese Examples? for .*',
+}
 
 def get_results_redirect_link(soup: BeautifulSoup) -> str:
     """
@@ -18,7 +18,12 @@ def get_results_redirect_link(soup: BeautifulSoup) -> str:
 
     return soup.find_all('a')[-1]['href']
 
-def get_results_table_entries(results_table):
+def get_char_word_table_entries(results_table: BeautifulSoup) -> list[dict]:
+    """
+    Return a list parsed of entries from the BeautifulSoup table, specifically for the character and word tables
+    """
+    assert issubclass(BeautifulSoup, type(results_table))
+
     results_table_rows = results_table.find_all('tr')
     header_row_index = 0
     while not results_table_rows[header_row_index].td.has_attr('width'):
@@ -29,40 +34,101 @@ def get_results_table_entries(results_table):
         data_row = results_table_rows[i]
         tds = data_row.find_all('td')
         url = tds[0].a['href']
-        character = tds[1].span.text
-        jyutping = tds[2].text
+        entry = tds[1].span.text.strip()
+        jyutping = tds[2].text.strip()
+        pinyin = tds[3].text.strip()
         definition = tds[4].text.strip()
         results.append({'url':url, 
-         'character':character, 
-         'jyutping':jyutping, 
-         'definitions':[
-          definition]})
+         'entry':entry, 
+         'jyutping':jyutping,
+         'pinyin': pinyin,
+         'definitions':definition
+          })
 
     return results
 
+def get_example_table_entries(results_table: BeautifulSoup) -> list[dict]:
+    """
+    Return a list parsed of entries from the BeautifulSoup table, specifically for the example table
 
-def get_search_results_tables(soup: BeautifulSoup):
+    TODO it looks like this parser is missing the very first example entry
+    ex: search for word 可愛
+    """
+    results_table_rows = results_table.find_all('tr')
+    header_row_index = 0
+    while not results_table_rows[header_row_index].td.has_attr('width'):
+        header_row_index += 1
+
+    results = []
+    for i in range(header_row_index + 1, len(results_table_rows)):
+        data_row = results_table_rows[i]
+        tds = data_row.find_all('td')
+        url = tds[0].a['href']
+        entry = tds[1].span.text.strip()
+        definition = tds[2].text.strip()
+        results.append({'url':url, 
+         'entry':entry, 
+         'definitions':definition
+         })
+
+    return results
+
+def get_search_results_table_map(soup: BeautifulSoup) -> dict[str, BeautifulSoup]:
     """
     Get each BeautifulSoup table containing vocabulary entries
     """
-    results_tables = []
+    results_table_map = {table_type_key: None for table_type_key in RESULT_TABLE_REGEX_PATTERN_DICT}
     results_table = soup.find('table')
+    
     while results_table:
-        try:
-            if 'entries for' in results_table.tr.td.b.text:
-                results_tables.append(results_table)
-        except:
-            logging.debug('table is not a results table, skipping')
+        for table_type_key in RESULT_TABLE_REGEX_PATTERN_DICT:
+            regex = re.compile(RESULT_TABLE_REGEX_PATTERN_DICT[table_type_key])
+            
+            try:
+                result_table_header = results_table.tr.td.b.text
+                
+                if regex.search(result_table_header):
+                    results_table_map[table_type_key] = results_table
+                else:
+                    logging.debug(f"header not matched - {result_table_header}")
+                
+            except Exception as e:
+                logging.debug(f'table is not a results table, skipping')
 
         results_table = results_table.find_next('table')
 
-    return results_tables
+    return results_table_map
 
+def get_search_results_map(soup: BeautifulSoup) -> dict[str, list[dict]]:
+    """
+    Get a mapping of entry types to search result lists
+    """
+    results_table_map: dict = get_search_results_table_map(soup)
+    results_map: dict = {table_type_key: None for table_type_key in RESULT_TABLE_REGEX_PATTERN_DICT}
 
-def get_search_results(soup: BeautifulSoup):
+    for key in results_table_map:
+        if results_table_map[key] == None:
+            continue
+        elif key in ['characters', 'words']:
+            results_map[key] = get_char_word_table_entries(results_table_map[key])
+        elif key == 'examples':
+            results_map[key] = get_example_table_entries(results_table_map[key])
+
+    return results_map
+
+def get_all_search_results(soup: BeautifulSoup) -> list[dict]:
     """
     Get all entries listed in the search results tables
     """
-    results_tables = get_search_results_tables(soup)
-    return [entry for results_table in results_tables for entry in iter((get_results_table_entries(results_table)))]
-# okay decompiling __pycache__/search_results_scraping.cpython-37.pyc
+    search_results_map = get_search_results_map(soup)
+    return [result for key in search_results_map for result in search_results_map[key]]
+
+
+if __name__ == "__main__":
+    import logging
+    logging.basicConfig(level="DEBUG")
+
+    from query import query_character, query_word, query_english
+    from pprint import pprint
+    soup = query_english("happy")
+    pprint(get_search_results_map(soup))

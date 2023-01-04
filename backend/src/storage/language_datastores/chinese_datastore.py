@@ -1,9 +1,11 @@
 from bson.objectid import ObjectId
 from pymongo import MongoClient
-from typing import Any
+from typing import Any, Union
 
+from enforce_typing import enforce_types
 from training.sm2_anki.stats import Stats
 from language.chinese.character import Character
+from language.chinese.word import Word
 from storage.collection_connector import CollectionConnector
 from utils.data_structure_utils import get_nested_iterable_values
 from storage.datastore_utils import generate_query, generate_member_query
@@ -13,21 +15,16 @@ from storage.datastore_schemata.chinese_schemata import (
     vocabulary_schema as zh_vocabulary_schema
 )
 
-# TODO currently manually getting BSON to get this going, but I should add deserialization support
-def get_character_bson(character: Character):
-    return {
-        'lemma': character.lemma,
-        'pos': character.pos,
-        'definitions': character.definitions,
-        'forms': character.forms,   
-        'forms_list': list(set(get_nested_iterable_values(character.forms))), # TODO this isn't part of the data class, but I might need a list of values to make it searchable
-        'romanizations': character.romanizations,
-        'is_radical': character.is_radical,
-        'stroke_counts': character.stroke_counts
-    }
 
+def deserialize_chinese_from_bson(entry_bson: dict) -> Union[Word, Character]:
+    """
+    TODO
+    """
+    if len(entry_bson['lemma']) == 1:
+        return Character.from_bson(entry_bson)
+    else:
+        return Word.from_bson(entry_bson)
 
-# %% Implementation
 class ChineseDatastore:
     """
     A datastore interface that abstracts storage of language data
@@ -40,110 +37,129 @@ class ChineseDatastore:
         Args:
             datastore_client (MongoClient): the MongoDB client used to interact with the datastore
         """
-        self.character_connector = CollectionConnector(datastore_client, self.language, 'characters', zh_character_schema['$jsonSchema'])
+        self.datastore_client = datastore_client
+        self.lexicon_connector = CollectionConnector(datastore_client, self.language, 'lexicon', zh_character_schema['$jsonSchema'])
         self.vocabulary_connector = CollectionConnector(datastore_client, self.language, 'vocabulary', zh_vocabulary_schema['$jsonSchema'])
 
-    def add_character(self, character: Character) -> ObjectId:
+    @enforce_types
+    def add_lexemes(self, entries: list[Union[Character, Word]]) -> list[ObjectId]:
         """
-        Add a lexeme to the datastore, add related data (i.e. inflection mappings), and get the lexeme_id
+        Add a lexeme to the datastore (chinese character or word), add related data (i.e. inflection mappings), and get the lexeme_id
         """
-        assert isinstance(character, Character)
 
-        character_bson = get_character_bson(character)
-        return self.character_connector.push_document(character_bson)
+        entry_bsons = []
+        
+        for entry in entries:
+            entry_bson = entry.to_bson()
 
-    def add_characters(self, characters: list) -> list[ObjectId]:
-        """
-        Add a lexeme to the datastore, add related data (i.e. inflection mappings), and get the lexeme_id
-        """
-        assert isinstance(characters, list) and all(
-            isinstance(character, Character) for character in characters)
+            # if this is a word, join the _ids of the characters it's composed of
+            if isinstance(entry, Word):
+                character_list = list(entry_bson['lemma'])
+                entry_bson['character_ids'] = []
 
-        character_bsons = list(map(lambda x: get_character_bson(x), characters))
-        return self.character_connector.push_documents(character_bsons)
+                for character in character_list:
+                    # TODO probably update wrappers so I can get this mapping more easily
+                    character_bson_list = list(self.lexicon_connector.collection.find(generate_query(lemma=character)))
 
-    def delete_character(self, _id: ObjectId) -> None:
+                    if len(character_bson_list) != 0:
+                        character_bson = character_bson_list[0]
+                        entry_bson['character_ids'].append(character_bson['_id'])
+
+            entry_bsons.append(entry.to_bson())
+
+        return self.lexicon_connector.push_documents(entry_bsons)
+
+    @enforce_types
+    def delete_lexeme(self, _id: ObjectId) -> None:
         """
         remove a lexeme from the language datastore by [_id]
 
         TODO is this even necessary?
         """
-        self.character_connector.delete_document(generate_query(_id=_id))
+        self.lexicon_connector.delete_document(generate_query(_id=_id))
 
-    def get_character_from_form(self, form: str) -> Character:
-        """
-        Get a character, given some form of it
-        """
-        assert isinstance(form, str)
-
-        characters = self.get_characters_from_form(form)
-        
-        if len(characters)>1:
-            raise Exception(f"Found more than one character with form={form}")
-        elif len(characters) == 1:
-            return characters[0]
-        else:
-            return None
-
-    def get_characters_from_form(self, form: str) -> list[Character]:
+    @enforce_types
+    def get_lexemes_from_form(self, form: str) -> dict[ObjectId, Union[Character, Word]]:
         """
         Get a character, given soem form of it
         """
-        assert isinstance(form, str)
+        bson_list = self.lexicon_connector.collection.find(generate_member_query('forms_list', form))
+        lexeme_dict = {}
 
-        return self.character_connector.collection.find(generate_member_query('forms_list', form))
+        lexeme_dict = {lexeme_bson.pop("_id"): deserialize_chinese_from_bson(lexeme_bson) for lexeme_bson in bson_list}
+        return lexeme_dict
 
-    def get_characters(self, **kwargs) -> list[Character]:
+    def get_lexemes(self, **kwargs) -> dict[ObjectId, Union[Character, Word]]:
         """
         Get a list of characters
         """
-        return self.character_connector.get_documents(generate_query(**kwargs))
+        lexeme_list = self.lexicon_connector.get_documents(generate_query(**kwargs))
+        lexeme_dict = {}
 
-    def get_vocabulary_entry(self, character_id: str, user_id: str) -> dict:
-        return self.vocabulary_connector.get_document(generate_query(character_id=character_id, user_id=user_id))
-
-    def get_vocabulary_entries(self, character_ids: list, user_id: str) -> dict:
-        return self.vocabulary_connector.get_document(generate_query(character_id=character_ids, user_id=user_id))
-
-    def add_vocabulary_entry(self, character_id: ObjectId, stats: dict[str, Stats], user_id: ObjectId) -> str:
-        """
-        Add a [lexeme_id], [stats] entry to the vocabulary for [user_id]
-
-        Args:
-          character_id (ObjectId): the identifier of the character to be added to the vocabulary
-          stats (dict[str, Stats]): the initial SRS stats of the vocabulary term for the user
-          user_id (ObjectId): the identifier for the user that should receive the new vocabulary entry
-        """
-        stats = {k: stats[k].to_json() for k in stats}
-        self.vocabulary_connector.push_document(dict(character_id=character_id, stats=stats, user_id=user_id))
-
-    def add_vocabulary_entries(self, entries: list[dict]) -> list:
+        lexeme_dict = {lexeme_bson.pop("_id"): deserialize_chinese_from_bson(lexeme_bson) for lexeme_bson in bson_list}
+        return lexeme_dict
+        
+    @enforce_types
+    def add_vocabulary_entries(self, entries: list[dict]) -> list[ObjectId]:
         """
         Add a list of vocabulary [entries] to the vocabulary for [user_id]
 
         Args:
-          entries: a [list] of [dict]s containing character_id, stats, and user_id
+          entries: a [list] of [dict]s containing lexeme_id, stats, and user_id
         """
         for entry in entries:
-            assert set(['character_id', 'stats', 'user_id']) == entry.keys()
+            assert set(['lexeme_id', 'stats', 'user_id']) == entry.keys()
 
         assert len(set(entry['user_id'] for entry in entries)) == 1
 
-        return self.vocabulary_connector.push_vocabulary_entries(entries)
+        return self.vocabulary_connector.push_documents(entries)
 
-    def update_vocabulary_entry(self, character_id: str, stats: dict[str, Stats], user_id: str) -> None:
-        """Update the vocabulary entry for [character_id] under [user_id] with the given stats
+    @enforce_types
+    def get_vocabulary_entries(self, user_id: ObjectId, lexeme_id: list[ObjectId] = []) -> list[dict]:
+        """
+        Add a list of vocabulary [entries] to the vocabulary for [user_id]
 
         Args:
-          character_id (str): the identifier of the lexeme to be added to the vocabulary
+          entries: a [list] of [dict]s containing lexeme_id, stats, and user_id
+        """
+        query = generate_query(lexeme_id=lexeme_id, user_id=user_id)
+        # TODO results is returning empty for lexemes, but it should be finding matches
+        agg_pipeline = [
+            {"$match": query},
+            {"$lookup": { "from": 'lexicon', "localField": 'lexeme_id', "foreignField": '_id', "as": 'lexemes' } }]
+        results = list(self.datastore_client['chinese']['vocabulary'].aggregate(agg_pipeline))
+        import time
+
+        for result in results:
+            result['lexeme'] = deserialize_chinese_from_bson(result.pop('lexemes')[0])
+            result['vocabulary_id'] = result.pop('_id')
+            result['stats'] = {key: Stats(**result['stats'][key]) for key in result['stats']}
+
+        return results
+
+    def update_vocabulary_entry(self, lexeme_id: ObjectId, stats: dict[str, Stats], user_id: str) -> None:
+        """Update the vocabulary entry for [lexeme_id] under [user_id] with the given stats
+
+        Args:
+          lexeme_id (str): the identifier of the lexeme to be added to the vocabulary
           stats (str): the initial SRS stats of the vocabulary term for the user
           user_id (str): the identifier for the user that should receive the new vocabulary entry
 
         Returns:
             str: _description_
         """
-        query = generate_query(user_id=user_id, character_id=character_id)
+        query = generate_query(user_id=user_id, lexeme_id=lexeme_id)
         stats = {k: stats[k].to_json() for k in stats}
-        document = dict(user_id=user_id, character_id=character_id, stats=stats)
+        document = dict(user_id=user_id, lexeme_id=lexeme_id, stats=stats)
         self.vocabulary_connector.update_document(query=query, document=document)
- 
+
+
+if __name__ == "__main__":
+    import os
+
+    user_id = ObjectId("62a57d5bfa96028f59ac1d75")
+    MONGODB_URI = os.getenv("MONGODB_URI")
+    ds_client = MongoClient(MONGODB_URI)
+    chinese_datastore = ChineseDatastore(ds_client)
+
+    print(chinese_datastore.get_vocabulary_entries(user_id=user_id))

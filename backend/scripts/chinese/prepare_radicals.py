@@ -13,7 +13,6 @@ radicals = list(radical_dict.values())
 datastore_client = MongoClient(os.environ['MONGODB_URI'])
 chinese_datastore = ChineseDatastore(datastore_client)
 
-for radical in radicals:
-    radical['pos'] = [PartOfSpeech.NOUN]
-    character = Character(**radical)
-    chinese_datastore.add_character(character)
+for radical in radicals: radical['pos'] = [PartOfSpeech.NOUN]
+characters = [Character(**radical) for radical in radicals]
+chinese_datastore.add_lexemes(entries=characters)

@@ -17,7 +17,7 @@
             "jyutping": "jat1",
             "pinyin": "yi1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u4e00",
             "simplified": "\u4e00"
         },
@@ -44,7 +44,7 @@
             "jyutping": "kwan2",
             "pinyin": "gun3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u4e28",
             "simplified": "\u4e28"
         },
@@ -71,7 +71,7 @@
             "jyutping": "zyu2",
             "pinyin": "zhu3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u4e36",
             "simplified": "\u4e36"
         },
@@ -99,7 +99,7 @@
             "jyutping": "pit3",
             "pinyin": "pie3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u4e3f",
             "simplified": "\u4e3f"
         },
@@ -131,7 +131,7 @@
             "jyutping": "jyut3",
             "pinyin": "yi3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u4e59",
             "simplified": "\u4e59"
         },
@@ -162,7 +162,7 @@
             "jyutping": "kyut3",
             "pinyin": "jue2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u4e85",
             "simplified": "\u4e85"
         },
@@ -191,7 +191,7 @@
             "jyutping": "ji6",
             "pinyin": "er4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u4e8c",
             "simplified": "\u4e8c"
         },
@@ -218,7 +218,7 @@
             "jyutping": "tau4",
             "pinyin": "tou2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u4ea0",
             "simplified": "\u4ea0"
         },
@@ -251,7 +251,7 @@
             "jyutping": "jan4",
             "pinyin": "ren2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u4eba",
             "simplified": "\u4eba"
         },
@@ -278,7 +278,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u513f"],
-        "forms": {"simplified": "\u513f", "traditional": "\u513f"},
+        "written_forms": {"simplified": "\u513f", "traditional": "\u513f"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -295,7 +295,7 @@
             "jyutping": "jap6",
             "pinyin": "ru4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5165",
             "simplified": "\u5165"
         },
@@ -323,7 +323,7 @@
             "jyutping": "baat3",
             "pinyin": "ba1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u516b",
             "simplified": "\u516b"
         },
@@ -353,7 +353,7 @@
             "jyutping": "gwing2/1",
             "pinyin": "jiong1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5182",
             "simplified": "\u5182"
         },
@@ -381,7 +381,7 @@
             "jyutping": "mik6",
             "pinyin": "mi4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5196",
             "simplified": "\u5196"
         },
@@ -409,7 +409,7 @@
             "jyutping": "bing1",
             "pinyin": "bing1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u51ab",
             "simplified": "\u51ab"
         },
@@ -434,7 +434,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u51e0"],
-        "forms": {"simplified": "\u51e0", "traditional": "\u51e0"},
+        "written_forms": {"simplified": "\u51e0", "traditional": "\u51e0"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -454,7 +454,7 @@
             "jyutping": "ham2",
             "pinyin": "kan4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u51f5",
             "simplified": "\u51f5"
         },
@@ -483,7 +483,7 @@
             "jyutping": "dou1",
             "pinyin": "dao1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5200",
             "simplified": "\u5200"
         },
@@ -514,7 +514,7 @@
             "jyutping": "lik6",
             "pinyin": "li4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u529b",
             "simplified": "\u529b"
         },
@@ -542,7 +542,7 @@
             "jyutping": "baau1",
             "pinyin": "bao1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u52f9",
             "simplified": "\u52f9"
         },
@@ -570,7 +570,7 @@
             "jyutping": "bei3",
             "pinyin": "bi3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5315",
             "simplified": "\u5315"
         },
@@ -598,7 +598,7 @@
             "jyutping": "fong1",
             "pinyin": "fang1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u531a",
             "simplified": "\u531a"
         },
@@ -626,7 +626,7 @@
             "jyutping": "hai2",
             "pinyin": "xi3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5338",
             "simplified": "\u5338"
         },
@@ -656,7 +656,7 @@
             "jyutping": "sap6",
             "pinyin": "shi2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5341",
             "simplified": "\u5341"
         },
@@ -681,7 +681,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u535c"],
-        "forms": {"simplified": "\u535c", "traditional": "\u535c"},
+        "written_forms": {"simplified": "\u535c", "traditional": "\u535c"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -699,7 +699,7 @@
             "jyutping": "zit3",
             "pinyin": "jie2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5369",
             "simplified": "\u5369"
         },
@@ -726,7 +726,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u5382"],
-        "forms": {"simplified": "\u5382", "traditional": "\u5382"},
+        "written_forms": {"simplified": "\u5382", "traditional": "\u5382"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -744,7 +744,7 @@
             "jyutping": "si1",
             "pinyin": "si1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u53b6",
             "simplified": "\u53b6"
         },
@@ -771,7 +771,7 @@
             "jyutping": "jau6",
             "pinyin": "you4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u53c8",
             "simplified": "\u53c8"
         },
@@ -805,7 +805,7 @@
             "jyutping": "hau2",
             "pinyin": "kou3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u53e3",
             "simplified": "\u53e3"
         },
@@ -835,7 +835,7 @@
             "jyutping": "wai4",
             "pinyin": "wei2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u56d7",
             "simplified": "\u56d7"
         },
@@ -863,7 +863,7 @@
             "jyutping": "tou2",
             "pinyin": "tu3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u571f",
             "simplified": "\u571f"
         },
@@ -892,7 +892,7 @@
             "jyutping": "si6",
             "pinyin": "shi4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u58eb",
             "simplified": "\u58eb"
         },
@@ -920,7 +920,7 @@
             "jyutping": "zi1",
             "pinyin": "zhi3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5902",
             "simplified": "\u5902"
         },
@@ -948,7 +948,7 @@
             "jyutping": "seoi1",
             "pinyin": "sui1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u590a",
             "simplified": "\u590a"
         },
@@ -976,7 +976,7 @@
             "jyutping": "zik6",
             "pinyin": "xi1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5915",
             "simplified": "\u5915"
         },
@@ -1004,7 +1004,7 @@
             "jyutping": "daai6",
             "pinyin": "da4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5927",
             "simplified": "\u5927"
         },
@@ -1033,7 +1033,7 @@
             "jyutping": "neoi5",
             "pinyin": "nv3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5973",
             "simplified": "\u5973"
         },
@@ -1066,7 +1066,7 @@
             "jyutping": "zi2",
             "pinyin": "zi3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5b50",
             "simplified": "\u5b50"
         },
@@ -1093,7 +1093,7 @@
             "jyutping": "min4",
             "pinyin": "mian2/1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5b80",
             "simplified": "\u5b80"
         },
@@ -1122,7 +1122,7 @@
             "jyutping": "cyun3",
             "pinyin": "cun4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5bf8",
             "simplified": "\u5bf8"
         },
@@ -1149,7 +1149,7 @@
             "jyutping": "siu2",
             "pinyin": "xiao3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5c0f",
             "simplified": "\u5c0f"
         },
@@ -1179,7 +1179,7 @@
             "jyutping": "jau4",
             "pinyin": "you2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5c22",
             "simplified": "\u5c22"
         },
@@ -1204,7 +1204,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u5c38"],
-        "forms": {"simplified": "\u5c38", "traditional": "\u5c38"},
+        "written_forms": {"simplified": "\u5c38", "traditional": "\u5c38"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -1222,7 +1222,7 @@
             "jyutping": "cou2",
             "pinyin": "cao3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5c6e",
             "simplified": "\u5c6e"
         },
@@ -1249,7 +1249,7 @@
             "jyutping": "saan1",
             "pinyin": "shan1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5c71",
             "simplified": "\u5c71"
         },
@@ -1278,7 +1278,7 @@
             "jyutping": "cyun1",
             "pinyin": "shun4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5ddb",
             "simplified": "\u5ddb"
         },
@@ -1307,7 +1307,7 @@
             "jyutping": "gung1",
             "pinyin": "gong1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5de5",
             "simplified": "\u5de5"
         },
@@ -1335,7 +1335,7 @@
             "jyutping": "gei2",
             "pinyin": "ji3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5df1",
             "simplified": "\u5df1"
         },
@@ -1364,7 +1364,7 @@
             "jyutping": "gan1",
             "pinyin": "jin1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5dfe",
             "simplified": "\u5dfe"
         },
@@ -1389,7 +1389,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u5e72"],
-        "forms": {"simplified": "\u5e72", "traditional": "\u5e72"},
+        "written_forms": {"simplified": "\u5e72", "traditional": "\u5e72"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -1409,7 +1409,7 @@
             "jyutping": "jiu1",
             "pinyin": "yao1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5e7a",
             "simplified": "\u5e7a"
         },
@@ -1436,7 +1436,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u5e7f"],
-        "forms": {"simplified": "\u5e7f", "traditional": "\u5e7f"},
+        "written_forms": {"simplified": "\u5e7f", "traditional": "\u5e7f"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -1454,7 +1454,7 @@
             "jyutping": "jan2",
             "pinyin": "yin3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5ef4",
             "simplified": "\u5ef4"
         },
@@ -1482,7 +1482,7 @@
             "jyutping": "jaa6",
             "pinyin": "nian4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5efe",
             "simplified": "\u5efe"
         },
@@ -1511,7 +1511,7 @@
             "jyutping": "jik6",
             "pinyin": "yi4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5f0b",
             "simplified": "\u5f0b"
         },
@@ -1540,7 +1540,7 @@
             "jyutping": "gung1",
             "pinyin": "gong1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5f13",
             "simplified": "\u5f13"
         },
@@ -1568,7 +1568,7 @@
             "jyutping": "gai3",
             "pinyin": "ji4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5f50",
             "simplified": "\u5f50"
         },
@@ -1598,7 +1598,7 @@
             "jyutping": "saam1",
             "pinyin": "shan1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5f61",
             "simplified": "\u5f61"
         },
@@ -1628,7 +1628,7 @@
             "jyutping": "cik1",
             "pinyin": "chi4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5f73",
             "simplified": "\u5f73"
         },
@@ -1655,7 +1655,7 @@
             "jyutping": "sam1",
             "pinyin": "xin1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u5fc3",
             "simplified": "\u5fc3"
         },
@@ -1685,7 +1685,7 @@
             "jyutping": "gwo1",
             "pinyin": "ge1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u6208",
             "simplified": "\u6208"
         },
@@ -1714,7 +1714,7 @@
             "jyutping": "wu6",
             "pinyin": "hu4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u6236",
             "simplified": "\u6236"
         },
@@ -1752,7 +1752,7 @@
             "jyutping": "sau2",
             "pinyin": "shou3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u624b",
             "simplified": "\u624b"
         },
@@ -1790,7 +1790,7 @@
             "jyutping": "zi1",
             "pinyin": "zhi1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u652f",
             "simplified": "\u652f"
         },
@@ -1818,7 +1818,7 @@
             "jyutping": "pok3",
             "pinyin": "pu1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u6534",
             "simplified": "\u6534"
         },
@@ -1855,7 +1855,7 @@
             "jyutping": "man4",
             "pinyin": "wen2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u6587",
             "simplified": "\u6587"
         },
@@ -1880,7 +1880,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u6597"],
-        "forms": {"simplified": "\u6597", "traditional": "\u6597"},
+        "written_forms": {"simplified": "\u6597", "traditional": "\u6597"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -1898,7 +1898,7 @@
             "jyutping": "gan1",
             "pinyin": "jin1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u65a4",
             "simplified": "\u65a4"
         },
@@ -1925,7 +1925,7 @@
             "jyutping": "fong1",
             "pinyin": "fang1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u65b9",
             "simplified": "\u65b9"
         },
@@ -1952,7 +1952,7 @@
             "jyutping": "mou4",
             "pinyin": "wu2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7121",
             "simplified": "\u7121"
         },
@@ -1981,7 +1981,7 @@
             "jyutping": "jat6",
             "pinyin": "ri4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u65e5",
             "simplified": "\u65e5"
         },
@@ -2008,7 +2008,7 @@
             "jyutping": "joek6",
             "pinyin": "yue1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u66f0",
             "simplified": "\u66f0"
         },
@@ -2035,7 +2035,7 @@
             "jyutping": "jyut6",
             "pinyin": "yue4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u6708",
             "simplified": "\u6708"
         },
@@ -2062,7 +2062,7 @@
             "jyutping": "muk6",
             "pinyin": "mu4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u6728",
             "simplified": "\u6728"
         },
@@ -2092,7 +2092,7 @@
             "jyutping": "him3",
             "pinyin": "qian4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u6b20",
             "simplified": "\u6b20"
         },
@@ -2119,7 +2119,7 @@
             "jyutping": "zi2",
             "pinyin": "zhi3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u6b62",
             "simplified": "\u6b62"
         },
@@ -2146,7 +2146,7 @@
             "jyutping": "daai2",
             "pinyin": "dai3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u6b79",
             "simplified": "\u6b79"
         },
@@ -2175,7 +2175,7 @@
             "jyutping": "syu4",
             "pinyin": "shu1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u6bb3",
             "simplified": "\u6bb3"
         },
@@ -2202,7 +2202,7 @@
             "jyutping": "mou4",
             "pinyin": "wu2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u6bcb",
             "simplified": "\u6bcb"
         },
@@ -2234,7 +2234,7 @@
             "jyutping": "bei2",
             "pinyin": "bi3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u6bd4",
             "simplified": "\u6bd4"
         },
@@ -2261,7 +2261,7 @@
             "jyutping": "mou4",
             "pinyin": "mao2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u6bdb",
             "simplified": "\u6bdb"
         },
@@ -2289,7 +2289,7 @@
             "jyutping": "si6",
             "pinyin": "shi4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u6c0f",
             "simplified": "\u6c0f"
         },
@@ -2314,7 +2314,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u6c14"],
-        "forms": {"simplified": "\u6c14", "traditional": "\u6c14"},
+        "written_forms": {"simplified": "\u6c14", "traditional": "\u6c14"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -2334,7 +2334,7 @@
             "jyutping": "seoi2",
             "pinyin": "shui3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u6c34",
             "simplified": "\u6c34"
         },
@@ -2364,7 +2364,7 @@
             "jyutping": "fo2",
             "pinyin": "huo3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u706b",
             "simplified": "\u706b"
         },
@@ -2393,7 +2393,7 @@
             "jyutping": "zaau2",
             "pinyin": "zhao3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u722a",
             "simplified": "\u722a"
         },
@@ -2423,7 +2423,7 @@
             "jyutping": "fu6",
             "pinyin": "fu4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7236",
             "simplified": "\u7236"
         },
@@ -2451,7 +2451,7 @@
             "jyutping": "ngaau4",
             "pinyin": "yao2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u723b",
             "simplified": "\u723b"
         },
@@ -2480,7 +2480,7 @@
             "jyutping": "baan6",
             "pinyin": "pan2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u723f",
             "simplified": "\u723f"
         },
@@ -2512,7 +2512,7 @@
             "jyutping": "pin3",
             "pinyin": "pian4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7247",
             "simplified": "\u7247"
         },
@@ -2539,7 +2539,7 @@
             "jyutping": "ngaa4",
             "pinyin": "ya2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7259",
             "simplified": "\u7259"
         },
@@ -2566,7 +2566,7 @@
             "jyutping": "ngau4",
             "pinyin": "niu2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u725b",
             "simplified": "\u725b"
         },
@@ -2596,7 +2596,7 @@
             "jyutping": "hyun2",
             "pinyin": "quan3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u72ac",
             "simplified": "\u72ac"
         },
@@ -2631,7 +2631,7 @@
             "jyutping": "jyun4",
             "pinyin": "xuan2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7384",
             "simplified": "\u7384"
         },
@@ -2663,7 +2663,7 @@
             "jyutping": "juk6",
             "pinyin": "yu4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7389",
             "simplified": "\u7389"
         },
@@ -2694,7 +2694,7 @@
             "jyutping": "gwaa1",
             "pinyin": "gua1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u74dc",
             "simplified": "\u74dc"
         },
@@ -2722,7 +2722,7 @@
             "jyutping": "ngaa5",
             "pinyin": "wa3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u74e6",
             "simplified": "\u74e6"
         },
@@ -2752,7 +2752,7 @@
             "jyutping": "gam1",
             "pinyin": "gan1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7518",
             "simplified": "\u7518"
         },
@@ -2789,7 +2789,7 @@
             "jyutping": "saang1",
             "pinyin": "sheng1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u751f",
             "simplified": "\u751f"
         },
@@ -2816,7 +2816,7 @@
             "jyutping": "jung6",
             "pinyin": "yong4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7528",
             "simplified": "\u7528"
         },
@@ -2843,7 +2843,7 @@
             "jyutping": "tin4",
             "pinyin": "tian2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7530",
             "simplified": "\u7530"
         },
@@ -2870,7 +2870,7 @@
             "jyutping": "pat1",
             "pinyin": "pi3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u758b",
             "simplified": "\u758b"
         },
@@ -2900,7 +2900,7 @@
             "jyutping": "nik6",
             "pinyin": "chuang2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7592",
             "simplified": "\u7592"
         },
@@ -2928,7 +2928,7 @@
             "jyutping": "but6",
             "pinyin": "bo1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7676",
             "simplified": "\u7676"
         },
@@ -2955,7 +2955,7 @@
             "jyutping": "baak6",
             "pinyin": "bai2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u767d",
             "simplified": "\u767d"
         },
@@ -2985,7 +2985,7 @@
             "jyutping": "pei4",
             "pinyin": "pi2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u76ae",
             "simplified": "\u76ae"
         },
@@ -3012,7 +3012,7 @@
             "jyutping": "ming5",
             "pinyin": "min3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u76bf",
             "simplified": "\u76bf"
         },
@@ -3039,7 +3039,7 @@
             "jyutping": "muk6",
             "pinyin": "mu4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u76ee",
             "simplified": "\u76ee"
         },
@@ -3068,7 +3068,7 @@
             "jyutping": "maau4",
             "pinyin": "mao2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u77db",
             "simplified": "\u77db"
         },
@@ -3095,7 +3095,7 @@
             "jyutping": "ci2",
             "pinyin": "shi3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u77e2",
             "simplified": "\u77e2"
         },
@@ -3125,7 +3125,7 @@
             "jyutping": "sek6",
             "pinyin": "shi2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u77f3",
             "simplified": "\u77f3"
         },
@@ -3152,7 +3152,7 @@
             "jyutping": "si6",
             "pinyin": "shi4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u793a",
             "simplified": "\u793a"
         },
@@ -3182,7 +3182,7 @@
             "jyutping": "kau4",
             "pinyin": "qiu2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u79b8",
             "simplified": "\u79b8"
         },
@@ -3211,7 +3211,7 @@
             "jyutping": "wo4",
             "pinyin": "he2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u79be",
             "simplified": "\u79be"
         },
@@ -3240,7 +3240,7 @@
             "jyutping": "jyut6",
             "pinyin": "xue2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7a74",
             "simplified": "\u7a74"
         },
@@ -3273,7 +3273,7 @@
             "jyutping": "laap6",
             "pinyin": "li4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7acb",
             "simplified": "\u7acb"
         },
@@ -3300,7 +3300,7 @@
             "jyutping": "zuk1",
             "pinyin": "zhu2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7af9",
             "simplified": "\u7af9"
         },
@@ -3332,7 +3332,7 @@
             "jyutping": "mai5",
             "pinyin": "mi3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7c73",
             "simplified": "\u7c73"
         },
@@ -3360,7 +3360,7 @@
             "jyutping": "si1",
             "pinyin": "si1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7cf8",
             "simplified": "\u7cf8"
         },
@@ -3391,7 +3391,7 @@
             "jyutping": "fau2",
             "pinyin": "fou3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7f36",
             "simplified": "\u7f36"
         },
@@ -3420,7 +3420,7 @@
         ],
         "is_radical": true,
         "radicals": ["\u7f51"],
-        "forms": {"simplified": "\u7f51", "traditional": "\u7f51"},
+        "written_forms": {"simplified": "\u7f51", "traditional": "\u7f51"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -3437,7 +3437,7 @@
             "jyutping": "joeng4",
             "pinyin": "yang2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7f8a",
             "simplified": "\u7f8a"
         },
@@ -3467,7 +3467,7 @@
             "jyutping": "jyu5",
             "pinyin": "yu3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u7fbd",
             "simplified": "\u7fbd"
         },
@@ -3494,7 +3494,7 @@
             "jyutping": "lou5",
             "pinyin": "lao3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8001",
             "simplified": "\u8001"
         },
@@ -3523,7 +3523,7 @@
             "jyutping": "ji4",
             "pinyin": "er2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u800c",
             "simplified": "\u800c"
         },
@@ -3551,7 +3551,7 @@
             "jyutping": "leoi6",
             "pinyin": "lei3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8012",
             "simplified": "\u8012"
         },
@@ -3578,7 +3578,7 @@
             "jyutping": "ji5",
             "pinyin": "er3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8033",
             "simplified": "\u8033"
         },
@@ -3609,7 +3609,7 @@
             "jyutping": "leot6",
             "pinyin": "yu4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u807f",
             "simplified": "\u807f"
         },
@@ -3639,7 +3639,7 @@
             "jyutping": "juk6",
             "pinyin": "rou4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8089",
             "simplified": "\u8089"
         },
@@ -3668,7 +3668,7 @@
             "jyutping": "san4",
             "pinyin": "chen2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u81e3",
             "simplified": "\u81e3"
         },
@@ -3695,7 +3695,7 @@
             "jyutping": "zi6",
             "pinyin": "zi4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u81ea",
             "simplified": "\u81ea"
         },
@@ -3725,7 +3725,7 @@
             "jyutping": "zi3",
             "pinyin": "zhi4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u81f3",
             "simplified": "\u81f3"
         },
@@ -3752,7 +3752,7 @@
             "jyutping": "kau5",
             "pinyin": "jiu4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u81fc",
             "simplified": "\u81fc"
         },
@@ -3781,7 +3781,7 @@
             "jyutping": "sit6",
             "pinyin": "she2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u820c",
             "simplified": "\u820c"
         },
@@ -3810,7 +3810,7 @@
             "jyutping": "cyun2",
             "pinyin": "chuan3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u821b",
             "simplified": "\u821b"
         },
@@ -3838,7 +3838,7 @@
             "jyutping": "zau1",
             "pinyin": "zhou1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u821f",
             "simplified": "\u821f"
         },
@@ -3870,7 +3870,7 @@
             "jyutping": "gan3",
             "pinyin": "gen4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u826e",
             "simplified": "\u826e"
         },
@@ -3902,7 +3902,7 @@
             "jyutping": "sik1",
             "pinyin": "se4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8272",
             "simplified": "\u8272"
         },
@@ -3930,7 +3930,7 @@
             "jyutping": "cou2",
             "pinyin": "cao3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8278",
             "simplified": "\u8278"
         },
@@ -3958,7 +3958,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u864d"],
-        "forms": {"simplified": "\u864d", "traditional": "\u864d"},
+        "written_forms": {"simplified": "\u864d", "traditional": "\u864d"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -3973,7 +3973,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u866b"],
-        "forms": {"simplified": "\u866b", "traditional": "\u866b"},
+        "written_forms": {"simplified": "\u866b", "traditional": "\u866b"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -3990,7 +3990,7 @@
             "jyutping": "hyut3",
             "pinyin": "xue4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8840",
             "simplified": "\u8840"
         },
@@ -4019,7 +4019,7 @@
             "jyutping": "hang4",
             "pinyin": "xing2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u884c",
             "simplified": "\u884c"
         },
@@ -4046,7 +4046,7 @@
             "jyutping": "ji1",
             "pinyin": "yi1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8863",
             "simplified": "\u8863"
         },
@@ -4076,7 +4076,7 @@
         ],
         "is_radical": true,
         "radicals": ["\u897e"],
-        "forms": {"simplified": "\u897e", "traditional": "\u897e"},
+        "written_forms": {"simplified": "\u897e", "traditional": "\u897e"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -4096,7 +4096,7 @@
             "jyutping": "gin3",
             "pinyin": "jian4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u898b",
             "simplified": "\u898b"
         },
@@ -4127,7 +4127,7 @@
             "jyutping": "gok3",
             "pinyin": "jiao3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u89d2",
             "simplified": "\u89d2"
         },
@@ -4154,7 +4154,7 @@
             "jyutping": "jin4",
             "pinyin": "yan2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8a00",
             "simplified": "\u8a00"
         },
@@ -4181,7 +4181,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u8c37"],
-        "forms": {"simplified": "\u8c37", "traditional": "\u8c37"},
+        "written_forms": {"simplified": "\u8c37", "traditional": "\u8c37"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -4196,7 +4196,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u8c46"],
-        "forms": {"simplified": "\u8c46", "traditional": "\u8c46"},
+        "written_forms": {"simplified": "\u8c46", "traditional": "\u8c46"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -4211,7 +4211,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u8c55"],
-        "forms": {"simplified": "\u8c55", "traditional": "\u8c55"},
+        "written_forms": {"simplified": "\u8c55", "traditional": "\u8c55"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -4226,7 +4226,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u8c78"],
-        "forms": {"simplified": "\u8c78", "traditional": "\u8c78"},
+        "written_forms": {"simplified": "\u8c78", "traditional": "\u8c78"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -4241,7 +4241,7 @@
             "jyutping": "bui3",
             "pinyin": "bei4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8c9d",
             "simplified": "\u8c9d"
         },
@@ -4270,7 +4270,7 @@
             "jyutping": "cek3",
             "pinyin": "chi4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8d64",
             "simplified": "\u8d64"
         },
@@ -4299,7 +4299,7 @@
             "jyutping": "zau2",
             "pinyin": "zou3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8d70",
             "simplified": "\u8d70"
         },
@@ -4324,7 +4324,7 @@
             "jyutping": "zuk1",
             "pinyin": "zu2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8db3",
             "simplified": "\u8db3"
         },
@@ -4354,7 +4354,7 @@
             "jyutping": "san1",
             "pinyin": "shen1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8eab",
             "simplified": "\u8eab"
         },
@@ -4381,7 +4381,7 @@
         ],
         "is_radical": true,
         "radicals": ["\u2f9e"],
-        "forms": {"simplified": "\u2f9e", "traditional": "\u2f9e"},
+        "written_forms": {"simplified": "\u2f9e", "traditional": "\u2f9e"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -4400,7 +4400,7 @@
             "jyutping": "san1",
             "pinyin": "xin1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8f9b",
             "simplified": "\u8f9b"
         },
@@ -4430,7 +4430,7 @@
             "jyutping": "san4",
             "pinyin": "chen2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8fb0",
             "simplified": "\u8fb0"
         },
@@ -4456,7 +4456,7 @@
             "jyutping": "coek3",
             "pinyin": "chuo4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u8fb5",
             "simplified": "\u8fb5"
         },
@@ -4485,7 +4485,7 @@
             "jyutping": "jap1",
             "pinyin": "yi4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9091",
             "simplified": "\u9091"
         },
@@ -4516,7 +4516,7 @@
             "jyutping": "jau5",
             "pinyin": "you3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9149",
             "simplified": "\u9149"
         },
@@ -4541,7 +4541,7 @@
             "jyutping": "bin6",
             "pinyin": "bian4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u91c6",
             "simplified": "\u91c6"
         },
@@ -4566,7 +4566,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u91cc"],
-        "forms": {"simplified": "\u91cc", "traditional": "\u91cc"},
+        "written_forms": {"simplified": "\u91cc", "traditional": "\u91cc"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -4581,7 +4581,7 @@
             "jyutping": "gam1",
             "pinyin": "jin1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u91d1",
             "simplified": "\u91d1"
         },
@@ -4612,7 +4612,7 @@
             "jyutping": "coeng4",
             "pinyin": "chang2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9577",
             "simplified": "\u9577"
         },
@@ -4640,7 +4640,7 @@
             "jyutping": "mun4",
             "pinyin": "men2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9580",
             "simplified": "\u9580"
         },
@@ -4667,7 +4667,7 @@
             "jyutping": "fau6",
             "pinyin": "fu4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u961c",
             "simplified": "\u961c"
         },
@@ -4696,7 +4696,7 @@
             "jyutping": "dai6",
             "pinyin": "li4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u96b8",
             "simplified": "\u96b8"
         },
@@ -4721,7 +4721,7 @@
             "jyutping": "zeoi1",
             "pinyin": "zhui1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u96b9",
             "simplified": "\u96b9"
         },
@@ -4746,7 +4746,7 @@
             "jyutping": "jyu5",
             "pinyin": "yu3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u96e8",
             "simplified": "\u96e8"
         },
@@ -4775,7 +4775,7 @@
         ],
         "is_radical": true,
         "radicals": ["\u9751"],
-        "forms": {"simplified": "\u9751", "traditional": "\u9751"},
+        "written_forms": {"simplified": "\u9751", "traditional": "\u9751"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -4793,7 +4793,7 @@
             "jyutping": "fei1",
             "pinyin": "fei1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u975e",
             "simplified": "\u975e"
         },
@@ -4820,7 +4820,7 @@
         ],
         "is_radical": true,
         "radicals": ["\u9762"],
-        "forms": {"simplified": "\u9762", "traditional": "\u9752"},
+        "written_forms": {"simplified": "\u9762", "traditional": "\u9752"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -4837,7 +4837,7 @@
             "jyutping": "gaak3",
             "pinyin": "ge2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9769",
             "simplified": "\u9769"
         },
@@ -4863,7 +4863,7 @@
             "jyutping": "wai5",
             "pinyin": "wei2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u97cb",
             "simplified": "\u97cb"
         },
@@ -4890,7 +4890,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u97ed"],
-        "forms": {"simplified": "\u97ed", "traditional": "\u97ed"},
+        "written_forms": {"simplified": "\u97ed", "traditional": "\u97ed"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -4905,7 +4905,7 @@
             "jyutping": "jam1",
             "pinyin": "yin1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u97f3",
             "simplified": "\u97f3"
         },
@@ -4930,7 +4930,7 @@
             "jyutping": "jip6",
             "pinyin": "ye4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9801",
             "simplified": "\u9801"
         },
@@ -4962,7 +4962,7 @@
             "jyutping": "fung1",
             "pinyin": "feng1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u98a8",
             "simplified": "\u98a8"
         },
@@ -4994,7 +4994,7 @@
             "jyutping": "fei1",
             "pinyin": "fei1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u98db",
             "simplified": "\u98db"
         },
@@ -5024,7 +5024,7 @@
             "jyutping": "sik6",
             "pinyin": "shi2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u98df",
             "simplified": "\u98df"
         },
@@ -5052,7 +5052,7 @@
             "jyutping": "sau2",
             "pinyin": "shou3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9996",
             "simplified": "\u9996"
         },
@@ -5077,7 +5077,7 @@
             "jyutping": "hoeng1",
             "pinyin": "xiang1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9999",
             "simplified": "\u9999"
         },
@@ -5102,7 +5102,7 @@
             "jyutping": "maa5",
             "pinyin": "ma3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u99ac",
             "simplified": "\u99ac"
         },
@@ -5131,7 +5131,7 @@
             "jyutping": "gwat1",
             "pinyin": "gu3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9aa8",
             "simplified": "\u9aa8"
         },
@@ -5156,7 +5156,7 @@
             "jyutping": "gou1",
             "pinyin": "gao1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9ad8",
             "simplified": "\u9ad8"
         },
@@ -5183,7 +5183,7 @@
             "jyutping": "biu1",
             "pinyin": "biao1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9adf",
             "simplified": "\u9adf"
         },
@@ -5211,7 +5211,7 @@
             "jyutping": "dau3",
             "pinyin": "dou4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9b25",
             "simplified": "\u9b25"
         },
@@ -5238,7 +5238,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u9b2f"],
-        "forms": {"simplified": "\u9b2f", "traditional": "\u9b2f"},
+        "written_forms": {"simplified": "\u9b2f", "traditional": "\u9b2f"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -5253,7 +5253,7 @@
         "variants": [],
         "is_radical": true,
         "radicals": ["\u9b32"],
-        "forms": {"simplified": "\u9b32", "traditional": "\u9b32"},
+        "written_forms": {"simplified": "\u9b32", "traditional": "\u9b32"},
         "romanizations": {},
         "stroke_counts": {}
     },
@@ -5275,7 +5275,7 @@
             "jyutping": "gwai2",
             "pinyin": "gui3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9b3c",
             "simplified": "\u9b3c"
         },
@@ -5301,7 +5301,7 @@
             "jyutping": "jyu4",
             "pinyin": "yu2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9b5a",
             "simplified": "\u9b5a"
         },
@@ -5328,7 +5328,7 @@
             "jyutping": "niu5",
             "pinyin": "niao3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9ce5",
             "simplified": "\u9ce5"
         },
@@ -5357,7 +5357,7 @@
             "jyutping": "lou5",
             "pinyin": "lu3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9e75",
             "simplified": "\u9e75"
         },
@@ -5385,7 +5385,7 @@
             "jyutping": "luk6",
             "pinyin": "lu4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9e7f",
             "simplified": "\u9e7f"
         },
@@ -5412,7 +5412,7 @@
             "jyutping": "mak6",
             "pinyin": "mai4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9ea5",
             "simplified": "\u9ea5"
         },
@@ -5437,7 +5437,7 @@
             "Noun"
         ],
         "variants": [],
-        "forms": {
+        "written_forms": {
             "traditional": "\u9ebb",
             "simplified": "\u9ebb"
         },
@@ -5458,7 +5458,7 @@
             "Noun"
         ],
         "variants": [],
-        "forms": {
+        "written_forms": {
             "traditional": "\u9ec4",
             "simplified": "\u9ec4"
         },
@@ -5479,7 +5479,7 @@
             "Noun"
         ],
         "variants": [],
-        "forms": {
+        "written_forms": {
             "traditional": "\u9ecd",
             "simplified": "\u9ecd"
         },
@@ -5505,7 +5505,7 @@
             "jyutping": "hak1",
             "pinyin": "hei1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9ed1",
             "simplified": "\u9ed1"
         },
@@ -5530,7 +5530,7 @@
             "jyutping": "zi2",
             "pinyin": "zhi3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9ef9",
             "simplified": "\u9ef9"
         },
@@ -5559,7 +5559,7 @@
         "pos": [
             "Noun"
         ],
-        "forms": {
+        "written_forms": {
             "traditional": "\u9efd",
             "simplified": "\u9efd"
         },
@@ -5578,7 +5578,7 @@
             "jyutping": "ding2",
             "pinyin": "ding3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9f0e",
             "simplified": "\u9f0e"
         },
@@ -5603,7 +5603,7 @@
             "jyutping": "gu2",
             "pinyin": "gu3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9f13",
             "simplified": "\u9f13"
         },
@@ -5629,7 +5629,7 @@
             "jyutping": "syu2",
             "pinyin": "shu3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9f20",
             "simplified": "\u9f20"
         },
@@ -5654,7 +5654,7 @@
             "jyutping": "bei6",
             "pinyin": "bi2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9f3b",
             "simplified": "\u9f3b"
         },
@@ -5683,7 +5683,7 @@
             "jyutping": "cai4",
             "pinyin": "qi2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9f4a",
             "simplified": "\u9f4a"
         },
@@ -5711,7 +5711,7 @@
             "jyutping": "ci2",
             "pinyin": "chi3"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9f52",
             "simplified": "\u9f52"
         },
@@ -5738,7 +5738,7 @@
             "jyutping": "lung4",
             "pinyin": "long2"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9f8d",
             "simplified": "\u9f8d"
         },
@@ -5765,7 +5765,7 @@
             "jyutping": "gwai1",
             "pinyin": "gui1"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9f9c",
             "simplified": "\u9f9c"
         },
@@ -5793,7 +5793,7 @@
             "jyutping": "joek6",
             "pinyin": "yue4"
         },
-        "forms": {
+        "written_forms": {
             "traditional": "\u9fa0",
             "simplified": "\u9fa0"
         },
