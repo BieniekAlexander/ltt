@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from enforce_typing import enforce_types
+from utils.json_utils import JSONSerializable
 from utils.data_structure_utils import get_nested_iterable_values
 from typing import Union
 from language.part_of_speech import PartOfSpeech
@@ -7,7 +8,7 @@ from language.chinese.feat.writing_set import WritingSet
 
 @enforce_types
 @dataclass
-class Word:
+class Word(JSONSerializable):
     """
     A semantic grouping of chinese characters
 

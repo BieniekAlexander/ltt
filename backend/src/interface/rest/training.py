@@ -47,17 +47,16 @@ class StudySet(Resource):
         """
         Get a set of vocabulary terms as a training session
         """
-        request_data = request.args.to_dict()
-        user_id = ObjectId(request_data['user_id'])
-        language = request_data['language']
-        fact = request_data['fact']
-        count = int(request_data['count'])
+        user_id = ObjectId(request.args['user_id'])
+        language = request.args['language']
+        facts = request.args.getlist('facts[]')
+        count = int(request.args['count'])
 
         study_entries = get_study_entries(
             user_id=user_id,
             language=language,
             count=count,
-            fact=fact,
+            facts=facts,
             datastore_client=current_app.ds_client)
 
         return {
@@ -75,13 +74,12 @@ class StudySet(Resource):
         request_data = request.get_json()
         user_id = request_data['user_id']
         language = request_data['language']
-        fact = request_data['fact']
         entries = request_data['entries']
 
         try:
             for entry in entries:
                 entry['stats'] = {item: Stats(**entry['stats'][item]) for item in entry['stats']}
 
-            put_studied_entries(user_id, language, current_app.ds_client, fact, entries)
+            put_studied_entries(user_id, language, current_app.ds_client, entries)
         except Exception as e:
             print(str(e))

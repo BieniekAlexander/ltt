@@ -51,13 +51,14 @@ class Login(Resource):
         password = request_data['password']
 
         user = authenticate(username, password)
+        print(user)
 
         if not user:
             return "Bad username and password combination", 401
         else:
             user_data = user.to_json()
             token_data = {
-                'user_id': user_data['id'],
+                'user_id': str(user_data['_id']),
                 'username': user_data['username']
             }
             access_token = create_access_token(token_data)

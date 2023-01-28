@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "shared": {
+      "signature": "58eb4b0bff4326f657e8c729ca9d2a26",
+      "file": true
+    }
+  }
+}

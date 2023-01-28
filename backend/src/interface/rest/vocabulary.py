@@ -9,6 +9,7 @@ from pymongo import MongoClient
 from storage.language_datastores.polish_datastore import PolishDatastore
 from training.sm2_anki.stats import Stats
 from utils.json_utils import jsonify
+from storage.language_datastores import LANGUAGE_DATASTORE_MAP
 
 # constants
 MONGODB_URI = os.environ['MONGODB_URI']
@@ -62,7 +63,8 @@ class Entries(Resource):
         user_id = request_data['user_id']
         lexeme_id = request_data['lexeme_id']
 
-        language_datastore = PolishDatastore(current_app.ds_client, language)
+        language_datastore_class = LANGUAGE_DATASTORE_MAP[language.lower()]
+        language_datastore = language_datastore_class(current_app.ds_client)
         return language_datastore.get_vocabulary_entries(lexeme_id, user_id)[0]
 
     @ns.doc(body=entry_fields_put)
@@ -76,8 +78,8 @@ class Entries(Resource):
         lexeme_id = request_data['lexeme_id']
 
         try:
-            language_datastore = PolishDatastore(
-                current_app.ds_client, language)
+            language_datastore_class = LANGUAGE_DATASTORE_MAP[language.lower()]
+            language_datastore = language_datastore_class(current_app.ds_client)
             vocab_entry = language_datastore.get_vocabulary_entries(
                 lexeme_id=[ObjectId(lexeme_id)], user_id=ObjectId(user_id))[0]
 
@@ -118,8 +120,8 @@ class Entries(Resource):
         stats = request_data['stats']
 
         try:
-            language_datastore = PolishDatastore(
-                current_app.ds_client, language)
+            language_datastore_class = LANGUAGE_DATASTORE_MAP[language.lower()]
+            language_datastore = language_datastore_class(current_app.ds_client)
             lexeme_id = request_data['lexeme_id']
             user_id = request_data['user_id']
             stats = {key: Stats(**stats[key]) for key in stats}
@@ -129,3 +131,21 @@ class Entries(Resource):
             return response
         except AssertionError as e:
             return "bad request"
+
+@ns.route('/facts')
+class Facts(Resource):
+    @ns.doc(body=entry_fields_get)
+    def get(self) -> dict:
+        """
+        Get the set of facts that a given user has in a given language
+        Used so the frontend can know what facts the frontend should offer to the user for their study session
+        """
+        # TODO
+        raise NotImplementedError("TODO still have to implement this")
+        request_data = request.get_json()
+        language = request_data['language']
+        user_id = request_data['user_id']
+
+        language_datastore_class = LANGUAGE_DATASTORE_MAP[language.lower()]
+        language_datastore = language_datastore_class(current_app.ds_client)
+        return language_datastore.get_vocabulary_entries(lexeme_id, user_id)[0]

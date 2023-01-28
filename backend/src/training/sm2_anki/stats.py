@@ -8,6 +8,7 @@ from utils.json_utils import JSONSerializable
 
 # number of days betwen study sessions when the card is in learning mode
 STEP_INTERVALS = [0, 1, 3, 10]
+MAX_INTERVAL = 365
 
 
 @enforce_types
@@ -23,11 +24,13 @@ class Stats(JSONSerializable):
         ef (float): easiness factor
         recall (Recall): your ability to recall the term (updated in the study session)
         step (int): the number of times you've studied the term towards graduation (-1 if graduated)
+        suspended (bool): whether the card is, for whatever reason, currently suspended from studying
     """
     interval: int = 0
     ef: float = 2.5
     recall: Optional[Union[Recall, int]] = None
     step: int = 0
+    suspended: bool = False
 
     def __post_init__(self):
         """
@@ -48,16 +51,20 @@ class Stats(JSONSerializable):
         # it's eventually graduated and the intervals are calculated differently
         self.recall = Recall(recall)
 
+        
+        if recall == Recall.FORGET:
+            raise Exception("forgetting should not be handled here, it should be handled at the study entry level!")
+        elif recall == Recall.SUSPEND:
+            self.suspended = True
         if self.step == -1: # in review phase
+            self.ef = max(self.ef*RECALL_EASINESS_FACTORS[recall], 1.3)
+
             if recall == 0:
                 self.step = 0
-                self.ef *= max(RECALL_EASINESS_FACTORS[recall], 1.3)
             elif recall == 1:
-                self.ef *= max(RECALL_EASINESS_FACTORS[recall], 1.3)
-                self.interval *= int(RECALL_INTERVALS[recall])
+                self.interval = int(self.interval*RECALL_INTERVALS[recall])
             else:
-                self.ef *= max(RECALL_EASINESS_FACTORS[recall], 1.3)
-                self.interval = int(max(self.ef*self.interval, 4))
+                self.interval = int(max(self.ef*self.interval, 1))
         else: # in learning phase
             if recall == 0:
                 self.step = 0
@@ -73,6 +80,8 @@ class Stats(JSONSerializable):
 
             if self.step != -1:
                 self.interval = STEP_INTERVALS[self.step]
+
+        self.interval = max(self.interval, MAX_INTERVAL)
 
     def __str__(self) -> str:
         """

@@ -2,6 +2,8 @@ from enum import Enum
 
 
 class Recall(int, Enum):
+    FORGET = -2
+    SUSPEND = -1
     UNKNOWN = 0
     BAD = 1
     GOOD = 2

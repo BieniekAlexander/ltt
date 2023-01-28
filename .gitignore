@@ -51,8 +51,12 @@ venv.bak/
 secrets/
 backups
 
+# Node modules
+node_modules
+
 # IDEs
 .vscode
+.idea
 
 # Cython debug symbols
 cython_debug/

@@ -35,5 +35,4 @@ with app.app_context():
   # JWT Authorization
   init_flask_jwt(current_app)
 
-
 CORS(app, resources={r'/*': {'origins': '*'}})

@@ -11,7 +11,7 @@ class CollectionConnector:
     An interface that lets us connect to a document store 
     """
 
-    def __init__(self, datastore_client: MongoClient, database_name: str, collection_name: str, connector_schema: dict):
+    def __init__(self, datastore_client: MongoClient, database_name: str, collection_name: str, connector_schema: dict = None):
         """
         Establish an initial connection to the document store
         """

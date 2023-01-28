@@ -11,7 +11,7 @@ LANGUAGE = "polish"
 
 # objects
 db_client = MongoClient(MONGODB_URI)
-polish_datastore = PolishDatastore(db_client, LANGUAGE)
+polish_datastore = PolishDatastore(db_client)
 
 # interface
 bp = Blueprint('lexicon', __name__, url_prefix="/lexicon")

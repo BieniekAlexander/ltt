@@ -96,7 +96,7 @@ class ChineseDatastore:
         lexeme_list = self.lexicon_connector.get_documents(generate_query(**kwargs))
         lexeme_dict = {}
 
-        lexeme_dict = {lexeme_bson.pop("_id"): deserialize_chinese_from_bson(lexeme_bson) for lexeme_bson in bson_list}
+        lexeme_dict = {lexeme_bson.pop("_id"): deserialize_chinese_from_bson(lexeme_bson) for lexeme_bson in lexeme_list}
         return lexeme_dict
         
     @enforce_types
