@@ -1,34 +1,4 @@
-export class Recall { // TODO maybe change this stuff to type script? https://www.freecodecamp.org/news/how-to-add-typescript-to-a-javascript-project/
-    static FORGET = Symbol("FORGET")
-    static SUSPEND = Symbol("SUSPEND")
-    static UNKNOWN = Symbol("UNKNOWN")
-    static BAD = Symbol("BAD")
-    static GOOD = Symbol("GOOD")
-    static EASY = Symbol("EASY")
-
-    static enumMap = {
-        "-2": Recall.FORGET,
-        "-1": Recall.SUSPEND,
-        "0": Recall.UNKNOWN,
-        "1": Recall.BAD,
-        "2": Recall.GOOD,
-        "3": Recall.EASY
-    }
-
-    static valueMap = Object.fromEntries(
-        Object
-            .entries(Recall.enumMap)
-            .map(([key, value]) => [value, key])
-    )
-
-    static fromValue(value) {
-        return Recall.enumMap[value]
-    }
-
-    static toValue(symbol) {
-        return parseInt(Recall.valueMap[symbol])
-    }
-}
+import { Recall } from '../recall'
 
 const STEP_INTERVALS = [0, 1, 3, 10]
 const MAX_INTERVAL = 365
@@ -102,14 +72,6 @@ export function stats_update(stats, recall) {
  */
 export function stats_session_init(stats) {
     stats.recall = null
-}
-
-/**
- *  Update the stats of the object after it's been studied
- * @param {object} stats
- */
-export function session_update(stats) {
-    // pass - doesn't do anything
 }
 
 /**

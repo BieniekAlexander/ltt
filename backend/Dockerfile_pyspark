@@ -1,0 +1,29 @@
+# source: https://www.freecodecamp.org/news/how-to-dockerize-a-flask-app/
+FROM python:3.10-slim-buster
+
+WORKDIR /app
+
+# Install spark utilities required by Spark scripts.
+RUN apt update && apt install -y procps tini libjemalloc2
+
+# Enable jemalloc2 as default memory allocator
+ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
+
+# add extra python modules
+ENV PYTHONPATH=/usr/local/lib/python3.10/site-packages:/opt/python/packages
+RUN mkdir -p /opt/python/packages
+COPY src /opt/python/packages
+
+# install python dependencies
+# note - do NOT supply a pyspark package (as mentioned in the google documentation) - it causes some sort of issue with sending tasks to other nodes
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
+
+# setup container user
+# https://cloud.google.com/dataproc-serverless/docs/guides/custom-containers#container_user
+# https://stackoverflow.com/a/67020153/3600382
+ENV SPARK_UID=1099
+ENV SPARK_GID=1099
+RUN groupadd -g ${SPARK_UID} spark
+RUN useradd -u ${SPARK_UID} -g ${SPARK_GID} -d /home/spark -m spark
+USER spark

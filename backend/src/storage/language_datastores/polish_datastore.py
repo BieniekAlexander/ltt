@@ -4,10 +4,9 @@ from bson.objectid import ObjectId
 from pymongo import MongoClient
 from enforce_typing import enforce_types
 
-from language.lexeme_decoder import LexemeDecoder
 from language.lexeme import Lexeme
 from language import MODEL_CLASS_MAP
-from training.sm2_anki.stats import Stats
+from training.ebisu.stats import Stats
 from utils.data_structure_utils import get_nested_iterable_values
 from storage.datastore_utils import generate_member_query, generate_query
 from storage.collection_connector import CollectionConnector
@@ -64,8 +63,16 @@ class PolishDatastore:
         """
         assert isinstance(lexemes, list) and all(
             isinstance(lexeme, Lexeme) for lexeme in lexemes)
+        
+        lexemes_to_add = []
 
-        lexeme_bsons = [get_lexeme_bson(lexeme) for lexeme in lexemes]
+        for lexeme in lexemes:
+            result = self.get_lexeme(lemma=lexeme.lemma, pos=lexeme.pos)
+            
+            if result is None:
+                lexemes_to_add.append(lexeme)
+
+        lexeme_bsons = [get_lexeme_bson(lexeme) for lexeme in lexemes_to_add]
         return self.lexicon_connector.push_documents(lexeme_bsons)
 
     @enforce_types
@@ -78,7 +85,7 @@ class PolishDatastore:
         raise NotImplementedError(
             "Not implementing language lexeme deletion - do I need this?")
 
-    def get_lexeme(self, **kwargs) -> Lexeme:
+    def get_lexeme(self, **kwargs) -> Union[Lexeme, None]:
         lexemes = self.get_lexemes(**kwargs)
 
         if len(lexemes) == 0:
@@ -88,9 +95,9 @@ class PolishDatastore:
         else:
             raise Exception("found more than one lexeme for this condition")
 
-    def get_lexemes(self, **kwargs) -> list[Lexeme]:
+    def get_lexemes(self, **kwargs) -> dict[ObjectId, Lexeme]:
         lexeme_bsons = self.lexicon_connector.get_documents(generate_query(**kwargs))
-        return [get_lexeme_from_bson(lexeme_bson) for lexeme_bson in lexeme_bsons]
+        return {lexeme_bson.pop('_id'): get_lexeme_from_bson(lexeme_bson) for lexeme_bson in lexeme_bsons}
 
     def get_lexeme_from_form(self, form: str, pos: str):
         """
@@ -107,7 +114,7 @@ class PolishDatastore:
         else:
             raise Exception(f"Found more than one lexeme for form={form}, pos={pos}")
 
-    def get_lexemes_from_form(self, form: str, pos: Union[list, str] = []) -> dict:
+    def get_lexemes_from_form(self, form: str, pos: Union[list, str] = []) -> dict[ObjectId, Lexeme]:
         """
         Get the lexemes of [form] in the specified [poses]
 
@@ -115,10 +122,23 @@ class PolishDatastore:
         """
         assert isinstance(form, str) or isinstance(form, list)
 
-        inflections_list_query = generate_member_query('inflections_list', form)
+        inflections_list_query = {
+            "$or": [
+                {"lemma": form},
+                generate_member_query('inflections_list', form)
+            ]
+        }
+        
         pos_query = generate_query(pos=pos)
         query = {**inflections_list_query, **pos_query}
-        return self.lexicon_connector.get_documents(query)
+        documents = self.lexicon_connector.get_documents(query)
+        results = {}
+
+        for document in documents:
+            model_class = MODEL_CLASS_MAP["POLISH"][document['pos'].upper()]
+            results[document.pop('_id')] = model_class.from_bson(document)
+            
+        return results
 
     @enforce_types
     def get_vocabulary_entries(self, user_id: ObjectId, lexeme_id: list[ObjectId] = []) -> list:
@@ -134,6 +154,7 @@ class PolishDatastore:
         results = list(self.datastore_client['polish']['vocabulary'].aggregate(agg_pipeline))
 
         for result in results:
+            # print(result)
             result['lexeme'] = get_lexeme_from_bson(result.pop('lexemes')[0])
             result['vocabulary_id'] = result.pop('_id')
             result['stats'] = {key: Stats(**result['stats'][key]) for key in result['stats']}
@@ -163,6 +184,7 @@ class PolishDatastore:
         """
         for entry in entries:
             assert set(['lexeme_id', 'stats', 'user_id']) == entry.keys()
+            entry['stats'] = {k: entry['stats'][k].to_json() for k in entry['stats']} # TODO clean up all of this shit
 
         assert len(set(entry['user_id'] for entry in entries)) == 1
 
@@ -183,3 +205,11 @@ class PolishDatastore:
         stats = {k: stats[k].to_json() for k in stats}
         document = dict(user_id=user_id, lexeme_id=lexeme_id, stats=stats)
         self.vocabulary_connector.update_document(query=query, document=document)
+
+    def delete_vocabulary_entry(self, vocabulary_id) -> None:
+        """Delete the vocabulary entry, as identified by [vocabulary_id]
+        
+        Args:
+            vocabulary_id: The ID of the vocabulary entry to delete
+        """
+        self.vocabulary_connector.delete_document({"_id": vocabulary_id})

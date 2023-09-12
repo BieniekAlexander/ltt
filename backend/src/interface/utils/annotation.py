@@ -3,16 +3,14 @@ import logging
 import re
 
 from bson.objectid import ObjectId
-from scraping.wiktionary_spider import WiktionarySpider
-from storage.language_datastores.polish_datastore import PolishDatastore
 
 
 # TODO this might be better off accessing mongodb directly
-def annotate_text(text: str, language_datastore: PolishDatastore, language: str, user_id: ObjectId = None, discovery_mode: bool = False):
+def annotate_text(text: str, language: str, user_id: ObjectId = None, discovery_mode: bool = False):
     """
     Take in a piece of text and annotate it using data from the given language_datastore
 
-    If [discovery_mode]==[True], unknown terms will be added to the [language_datastore]
+    If [discovery_mode]==[True], TODO figure out how to implement this functionality, given that I'm removing data scraping functionality from this codebase
     """
     assert isinstance(text, str)
 
@@ -36,11 +34,8 @@ def annotate_text(text: str, language_datastore: PolishDatastore, language: str,
                 annotation['lexeme'] = entry
             else:
                 if discovery_mode:
-                    spider = WiktionarySpider()
-                    lexeme = spider.query_lexemes(term, language)[0]
-                    annotation['lexeme'] = lexeme.to_json()
-                    annotation['lexeme_id'] = str(language_datastore.add_lexeme(
-                        lexeme))  # TOOD this requires a lexeme, fails on JSON?
+                    # TODO 
+                    logging.warning("discovery mode unimplemented, update")
                 else:
                     logging.warning(
                         f"Failed to annotate the {i}th term - {term} (discovery disabled)")

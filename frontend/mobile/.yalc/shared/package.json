@@ -29,7 +29,8 @@
     "dist"
   ],
   "dependencies": {
+    "ebisu-js": "^2.0.0",
     "shared": "^0.2.0"
   },
-  "yalcSig": "58eb4b0bff4326f657e8c729ca9d2a26"
+  "yalcSig": "33aefa2a7c4f0091db57b9f8202f839a"
 }

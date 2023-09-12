@@ -3,29 +3,43 @@ import os
 
 from flask import Blueprint, request
 from pymongo import MongoClient
-from storage.language_datastores.polish_datastore import PolishDatastore
+from flask_restx import Namespace, Resource, fields
+from storage.language_datastores import LANGUAGE_DATASTORE_MAP
 
 # constants
 MONGODB_URI = os.environ['MONGODB_URI']
 LANGUAGE = "polish"
-
-# objects
-db_client = MongoClient(MONGODB_URI)
-polish_datastore = PolishDatastore(db_client)
+DS_CLIENT = MongoClient(MONGODB_URI)
 
 # interface
 bp = Blueprint('lexicon', __name__, url_prefix="/lexicon")
+ns = Namespace(
+    'lexicon', "A resource used for collecting language data")
+
+lexeme_fields_get_parser = (
+    ns.parser()
+    .add_argument('language', type=str, help='The language in which the term exists')
+    .add_argument('form', type=str, help='A form of the lexeme to find')
+)
 
 
-@bp.route("", methods=['GET'])
-def lexicon():
+@ns.route('/lexeme')
+class Lexeme(Resource):
     """
-    TODO this seems not implemented
+    Get a lexeme
     """
-    request_data = request.get_json()
+    @ns.expect(lexeme_fields_get_parser)
+    def get(self):
+        """
+        Get a lexeme, given a form
+        """
+        
+        language = request.args['language']
+        form = request.args['form']
 
-    try:
-        lexeme = polish_datastore.get_lexemes_from_form(**request_data)
-        return lexeme
-    except AssertionError as e:
-        return "bad request"
+        language_datastore = LANGUAGE_DATASTORE_MAP[language](DS_CLIENT)
+        lexemes = language_datastore.get_lexemes_from_form(form)
+
+        return {
+            'lexeme': lexemes[0].to_json()
+        }

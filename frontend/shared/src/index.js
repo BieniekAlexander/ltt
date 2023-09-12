@@ -1,3 +1,6 @@
 export { getStudySession, putStudySession } from './training/training'
-export { push_study_entry, session_update, stats_session_init, stats_update, Recall } from './training/sm2_anki/sm2_anki_utils'
+export { getRecommendations } from './training/recommendations'
+export { postVocab } from './training/vocab'
+export { push_study_entry, stats_update } from './training/ebisu/ebisu_utils'
+export { Recall } from './training/recall'
 export { getArrayToggleValue } from './utils/utils'

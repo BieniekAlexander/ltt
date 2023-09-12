@@ -4,8 +4,6 @@ from typing import Union
 
 from utils.json_utils import JSONSerializable
 from language.part_of_speech import PartOfSpeech
-
-# TODO add translations
 @enforce_types
 @dataclass
 class Lexeme(JSONSerializable):
@@ -37,3 +35,12 @@ class Lexeme(JSONSerializable):
         jsonSelf = self.to_json()
         jsonOther = other.to_json()
         return jsonSelf == jsonOther
+
+    def to_bson(self):
+        return self.to_json()
+
+    @enforce_types
+    def from_bson(bson: dict):
+        from language import MODEL_CLASS_MAP
+        bson.pop("_id", None)
+        return MODEL_CLASS_MAP['POLISH'][bson.get('pos').upper()](**bson)

@@ -51,6 +51,7 @@
     "dist"
   ],
   "dependencies": {
+    "ebisu-js": "^2.0.0",
     "shared": "^0.2.0"
   }
 }

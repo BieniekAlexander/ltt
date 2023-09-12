@@ -5,10 +5,9 @@ from bson.objectid import ObjectId
 from flask import Blueprint, current_app, request
 from flask_restx import Namespace, Resource, fields
 from interface.rest.vocabulary import entry_fields_put
-from training.sm2_anki.training_session import get_study_entries, put_studied_entries
+from training.ebisu.training_session import get_study_entries, put_studied_entries
 from utils.json_utils import jsonify
-from training.sm2_anki.recall import Recall
-from training.sm2_anki.stats import Stats
+from training.ebisu.stats import Stats
 
 # constants
 MONGODB_URI = os.environ['MONGODB_URI']
@@ -82,4 +81,4 @@ class StudySet(Resource):
 
             put_studied_entries(user_id, language, current_app.ds_client, entries)
         except Exception as e:
-            print(str(e))
+            print(f"exception in study set PUT: {str(e)}")

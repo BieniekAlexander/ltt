@@ -25,7 +25,7 @@ api.add_namespace(auth.ns)
 api.add_namespace(vocabulary.ns)
 api.add_namespace(training.ns)
 api.add_namespace(annotate.ns)
-# api.add_namespace(lexicon.ns)
+api.add_namespace(lexicon.ns)
 
 with app.app_context():
   # Datastore Connectivity

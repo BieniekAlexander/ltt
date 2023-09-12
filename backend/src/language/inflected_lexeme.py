@@ -52,3 +52,16 @@ class InflectedLexeme(Lexeme):
         """
         assert self.inflections
         return list(set(get_nested_iterable_values(self.inflections)))
+    
+    def to_bson(self):
+        return {
+            **self.to_json(),
+            'inflections_list': list(set(get_nested_iterable_values(self.inflections)))
+        }
+    
+    @enforce_types
+    def from_bson(bson: dict):
+        from language import MODEL_CLASS_MAP
+        bson.pop("_id", None)
+        bson.pop("inflections_list", None)
+        return MODEL_CLASS_MAP['POLISH'][bson.get('pos').upper()](**bson)

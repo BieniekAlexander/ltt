@@ -1,23 +1,23 @@
 import pymongo
 
-character_index = {
-    'keys': [("characters", pymongo.ASCENDING)],
-    'name': "character index",
+lexeme_index = {
+    'keys': [("lemma", pymongo.ASCENDING)],
+    'name': "lexeme index",
     'unique': True
 }
 
-character_schema = {"$jsonSchema": {
+lexeme_schema = {"$jsonSchema": {
     "bsonType": "object",
-    "required": ["_id", "lemma", "pos", "definitions", "is_radical", "radicals", "variants", "written_forms", "romanizations", "stroke_counts"],
+    "required": ["_id", "lemma", "pos", "definitions", "written_forms", "romanizations"],
     "properties": {
         "_id": {
             "bsonType": "objectId",
         },
-        "characters": {
+        "lemma": {
             "bsonType": "string"
         },
         "character_ids": {
-            "bsonType": "list"
+            "bsonType": "array"
         },
         "pos": {
             "bsonType": "array",
@@ -29,7 +29,7 @@ character_schema = {"$jsonSchema": {
             "bsonType": "object"
         },
         "written_forms_list": {
-            "bsonType": "object"
+            "bsonType": "array"
         },
         "romanizations": {
             "bsonType": "object"
@@ -38,28 +38,25 @@ character_schema = {"$jsonSchema": {
             "bsonType": "bool"
         },
         "stroke_counts": {
-            "bsonType": "int"
+            "bsonType": "object"
         }
     }
 }}
 
 vocabulary_index = {
-    'keys': [("character_id", pymongo.ASCENDING), ("word_id", pymongo.ASCENDING)],
+    'keys': [("lexeme_id", pymongo.ASCENDING), ("user_id", pymongo.ASCENDING)],
     'name': "vocabulary index",
     'unique': True
 }
 
 vocabulary_schema = {"$jsonSchema": {
     "bsonType": "object",
-    "required": ["_id", "user_id", "stats"],
+    "required": ["_id", "user_id", "stats", "lexeme_id"],
     "properties": {
         "_id": {
             "bsonType": "objectId"
         },
-        "character_id": {
-            "bsonType": "objectId"
-        },
-        "word_id": { # TODO phrases? words? tbd
+        "lexeme_id": {
             "bsonType": "objectId"
         },
         "user_id": {

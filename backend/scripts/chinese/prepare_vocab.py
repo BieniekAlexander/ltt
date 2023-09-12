@@ -8,7 +8,7 @@ import os
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from storage.language_datastores.chinese_datastore import ChineseDatastore
-from training.sm2_anki.stats import Stats
+from training.ebisu.stats import Stats
 
 # constants
 MONGODB_URI = os.environ['MONGODB_URI']

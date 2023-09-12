@@ -28,8 +28,33 @@ lexeme_schema = {"$jsonSchema": {
     }
 }}
 
+inflection_index = {
+    'keys': [("form", pymongo.ASCENDING), ("pos", pymongo.ASCENDING), ("lexeme_id", pymongo.ASCENDING)],
+    'name': "inflection index",
+    'unique': True
+}
+
+inflection_schema = {"$jsonSchema": {
+    "bsonType": "object",
+    "required": ["_id", "form", "pos", "lexeme_id"],
+    "properties": {
+        "_id": {
+            "bsonType": "objectId",
+        },
+        "form": {
+            "bsonType": "string",
+        },
+        "pos": {
+            "bsonType": "string",
+        },
+        "lexeme_id": {
+            "bsonType": "objectId"
+        }
+    }
+}}
+
 vocabulary_index = {
-    'keys': [("user_id", pymongo.ASCENDING)],
+    'keys': [("lexeme_id", pymongo.ASCENDING), ("user_id", pymongo.ASCENDING)],
     'name': "vocabulary index",
     'unique': True
 }

@@ -1,11 +1,9 @@
 import json
-from bson import ObjectId
-from typing import Optional
 from enforce_typing import enforce_types
 from dataclasses import dataclass
 
 from language.lexeme import Lexeme
-from training.sm2_anki.stats import Stats, StatsDecoder
+from training.ebisu.stats import Stats, StatsDecoder
 
 @enforce_types
 @dataclass

@@ -69,6 +69,7 @@ def test_annotate_text_some_known(language_datastore: PolishDatastore):
     assert 'lexeme' not in annotations[2]
 
 
+@pytest.mark.skip(reason="I've removed the functionality of term discovery for now because I'm moving code around")
 def test_annotate_text_some_known_discover(language_datastore: PolishDatastore):
     lexeme_0_str = open('tests/interface/data/noun_ciało.json').read()
     lexeme_0 = json.loads(lexeme_0_str, cls=LexemeDecoder)

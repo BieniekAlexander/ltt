@@ -115,7 +115,7 @@ export default function VocabularyBody() {
         let entry = currentEntry
         let fact = state.current.entry_fact_map[entry.lexeme_id]
         stats_update(entry.stats[fact], recall)
-        push_study_entry(state.current.entries, fact, entry)
+        push_study_entry(state.current.entries, entry, recall)
         consumeStudyTerm()
     }
 
@@ -148,9 +148,6 @@ export default function VocabularyBody() {
                 for (let i = 0; i < state.current.entries.length; i++) {
                     let entry = state.current.entries[i]
                     let stats = entry.stats
-                    Object.entries(stats).forEach(([k, v]) => {
-                        stats_session_init(v)
-                    });
 
                     // set the thing being studied for the term to be the first stats entry (stats entries are sorted in the backend)
                     let study_fact = Object.keys(stats)[0]

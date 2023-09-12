@@ -29,6 +29,7 @@ class Word(JSONSerializable):
         """
         Postprocess construction of chinese character
         """
+        self.pos = list(filter(lambda p: p.upper() in list(PartOfSpeech), self.pos))
         self.pos = [PartOfSpeech[p.upper()] if type(p)==str else p for p in self.pos]
         self.written_forms = {WritingSet[key.upper()]: self.written_forms[key] for key in self.written_forms}
 

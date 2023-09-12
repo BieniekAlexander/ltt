@@ -1,6 +1,5 @@
 import json
 from dataclasses import dataclass
-from typing import Union, Optional
 from enforce_typing import enforce_types
 
 from training.sm2_anki.recall import Recall, RECALL_EASINESS_FACTORS, RECALL_INTERVALS
@@ -22,13 +21,11 @@ class Stats(JSONSerializable):
     Args:
         interval (int): the number of days until the next time you have to study the term
         ef (float): easiness factor
-        recall (Recall): your ability to recall the term (updated in the study session)
         step (int): the number of times you've studied the term towards graduation (-1 if graduated)
         suspended (bool): whether the card is, for whatever reason, currently suspended from studying
     """
     interval: int = 0
     ef: float = 2.5
-    recall: Optional[Union[Recall, int]] = None
     step: int = 0
     suspended: bool = False
 
@@ -49,9 +46,6 @@ class Stats(JSONSerializable):
         # TODO Anki's sm2 has a less direct manner of deciding what needs to be studied again in this session vs what gets saved for the next session
         # words are instead sort of studied either loosely later in the session (i.e. in 10 min?) or, depending on the step, sometime in another session
         # it's eventually graduated and the intervals are calculated differently
-        self.recall = Recall(recall)
-
-        
         if recall == Recall.FORGET:
             raise Exception("forgetting should not be handled here, it should be handled at the study entry level!")
         elif recall == Recall.SUSPEND:

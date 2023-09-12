@@ -23,5 +23,7 @@ gcloud functions deploy $cf_name \
     --stage-bucket=language-training-toolkit-dev-cloud-functions \
     --source=gs://language-training-toolkit-dev-cloud-functions/$cf_name.zip \
     --entry-point=scrape_term \
-    --trigger-http \
+    --min-instances=0 \
+    --max-instances=100 \
+    --trigger-topic=term-scraping-pending \
     --allow-unauthenticated

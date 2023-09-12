@@ -87,7 +87,7 @@ class CollectionConnector:
 
 # main
 def main():
-    from storage.datastore_schemata.chinese_schemata import character_schema as zh_character_schema
+    from storage.datastore_schemata.chinese_schemata import lexeme_schema as zh_character_schema
     import os
 
     ds_client = MongoClient(os.getenv('MONGODB_URI'))

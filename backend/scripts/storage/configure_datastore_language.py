@@ -2,17 +2,15 @@ import argparse
 import pymongo
 
 from storage.datastore_schemata.chinese_schemata import (
-    character_index as zh_character_index,
-    character_schema as zh_character_schema,
-    word_index as zh_word_index,
-    word_schema as zh_word_schema,
+    lexeme_index as zh_character_index,
+    lexeme_schema as zh_character_schema,
     vocabulary_index as zh_vocabulary_index,
     vocabulary_schema as zh_vocabulary_schema)
     # TODO maybe but these configurations in some sort of object and load them in with an abstraction
 
 from storage.datastore_schemata.polish_schemata import (
-    inflections_index as pl_inflections_index,
-    inflections_schema as pl_inflections_schema,
+    inflection_index as pl_inflection_index,
+    inflection_schema as pl_inflection_schema,
     lexeme_index as pl_lexeme_index,
     lexeme_schema as pl_lexeme_schema,
     vocabulary_index as pl_vocabulary_index,
@@ -52,12 +50,12 @@ def configure_mongodb_language(mongodb_uri: str, language: str):
         })
 
         db['inflections'].drop_indexes() # TODO remove inflections column, add list field to lexemes
-        db['inflections'].create_index(**pl_inflections_index)
+        db['inflections'].create_index(**pl_inflection_index)
         if 'inflections' not in db.list_collection_names():
             db.create_collection('inflections')
         db.command({
             "collMod": "inflections",
-            "validator": pl_inflections_schema,
+            "validator": pl_inflection_schema,
             "validationLevel": "strict"
         })
 

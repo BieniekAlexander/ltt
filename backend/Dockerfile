@@ -1,5 +1,5 @@
 # source: https://www.freecodecamp.org/news/how-to-dockerize-a-flask-app/
-FROM python:3.9-slim-buster
+FROM python:3.10-slim-buster
 
 WORKDIR /app
 
@@ -12,4 +12,3 @@ EXPOSE $PORT
 
 COPY gunicorn.conf.py .
 CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
-# CMD [ "gunicorn", "-b" , "0.0.0.0:5000", "-c", "gunicorn.conf.py", "app:app"]

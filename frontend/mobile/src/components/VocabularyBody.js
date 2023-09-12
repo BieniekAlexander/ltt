@@ -1,7 +1,6 @@
 import { REACT_APP_BACKEND_URL } from '@env';
 import { Picker } from '@react-native-picker/picker';
-import axios from 'axios';
-import { push_study_entry, stats_update, getArrayToggleValue, putStudySession, Recall, stats_session_init } from 'shared';
+import { push_study_entry, stats_update, getArrayToggleValue, putStudySession, Recall } from 'shared';
 import { getStudySession } from 'shared';
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
@@ -80,7 +79,7 @@ const VocabularyBody = () => {
         let entry = currentEntry
         let fact = state.current.entry_fact_map[entry.lexeme_id]
         stats_update(entry.stats[fact], recall)
-        push_study_entry(state.current.entries, fact, entry)
+        push_study_entry(state.current.entries, entry, recall)
         consumeStudyTerm()
     }
 
@@ -113,9 +112,6 @@ const VocabularyBody = () => {
                 for (let i = 0; i < state.current.entries.length; i++) {
                     let entry = state.current.entries[i]
                     let stats = entry.stats
-                    Object.entries(stats).forEach(([k, v]) => {
-                        stats_session_init(v)
-                    });
 
                     // set the thing being studied for the term to be the first stats entry (stats entries are sorted in the backend)
                     let study_fact = Object.keys(stats)[0]
@@ -139,7 +135,7 @@ const VocabularyBody = () => {
                                     return <Button key={`recall${i}`} value={i} title={String(i)} onPress={() => { handleStudyTerm(i) }} />
                                 })
                             }
-                            <Button title="Suspend" onPress={() => { handleStudyTerm(Recall.SUSPEND) }} />
+                            <Button title="Suspend" onPress={() => { handleStudyTerm(Recall.toValue(Recall.SUSPEND)) }} />
                             <Button title="Forget" onPress={ forgetStudyTerm } />
                             {/* TODO for testing, remove */}
                             <Button title="Abort" onPress={ () => {setCurrentEntry(null); state.current.entries=[]} } />

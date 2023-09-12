@@ -9,7 +9,7 @@ import pandas as pd
 from bson.objectid import ObjectId
 from pymongo import MongoClient
 from storage.language_datastores.polish_datastore import PolishDatastore
-from training.sm2_anki.stats import Stats
+from training.ebisu.stats import Stats
 
 # constants
 MONGODB_URI = os.environ['MONGODB_URI']

@@ -5,7 +5,7 @@ from bson.objectid import ObjectId
 from flask import Blueprint, current_app, jsonify, request
 from flask_jwt_extended import jwt_required
 from flask_restx import Namespace, Resource, fields
-from scraping.annotation_utils import annotate_text
+from utils.annotation import annotate_text
 from storage.language_datastores.polish_datastore import PolishDatastore
 
 # constants

@@ -1,3 +1,8 @@
+"""
+TODO - this script is outdated because it still uses the old anki vocabulary stats, which are no longer used
+
+this will probably be deprecated in favor of a javascript TUI
+"""
 import curses
 import os
 import argparse

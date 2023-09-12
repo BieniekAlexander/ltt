@@ -2,8 +2,9 @@
   "version": "v1",
   "packages": {
     "shared": {
-      "signature": "58eb4b0bff4326f657e8c729ca9d2a26",
-      "file": true
+      "signature": "33aefa2a7c4f0091db57b9f8202f839a",
+      "file": true,
+      "replaced": "file:../shared"
     }
   }
 }

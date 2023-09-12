@@ -12,6 +12,7 @@ import { Formik } from 'formik'
 import axios from 'axios'
 import * as Keychain from 'react-native-keychain'
 import VocabularyBody from './src/components/VocabularyBody'
+import RecoBody from './src/components/RecoBody'
 import FormComponent from './src/components/FormComponent'
 
 import {
@@ -124,6 +125,7 @@ const App = () => {
                     ? <>
                         {/* <FormComponent/> */}
                         <VocabularyBody/>
+                        <RecoBody/>
                         <Button onPress={() => {setIsLoggedIn(false); setUserDetails({})}} title="Logout" />  
                     </>
                     : <>

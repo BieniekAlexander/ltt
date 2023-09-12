@@ -28,3 +28,13 @@ npx react-native run-android --variant=debug --deviceId emulator-5554
 - TODO I think the adb installed on wsl is busted, things don't seem to work unless I point to the one on windows: `/mnt/c/Users/Bieni/AppData/Local/Android/Sdk/platform-tools/adb.exe`
 - still very unclear on how to use this guide, [React Native on Mobile Guide](https://reactnative.dev/docs/running-on-device)
 - it seems that, when running over USB, I need to run metro with `npx react-native start --host 127.0.0.1` (make sure host arg is provided) - this isn't mentioned in the guide
+
+## Installing local dependencies
+React native doesn't work with locally installed packages at all, so I have to use `yalc` as a workaround:
+```
+pushd ../shared
+yalc publish
+popd
+yalc add shared
+npm install
+```

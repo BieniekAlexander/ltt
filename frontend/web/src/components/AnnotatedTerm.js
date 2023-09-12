@@ -54,9 +54,9 @@ export default function AnnotatedTerm(props) {
     };
 
     const addVocabularyTerm = (lexemeId, userId) => {
-        axios({
+        axios({ // TODO outdated call
             method: "POST",
-            url: `${process.env.REACT_APP_BACKEND_URL}//vocabulary`,
+            url: `${process.env.REACT_APP_BACKEND_URL}/vocabulary`,
             headers: { 'Content-Type': 'application/json' },
             data: JSON.stringify({
                 lexeme_id: lexemeId,

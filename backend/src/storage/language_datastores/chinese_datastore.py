@@ -3,7 +3,7 @@ from pymongo import MongoClient
 from typing import Any, Union
 
 from enforce_typing import enforce_types
-from training.sm2_anki.stats import Stats
+from training.ebisu.stats import Stats
 from language.chinese.character import Character
 from language.chinese.word import Word
 from storage.collection_connector import CollectionConnector
@@ -11,7 +11,7 @@ from utils.data_structure_utils import get_nested_iterable_values
 from storage.datastore_utils import generate_query, generate_member_query
 
 from storage.datastore_schemata.chinese_schemata import (
-    character_schema as zh_character_schema,
+    lexeme_schema as zh_character_schema,
     vocabulary_schema as zh_vocabulary_schema
 )
 
@@ -81,13 +81,14 @@ class ChineseDatastore:
     @enforce_types
     def get_lexemes_from_form(self, form: str) -> dict[ObjectId, Union[Character, Word]]:
         """
-        Get a character, given soem form of it
+        Get a character or word, given some form of it
         """
-        bson_list = self.lexicon_connector.collection.find(generate_member_query('forms_list', form))
-        lexeme_dict = {}
-
-        lexeme_dict = {lexeme_bson.pop("_id"): deserialize_chinese_from_bson(lexeme_bson) for lexeme_bson in bson_list}
-        return lexeme_dict
+        bson_list = list(self.lexicon_connector.collection.find(generate_member_query('forms_list', form)))
+        
+        if bson_list != []:
+            return {lexeme_bson.pop("_id"): deserialize_chinese_from_bson(lexeme_bson) for lexeme_bson in bson_list}
+        else:
+            return {}
 
     def get_lexemes(self, **kwargs) -> dict[ObjectId, Union[Character, Word]]:
         """
@@ -109,6 +110,7 @@ class ChineseDatastore:
         """
         for entry in entries:
             assert set(['lexeme_id', 'stats', 'user_id']) == entry.keys()
+            entry['stats'] = {k: entry['stats'][k].to_json() for k in entry['stats']} # TODO clean up all of this shit
 
         assert len(set(entry['user_id'] for entry in entries)) == 1
 
@@ -152,6 +154,14 @@ class ChineseDatastore:
         stats = {k: stats[k].to_json() for k in stats}
         document = dict(user_id=user_id, lexeme_id=lexeme_id, stats=stats)
         self.vocabulary_connector.update_document(query=query, document=document)
+
+    def delete_vocabulary_entry(self, vocabulary_id) -> None:
+        """Delete the vocabulary entry, as identified by [vocabulary_id]
+        
+        Args:
+            vocabulary_id: The ID of the vocabulary entry to delete
+        """
+        self.vocabulary_connector.delete_document({"_id": vocabulary_id})
 
 
 if __name__ == "__main__":
